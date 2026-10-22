@@ -29,6 +29,17 @@ make all
 
 预期：`make test` 的 4 个测试全部通过；`make smoke` 输出 `"passed": true`，`Dockerfile.broken` 故意构建失败，`build_exit_code` 非零，`make_error_line` 保留含 `make: not found` 的关键行；`make scan` 显示"未发现问题"。`log_tail` 只保留末尾几行，不保证包含这条关键行。E5 仍须重新保存完整原始构建日志和退出码。
 
+## E5：论文复现
+
+E5 继续使用本仓库，在 `e5-reproduction` 分支记录复现过程，不另建阶段仓库。B1 在仓库根目录执行：
+
+```sh
+python3 scripts/lab_cloud.py e5 --out work/e5-b1-final --build-timeout 600
+echo "E5_EVIDENCE_EXIT_CODE=$?"
+```
+
+有效复现必须进入 `RUN make`，在日志中出现 `make: not found`，且 `docker build` 退出码为 `1`。证据保存在 `work/`，默认不提交；可提交的说明放在 `reports/E5/`。两类模型提示由脚本生成，但取得候选、选择候选和后续验证属于后续分工。
+
 ## 约定
 
 - Python 基础镜像、Docker 客户端镜像和冒烟样例均通过镜像站按 digest 固定；更换时须核验 digest 与架构，并在提交说明中写明来源。服务镜像从 `docker:cli` 复制客户端，不在容器里另装 Docker 引擎；`docker_server` 记录的是宿主机引擎版本。
