@@ -1,0 +1,14 @@
+{
+  "b1_source_commit": "14cb9fef65746e8437d06752cb098171e10be9c5",
+  "b1_report_commit": "9417057",
+  "b1_evidence_root": "/root/241880179/draft/work/e5-b1-final-20261022",
+  "candidate_count": 3,
+  "selection": null,
+  "selection_reason": null,
+  "validation_status": "NOT_BUILT",
+  "candidates": [
+    "candidate-1-provenance.json",
+    "candidate-2-provenance.json",
+    "candidate-3-provenance.json"
+  ]
+}

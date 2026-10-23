@@ -1,0 +1,34 @@
+{
+  "b1_evidence_root": "/root/241880179/draft/work/e5-b1-final-20261022",
+  "b1_source_commit": "14cb9fef65746e8437d06752cb098171e10be9c5",
+  "excluded_evidence_root": "/root/241880179/draft/work/e5-b1-infra-failed-20261022",
+  "generator": "scripts/prepare_e5_prompts.py",
+  "generator_behavior": "does not call a model; it extracts prompts from the actual make-not-found build evidence",
+  "prompts": {
+    "error_driven": {
+      "path": "/root/241880179/draft/work/e5-b1-final-20261022/iter-01/prompt-error-driven.txt",
+      "inputs": [
+        "iter-01/Dockerfile",
+        "iter-01/build-retry.log"
+      ],
+      "readme_included": false,
+      "root_cause": "make: not found"
+    },
+    "context_driven": {
+      "path": "/root/241880179/draft/work/e5-b1-final-20261022/iter-01/prompt-context-driven.txt",
+      "inputs": [
+        "iter-01/Dockerfile",
+        "iter-01/build-retry.log",
+        "project/README.md"
+      ],
+      "readme_included": true,
+      "root_cause": "make: not found"
+    }
+  },
+  "verification": {
+    "build_exit_code": 1,
+    "required_log_text": "make: not found",
+    "infra_timeout_excluded": true,
+    "prompt_generation_exit_code": 0
+  }
+}
