@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "stage": "E5 B3",
+  "role": "候选选择和服务器验证；不代替 B4 最终验收",
+  "repository": "Rowan-hhh/devops-e4-draft",
+  "selection_status": "SELECTED_PENDING_SERVER_VALIDATION",
+  "input_commits": {
+    "b1_source": "14cb9fef65746e8437d06752cb098171e10be9c5",
+    "b1_report": "9417057ba1fad4e1e0a8e96bda8b3e58384014e4",
+    "b2_candidates": "561e51f1e072fe9c3d3e563402edbab13604afe0"
+  },
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "path": "reports/E5/B2/candidates/candidate-1.Dockerfile",
+      "sha256": "ede21b0fab394071641526e2fccefc41565efb00de6fb54d9d5b906aebeb535d"
+    },
+    {
+      "id": "candidate-2",
+      "path": "reports/E5/B2/candidates/candidate-2.Dockerfile",
+      "sha256": "027d8aabcd8d192cac5353831afe51c7d600fabf28528936ea9c9f715d3fb95c"
+    },
+    {
+      "id": "candidate-3",
+      "path": "reports/E5/B2/candidates/candidate-3.Dockerfile",
+      "sha256": "a78a103b453f83a7405172a850f73cd88a4da9addb654a918118f37554a30a24"
+    }
+  ],
+  "rule_evaluation": {
+    "R1": "本次 B1 证据只记录错误 Dockerfile 的失败构建，没有证据证明三个候选已在本次迭代中构建，因此三者均保持可选。候选 1 与既有 DeepSeek fixture 字节相同；此事实不证明它已在本次迭代中构建。",
+    "R2": "三个完整 Dockerfile 归一化后并不相同，不存在完整候选的多数一致；只有候选 1、2 都采用 build-essential。",
+    "R3": "三个候选都针对 make: not found，无法唯一决定。",
+    "R4": "采用透明的工程性 tie-break，选择候选 2。"
+  },
+  "selected_candidate": "candidate-2",
+  "selected_candidate_path": "reports/E5/B2/candidates/candidate-2.Dockerfile",
+  "selected_candidate_sha256": "027d8aabcd8d192cac5353831afe51c7d600fabf28528936ea9c9f715d3fb95c",
+  "selection_reason": [
+    "使用候选 1、2 共同采用的 build-essential。",
+    "固定 FROM digest。",
+    "保留 WORKDIR、COPY、RUN make 和 CMD [\"./hello\"]。",
+    "依赖安装放在 COPY 之前，源码变化时可复用依赖层。",
+    "未加入绕过构建、伪造输出或无关指令。"
+  ],
+  "server_validation": {
+    "status": "PENDING",
+    "evidence_path": null,
+    "build_command": null,
+    "build_exit_code": null,
+    "build_log": null,
+    "image_tag": null,
+    "image_id": null,
+    "run_command": null,
+    "run_exit_code": null,
+    "stdout_sha256": null,
+    "stderr_sha256": null,
+    "output_matches": null
+  }
+}
