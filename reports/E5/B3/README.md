@@ -23,8 +23,14 @@ B3 负责候选选择和服务器验证，不代替 B4 最终验收。
 
 候选 2 使用候选 1、2 共同采用的 `build-essential`，固定 `FROM` digest，并保留 `WORKDIR`、`COPY`、`RUN make` 和 `CMD ["./hello"]`。依赖安装放在 `COPY` 之前，源码变化时可复用依赖层。没有加入绕过构建、伪造输出或无关指令。所选原文件为 [candidate-2.Dockerfile](../B2/candidates/candidate-2.Dockerfile)，未另存副本。
 
-## 当前状态
+## B3 服务器验证
 
-`SELECTED_PENDING_SERVER_VALIDATION`。尚未执行候选构建，尚未取得镜像 ID，尚未执行 `hello E3` 运行验证；不得描述为已成功。
+状态为 `SELECTED_SERVER_VALIDATED`。在仓库提交 `9c78b4256f84ba2aaea9558660b4ed8b8e2ac27a` 上验证 candidate-2，候选 SHA-256 为 `027d8aabcd8d192cac5353831afe51c7d600fabf28528936ea9c9f715d3fb95c`。
 
-服务器验证完成后，需要补充 evidence 路径、构建命令与退出码、完整 `build.log`、镜像标签和完整 image ID、运行命令与退出码、stdout、stderr，以及 `hello E3` 精确匹配结果。上述验证数据尚未产生。
+最终结果依据后台 no-cache 构建证据：构建于 `2026-10-24T08:06:35Z` 开始、`2026-10-24T09:35:46Z` 结束，build exit code 为 `0`。APT 输出 delayed-item warnings，但 `RUN make` 成功，镜像成功导出。镜像标签为 `e5-b3-candidate-2:241880360`，完整 image ID 为 `sha256:9c28c8c7e22a15185e1ebec50759467079333db9d9cfff5572509a018216048a`，架构为 `amd64`。
+
+前一次前台构建因切换为可断线后台运行而中断；`build-interrupted.log` 不作为最终结果。最终依据是 `/root/241880360/e5-b3-20261024T075232Z/evidence/build.log`，其 SHA-256 为 `eac1142b0f243d40e08be9895c2b81bfc136df4e25280aaecf176934301c877b`。
+
+运行 exit code 为 `0`；stdout 精确输出 `hello E3` 并以换行结束，stderr 为空，输出匹配结果为 `true`。原始结构化证据见 [server-validation.json](./server-validation.json)。
+
+B3 服务器验证通过不等于 B4 最终验收；下一步交由 B4。

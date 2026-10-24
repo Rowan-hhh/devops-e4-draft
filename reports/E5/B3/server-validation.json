@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "stage": "E5 B3",
+  "status": "PASS",
+  "evidence_path": "/root/241880360/e5-b3-20261024T075232Z/evidence",
+  "repository_head": "9c78b4256f84ba2aaea9558660b4ed8b8e2ac27a",
+  "candidate": "candidate-2",
+  "candidate_sha256": "027d8aabcd8d192cac5353831afe51c7d600fabf28528936ea9c9f715d3fb95c",
+  "build": {
+    "started_at": "2026-10-24T08:06:35Z",
+    "finished_at": "2026-10-24T09:35:46Z",
+    "command": "timeout 10800 docker build --no-cache --progress=plain -t e5-b3-candidate-2:241880360 -f /root/241880360/e5-b3-20261024T075232Z/evidence/context/Dockerfile /root/241880360/e5-b3-20261024T075232Z/evidence/context",
+    "exit_code": 0,
+    "log": "/root/241880360/e5-b3-20261024T075232Z/evidence/build.log",
+    "log_sha256": "eac1142b0f243d40e08be9895c2b81bfc136df4e25280aaecf176934301c877b"
+  },
+  "image": {
+    "tag": "e5-b3-candidate-2:241880360",
+    "id": "sha256:9c28c8c7e22a15185e1ebec50759467079333db9d9cfff5572509a018216048a",
+    "architecture": "amd64"
+  },
+  "run": {
+    "command": "docker run --rm --network none sha256:9c28c8c7e22a15185e1ebec50759467079333db9d9cfff5572509a018216048a",
+    "exit_code": 0,
+    "expected_stdout": "hello E3",
+    "stdout_sha256": "8e4e09b0c3458c9c59e691c847d4d7484995403e663549d919fac7c2a5823548",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output_matches": true,
+    "stderr_empty": true
+  },
+  "note": "APT emitted delayed-item warnings; docker build completed with exit code 0, RUN make succeeded, and the exported image passed the runtime check."
+}
