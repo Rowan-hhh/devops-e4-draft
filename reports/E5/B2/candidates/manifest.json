@@ -1,11 +1,13 @@
 {
   "b1_source_commit": "14cb9fef65746e8437d06752cb098171e10be9c5",
-  "b1_report_commit": "9417057",
+  "b1_report_commit": "9417057ba1fad4e1e0a8e96bda8b3e58384014e4",
   "b1_evidence_root": "/root/241880179/draft/work/e5-b1-final-20261022",
   "candidate_count": 3,
-  "selection": null,
-  "selection_reason": null,
-  "validation_status": "NOT_BUILT",
+  "selection": "candidate-2",
+  "selection_reason": "见 reports/E5/B3/decision.json；按 R1-R4 记录后采用工程性 tie-break。",
+  "validation_status": "SELECTED_SERVER_VALIDATED",
+  "selected_candidate_sha256": "027d8aabcd8d192cac5353831afe51c7d600fabf28528936ea9c9f715d3fb95c",
+  "validation_evidence_root": "/root/241880360/e5-b3-20261024T075232Z/evidence",
   "candidates": [
     "candidate-1-provenance.json",
     "candidate-2-provenance.json",
