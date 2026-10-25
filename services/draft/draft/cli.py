@@ -9,6 +9,7 @@ import argparse
 import json
 
 from . import __version__
+from .autobuild import auto_build
 from .smoke import run_smoke
 
 
@@ -19,6 +20,12 @@ def build_parser():
     sp = sub.add_parser("smoke", help="E4 冒烟测试：在容器里通过宿主机 Docker 构建 E3 的 Dockerfile.broken")
     sp.add_argument("--fixture", default="fixtures/draft")
     sp.add_argument("--tag", default="e4-smoke-broken:latest")
+    auto = sub.add_parser("auto-build", help="E6 B1 two-round build")
+    auto.add_argument("--fixture", default="fixtures/draft")
+    auto.add_argument("--candidate", required=True)
+    auto.add_argument("--out", required=True)
+    auto.add_argument("--expected-output", default="hello E3")
+    auto.add_argument("--timeout", type=int, default=600)
     return ap
 
 
@@ -27,6 +34,8 @@ def main(argv=None):
     if args.cmd == "version":
         print(f"draft {__version__}")
         return 0
+    if args.cmd == "auto-build":
+        return auto_build(args.fixture, args.candidate, args.out, expected_output=args.expected_output, timeout=args.timeout)
     result = run_smoke(args.fixture, args.tag)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0 if result["passed"] else 1
