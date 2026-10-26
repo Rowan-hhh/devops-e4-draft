@@ -1,12 +1,14 @@
 # E6 B4 最终验收
 
-## 当前状态
+## 验收结论
 
 本分支以 B3 提交 `661afe1f81638709121b58419fb5f9f20c2de034` 为基线。
-B1–B3 的仓库交付已经核对；B4 新增了镜像运行约束回归测试和 E6 证据一致性校验脚本。
+B4 最终验收结论为 **PASS**。测试代码提交 `00ea304aa2a38709b01e68f0b0a23c0f821447cd`
+已在 Linux 服务器真实重建服务镜像，并分别运行自己的候选和 `--replay` 候选；两次
+都完成 `MISSING_MAKE` 到成功构建的两轮流程，并以完整镜像 ID 禁网运行成功。
 
-本地 Windows 环境没有 Docker，不能把服务器重建和运行结果写成已通过。完成下列
-Linux 服务器命令后，才可将 B4 最终状态标记为 `PASS`。
+机器可读汇总见 `reports/E6/B4/acceptance.json`，原始证据保存在服务器 `work/` 和
+本地备份包 `tmp/e6-b4-241880179-evidence.tar.gz`。
 
 ## 已核对的输入
 
@@ -22,13 +24,15 @@ Linux 服务器命令后，才可将 B4 最终状态标记为 `PASS`。
 
 ## B4 新增测试
 
-`services/draft/tests/test_autobuild.py::test_verification_runs_exact_image_offline_with_limits`
-检查最终验证必须：
+新增的两个 B4 回归测试检查：
 
 - 使用构建得到的完整 `sha256:` 镜像 ID，而不是可变标签；
 - 使用 `--network none`；
 - 保留 CPU、内存和 PID 限制；
 - 退出码为 `0`、输出匹配且 stderr 为空。
+- 显式构建代理会记录在 `docker build` 命令中，且不会改写候选 Dockerfile。
+
+服务器重建服务镜像后的测试结果为 `13 passed`。
 
 ## 服务器最终验收命令
 
@@ -72,11 +76,26 @@ python3 scripts/secret_scan.py . --history
 
 | 验收项 | 通过标准 | 当前状态 |
 |---|---|---|
-| 新增测试 | 服务镜像内全部 pytest 通过 | 待服务器重建确认 |
-| 服务镜像重建 | `lab_cloud.py build` 退出码 `0` | PENDING |
-| 自己的候选 | 两轮构建、同一镜像 ID 禁网运行、输出匹配 | PENDING |
-| `--replay` | 两轮构建、同一镜像 ID 禁网运行、输出匹配 | PENDING |
-| 密钥扫描 | 未发现密钥 | PENDING |
+| 新增测试 | 服务镜像内全部 pytest 通过 | PASS，`13 passed` |
+| 服务镜像重建 | `lab_cloud.py build` 退出码 `0` | PASS |
+| 自己的候选 | 两轮构建、同一镜像 ID 禁网运行、输出匹配 | PASS |
+| `--replay` | 两轮构建、同一镜像 ID 禁网运行、输出匹配 | PASS |
+| 密钥扫描 | 未发现密钥 | PASS，退出码 `0` |
+
+## 最终结果
+
+| 项目 | 结果 |
+|---|---|
+| 服务镜像 ID | `sha256:776421800c05e95fbe2bd23a19f34645ef8204cd170ccbe98f8188f33d5f9216` |
+| 自己的候选 trace_id | `e6-b-874c4bfe00484f3ebe5e018129625305` |
+| 自己的候选镜像 ID | `sha256:5acbc1a54d9e74237e5589dd8269b8f845b3c306260902e669ac5fb264bf215f` |
+| 自己的候选运行 | 退出码 `0`，stdout `hello E3\n`，stderr 空 |
+| replay trace_id | `e6-b-0bda836558874f9183f530c2e018cc4b` |
+| replay 候选 SHA-256 | `ede21b0fab394071641526e2fccefc41565efb00de6fb54d9d5b906aebeb535d` |
+| replay 镜像 ID | `sha256:4a9a5ed5044ab3ddb5207e3a880770dd649bcc75f1fbcc157cbe2db82c0c9770` |
+| replay 运行 | 退出码 `0`，stdout `hello E3\n`，stderr 空 |
+| 残留运行容器 | `0` |
+| 证据包 SHA-256 | `a8957efa0e7b01da3b451691d00d822a92340fc671a29cd4b09423b5baa2a549` |
 
 如果第二轮再次因 `deb.debian.org` 超时，保留完整日志并将其记为基础设施失败；不要
 修改 `reports/E6/B2/candidate.Dockerfile`，否则候选 SHA 会变化。网络恢复或配置宿主
@@ -93,3 +112,7 @@ echo $! > work/e6-b4-proxy.pid
 export DRAFT_BUILD_HTTP_PROXY=http://$(docker network inspect bridge \
   --format '{{(index .IPAM.Config 0).Gateway}}'):3142
 ```
+
+本次第一次直接运行确实在第二轮得到 `BUILD_TIMEOUT`，证据目录为
+`work/e6-b4-own-20261026/`。随后使用上述显式代理在新目录重跑成功；候选 SHA-256
+保持为交接值，构建命令和代理访问日志均已保存。
