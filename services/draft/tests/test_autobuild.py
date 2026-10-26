@@ -116,3 +116,50 @@ def test_build_proxy_is_explicit_and_does_not_change_dockerfile(tmp_path, monkey
     assert "HTTP_PROXY=http://172.17.0.1:3142" in command
     assert "http_proxy=http://172.17.0.1:3142" in command
     assert dockerfile.read_bytes() == before
+
+
+def test_candidate_build_failure_stops_before_verification(tmp_path, monkeypatch):
+    fixture = tmp_path / "fixture"
+    fixture.mkdir()
+    (fixture / "Dockerfile.broken").write_text(BROKEN, encoding="utf-8")
+    (fixture / "main.c").write_text("int main(void) { return 0; }\n", encoding="utf-8")
+    (fixture / "Makefile").write_text("all:\n\tcc main.c -o hello\n", encoding="utf-8")
+    candidate = tmp_path / "candidate.Dockerfile"
+    candidate.write_text(CANDIDATE, encoding="utf-8")
+    attempts = iter(
+        [
+            {
+                "iteration": "iter-01",
+                "build_exit_code": 1,
+                "status": "EXPECTED_FAILURE",
+                "failure_class": "MISSING_MAKE",
+            },
+            {
+                "iteration": "iter-02",
+                "build_exit_code": 1,
+                "status": "FAILED",
+                "failure_class": "BUILD_FAILED",
+            },
+        ]
+    )
+
+    monkeypatch.setattr(autobuild, "_build_attempt", lambda **kwargs: next(attempts))
+    monkeypatch.setattr(
+        autobuild,
+        "_inspect_image",
+        lambda *args, **kwargs: pytest.fail("image inspection must be skipped"),
+    )
+    monkeypatch.setattr(
+        autobuild,
+        "_verify_image",
+        lambda *args, **kwargs: pytest.fail("program verification must be skipped"),
+    )
+
+    output = tmp_path / "evidence"
+    assert autobuild.auto_build(fixture, candidate, output) == 1
+    result = __import__("json").loads((output / "result.json").read_text())
+    assert result["status"] == "FAILED"
+    assert result["failure_class"] == "BUILD_FAILED"
+    assert len(result["attempts"]) == 2
+    assert "image_id" not in result
+    assert "verification" not in result
