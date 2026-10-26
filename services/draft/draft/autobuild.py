@@ -9,12 +9,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import shutil
 import subprocess
 import uuid
 from pathlib import Path
 from typing import Any, Sequence
+from urllib.parse import urlsplit
 
 
 FIXED_FROM = (
@@ -132,6 +134,31 @@ def classify_build(exit_code: int, combined_log: str) -> str:
     return "BUILD_FAILED"
 
 
+def _build_proxy_args() -> list[str]:
+    """Return an auditable Docker build proxy argument when explicitly set."""
+    proxy = os.environ.get("DRAFT_BUILD_HTTP_PROXY", "")
+    if not proxy:
+        return []
+    parsed = urlsplit(proxy)
+    if (
+        parsed.scheme not in {"http", "https"}
+        or not parsed.hostname
+        or parsed.username
+        or parsed.password
+        or parsed.query
+        or parsed.fragment
+    ):
+        raise ValueError(
+            "DRAFT_BUILD_HTTP_PROXY must be an http(s) URL without credentials"
+        )
+    return [
+        "--build-arg",
+        f"HTTP_PROXY={proxy}",
+        "--build-arg",
+        f"http_proxy={proxy}",
+    ]
+
+
 def _save_build_logs(
     folder: Path,
     command: Sequence[str],
@@ -182,6 +209,7 @@ def _build_attempt(
         "docker",
         "build",
         "--progress=plain",
+        *_build_proxy_args(),
         "-f",
         str(dockerfile),
         "-t",

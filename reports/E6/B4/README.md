@@ -81,3 +81,15 @@ python3 scripts/secret_scan.py . --history
 如果第二轮再次因 `deb.debian.org` 超时，保留完整日志并将其记为基础设施失败；不要
 修改 `reports/E6/B2/candidate.Dockerfile`，否则候选 SHA 会变化。网络恢复或配置宿主
 可达代理后，换一个新的 `--out` 目录重新执行。
+
+仓库支持通过 `DRAFT_BUILD_HTTP_PROXY` 显式传入无凭据 HTTP(S) 构建代理。代理值会
+写进保存的 `docker build` 命令，便于审计；它不会改写候选 Dockerfile。服务器默认源
+确实超时时，可启动仓库内的限域镜像代理并重跑：
+
+```sh
+nohup python3 scripts/debian_mirror_proxy.py --listen 0.0.0.0 --port 3142 \
+  > work/e6-b4-proxy.log 2>&1 &
+echo $! > work/e6-b4-proxy.pid
+export DRAFT_BUILD_HTTP_PROXY=http://$(docker network inspect bridge \
+  --format '{{(index .IPAM.Config 0).Gateway}}'):3142
+```

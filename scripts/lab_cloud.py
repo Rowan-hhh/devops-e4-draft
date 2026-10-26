@@ -39,7 +39,11 @@ def execute(command, folder, timeout=1800):
     return code
 
 def container(extra=()):
-    return ['docker', 'run', '--rm', '--user', f'{os.getuid()}:{os.getgid()}', '-e', 'HOME=/tmp', *extra]
+    environment = ['-e', 'HOME=/tmp']
+    build_proxy = os.environ.get('DRAFT_BUILD_HTTP_PROXY')
+    if build_proxy:
+        environment += ['-e', f'DRAFT_BUILD_HTTP_PROXY={build_proxy}']
+    return ['docker', 'run', '--rm', '--user', f'{os.getuid()}:{os.getgid()}', *environment, *extra]
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=f'Track {TRACK} cloud lab; run from your own course host')

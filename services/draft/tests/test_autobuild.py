@@ -89,3 +89,30 @@ def test_verification_runs_exact_image_offline_with_limits(tmp_path, monkeypatch
     assert result["exit_code"] == 0
     assert result["output_matches"] is True
     assert result["stderr_empty"] is True
+
+
+def test_build_proxy_is_explicit_and_does_not_change_dockerfile(tmp_path, monkeypatch):
+    dockerfile = tmp_path / "Dockerfile"
+    dockerfile.write_text(CANDIDATE, encoding="utf-8")
+    before = dockerfile.read_bytes()
+    observed = {}
+
+    def fake_run(command, *, cwd=None, timeout):
+        observed["command"] = command
+        return 1, "", "/bin/sh: 1: make: not found\n"
+
+    monkeypatch.setenv("DRAFT_BUILD_HTTP_PROXY", "http://172.17.0.1:3142")
+    monkeypatch.setattr(autobuild, "_run", fake_run)
+    autobuild._build_attempt(
+        iteration="iter-01",
+        dockerfile=dockerfile,
+        project=tmp_path,
+        tag="proxy-test:latest",
+        trace_id="proxy-test",
+        timeout=30,
+    )
+
+    command = observed["command"]
+    assert "HTTP_PROXY=http://172.17.0.1:3142" in command
+    assert "http_proxy=http://172.17.0.1:3142" in command
+    assert dockerfile.read_bytes() == before
