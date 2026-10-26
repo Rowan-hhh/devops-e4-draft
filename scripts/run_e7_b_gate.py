@@ -1,4 +1,4 @@
-"""E7 B gate runner for real success and candidate-build-failure workflows."""
+"""E7 B gate runner for success, output mismatch, and rejected candidates."""
 
 import argparse
 import csv
@@ -11,7 +11,7 @@ import shutil
 import subprocess
 
 
-CASES = ("success", "build-failed")
+CASES = ("success", "build-failed", "wrong-output", "invalid-candidate")
 
 
 def _write_json(path: Path, value) -> None:
@@ -65,6 +65,19 @@ def _attempts(report: dict) -> list[dict]:
 
 
 def evaluate(case_name: str, exit_code: int, report: dict, evidence: Path) -> None:
+    if case_name == "invalid-candidate":
+        if (
+            exit_code != 1
+            or report.get("status") != "FAILED"
+            or report.get("failure_class") != "INVALID_CANDIDATE"
+            or report.get("attempts") != []
+            or "verification" in report
+            or "image_id" in report
+            or not any("CMD" in error for error in report.get("candidate_errors", []))
+        ):
+            raise ValueError("invalid candidate was not rejected before building")
+        return
+
     attempts = _attempts(report)
     baseline_log = (evidence / "iter-01" / "build.log").read_text(
         encoding="utf-8", errors="replace"
@@ -104,6 +117,25 @@ def evaluate(case_name: str, exit_code: int, report: dict, evidence: Path) -> No
             or (evidence / "iter-02" / "verify.stdout.log").exists()
         ):
             raise ValueError("candidate build failure did not stop verification")
+        return
+
+    if case_name == "wrong-output":
+        verification = report.get("verification", {})
+        image_id = attempts[1].get("image_id")
+        if (
+            exit_code != 1
+            or report.get("status") != "FAILED"
+            or report.get("failure_class") != "RUNTIME_VERIFICATION_FAILED"
+            or attempts[1].get("build_exit_code") != 0
+            or not re.fullmatch(r"sha256:[0-9a-f]{64}", image_id or "")
+            or verification.get("image_id") != image_id
+            or verification.get("exit_code") != 0
+            or verification.get("expected_output") != "wrong E3\n"
+            or verification.get("actual_output") != "hello E3\n"
+            or verification.get("output_matches") is not False
+            or verification.get("stderr") != ""
+        ):
+            raise ValueError("wrong-output workflow did not record a mismatch")
         return
 
     raise ValueError(f"unsupported case: {case_name}")
@@ -178,6 +210,25 @@ def main(argv=None) -> int:
                     "expected": "iter-02 build fails and verification is absent",
                 }
                 _write_json(case_dir / "fault-injection.json", injection)
+            elif case_name == "wrong-output":
+                injection = {
+                    "type": "EXPECTED_OUTPUT_MISMATCH",
+                    "source_candidate_sha256": candidate_sha256,
+                    "expected_output": "wrong E3",
+                    "actual_output": "hello E3",
+                }
+                _write_json(case_dir / "fault-injection.json", injection)
+            elif case_name == "invalid-candidate":
+                if 'CMD ["./hello"]' not in text:
+                    raise ValueError("candidate CMD differs; review invalid-candidate injection")
+                text = text.replace('CMD ["./hello"]', 'CMD ["./not-a-real-program"]', 1)
+                injection = {
+                    "type": "INVALID_CMD",
+                    "changed_file": "candidate.Dockerfile",
+                    "source_candidate_sha256": candidate_sha256,
+                    "expected": "candidate is rejected before iter-01",
+                }
+                _write_json(case_dir / "fault-injection.json", injection)
 
             case_candidate = case_dir / "candidate.Dockerfile"
             case_candidate.write_text(text, encoding="utf-8", newline="\n")
@@ -206,6 +257,7 @@ def main(argv=None) -> int:
             build_proxy = os.environ.get("DRAFT_BUILD_HTTP_PROXY")
             if build_proxy:
                 command += ["-e", f"DRAFT_BUILD_HTTP_PROXY={build_proxy}"]
+            expected_output = "wrong E3" if case_name == "wrong-output" else "hello E3"
             command += [
                 "--group-add",
                 str(Path("/var/run/docker.sock").stat().st_gid),
@@ -231,7 +283,7 @@ def main(argv=None) -> int:
                 "--out",
                 "/evidence",
                 "--expected-output",
-                "hello E3",
+                expected_output,
                 "--timeout",
                 str(args.build_timeout),
             ]
