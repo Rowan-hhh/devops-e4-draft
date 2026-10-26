@@ -239,3 +239,34 @@ def test_wrong_output_is_recorded_as_runtime_verification_failure(tmp_path, monk
     assert result["failure_class"] == "RUNTIME_VERIFICATION_FAILED"
     assert result["attempts"][1]["image_id"] == image_id
     assert result["verification"]["output_matches"] is False
+
+
+def test_verification_timeout_removes_container_and_records_timed_out(tmp_path, monkeypatch):
+    image_id = "sha256:" + "c" * 64
+    container_id = "d" * 64
+    cidfile = tmp_path / "verify-container-id.txt"
+    cidfile.write_text(container_id + "\n", encoding="utf-8")
+    observed = []
+
+    def fake_run(command, *, cwd=None, timeout):
+        observed.append(command)
+        if command[:2] == ["docker", "run"]:
+            return 124, "", "command timed out after 3 seconds\n"
+        if command[:2] == ["docker", "rm"]:
+            return 0, container_id + "\n", ""
+        if command[:2] == ["docker", "inspect"]:
+            return 1, "", "No such object\n"
+        raise AssertionError(command)
+
+    monkeypatch.setattr(autobuild, "_run", fake_run)
+    result = autobuild._verify_image(tmp_path, image_id, "hello E3", 3)
+
+    assert result["status"] == "TIMED_OUT"
+    assert result["exit_code"] == 124
+    assert result["container_cleanup"]["requested"] is True
+    assert result["container_cleanup"]["removed"] is True
+    assert any(command[:2] == ["docker", "rm"] for command in observed)
+    cleanup = __import__("json").loads(
+        (tmp_path / "verify-container-cleanup.json").read_text()
+    )
+    assert cleanup["container_id"] == container_id

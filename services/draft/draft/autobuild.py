@@ -300,16 +300,49 @@ def _verify_image(
     (folder / "verify.stderr.log").write_text(stderr, encoding="utf-8")
     _write_json(folder / "verify-exit-code.json", {"exit_code": exit_code})
     (folder / "verify.log").write_text(stdout + stderr, encoding="utf-8")
+    cleanup: dict[str, Any] = {
+        "requested": False,
+        "container_id": "",
+        "removed": False,
+    }
+    if exit_code == 124 and cidfile.is_file():
+        container_id = cidfile.read_text(encoding="utf-8").strip()
+        cleanup.update(
+            requested=True,
+            container_id=container_id,
+        )
+        if re.fullmatch(r"[0-9a-f]{64}", container_id):
+            cleanup_command = ["docker", "rm", "-f", container_id]
+            cleanup_exit, cleanup_stdout, cleanup_stderr = _run(
+                cleanup_command,
+                timeout=30,
+            )
+            cleanup.update(
+                command=cleanup_command,
+                exit_code=cleanup_exit,
+                stdout=cleanup_stdout,
+                stderr=cleanup_stderr,
+            )
+            inspect_exit, _, _ = _run(
+                ["docker", "inspect", container_id],
+                timeout=30,
+            )
+            cleanup["removed"] = cleanup_exit == 0 and inspect_exit != 0
+        else:
+            cleanup["error"] = "invalid container ID in cidfile"
+    _write_json(folder / "verify-container-cleanup.json", cleanup)
     expected = expected_output + "\n"
     verification = {
         "command": command,
         "image_id": image_id,
         "exit_code": exit_code,
+        "status": "TIMED_OUT" if exit_code == 124 else "COMPLETED",
         "expected_output": expected,
         "actual_output": stdout,
         "stderr": stderr,
         "output_matches": stdout == expected,
         "stderr_empty": stderr == "",
+        "container_cleanup": cleanup,
     }
     _write_json(folder / "verification.json", verification)
     return verification
@@ -322,6 +355,7 @@ def auto_build(
     *,
     expected_output: str = "hello E3",
     timeout: int = 600,
+    verify_timeout: int | None = None,
 ) -> int:
     """Run the E6 B1 baseline/candidate build flow and write result.json."""
     fixture_path = Path(fixture).resolve()
@@ -445,7 +479,7 @@ def auto_build(
         candidate_dir,
         image_id,
         expected_output,
-        timeout,
+        verify_timeout if verify_timeout is not None else timeout,
     )
     result["image_id"] = image_id
     result["verification"] = verification
@@ -459,6 +493,10 @@ def auto_build(
         save()
         return 0
     result["status"] = "FAILED"
-    result["failure_class"] = "RUNTIME_VERIFICATION_FAILED"
+    result["failure_class"] = (
+        "TIMED_OUT"
+        if verification["exit_code"] == 124
+        else "RUNTIME_VERIFICATION_FAILED"
+    )
     save()
     return 1

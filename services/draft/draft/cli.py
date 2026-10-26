@@ -26,6 +26,12 @@ def build_parser():
     auto.add_argument("--out", required=True)
     auto.add_argument("--expected-output", default="hello E3")
     auto.add_argument("--timeout", type=int, default=600)
+    auto.add_argument(
+        "--verify-timeout",
+        type=int,
+        default=None,
+        help="程序验证超时时间；未指定时使用构建超时时间",
+    )
     return ap
 
 
@@ -35,7 +41,14 @@ def main(argv=None):
         print(f"draft {__version__}")
         return 0
     if args.cmd == "auto-build":
-        return auto_build(args.fixture, args.candidate, args.out, expected_output=args.expected_output, timeout=args.timeout)
+        return auto_build(
+            args.fixture,
+            args.candidate,
+            args.out,
+            expected_output=args.expected_output,
+            timeout=args.timeout,
+            verify_timeout=args.verify_timeout,
+        )
     result = run_smoke(args.fixture, args.tag)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0 if result["passed"] else 1

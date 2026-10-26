@@ -1,4 +1,4 @@
-"""E7 B gate runner for success, output mismatch, and rejected candidates."""
+"""E7 B gate runner for success, failure, mismatch, rejection, and timeout."""
 
 import argparse
 import csv
@@ -11,7 +11,13 @@ import shutil
 import subprocess
 
 
-CASES = ("success", "build-failed", "wrong-output", "invalid-candidate")
+CASES = (
+    "success",
+    "build-failed",
+    "wrong-output",
+    "invalid-candidate",
+    "timeout",
+)
 
 
 def _write_json(path: Path, value) -> None:
@@ -138,6 +144,25 @@ def evaluate(case_name: str, exit_code: int, report: dict, evidence: Path) -> No
             raise ValueError("wrong-output workflow did not record a mismatch")
         return
 
+    if case_name == "timeout":
+        verification = report.get("verification", {})
+        image_id = attempts[1].get("image_id")
+        cleanup = verification.get("container_cleanup", {})
+        if (
+            exit_code != 1
+            or report.get("status") != "FAILED"
+            or report.get("failure_class") != "TIMED_OUT"
+            or attempts[1].get("build_exit_code") != 0
+            or not re.fullmatch(r"sha256:[0-9a-f]{64}", image_id or "")
+            or verification.get("image_id") != image_id
+            or verification.get("status") != "TIMED_OUT"
+            or verification.get("exit_code") != 124
+            or cleanup.get("requested") is not True
+            or cleanup.get("removed") is not True
+        ):
+            raise ValueError("timeout workflow did not classify or clean up correctly")
+        return
+
     raise ValueError(f"unsupported case: {case_name}")
 
 
@@ -229,6 +254,19 @@ def main(argv=None) -> int:
                     "expected": "candidate is rejected before iter-01",
                 }
                 _write_json(case_dir / "fault-injection.json", injection)
+            elif case_name == "timeout":
+                (source / "main.c").write_text(
+                    "int main(void) { for (;;) {} }\n",
+                    encoding="utf-8",
+                )
+                injection = {
+                    "type": "RUNTIME_TIMEOUT",
+                    "changed_file": "fixture/main.c",
+                    "source_candidate_sha256": candidate_sha256,
+                    "verify_timeout_seconds": 3,
+                    "expected": "verification returns TIMED_OUT and removes the container",
+                }
+                _write_json(case_dir / "fault-injection.json", injection)
 
             case_candidate = case_dir / "candidate.Dockerfile"
             case_candidate.write_text(text, encoding="utf-8", newline="\n")
@@ -258,6 +296,7 @@ def main(argv=None) -> int:
             if build_proxy:
                 command += ["-e", f"DRAFT_BUILD_HTTP_PROXY={build_proxy}"]
             expected_output = "wrong E3" if case_name == "wrong-output" else "hello E3"
+            verify_timeout = "3" if case_name == "timeout" else "30"
             command += [
                 "--group-add",
                 str(Path("/var/run/docker.sock").stat().st_gid),
@@ -284,6 +323,8 @@ def main(argv=None) -> int:
                 "/evidence",
                 "--expected-output",
                 expected_output,
+                "--verify-timeout",
+                verify_timeout,
                 "--timeout",
                 str(args.build_timeout),
             ]
