@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "stage": "E7",
+  "role": "B4 final acceptance",
+  "repository": "Rowan-hhh/devops-e4-draft",
+  "pull_request": {
+    "number": 1,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/pull/1"
+  },
+  "branch": "e7-yironghui-b4",
+  "b3_base_commit": "f4de26b3abe0dea5575f4ecd9c238d82ee1176e5",
+  "workflow_commit": "ad19226cc19f657cd87dd01011b0fdbefec843c7",
+  "workflow_file": ".github/workflows/e7-b4-gate.yml",
+  "workflow_name": "E7 B4 CI",
+  "required_check": "E7 B4 Gate",
+  "ruleset": {
+    "name": "main-e7-gate",
+    "enforcement": "Active",
+    "target": "Default branch",
+    "require_pull_request_before_merging": true,
+    "required_approvals": 0,
+    "require_status_checks_to_pass": true,
+    "required_status_checks": [
+      "E7 B4 Gate"
+    ],
+    "require_branches_to_be_up_to_date_before_merging": true,
+    "restrict_deletions": true,
+    "block_force_pushes": true,
+    "bypass_list": []
+  },
+  "b3_result": {
+    "service_tests": "17 passed",
+    "five_scenario_gate_passed": true,
+    "gate_exit_code": 0,
+    "residual_containers_after_gate": 0,
+    "timeout_classification": "TIMED_OUT",
+    "timeout_verification_exit_code": 124,
+    "timeout_container_cleanup_removed": true
+  },
+  "initial_success": {
+    "run_id": 40347473764,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/40347473764",
+    "status": "SUCCESS",
+    "artifact": "e7-b4-40347473764-1",
+    "artifact_size": "84.6 KB"
+  },
+  "intentional_failure": {
+    "commit": "741d0e825b4bd7ffb07e20fbf767ba18f3ce944b",
+    "commit_title": "test(E7/B4): inject intentional CI failure",
+    "run_id": 40351314879,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/40351314879",
+    "status": "FAILURE",
+    "exit_code": 1,
+    "artifact": "e7-b4-40351314879-1",
+    "artifact_size": "9.87 KB",
+    "pull_request_required_check_failed": true,
+    "merge_button_disabled": true
+  },
+  "recovery_success": {
+    "commit": "a46404891b0abda148958185c8fa1000426bf7e2",
+    "commit_title": "test(E7/B4): restore passing CI gate",
+    "run_id": 40352623742,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/40352623742",
+    "status": "SUCCESS",
+    "total_duration": "1m 1s",
+    "gate_job_duration": "57s",
+    "artifact": "e7-b4-40352623742-1",
+    "artifact_size": "84.6 KB",
+    "pull_request_all_checks_passed": true,
+    "pull_request_no_conflicts_with_base": true,
+    "merge_button_available": true
+  },
+  "temporary_failure_test_present_in_final_tree": false,
+  "conclusion": "已验证 required check 失败时拒绝合并，并验证同一 PR 修复后 required check 恢复通过。PR 尚未合并，未记录或声称存在 merge commit。",
+  "status": "ACCEPTED_PENDING_FINAL_REPORT_CI_AND_MERGE"
+}
