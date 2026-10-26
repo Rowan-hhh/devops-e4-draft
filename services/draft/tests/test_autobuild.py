@@ -2,6 +2,7 @@
 
 import pytest
 
+from draft import autobuild
 from draft.autobuild import (
     FIXED_FROM,
     build_initial_dockerfile,
@@ -63,3 +64,28 @@ def test_build_failure_classification():
     assert classify_build(1, "some compiler error") == "BUILD_FAILED"
     assert classify_build(124, "timed out") == "BUILD_TIMEOUT"
     assert classify_build(0, "success") == "SUCCEEDED"
+
+
+def test_verification_runs_exact_image_offline_with_limits(tmp_path, monkeypatch):
+    """B4 regression: verify the built image ID, never a mutable tag."""
+    image_id = "sha256:" + "a" * 64
+    observed = {}
+
+    def fake_run(command, *, cwd=None, timeout):
+        observed["command"] = command
+        observed["timeout"] = timeout
+        return 0, "hello E3\n", ""
+
+    monkeypatch.setattr(autobuild, "_run", fake_run)
+    result = autobuild._verify_image(tmp_path, image_id, "hello E3", 30)
+
+    command = observed["command"]
+    assert command[-1] == image_id
+    assert command[command.index("--network") + 1] == "none"
+    assert command[command.index("--cpus") + 1] == "1"
+    assert command[command.index("--memory") + 1] == "128m"
+    assert command[command.index("--pids-limit") + 1] == "64"
+    assert observed["timeout"] == 30
+    assert result["exit_code"] == 0
+    assert result["output_matches"] is True
+    assert result["stderr_empty"] is True
