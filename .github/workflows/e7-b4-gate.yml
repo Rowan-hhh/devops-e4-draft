@@ -1,0 +1,73 @@
+name: E7 B4 CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  e7-b4-gate:
+    name: E7 B4 Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Record runner and Docker diagnostics
+        shell: bash
+        env:
+          RUN_DIR: work/e7-b4-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUN_DIR"
+          {
+            echo '--- docker version ---'
+            docker version
+            echo '--- docker info ---'
+            docker info
+            echo '--- disk space ---'
+            df -h
+            echo '--- docker disk usage ---'
+            docker system df
+          } 2>&1 | tee "$RUN_DIR/runner-diagnostics.log"
+
+      - name: Build draft service image
+        shell: bash
+        env:
+          RUN_DIR: work/e7-b4-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          docker build --progress=plain \
+            -f services/draft/Dockerfile \
+            -t course1020-draft:e7-b4 \
+            . 2>&1 | tee "$RUN_DIR/service-build.log"
+
+      - name: Run five-scenario E7 gate
+        shell: bash
+        env:
+          RUN_DIR: work/e7-b4-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          set -euo pipefail
+          python3 scripts/run_e7_b_gate.py \
+            --candidate reports/E6/B2/candidate.Dockerfile \
+            --image course1020-draft:e7-b4 \
+            --out "$RUN_DIR/gate" \
+            --build-timeout 1200
+
+      - name: Upload E7 gate evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e7-b4-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            work/e7-b4-${{ github.run_id }}-${{ github.run_attempt }}/service-build.log
+            work/e7-b4-${{ github.run_id }}-${{ github.run_attempt }}/gate/**
+          if-no-files-found: warn

@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "stage": "E7",
+  "role": "B2 output mismatch and invalid candidate",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "base_branch": "e7-b1",
+  "base_commit": "42065eaf265da55ee05dcc60c27cfefb7f524c5f",
+  "branch": "e7-xzt-b2",
+  "commit": "2d408bb95552697e9489741f559104ccd5f713bf",
+  "candidate": {
+    "path": "reports/E6/B2/candidate.Dockerfile",
+    "sha256": "510dc459a9a3830aabdf35b32c15b0c22a3c3299982950e40378d4a3227b9788",
+    "modified": false
+  },
+  "service": {
+    "image": "course1020-draft:e7-b2",
+    "image_id": "sha256:3abf8497c8470fa9f9956583b723442939f22c928115a2cdd574f45628595455",
+    "tests": "16 passed",
+    "exit_code": 0
+  },
+  "gate": {
+    "evidence": "/root/E4-draft/work/e7-b2-20261026/gate",
+    "exit_code": 0,
+    "passed": true,
+    "selected_cases": [
+      "success",
+      "build-failed",
+      "wrong-output",
+      "invalid-candidate"
+    ],
+    "running_containers_after_gate": 0
+  },
+  "cases": {
+    "success": {
+      "trace_id": "e6-b-3ae250160afc4a0bbf836c695a65eff7",
+      "status": "SUCCEEDED",
+      "exit_code": 0,
+      "image_id": "sha256:fa47fc66960900c5694acac73d7f0aaac6be4bfa3e37b46079c92b9a2f496ebd",
+      "run_exit_code": 0,
+      "actual_output": "hello E3\n",
+      "stderr": "",
+      "output_matches": true
+    },
+    "build_failed": {
+      "trace_id": "e6-b-85878c4e481842768bac71a41eeec186",
+      "status": "FAILED",
+      "exit_code": 1,
+      "failure_class": "BUILD_FAILED",
+      "verification_present": false
+    },
+    "wrong_output": {
+      "trace_id": "e6-b-b071140a26064f0b9811e28dd945b150",
+      "status": "FAILED",
+      "exit_code": 1,
+      "failure_class": "RUNTIME_VERIFICATION_FAILED",
+      "expected_output": "wrong E3\n",
+      "actual_output": "hello E3\n",
+      "run_exit_code": 0,
+      "stderr": "",
+      "output_matches": false
+    },
+    "invalid_candidate": {
+      "trace_id": "e6-b-d3e707fa480c4f08aa3e0b3eb5e99057",
+      "status": "FAILED",
+      "exit_code": 1,
+      "failure_class": "INVALID_CANDIDATE",
+      "candidate_error": "CMD [\"./hello\"] is required",
+      "attempts": [],
+      "verification_present": false,
+      "image_id_present": false
+    }
+  },
+  "evidence": {
+    "service": "/root/E4-draft/work/e7-b2-service-20261026",
+    "gate": "/root/E4-draft/work/e7-b2-20261026/gate",
+    "raw_gate_result": "gate-result.json",
+    "csv": "results.csv",
+    "checksums": "SHA256SUMS"
+  }
+}

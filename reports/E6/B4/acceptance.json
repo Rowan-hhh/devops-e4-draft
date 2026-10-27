@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "stage": "E6",
+  "role": "B4 final acceptance",
+  "student_id": "241880179",
+  "status": "PASS",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "branch": "e6-b4-final",
+  "b3_base_commit": "661afe1f81638709121b58419fb5f9f20c2de034",
+  "tested_code_commit": "00ea304aa2a38709b01e68f0b0a23c0f821447cd",
+  "environment": {
+    "host": "47.97.166.140",
+    "os": "Ubuntu 22.04.5 LTS",
+    "architecture": "x86_64",
+    "docker_client": "29.1.3",
+    "docker_server": "29.1.3"
+  },
+  "service": {
+    "evidence": "/root/E4-draft/work/e6-b4-service-proxy-20261026",
+    "exit_code": 0,
+    "tests": "13 passed",
+    "image": "course1020-draft:e6-b4",
+    "image_id": "sha256:776421800c05e95fbe2bd23a19f34645ef8204cd170ccbe98f8188f33d5f9216"
+  },
+  "candidate": {
+    "path": "reports/E6/B2/candidate.Dockerfile",
+    "sha256": "510dc459a9a3830aabdf35b32c15b0c22a3c3299982950e40378d4a3227b9788",
+    "modified": false
+  },
+  "direct_attempt": {
+    "evidence": "/root/E4-draft/work/e6-b4-own-20261026/evidence",
+    "baseline_failure": "MISSING_MAKE",
+    "candidate_failure": "BUILD_TIMEOUT",
+    "candidate_build_exit_code": 124,
+    "reason": "deb.debian.org was connected but too slow for the 1200 second build timeout"
+  },
+  "network_adaptation": {
+    "environment_variable": "DRAFT_BUILD_HTTP_PROXY",
+    "proxy": "http://172.17.0.1:3142",
+    "upstream_mirror": "http://mirrors.aliyun.com",
+    "allowlisted_origin": "http://deb.debian.org",
+    "candidate_bytes_changed": false,
+    "audit_log": "/root/E4-draft/work/e6-b4-proxy.log"
+  },
+  "own_candidate": {
+    "evidence": "/root/E4-draft/work/e6-b4-own-proxy-20261026/evidence",
+    "status": "SUCCEEDED",
+    "trace_id": "e6-b-874c4bfe00484f3ebe5e018129625305",
+    "candidate_sha256": "510dc459a9a3830aabdf35b32c15b0c22a3c3299982950e40378d4a3227b9788",
+    "baseline_failure": "MISSING_MAKE",
+    "candidate_build_exit_code": 0,
+    "image_id": "sha256:5acbc1a54d9e74237e5589dd8269b8f845b3c306260902e669ac5fb264bf215f",
+    "run_network": "none",
+    "run_exit_code": 0,
+    "stdout": "hello E3\n",
+    "stderr": "",
+    "output_matches": true,
+    "evidence_verifier_exit_code": 0
+  },
+  "replay": {
+    "evidence": "/root/E4-draft/work/e6-b4-replay-proxy-20261026/evidence",
+    "status": "SUCCEEDED",
+    "trace_id": "e6-b-0bda836558874f9183f530c2e018cc4b",
+    "candidate_sha256": "ede21b0fab394071641526e2fccefc41565efb00de6fb54d9d5b906aebeb535d",
+    "baseline_failure": "MISSING_MAKE",
+    "candidate_build_exit_code": 0,
+    "image_id": "sha256:4a9a5ed5044ab3ddb5207e3a880770dd649bcc75f1fbcc157cbe2db82c0c9770",
+    "run_network": "none",
+    "run_exit_code": 0,
+    "stdout": "hello E3\n",
+    "stderr": "",
+    "output_matches": true,
+    "evidence_verifier_exit_code": 0
+  },
+  "security": {
+    "command": "python3 scripts/secret_scan.py . --history --image course1020-draft:e6-b4",
+    "exit_code": 0,
+    "result": "no findings",
+    "running_containers_after_acceptance": 0
+  },
+  "evidence_archive": {
+    "server_path": "/root/e6-b4-241880179-evidence.tar.gz",
+    "local_path": "tmp/e6-b4-241880179-evidence.tar.gz",
+    "sha256": "a8957efa0e7b01da3b451691d00d822a92340fc671a29cd4b09423b5baa2a549"
+  }
+}

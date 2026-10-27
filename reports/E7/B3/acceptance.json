@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "stage": "E7",
+  "role": "B3 timeout and overall gate",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "base_branch": "e7-xzt-b2",
+  "base_commit": "d85fb51c24f71ecd3560572a1cd9bfc97f4d33e0",
+  "branch": "e7-zyh-b3",
+  "code_commit": "b65c97dcdf13dac78c1bb28dc21d858a0a838fa1",
+  "candidate_sha256": "510dc459a9a3830aabdf35b32c15b0c22a3c3299982950e40378d4a3227b9788",
+  "service": {
+    "image": "course1020-draft:e7-b3",
+    "image_id": "sha256:fa225a9cb5473ec5714a6c8e1c58b95aced241e48f3b69143c94835d6a0ebe60",
+    "tests": "17 passed",
+    "exit_code": 0
+  },
+  "gate": {
+    "evidence": "/root/E4-draft/work/e7-b3-20261026/gate",
+    "passed": true,
+    "exit_code": 0,
+    "selected_cases": [
+      "success",
+      "build-failed",
+      "wrong-output",
+      "invalid-candidate",
+      "timeout"
+    ],
+    "running_containers_after_gate": 0
+  },
+  "timeout": {
+    "trace_id": "e6-b-247b8550bdb249538108a78153c644a1",
+    "status": "FAILED",
+    "failure_class": "TIMED_OUT",
+    "image_id": "sha256:1a54c04485c745f5827f805ab1bbb296d2118472ade85ca3a82a796d7edb28a4",
+    "verify_exit_code": 124,
+    "verify_status": "TIMED_OUT",
+    "verify_timeout_seconds": 3,
+    "container_cleanup": {
+      "container_id": "9ebd8662a82442dbbc37359fca87f31bf8cfe11244f8bbdb9b0defd1063f862a",
+      "exit_code": 0,
+      "removed": true
+    }
+  },
+  "all_cases": {
+    "success": "e6-b-9dd13102756f4253991728effdf33fb9",
+    "build_failed": "e6-b-d21aff1603ed408e951920d155259b39",
+    "wrong_output": "e6-b-8ff6314ad25d4250a264325dc324e8bd",
+    "invalid_candidate": "e6-b-e9e8425c059a4c6ca0d241919e6c1992",
+    "timeout": "e6-b-247b8550bdb249538108a78153c644a1"
+  }
+}

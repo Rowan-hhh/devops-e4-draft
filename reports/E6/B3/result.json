@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "role": "E6-B3",
+  "status": "PASS",
+  "source_branch": "e6-yironghui-candidate",
+  "source_commit": "94c771a695147366d11a8ee11f52d63bc73f5503",
+  "candidate_file": "reports/E6/B2/candidate.Dockerfile",
+  "candidate_sha256": "510dc459a9a3830aabdf35b32c15b0c22a3c3299982950e40378d4a3227b9788",
+  "expected_output": "hello E3\n",
+  "build": {
+    "status": "SUCCEEDED",
+    "exit_code": 0,
+    "method": "E6 B1 steps with server mirror adaptation",
+    "trace_id": "e6-b3-manual-network-adapted-20261026",
+    "image_id": "sha256:410e69896d1aa14db9fc9a27ba45c6c9971413594bdd6fb6da89882038fc09e3",
+    "log": "/root/E4-draft/work/e6-b3-20261026/evidence/b3-validation/build.log"
+  },
+  "verification": {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "--cpus",
+      "1",
+      "--memory",
+      "128m",
+      "--pids-limit",
+      "64",
+      "sha256:410e69896d1aa14db9fc9a27ba45c6c9971413594bdd6fb6da89882038fc09e3"
+    ],
+    "image_id": "sha256:410e69896d1aa14db9fc9a27ba45c6c9971413594bdd6fb6da89882038fc09e3",
+    "exit_code": 0,
+    "actual_output": "hello E3\n",
+    "stderr": "",
+    "output_matches": true,
+    "stderr_empty": true,
+    "evidence_dir": "/root/E4-draft/work/e6-b3-20261026/evidence/b3-validation"
+  },
+  "b1_auto_build_attempts": [
+    {
+      "trace_id": "e6-b-cfa67c85a9b140d79a9755bb5c9221c0",
+      "iteration": "iter-01",
+      "build_exit_code": 1,
+      "status": "EXPECTED_FAILURE",
+      "failure_class": "MISSING_MAKE"
+    },
+    {
+      "trace_id": "e6-b-cfa67c85a9b140d79a9755bb5c9221c0",
+      "iteration": "iter-02",
+      "build_exit_code": 124,
+      "status": "FAILED",
+      "failure_class": "BUILD_TIMEOUT"
+    },
+    {
+      "trace_id": "e6-b-60c8a6139da5468aba53659a3a177b1d",
+      "iteration": "iter-01",
+      "build_exit_code": 1,
+      "status": "EXPECTED_FAILURE",
+      "failure_class": "MISSING_MAKE"
+    },
+    {
+      "trace_id": "e6-b-60c8a6139da5468aba53659a3a177b1d",
+      "iteration": "iter-02",
+      "build_exit_code": 124,
+      "status": "FAILED",
+      "failure_class": "BUILD_TIMEOUT"
+    }
+  ],
+  "notes": [
+    "The candidate Dockerfile was not edited.",
+    "The successful B3 build used the same pinned base image and build steps, with only the Debian mirror adapted for server connectivity.",
+    "B3 PASS covers image run and report validation; B4 integration acceptance remains pending."
+  ]
+}
