@@ -25,14 +25,15 @@
 - Required approvals：`0`
 - 限制删除、禁止 force push；bypass list 为空
 
-## 三阶段 CI 证据
+## CI、合并拦截与最终验证证据
 
 | 阶段 | 提交与运行 | 结果 | Artifact 与 PR 状态 |
 |---|---|---|---|
 | 初始成功 | Run `40347473764`：[Actions](https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/40347473764) | `SUCCESS` | `e7-b4-40347473764-1`，84.6 KB |
 | 故意失败 | `741d0e825b4bd7ffb07e20fbf767ba18f3ce944b`（`test(E7/B4): inject intentional CI failure`）；Run `40351314879`：[Actions](https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/40351314879) | `FAILURE`，退出码 `1` | `e7-b4-40351314879-1`，9.87 KB；PR 显示 `E7 B4 Gate` 为 Required 且失败，`Merge pull request` 按钮禁用 |
 | 同一 PR 修复 | `a46404891b0abda148958185c8fa1000426bf7e2`（`test(E7/B4): restore passing CI gate`）；Run `40352623742`：[Actions](https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/40352623742) | `SUCCESS`；总时长 `1m 1s`，gate job `57s` | `e7-b4-40352623742-1`，84.6 KB；PR 显示 `All checks have passed`、`No conflicts with base branch`，合并按钮恢复可用 |
+| 合并后 main | Merge commit `84152137c120883432fe6b6525ba9ca92a71a332`；报告提交 `c323e3dc1e97f9ba1fe00677e01d6bd266df8031`；Run `40431205082`：[Actions](https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/40431205082)，触发 `push`，分支 `main` | `SUCCESS`；总时长 `55s`，`E7 B4 Gate` `50s` | `e7-b4-40431205082-1`，84.6 KB |
 
 ## 验收结论
 
-已验证 required check 失败时阻止合并，并验证在同一个 PR 修复后检查恢复通过。故意失败测试已从最终树删除。当前状态为 **`ACCEPTED_PENDING_FINAL_REPORT_CI_AND_MERGE`**；PR 尚未合并，本记录不包含 merge commit。
+已验证 required check 失败时阻止合并，并验证同一 PR 修复后检查恢复通过。PR #1 已合并，合并后的 main CI 已成功运行。故意失败测试已从最终代码树删除。最终状态：**`PASS`**。
