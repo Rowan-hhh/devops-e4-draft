@@ -9,6 +9,8 @@
   },
   "branch": "e7-yironghui-b4",
   "b3_base_commit": "f4de26b3abe0dea5575f4ecd9c238d82ee1176e5",
+  "merge_commit": "84152137c120883432fe6b6525ba9ca92a71a332",
+  "merged_report_commit": "c323e3dc1e97f9ba1fe00677e01d6bd266df8031",
   "workflow_commit": "ad19226cc19f657cd87dd01011b0fdbefec843c7",
   "workflow_file": ".github/workflows/e7-b4-gate.yml",
   "workflow_name": "E7 B4 CI",
@@ -70,7 +72,21 @@
     "pull_request_no_conflicts_with_base": true,
     "merge_button_available": true
   },
+  "post_merge_ci": {
+    "run_id": 40431205082,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/40431205082",
+    "trigger": "push",
+    "branch": "main",
+    "commit": "84152137c120883432fe6b6525ba9ca92a71a332",
+    "status": "SUCCESS",
+    "total_duration": "55s",
+    "gate_job_status": "SUCCESS",
+    "gate_job_duration": "50s",
+    "artifact": "e7-b4-40431205082-1",
+    "artifact_size": "84.6 KB",
+    "artifact_digest": "sha256:373ec829b78659733e1839985f8b04d54efc93e8f828d5832dc67702eb902ad6"
+  },
   "temporary_failure_test_present_in_final_tree": false,
-  "conclusion": "已验证 required check 失败时拒绝合并，并验证同一 PR 修复后 required check 恢复通过。PR 尚未合并，未记录或声称存在 merge commit。",
-  "status": "ACCEPTED_PENDING_FINAL_REPORT_CI_AND_MERGE"
+  "conclusion": "已验证 required check 失败时拒绝合并、同一 PR 修复后恢复通过、PR 成功合并，以及合并后的 main CI 成功运行。",
+  "status": "PASS"
 }
