@@ -4,7 +4,7 @@
   "track": "B",
   "record_type": "personal_complete_run",
   "student_id": "241880360",
-  "status": "LOCAL_PASS_PENDING_CI",
+  "status": "PASS",
   "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
   "branch": "student/241880360/e8-e10",
   "source_sha": "593b40a176b0881f3b7ed072a4c6c4302957a07b",
@@ -82,5 +82,30 @@
     "path": "work/e9-B-manual.rT4Wcd/结论.txt",
     "sha256": "9fdfc89ccbc6fb507e42f30b7bdc07efa76e3115c0350df1306e708af510322d"
   },
-  "group_role_tasks_included": false
+  "group_role_tasks_included": false,
+  "ci": {
+    "workflow": "E8-E10 teaching validation",
+    "job": "e8e10-quality-gate",
+    "run_id": 41668796945,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/41668796945",
+    "event": "push",
+    "tested_head_sha": "715e8b5d02337f252eaf17f6a42f4e6efb392341",
+    "status": "success",
+    "artifact": {
+      "id": 13247666024,
+      "name": "e8e10-evidence-41668796945",
+      "size_in_bytes": 119756,
+      "expired": false,
+      "digest": "sha256:094469670d8bb5e73ac7f5231daff918494ff6fbbce4c964027f27804b6fe7b4"
+    }
+  },
+  "pull_request": {
+    "number": 5,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/pull/5",
+    "state": "OPEN",
+    "checked_head_sha": "715e8b5d02337f252eaf17f6a42f4e6efb392341",
+    "successful_checks": 3,
+    "mergeable": "MERGEABLE",
+    "merge_state_status": "CLEAN"
+  }
 }
