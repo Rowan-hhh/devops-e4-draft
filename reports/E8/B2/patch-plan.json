@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "stage": "E8",
+  "role": "B2",
+  "student_id": "xzt",
+  "input_source_sha": "113643e748d7cf6503bb4a383b00c58b16ff195e",
+  "sample_project_commit": "aae7c9d74345872ef98f14558aaf4550f3d25d5a",
+  "report": "reports/E8/B3/fixed-md-report.json",
+  "report_commit": "aae7c9d74345872ef98f14558aaf4550f3d25d5a",
+  "edits": [
+    {
+      "target": "main.o",
+      "dependency": "config.h",
+      "style": "direct",
+      "file": "Makefile",
+      "action": "append_missing_dependency"
+    }
+  ],
+  "preserved": [
+    "main.c",
+    "unused.h",
+    "original_compile_recipe",
+    "helper.o_rule"
+  ],
+  "rejected_findings": [
+    {
+      "type": "REDUNDANT",
+      "target": "main.o",
+      "dependency": "unused.h",
+      "action": "preserve"
+    }
+  ],
+  "candidate_patch": "reports/E8/B2/candidate.patch",
+  "source_unchanged_before_validation": true
+}

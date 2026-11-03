@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "stage": "E8",
+  "role": "B2",
+  "status": "PASS_CANDIDATE_GENERATED",
+  "upstream_branch": "student/241880179/e8-e10",
+  "upstream_commit": "113643e748d7cf6503bb4a383b00c58b16ff195e",
+  "sample_project_commit": "aae7c9d74345872ef98f14558aaf4550f3d25d5a",
+  "checks": {
+    "report_commit_matches_project_head": true,
+    "exact_missing_finding_targeted": true,
+    "redundant_finding_preserved": true,
+    "compile_recipe_unchanged": true,
+    "candidate_only_changes_makefile_dependency": true,
+    "source_unchanged_before_apply": true
+  },
+  "candidate": {
+    "path": "reports/E8/B2/candidate.patch",
+    "plan": "reports/E8/B2/patch-plan.json",
+    "change": "+main.o: main.c unused.h config.h"
+  },
+  "next_step": "B4 should apply the candidate in a temporary copy, run build/test/recheck, and record acceptance or rollback evidence."
+}
