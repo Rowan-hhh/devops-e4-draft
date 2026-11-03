@@ -41,5 +41,28 @@
     "E8 B3",
     "E8 B2",
     "E8 B4"
-  ]
+  ],
+  "ci": {
+    "workflow": "E8-E10 teaching validation",
+    "job": "e8e10-quality-gate",
+    "run_id": 41566221485,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/41566221485",
+    "event": "push",
+    "head_sha": "e8a9d1189c7c94f976ec4690a6f9471e50ac3c71",
+    "status": "success",
+    "artifact": {
+      "name": "e8e10-evidence-41566221485",
+      "size_in_bytes": 119762,
+      "expired": false
+    }
+  },
+  "pull_request": {
+    "number": 5,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/pull/5",
+    "state": "OPEN",
+    "base": "main",
+    "head": "student/241880360/e8-e10",
+    "tested_head_sha": "e8a9d1189c7c94f976ec4690a6f9471e50ac3c71",
+    "mergeable": "MERGEABLE"
+  }
 }
