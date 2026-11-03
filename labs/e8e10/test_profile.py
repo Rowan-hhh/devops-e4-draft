@@ -62,4 +62,34 @@ class StudentE8B(unittest.TestCase):
             )
             self.assertEqual(plan[0]["style"], "direct")
 
+class StudentE8B3(unittest.TestCase):
+    def test_report_identity_changes_even_when_findings_do_not(self):
+        """Equal findings do not make reports from different commits interchangeable."""
+        from lab import run
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory) / 'sample'
+            fixture(project)
+            first = scan(project)
+            first_commit = run(['git', 'rev-parse', 'HEAD'], project).strip()
+            self.assertEqual(first['commit'], first_commit)
+
+            source = project / 'helper.c'
+            source.write_text(source.read_text() + '/* B3: identity-only change */\n')
+            second_commit = commit(project, 'B3: change source without dependency changes')
+            second = json.loads(json.dumps(scan(project)))
+
+            self.assertNotEqual(first_commit, second_commit)
+            self.assertEqual(second['commit'], second_commit)
+            self.assertEqual(first['commit'], first_commit)
+            expected = {
+                ('MISSING', 'main.o', 'config.h'),
+                ('REDUNDANT', 'main.o', 'unused.h'),
+            }
+            for report in (first, second):
+                self.assertEqual({
+                    (item['type'], item['target'], item['dependency'])
+                    for item in report['findings']
+                }, expected)
+            self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
+
 if __name__=='__main__':unittest.main()
