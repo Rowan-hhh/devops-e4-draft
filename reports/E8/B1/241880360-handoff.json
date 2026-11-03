@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "stage": "E8",
+  "role": "B1",
+  "student_id": "241880360",
+  "status": "PASS",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "branch": "student/241880360/e8-e10",
+  "source_sha": "df9a2fe2331b4de82f1209be82a0c35ea562597c",
+  "environment": {
+    "image_tag": "course-e8e10:241880360",
+    "image_id": "sha256:94a15175783fe4f37f17f1ae1208edfbdd2524206304e1b1ce56295f27823c40",
+    "build_exit_code": 0,
+    "build_log": "work/e8-B-manual.cGTRVM/environment-build.log",
+    "build_log_sha256": "5d8757e5fbd7f1c5c502b54dbc9f7ff1100b267218b44c628f021e74b62aeee6",
+    "gcc": "14.2.0",
+    "make": "4.4.1"
+  },
+  "sample": {
+    "evidence_path": "/root/devops-students/241880360/draft/work/e8-B-manual.cGTRVM",
+    "project_commit": "aae7c9d74345872ef98f14558aaf4550f3d25d5a",
+    "missing_dependency": {
+      "target": "main.o",
+      "dependency": "config.h"
+    },
+    "redundant_dependency": {
+      "target": "main.o",
+      "dependency": "unused.h"
+    },
+    "initial_worktree_clean": true
+  },
+  "independent_test": {
+    "name": "StudentE8B.test_patch_keeps_recipe_bytes",
+    "result": "PASS",
+    "total_tests": 8,
+    "exit_code": 0,
+    "log": "work/unit-tests-20261103-102055.log",
+    "log_sha256": "89cb4e7bf3a1fd301e04ff312d536fdc715f6013630e137fe3a91867400bbc4d"
+  },
+  "handoff_to": [
+    "E8 B3",
+    "E8 B2",
+    "E8 B4"
+  ]
+}

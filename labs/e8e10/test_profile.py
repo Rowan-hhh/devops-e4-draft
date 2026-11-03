@@ -39,4 +39,27 @@ class ProfileTests(unittest.TestCase):
         (self.p/'Makefile').write_text((self.p/'Makefile').read_text().replace('-O0','-include unknown.h'))
         with self.assertRaisesRegex(ValueError,'UNSUPPORTED_FLAGS'):scan(self.p)
 
+class StudentE8B(unittest.TestCase):
+    def test_patch_keeps_recipe_bytes(self):
+        from lab import run
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory) / "sample"
+            fixture(project)
+            before = (project / "Makefile").read_bytes()
+            diff, plan = patch(project, scan(project))
+            candidate = Path(directory) / "candidate.patch"
+            candidate.write_text(diff, encoding="utf-8")
+            run(["git", "apply", str(candidate.resolve())], project)
+            after = (project / "Makefile").read_bytes()
+            recipes = lambda data: [
+                line for line in data.splitlines()
+                if line.startswith(b"\t")
+            ]
+            self.assertEqual(recipes(before), recipes(after))
+            self.assertIn(
+                b"main.o: main.c unused.h config.h",
+                after,
+            )
+            self.assertEqual(plan[0]["style"], "direct")
+
 if __name__=='__main__':unittest.main()
