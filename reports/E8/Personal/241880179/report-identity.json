@@ -1,0 +1,9 @@
+{
+  "report_commit": "070a8913e408e73b442c939b769927b7d7f6a162",
+  "project_head": "070a8913e408e73b442c939b769927b7d7f6a162",
+  "checks": {
+    "report_commit_matches_project_head": true,
+    "one_missing_edge": true,
+    "missing_is_main_o_config_h": true
+  }
+}
