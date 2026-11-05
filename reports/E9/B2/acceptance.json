@@ -2,9 +2,9 @@
   "schema_version": 1,
   "stage": "E9",
   "role": "B2",
-  "status": "LOCAL_PREPARED_PENDING_UPSTREAM_SYNC",
-  "upstream_branch": "student/2418880300/e8-e10",
-  "upstream_commit_short": "0636c8f",
+  "status": "PASS_LOCAL_UPSTREAM_MERGED",
+  "upstream_branch": "e9-zyh-b3",
+  "upstream_commit": "0636c8fb950e4048e186b8960a28fc0edfb04070",
   "contribution": {
     "file": "labs/e8e10/test_profile.py",
     "test": "StudentE9B2.test_macro_duplicate_dependencies_are_normalized_before_patch",
@@ -14,6 +14,12 @@
     "duplicate_declarations_deduplicated": true,
     "macro_patch_style_preserved": true,
     "source_unchanged_during_candidate_generation": true
+  },
+  "test_result": {
+    "total_tests": 13,
+    "passed": 13,
+    "failed": 0,
+    "exit_code": 0
   },
   "github": {
     "branch": "e9-xzt-b2",
