@@ -39,6 +39,41 @@ class ProfileTests(unittest.TestCase):
         (self.p/'Makefile').write_text((self.p/'Makefile').read_text().replace('-O0','-include unknown.h'))
         with self.assertRaisesRegex(ValueError,'UNSUPPORTED_FLAGS'):scan(self.p)
 
+class StudentE9B1(unittest.TestCase):
+    def test_three_pristine_styles_are_separately_versioned(self):
+        from init_e9_b1 import initialize
+        from lab import run
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory) / 'e9'
+            result = initialize(out)
+            self.assertEqual([s['style'] for s in result['samples']],
+                             ['direct', 'macro', 'mixed'])
+            expected = {
+                'direct': 'main.o: main.c unused.h',
+                'macro': 'main.o: $(DEPS)',
+                'mixed': 'main.o: main.c $(HEADERS)',
+            }
+            for style, rule in expected.items():
+                project = out / style
+                self.assertTrue((project / '.git').is_dir())
+                self.assertIn(rule, (project / 'Makefile').read_text().splitlines())
+                self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
+                self.assertFalse((out / (style + '-input.json')).exists())
+                self.assertFalse((out / (style + '.patch')).exists())
+            self.assertNotEqual((out/'direct/Makefile').read_bytes(),
+                                (out/'macro/Makefile').read_bytes())
+
+    def test_existing_evidence_directory_is_not_overwritten(self):
+        from init_e9_b1 import initialize
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            marker = out / 'keep.txt'
+            marker.write_bytes(b'previous evidence')
+            with self.assertRaises(FileExistsError):
+                initialize(out)
+            self.assertEqual(marker.read_bytes(), b'previous evidence')
+            self.assertEqual(list(out.iterdir()), [marker])
+
 class StudentE8B(unittest.TestCase):
     def test_patch_keeps_recipe_bytes(self):
         from lab import run
@@ -61,5 +96,35 @@ class StudentE8B(unittest.TestCase):
                 after,
             )
             self.assertEqual(plan[0]["style"], "direct")
+
+class StudentE8B3(unittest.TestCase):
+    def test_report_identity_changes_even_when_findings_do_not(self):
+        """Equal findings do not make reports from different commits interchangeable."""
+        from lab import run
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory) / 'sample'
+            fixture(project)
+            first = scan(project)
+            first_commit = run(['git', 'rev-parse', 'HEAD'], project).strip()
+            self.assertEqual(first['commit'], first_commit)
+
+            source = project / 'helper.c'
+            source.write_text(source.read_text() + '/* B3: identity-only change */\n')
+            second_commit = commit(project, 'B3: change source without dependency changes')
+            second = json.loads(json.dumps(scan(project)))
+
+            self.assertNotEqual(first_commit, second_commit)
+            self.assertEqual(second['commit'], second_commit)
+            self.assertEqual(first['commit'], first_commit)
+            expected = {
+                ('MISSING', 'main.o', 'config.h'),
+                ('REDUNDANT', 'main.o', 'unused.h'),
+            }
+            for report in (first, second):
+                self.assertEqual({
+                    (item['type'], item['target'], item['dependency'])
+                    for item in report['findings']
+                }, expected)
+            self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
 
 if __name__=='__main__':unittest.main()

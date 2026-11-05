@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "stage": "E9",
+  "role": "B1",
+  "student_id": "241880179",
+  "status": "PASS",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "branch": "student/241880179/e9-b1",
+  "main_source_sha": "df9a2fe2331b4de82f1209be82a0c35ea562597c",
+  "source_sha": "45c83b180645283ee61665852596db75d49ff414",
+  "server_repository": "/root/devops-students/241880179/draft-e9-b1",
+  "evidence_directory": "/root/devops-students/241880179/draft-e9-b1/work/e9-B1-20261105-051015",
+  "image_tag": "course-e8e10:241880179",
+  "image_id": "sha256:94a15175783fe4f37f17f1ae1208edfbdd2524206304e1b1ce56295f27823c40",
+  "samples": [
+    {
+      "style": "direct",
+      "project_relative_path": "direct",
+      "project_commit": "6018ff0bfdfb0d163ca871ae6640bb9c7b5a02be",
+      "declared": {
+        "main.o": [
+          "main.c",
+          "unused.h"
+        ],
+        "helper.o": [
+          "helper.c"
+        ]
+      },
+      "initial_rule": "main.o: main.c unused.h",
+      "input_sha256": {
+        ".gitignore": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+        "Makefile": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2",
+        "config.h": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+        "extra.h": "5e20ae92639ee989af5638bd0308a6a86e71bdb4345f60b962ba9db7265e4f7c",
+        "helper.c": "90a60f959d215b0b91807c6dd2c94acf6684a9fe26629dc1591e9b2ea773d78c",
+        "main.c": "0da2f94ca7b27cfeae51e4842a4a39f527929b28a82f40b3796d308cc72c1379",
+        "unused.h": "3f7fec0991b34d614462e29b450c76638f07171936a12df337c578c2d1481b37"
+      },
+      "worktree_clean": true,
+      "smoke": {
+        "passed": true,
+        "output": "1",
+        "directory": "smoke/direct"
+      }
+    },
+    {
+      "style": "macro",
+      "project_relative_path": "macro",
+      "project_commit": "c8337b58f5823f82ff16805b7d9ffe9d72833b4a",
+      "declared": {
+        "main.o": [
+          "main.c",
+          "unused.h"
+        ],
+        "helper.o": [
+          "helper.c"
+        ]
+      },
+      "initial_rule": "main.o: $(DEPS)",
+      "input_sha256": {
+        ".gitignore": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+        "Makefile": "0b0b85c9097b87d7d75e6f5893d4882b4f6de6125f4d72db44f7ef0c08e1623d",
+        "config.h": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+        "extra.h": "5e20ae92639ee989af5638bd0308a6a86e71bdb4345f60b962ba9db7265e4f7c",
+        "helper.c": "90a60f959d215b0b91807c6dd2c94acf6684a9fe26629dc1591e9b2ea773d78c",
+        "main.c": "0da2f94ca7b27cfeae51e4842a4a39f527929b28a82f40b3796d308cc72c1379",
+        "unused.h": "3f7fec0991b34d614462e29b450c76638f07171936a12df337c578c2d1481b37"
+      },
+      "worktree_clean": true,
+      "smoke": {
+        "passed": true,
+        "output": "1",
+        "directory": "smoke/macro"
+      }
+    },
+    {
+      "style": "mixed",
+      "project_relative_path": "mixed",
+      "project_commit": "980140007fc4c51faa30121bedde5d654285921d",
+      "declared": {
+        "main.o": [
+          "main.c",
+          "unused.h"
+        ],
+        "helper.o": [
+          "helper.c"
+        ]
+      },
+      "initial_rule": "main.o: main.c $(HEADERS)",
+      "input_sha256": {
+        ".gitignore": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+        "Makefile": "9c32893c3d2a45ecf48aa088da2f5e10976f5ada937a3ce672a1e06d4111e05c",
+        "config.h": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+        "extra.h": "5e20ae92639ee989af5638bd0308a6a86e71bdb4345f60b962ba9db7265e4f7c",
+        "helper.c": "90a60f959d215b0b91807c6dd2c94acf6684a9fe26629dc1591e9b2ea773d78c",
+        "main.c": "0da2f94ca7b27cfeae51e4842a4a39f527929b28a82f40b3796d308cc72c1379",
+        "unused.h": "3f7fec0991b34d614462e29b450c76638f07171936a12df337c578c2d1481b37"
+      },
+      "worktree_clean": true,
+      "smoke": {
+        "passed": true,
+        "output": "1",
+        "directory": "smoke/mixed"
+      }
+    }
+  ],
+  "unit_tests": {
+    "exit_code": 0,
+    "log": "unit-tests.log"
+  },
+  "reports_generated": false,
+  "patches_generated": false,
+  "handoff_to": [
+    "E9 B3"
+  ],
+  "next_action": "Copy each pristine project with its .git history; generate direct-input.json, macro-input.json, mixed-input.json and verify each report commit against its project HEAD."
+}
