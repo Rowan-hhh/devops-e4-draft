@@ -127,4 +127,35 @@ class StudentE8B3(unittest.TestCase):
                 }, expected)
             self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
 
+class StudentE9B3(unittest.TestCase):
+    def test_reports_bind_to_each_sample_head(self):
+        from generate_e9_b3 import generate_reports, input_hashes
+        from lab import run
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            samples_root = root / 'samples'
+            samples_root.mkdir()
+            samples = []
+            for style in ('direct', 'macro', 'mixed'):
+                project = samples_root / style
+                fixture(project, style)
+                samples.append({
+                    'style': style,
+                    'project_relative_path': style,
+                    'project_commit': run(['git', 'rev-parse', 'HEAD'], project).strip(),
+                    'input_sha256': input_hashes(project),
+                })
+            handoff = root / 'handoff.json'
+            handoff.write_text(json.dumps({'stage': 'E9', 'samples': samples}))
+
+            output = root / 'reports'
+            result = generate_reports(handoff, output, samples_root=samples_root)
+
+            self.assertTrue(result['passed'])
+            self.assertTrue((output / 'commit-check.json').is_file())
+            for sample in samples:
+                report = json.loads((output / (sample['style'] + '-input.json')).read_text())
+                self.assertEqual(report['commit'], sample['project_commit'])
+
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,41 @@
+{
+  "stage": "E9",
+  "role": "B3",
+  "handoff": "reports/E9/B1/241880179-handoff.json",
+  "rows": [
+    {
+      "style": "direct",
+      "report": "direct-input.json",
+      "sample_head": "6018ff0bfdfb0d163ca871ae6640bb9c7b5a02be",
+      "report_commit": "6018ff0bfdfb0d163ca871ae6640bb9c7b5a02be",
+      "report_commit_matches_sample_head": true,
+      "input_sha256_matches_handoff": true,
+      "source_mode": "handoff-replay",
+      "local_project_head": "5c3ac79edb824bf306eb3a451116e07842b5764a",
+      "local_project_head_matches_handoff": false
+    },
+    {
+      "style": "macro",
+      "report": "macro-input.json",
+      "sample_head": "c8337b58f5823f82ff16805b7d9ffe9d72833b4a",
+      "report_commit": "c8337b58f5823f82ff16805b7d9ffe9d72833b4a",
+      "report_commit_matches_sample_head": true,
+      "input_sha256_matches_handoff": true,
+      "source_mode": "handoff-replay",
+      "local_project_head": "9a56ef25ee591668f809d4580b19fcd15967facb",
+      "local_project_head_matches_handoff": false
+    },
+    {
+      "style": "mixed",
+      "report": "mixed-input.json",
+      "sample_head": "980140007fc4c51faa30121bedde5d654285921d",
+      "report_commit": "980140007fc4c51faa30121bedde5d654285921d",
+      "report_commit_matches_sample_head": true,
+      "input_sha256_matches_handoff": true,
+      "source_mode": "handoff-replay",
+      "local_project_head": "a7a730ad46cec8ea6bf4e82c764dd016aab0581e",
+      "local_project_head_matches_handoff": false
+    }
+  ],
+  "passed": true
+}
