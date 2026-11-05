@@ -1,0 +1,13 @@
+APPLY_DEMO_PASS
+{
+  "patch_applied_in_copy": true,
+  "build_passed": true,
+  "program_output": "1",
+  "missing_edges_after_patch": [],
+  "redundant_edge_preserved": true,
+  "recipe_bytes_preserved": true,
+  "original_project_clean": true,
+  "original_input_hashes_unchanged": true,
+  "demo_git_diff": "diff --git a/Makefile b/Makefile\nindex 5ac5eee..4d15356 100644\n--- a/Makefile\n+++ b/Makefile\n@@ -1,7 +1,7 @@\n CFLAGS = -O0\n app: main.o helper.o\n \tgcc main.o helper.o -o app\n-main.o: main.c unused.h\n+main.o: main.c unused.h config.h\n \tgcc $(CFLAGS) -c main.c -o main.o\n helper.o: helper.c\n \tgcc $(CFLAGS) -c helper.c -o helper.o\n"
+}
+STEP_EXIT_CODE=0
