@@ -3,7 +3,7 @@
   "stage": "E10",
   "track": "B",
   "student_id": "241880360",
-  "status": "LOCAL_PASS_PENDING_CI",
+  "status": "PASS",
   "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
   "branch": "student/241880360/e8-e10",
   "source_sha": "8ad7e735c84a5d6404be8d344000806b54a40601",
@@ -104,5 +104,42 @@
     "test": "StudentE8B.test_patch_keeps_recipe_bytes",
     "result": "PASS",
     "suite_result": "8 tests passed"
+  },
+  "main_sync": {
+    "main_sha": "7a828315f0e9c8057d031b2f45b5af7bfce2849b",
+    "merge_commit": "b893af497ff4e32b88ef585a9401fc27b84f247a",
+    "merge_status": "CLEAN",
+    "unit_tests": {
+      "total": 11,
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "work/post-main-sync-tests-20261105-232417.log",
+      "log_sha256": "efe600bfe229c5b02b85cb573a384978f8b61aeeda4f65c393f79cb53b8d7371"
+    }
+  },
+  "ci": {
+    "workflow": "E8-E10 teaching validation",
+    "job": "e8e10-quality-gate",
+    "run_id": 42054783214,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/42054783214",
+    "event": "push",
+    "tested_head_sha": "b893af497ff4e32b88ef585a9401fc27b84f247a",
+    "status": "success",
+    "artifact": {
+      "id": 13430000113,
+      "name": "e8e10-evidence-42054783214",
+      "size_in_bytes": 119726,
+      "expired": false,
+      "digest": "sha256:e33c3ef54df2d1559cd2e82025631d050e8ab7062c87929e211edffb3d0fb872"
+    }
+  },
+  "pull_request": {
+    "number": 5,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/pull/5",
+    "state": "OPEN",
+    "checked_head_sha": "b893af497ff4e32b88ef585a9401fc27b84f247a",
+    "successful_checks": 3,
+    "mergeable": "MERGEABLE",
+    "merge_state_status": "CLEAN"
   }
 }
