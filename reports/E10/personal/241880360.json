@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "stage": "E10",
+  "track": "B",
+  "student_id": "241880360",
+  "status": "LOCAL_PASS_PENDING_CI",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "branch": "student/241880360/e8-e10",
+  "source_sha": "8ad7e735c84a5d6404be8d344000806b54a40601",
+  "environment": {
+    "image_tag": "course-e8e10:241880360",
+    "image_id": "sha256:94a15175783fe4f37f17f1ae1208edfbdd2524206304e1b1ce56295f27823c40"
+  },
+  "sample": {
+    "out": "work/e10-B-manual.txx1eQ",
+    "project_initial_commit": "c710b4993dafd97b0ea1eb45e1e165048aa575f6",
+    "patch_style": "direct",
+    "missing_dependency": {
+      "target": "main.o",
+      "dependency": "config.h"
+    },
+    "retained_redundant_dependency": {
+      "target": "main.o",
+      "dependency": "unused.h"
+    }
+  },
+  "validation": {
+    "wrong_expected_output": {
+      "accepted": false,
+      "checks": {
+        "patch_applies": true,
+        "build": true,
+        "test": false,
+        "header_change": true,
+        "no_missing": true
+      },
+      "error": null,
+      "source_unchanged": true,
+      "rollback": true
+    },
+    "accepted_candidate": {
+      "accepted": true,
+      "checks": {
+        "patch_applies": true,
+        "build": true,
+        "test": true,
+        "header_change": true,
+        "no_missing": true
+      },
+      "error": null,
+      "source_unchanged": false,
+      "rollback": false
+    },
+    "invalid_patch": {
+      "accepted": false,
+      "checks": {},
+      "error": "COMMAND_FAILED ['git', 'apply', '--check', '/course/work/e10-B-manual.txx1eQ/broken.patch']\nerror: No valid patches in input (allow with \"--allow-empty\")\n",
+      "source_unchanged": true,
+      "rollback": true
+    }
+  },
+  "final_recheck": {
+    "status": "SUCCEEDED",
+    "missing_count": 0,
+    "remaining_findings": [
+      {
+        "type": "REDUNDANT",
+        "target": "main.o",
+        "dependency": "unused.h",
+        "evidence": [
+          {
+            "source": "make_database",
+            "artifact": "make-db.txt",
+            "line": 1044,
+            "declaration": "main.o: main.c unused.h config.h"
+          }
+        ],
+        "scope": "Not observed in this recipe job under this build configuration"
+      }
+    ],
+    "gate": {
+      "track": "B",
+      "passed": true,
+      "rows": 3
+    }
+  },
+  "evidence_sha256": {
+    "fixed-md-report.json": "ea14899a5a2518e53a567d0e01e19b911667ad75bac88bf76e9827be31429927",
+    "candidate.patch": "2b3bbed7e337c71f31a0be7f1a7c8eba2a19e951dc4258917c3ad804632ce0e6",
+    "patch-plan.json": "16d90a8247c9ba5e65f40e21950a5f929b997306edf52a74fba023a0cc8866e2",
+    "source-before.Makefile": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2",
+    "reject-test/validation.json": "3ad8d6528e7c1fbe54c5bbc50cb21296c13b7bce67dd87755326227aec2a9180",
+    "accept/validation.json": "0aedd844e45d87669ff3c7ad42fcb15414453a14882df2fa6335997367390c37",
+    "accept/recheck.json": "12c9926d8efc212965172abb17abb47162c1b32a776b99fda460e8a18edf3d40",
+    "source-after-accept.Makefile": "ab35bda3d5bf1ba02394a04bddcb8ec23a2e3ba67d7be938be3e49fed9b1d5d0",
+    "broken.patch": "6a64d7b8010b1bddf0b3e577f9a1044f817a5dad39f442f95310ac5b44566627",
+    "reject-patch/validation.json": "3bfeff45bbc052e68147de0a4f92a07227952df9e0ebab9e9a0b449152f40ea7",
+    "recheck-buildchecker/findings.json": "a21da7b3ab50796099f628662aabc8358f21a889ed4b47b4f82a1958eba6928d",
+    "results.csv": "cf6fea4417b6e0cbcbcb3d8f3088106c39e6ab18c026b0e864962b0c3e736ab9",
+    "gate.json": "c0ef5ee927a25221aa1b76e23fc12d202cd163fd45e50f5f00aca3fd3c1c157b",
+    "结论.txt": "b543d1d1b6458afadf94a9f4fb231a42382acd06eb3600b99c469ad4cc4c5ff6"
+  },
+  "independent_contribution": {
+    "test": "StudentE8B.test_patch_keeps_recipe_bytes",
+    "result": "PASS",
+    "suite_result": "8 tests passed"
+  }
+}
