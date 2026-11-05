@@ -4,10 +4,13 @@
 
 ## 结果与输入版本
 
-E9 B1 初始化通过。最新 `origin/main` 在本次同步时为 `df9a2fe2331b4de82f1209be82a0c35ea562597c`；初始化代码与测试的实际执行提交为 `45c83b180645283ee61665852596db75d49ff414`。E8 个人交付仍在原分支，本次从实际 main 创建独立的 E9 B1 工作目录，保留原目录中尚未提交的修改。
+E9 B1 初始化通过。初始化执行时的 `origin/main` 为 `df9a2fe2331b4de82f1209be82a0c35ea562597c`；初始化代码与测试的实际执行提交为 `45c83b180645283ee61665852596db75d49ff414`。当时 E8 个人交付尚在原分支，因此从实际 main 创建了独立的 E9 B1 工作目录，以保留原目录中的未提交修改。之后 E8 已合入 `main`（`b5478981ea66fcf4ca57fd7d495a42341afaa589`），E9 分支也已同步该版本；这次同步不改写上述原始执行版本和证据。
+
+人工复核状态：已复核。负责人已核对三种样例声明、样例内部提交、环境镜像、测试日志、证据路径及 B3 交接内容。
 
 - 仓库：https://github.com/Rowan-hhh/devops-e4-draft.git
 - 本次交付分支：`student/241880179/e9-b1`。
+- Pull Request：https://github.com/Rowan-hhh/devops-e4-draft/pull/7 。
 - 服务器仓库：`/root/devops-students/241880179/draft-e9-b1`。
 - E9 OUT：`/root/devops-students/241880179/draft-e9-b1/work/e9-B1-20261105-051015`。
 - 环境镜像：`course-e8e10:241880179`。
