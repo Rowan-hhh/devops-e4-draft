@@ -23,6 +23,8 @@
   },
   "github": {
     "branch": "e9-xzt-b2",
-    "pushed": false
+    "pushed": true,
+    "branch": "e9-xzt-b2",
+    "commit": "be5a41da1a365c94ac88862f868d9d7046243159"
   }
 }
