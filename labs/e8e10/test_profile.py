@@ -158,4 +158,35 @@ class StudentE9B3(unittest.TestCase):
                 report = json.loads((output / (sample['style'] + '-input.json')).read_text())
                 self.assertEqual(report['commit'], sample['project_commit'])
 
+class StudentE9B2(unittest.TestCase):
+    def test_macro_duplicate_dependencies_are_normalized_before_patch(self):
+        """Duplicate declarations do not change the target graph or patch style."""
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory) / 'macro'
+            fixture(project, 'macro')
+            makefile = project / 'Makefile'
+            makefile.write_text(
+                makefile.read_text().replace(
+                    'DEPS = main.c unused.h',
+                    'DEPS = main.c unused.h unused.h',
+                )
+            )
+            report = scan(project)
+            self.assertEqual(
+                report['declared']['main.o'],
+                ['main.c', 'unused.h'],
+            )
+            diff, plan = patch(project, report)
+            self.assertEqual(
+                plan,
+                [{
+                    'target': 'main.o',
+                    'dependency': 'config.h',
+                    'style': 'macro',
+                }],
+            )
+            self.assertIn('config.h', diff)
+            self.assertIn('DEPS = main.c unused.h unused.h config.h', diff)
+            self.assertNotIn('config.h', makefile.read_text())
+
 if __name__=='__main__':unittest.main()

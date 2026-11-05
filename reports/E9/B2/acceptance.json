@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "stage": "E9",
+  "role": "B2",
+  "status": "LOCAL_PREPARED_PENDING_UPSTREAM_SYNC",
+  "upstream_branch": "student/2418880300/e8-e10",
+  "upstream_commit_short": "0636c8f",
+  "contribution": {
+    "file": "labs/e8e10/test_profile.py",
+    "test": "StudentE9B2.test_macro_duplicate_dependencies_are_normalized_before_patch",
+    "expectation": "duplicate macro dependencies are normalized while missing config.h remains a macro-style patch"
+  },
+  "checks": {
+    "duplicate_declarations_deduplicated": true,
+    "macro_patch_style_preserved": true,
+    "source_unchanged_during_candidate_generation": true
+  },
+  "github": {
+    "branch": "e9-xzt-b2",
+    "pushed": false
+  }
+}
