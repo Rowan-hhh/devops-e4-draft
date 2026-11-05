@@ -39,4 +39,57 @@ class ProfileTests(unittest.TestCase):
         (self.p/'Makefile').write_text((self.p/'Makefile').read_text().replace('-O0','-include unknown.h'))
         with self.assertRaisesRegex(ValueError,'UNSUPPORTED_FLAGS'):scan(self.p)
 
+class StudentE8B(unittest.TestCase):
+    def test_patch_keeps_recipe_bytes(self):
+        from lab import run
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory) / "sample"
+            fixture(project)
+            before = (project / "Makefile").read_bytes()
+            diff, plan = patch(project, scan(project))
+            candidate = Path(directory) / "candidate.patch"
+            candidate.write_text(diff, encoding="utf-8")
+            run(["git", "apply", str(candidate.resolve())], project)
+            after = (project / "Makefile").read_bytes()
+            recipes = lambda data: [
+                line for line in data.splitlines()
+                if line.startswith(b"\t")
+            ]
+            self.assertEqual(recipes(before), recipes(after))
+            self.assertIn(
+                b"main.o: main.c unused.h config.h",
+                after,
+            )
+            self.assertEqual(plan[0]["style"], "direct")
+
+class StudentE8B3(unittest.TestCase):
+    def test_report_identity_changes_even_when_findings_do_not(self):
+        """Equal findings do not make reports from different commits interchangeable."""
+        from lab import run
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory) / 'sample'
+            fixture(project)
+            first = scan(project)
+            first_commit = run(['git', 'rev-parse', 'HEAD'], project).strip()
+            self.assertEqual(first['commit'], first_commit)
+
+            source = project / 'helper.c'
+            source.write_text(source.read_text() + '/* B3: identity-only change */\n')
+            second_commit = commit(project, 'B3: change source without dependency changes')
+            second = json.loads(json.dumps(scan(project)))
+
+            self.assertNotEqual(first_commit, second_commit)
+            self.assertEqual(second['commit'], second_commit)
+            self.assertEqual(first['commit'], first_commit)
+            expected = {
+                ('MISSING', 'main.o', 'config.h'),
+                ('REDUNDANT', 'main.o', 'unused.h'),
+            }
+            for report in (first, second):
+                self.assertEqual({
+                    (item['type'], item['target'], item['dependency'])
+                    for item in report['findings']
+                }, expected)
+            self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
+
 if __name__=='__main__':unittest.main()
