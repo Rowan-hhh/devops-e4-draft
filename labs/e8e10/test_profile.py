@@ -127,4 +127,21 @@ class StudentE8B3(unittest.TestCase):
                 }, expected)
             self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
 
+class StudentE8B4(unittest.TestCase):
+    def test_stale_report_rejected_without_changing_source(self):
+        from lab import run
+
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory) / 'sample'
+            fixture(project)
+            report = scan(project)
+            report['commit'] = '0' * 40
+            before = (project / 'Makefile').read_bytes()
+
+            with self.assertRaisesRegex(ValueError, 'STALE_REPORT'):
+                patch(project, report)
+
+            self.assertEqual((project / 'Makefile').read_bytes(), before)
+            self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
+
 if __name__=='__main__':unittest.main()
