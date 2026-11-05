@@ -39,6 +39,41 @@ class ProfileTests(unittest.TestCase):
         (self.p/'Makefile').write_text((self.p/'Makefile').read_text().replace('-O0','-include unknown.h'))
         with self.assertRaisesRegex(ValueError,'UNSUPPORTED_FLAGS'):scan(self.p)
 
+class StudentE9B1(unittest.TestCase):
+    def test_three_pristine_styles_are_separately_versioned(self):
+        from init_e9_b1 import initialize
+        from lab import run
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory) / 'e9'
+            result = initialize(out)
+            self.assertEqual([s['style'] for s in result['samples']],
+                             ['direct', 'macro', 'mixed'])
+            expected = {
+                'direct': 'main.o: main.c unused.h',
+                'macro': 'main.o: $(DEPS)',
+                'mixed': 'main.o: main.c $(HEADERS)',
+            }
+            for style, rule in expected.items():
+                project = out / style
+                self.assertTrue((project / '.git').is_dir())
+                self.assertIn(rule, (project / 'Makefile').read_text().splitlines())
+                self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
+                self.assertFalse((out / (style + '-input.json')).exists())
+                self.assertFalse((out / (style + '.patch')).exists())
+            self.assertNotEqual((out/'direct/Makefile').read_bytes(),
+                                (out/'macro/Makefile').read_bytes())
+
+    def test_existing_evidence_directory_is_not_overwritten(self):
+        from init_e9_b1 import initialize
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            marker = out / 'keep.txt'
+            marker.write_bytes(b'previous evidence')
+            with self.assertRaises(FileExistsError):
+                initialize(out)
+            self.assertEqual(marker.read_bytes(), b'previous evidence')
+            self.assertEqual(list(out.iterdir()), [marker])
+
 class StudentE8B(unittest.TestCase):
     def test_patch_keeps_recipe_bytes(self):
         from lab import run
