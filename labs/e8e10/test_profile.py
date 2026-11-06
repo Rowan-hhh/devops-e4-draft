@@ -286,4 +286,29 @@ class StudentE10B1(unittest.TestCase):
             self.assertFalse(list(out.rglob('app')))
             self.assertEqual(run(['git', 'status', '--porcelain', '--ignored'], project), '')
 
+class StudentE10B3(unittest.TestCase):
+    def test_collects_report_patch_plan_and_source_snapshot(self):
+        from generate_e10_b3 import generate
+        from lab import run
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            project = root / 'project'
+            fixture(project)
+            expected_head = run(['git', 'rev-parse', 'HEAD'], project).strip()
+            before = (project / 'Makefile').read_bytes()
+            output = root / 'reports'
+
+            result = generate(project, output, expected_head=expected_head)
+
+            self.assertTrue(result['passed'])
+            for name in ('fixed-md-report.json', 'candidate.patch',
+                         'patch-plan.json', 'source-before.Makefile'):
+                self.assertTrue((output / name).is_file())
+            report = json.loads((output / 'fixed-md-report.json').read_text())
+            self.assertEqual(report['commit'], expected_head)
+            self.assertEqual((output / 'source-before.Makefile').read_bytes(), before)
+            self.assertEqual((project / 'Makefile').read_bytes(), before)
+            self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
+
 if __name__=='__main__':unittest.main()
