@@ -1,0 +1,9 @@
+B3_INPUT_CHECK_PASS {
+  "report_commit_matches_project_head": true,
+  "findings_match_expected": true,
+  "plan_matches_expected": true,
+  "source_snapshot_matches_project": true,
+  "project_clean_before_validation": true,
+  "candidate_apply_check": true
+}
+STEP_EXIT_CODE=0

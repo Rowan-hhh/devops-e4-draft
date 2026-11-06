@@ -1,0 +1,14 @@
+EXPECTED_TEST_REJECTION {
+  "accepted": false,
+  "checks": {
+    "patch_applies": true,
+    "build": true,
+    "test": false,
+    "header_change": true,
+    "no_missing": true
+  },
+  "error": null,
+  "source_unchanged": true,
+  "rollback": true
+}
+STEP_EXIT_CODE=0
