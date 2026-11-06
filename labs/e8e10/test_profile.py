@@ -311,4 +311,40 @@ class StudentE10B3(unittest.TestCase):
             self.assertEqual((project / 'Makefile').read_bytes(), before)
             self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
 
+class StudentE10B2(unittest.TestCase):
+    def test_compilation_failure_candidate_rolls_back_source_bytes(self):
+        """An applicable patch that breaks compilation must never reach the source."""
+        import difflib
+        from lab import run, validate
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            project = root / 'project'
+            fixture(project)
+            before = (project / 'Makefile').read_bytes()
+            original = before.decode()
+            broken = original.replace(
+                '\tgcc $(CFLAGS) -c main.c -o main.o',
+                '\tfalse',
+            )
+            self.assertNotEqual(original, broken)
+            candidate = root / 'compile-failure.patch'
+            candidate.write_text(''.join(difflib.unified_diff(
+                original.splitlines(True),
+                broken.splitlines(True),
+                fromfile='a/Makefile',
+                tofile='b/Makefile',
+            )), encoding='utf-8')
+
+            result = validate(project, candidate, root / 'compile-rejection')
+
+            self.assertFalse(result['accepted'])
+            self.assertTrue(result['rollback'])
+            self.assertTrue(result['source_unchanged'])
+            self.assertTrue(result['checks']['patch_applies'])
+            self.assertNotIn('build', result['checks'])
+            self.assertIn('COMMAND_FAILED', result['error'])
+            self.assertEqual((project / 'Makefile').read_bytes(), before)
+            self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
+
 if __name__=='__main__':unittest.main()
