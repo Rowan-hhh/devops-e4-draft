@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/course/labs/e8e10/init_e10_b1.py", line 110, in <module>
+    main()
+    ~~~~^^
+  File "/course/labs/e8e10/init_e10_b1.py", line 105, in main
+    result = initialize(out, repository=root, image_id=args.image_id)
+  File "/course/labs/e8e10/init_e10_b1.py", line 34, in initialize
+    raise FileExistsError(f'output directory already exists: {out}')
+FileExistsError: output directory already exists: /course/work/e10-B1-20261106-110353
+
+exit_code=1
+handoff_sha256_before=1b9a5762f10670599eed758fcecdf14821572399617fcbf680500122b62b31ed
+handoff_sha256_after=1b9a5762f10670599eed758fcecdf14821572399617fcbf680500122b62b31ed
+existing_output_preserved=true

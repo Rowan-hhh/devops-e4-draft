@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "7a7ff8de16930742201ad59f07b22e96380fcb15",
+  "execution_commit": "cea139b3f60ffa04cd318009292d53d890029b40",
+  "project_commit": "93ea08243be717cfe00502120ddebf2d090bdff7",
+  "handoff_to": "B3",
+  "hash_scope": "all archive files except archive-manifest.json itself",
+  "files": {
+    "241880360-handoff.json": "1b9a5762f10670599eed758fcecdf14821572399617fcbf680500122b62b31ed",
+    "README.md": "a6faaabe6cda69e36c3ba68e44dd8676f23238d56748a28549e08eceb54735ca",
+    "build/app.log": "e26651bb0de3b742102756229779f103c00b72450342965eb7fffe907bcdf867",
+    "build/clean.log": "0a365a98e88b882478023f83aaed0216375a546545e5feb7ea80392c9b2610f2",
+    "build/run.log": "e4ece5b285e78d6d02c684c5ea3a66bb1ba821d01366a43414ba379eb77d6101",
+    "environment-image-id.txt": "a6eaf57d1620210292436c1d987a94cd9844a315f9927364177034a4b0ca1f1d",
+    "output-exists-check.log": "6474330e46cad3a9dab8c458728139d99809078d8c067bee1e01a7595784c024",
+    "project/.gitignore": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+    "project/Makefile": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2",
+    "project/config.h": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+    "project/extra.h": "5e20ae92639ee989af5638bd0308a6a86e71bdb4345f60b962ba9db7265e4f7c",
+    "project/helper.c": "90a60f959d215b0b91807c6dd2c94acf6684a9fe26629dc1591e9b2ea773d78c",
+    "project/main.c": "0da2f94ca7b27cfeae51e4842a4a39f527929b28a82f40b3796d308cc72c1379",
+    "project/unused.h": "3f7fec0991b34d614462e29b450c76638f07171936a12df337c578c2d1481b37",
+    "project-bundle-verify.log": "5a0b4a882a5c29d92461eb4ddeda80a1478645bb52a020364059c293c36b98c9",
+    "project.bundle": "9bf3cc243cd0192dc377a7ddbf31e0e03d65ac063e2bdee05d205101519fb0d1",
+    "student-source-commit.txt": "c402a0ecad39df508dc7f522496cd06dfe3dc32a4d7423f9652b443f45c78735",
+    "unit-tests-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "unit-tests.log": "fd991eec2a131cee53b47d02e062c1d56bd075fc089fe1709f9e3c00bdbd5463"
+  }
+}

@@ -233,4 +233,57 @@ class StudentE9B4(unittest.TestCase):
                     self.assertEqual((source / 'Makefile').read_bytes(), before)
                     self.assertEqual(run(['git', 'status', '--porcelain', '--untracked-files=all'], source), status)
 
+class StudentE10B1(unittest.TestCase):
+    def test_initializes_clean_versioned_direct_project(self):
+        from init_e10_b1 import BASELINE, initialize, input_hashes
+        from lab import run
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory) / 'e10'
+            result = initialize(out, expected_branch=None)
+            project = out / 'project'
+            self.assertEqual(result['baseline_commit'], BASELINE)
+            self.assertEqual(result['student_id'], '241880360')
+            self.assertEqual((result['stage'], result['role'], result['handoff_to']),
+                             ('E10', 'B1', 'B3'))
+            self.assertEqual(result['sample']['project_commit'],
+                             run(['git', 'rev-parse', 'HEAD'], project).strip())
+            self.assertEqual(run(['git', 'rev-list', '--count', 'HEAD'], project).strip(), '1')
+            self.assertEqual(run(['git', 'status', '--porcelain', '--ignored'], project), '')
+            self.assertIn('main.o: main.c unused.h', (project / 'Makefile').read_text().splitlines())
+            self.assertNotIn('config.h', (project / 'Makefile').read_text())
+            self.assertEqual(input_hashes(project), result['sample']['input_sha256'])
+            self.assertTrue((out / '241880360-handoff.json').is_file())
+            self.assertFalse(result['reports_generated'])
+            self.assertFalse(result['patches_generated'])
+            self.assertFalse(list(out.rglob('*.patch')))
+            self.assertFalse((out / 'fixed-md-report.json').exists())
+
+    def test_existing_output_is_rejected_without_changes(self):
+        from init_e10_b1 import initialize
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            marker = out / 'keep.txt'
+            marker.write_bytes(b'previous evidence')
+            with self.assertRaisesRegex(FileExistsError, 'already exists'):
+                initialize(out, expected_branch=None)
+            self.assertEqual(marker.read_bytes(), b'previous evidence')
+            self.assertEqual(list(out.iterdir()), [marker])
+
+    def test_isolated_build_leaves_no_project_artifacts(self):
+        from init_e10_b1 import initialize
+        from lab import run
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory) / 'e10'
+            result = initialize(out, expected_branch=None)
+            project = out / 'project'
+            self.assertEqual(result['build']['output'], '1')
+            self.assertTrue(result['build']['passed'])
+            for name in ('clean', 'app', 'run'):
+                self.assertIn('exit_code=0', (out / 'build' / (name + '.log')).read_text())
+            self.assertIn('\n1\n', (out / 'build/run.log').read_text())
+            self.assertEqual(result['sample']['input_sha256'], result['sample']['input_sha256_after_build'])
+            self.assertFalse(list(out.rglob('*.o')))
+            self.assertFalse(list(out.rglob('app')))
+            self.assertEqual(run(['git', 'status', '--porcelain', '--ignored'], project), '')
+
 if __name__=='__main__':unittest.main()
