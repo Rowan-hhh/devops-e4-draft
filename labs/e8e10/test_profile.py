@@ -189,4 +189,48 @@ class StudentE9B2(unittest.TestCase):
             self.assertIn('DEPS = main.c unused.h unused.h config.h', diff)
             self.assertNotIn('config.h', makefile.read_text())
 
+class StudentE9B4(unittest.TestCase):
+    def test_three_style_patches_apply_only_to_isolated_copies(self):
+        import shutil
+        from lab import run
+
+        expected = {
+            'direct': b'main.o: main.c unused.h config.h',
+            'macro': b'DEPS = main.c unused.h config.h',
+            'mixed': b'main.o: main.c $(HEADERS) config.h',
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for style, declaration in expected.items():
+                with self.subTest(style=style):
+                    source = root / style
+                    fixture(source, style)
+                    before = (source / 'Makefile').read_bytes()
+                    status = run(['git', 'status', '--porcelain', '--untracked-files=all'], source)
+                    self.assertEqual(status, '')
+                    report = scan(source)
+                    self.assertEqual(report['commit'], run(['git', 'rev-parse', 'HEAD'], source).strip())
+                    diff, plan = patch(source, report)
+                    self.assertEqual(plan, [{'target': 'main.o', 'dependency': 'config.h', 'style': style}])
+                    self.assertEqual((source / 'Makefile').read_bytes(), before)
+                    self.assertEqual(run(['git', 'status', '--porcelain', '--untracked-files=all'], source), status)
+                    candidate = root / (style + '.patch')
+                    candidate.write_text(diff, encoding='utf-8')
+                    run(['git', 'apply', '--check', str(candidate)], source)
+                    self.assertEqual((source / 'Makefile').read_bytes(), before)
+                    self.assertEqual(run(['git', 'status', '--porcelain', '--untracked-files=all'], source), status)
+                    isolated = root / (style + '-isolated')
+                    shutil.copytree(source, isolated)
+                    run(['git', 'apply', '--check', str(candidate)], isolated)
+                    run(['git', 'apply', str(candidate)], isolated)
+                    after = (isolated / 'Makefile').read_bytes()
+                    self.assertIn(declaration, after.splitlines())
+                    recipes = lambda data: [line for line in data.splitlines(keepends=True) if line.startswith(b'\t')]
+                    self.assertEqual(recipes(before), recipes(after))
+                    self.assertEqual(scan(isolated)['findings'], [
+                        {'type': 'REDUNDANT', 'target': 'main.o', 'dependency': 'unused.h'}
+                    ])
+                    self.assertEqual((source / 'Makefile').read_bytes(), before)
+                    self.assertEqual(run(['git', 'status', '--porcelain', '--untracked-files=all'], source), status)
+
 if __name__=='__main__':unittest.main()
