@@ -127,4 +127,110 @@ class StudentE8B3(unittest.TestCase):
                 }, expected)
             self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
 
+class StudentE9B3(unittest.TestCase):
+    def test_reports_bind_to_each_sample_head(self):
+        from generate_e9_b3 import generate_reports, input_hashes
+        from lab import run
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            samples_root = root / 'samples'
+            samples_root.mkdir()
+            samples = []
+            for style in ('direct', 'macro', 'mixed'):
+                project = samples_root / style
+                fixture(project, style)
+                samples.append({
+                    'style': style,
+                    'project_relative_path': style,
+                    'project_commit': run(['git', 'rev-parse', 'HEAD'], project).strip(),
+                    'input_sha256': input_hashes(project),
+                })
+            handoff = root / 'handoff.json'
+            handoff.write_text(json.dumps({'stage': 'E9', 'samples': samples}))
+
+            output = root / 'reports'
+            result = generate_reports(handoff, output, samples_root=samples_root)
+
+            self.assertTrue(result['passed'])
+            self.assertTrue((output / 'commit-check.json').is_file())
+            for sample in samples:
+                report = json.loads((output / (sample['style'] + '-input.json')).read_text())
+                self.assertEqual(report['commit'], sample['project_commit'])
+
+class StudentE9B2(unittest.TestCase):
+    def test_macro_duplicate_dependencies_are_normalized_before_patch(self):
+        """Duplicate declarations do not change the target graph or patch style."""
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory) / 'macro'
+            fixture(project, 'macro')
+            makefile = project / 'Makefile'
+            makefile.write_text(
+                makefile.read_text().replace(
+                    'DEPS = main.c unused.h',
+                    'DEPS = main.c unused.h unused.h',
+                )
+            )
+            report = scan(project)
+            self.assertEqual(
+                report['declared']['main.o'],
+                ['main.c', 'unused.h'],
+            )
+            diff, plan = patch(project, report)
+            self.assertEqual(
+                plan,
+                [{
+                    'target': 'main.o',
+                    'dependency': 'config.h',
+                    'style': 'macro',
+                }],
+            )
+            self.assertIn('config.h', diff)
+            self.assertIn('DEPS = main.c unused.h unused.h config.h', diff)
+            self.assertNotIn('config.h', makefile.read_text())
+
+class StudentE9B4(unittest.TestCase):
+    def test_three_style_patches_apply_only_to_isolated_copies(self):
+        import shutil
+        from lab import run
+
+        expected = {
+            'direct': b'main.o: main.c unused.h config.h',
+            'macro': b'DEPS = main.c unused.h config.h',
+            'mixed': b'main.o: main.c $(HEADERS) config.h',
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for style, declaration in expected.items():
+                with self.subTest(style=style):
+                    source = root / style
+                    fixture(source, style)
+                    before = (source / 'Makefile').read_bytes()
+                    status = run(['git', 'status', '--porcelain', '--untracked-files=all'], source)
+                    self.assertEqual(status, '')
+                    report = scan(source)
+                    self.assertEqual(report['commit'], run(['git', 'rev-parse', 'HEAD'], source).strip())
+                    diff, plan = patch(source, report)
+                    self.assertEqual(plan, [{'target': 'main.o', 'dependency': 'config.h', 'style': style}])
+                    self.assertEqual((source / 'Makefile').read_bytes(), before)
+                    self.assertEqual(run(['git', 'status', '--porcelain', '--untracked-files=all'], source), status)
+                    candidate = root / (style + '.patch')
+                    candidate.write_text(diff, encoding='utf-8')
+                    run(['git', 'apply', '--check', str(candidate)], source)
+                    self.assertEqual((source / 'Makefile').read_bytes(), before)
+                    self.assertEqual(run(['git', 'status', '--porcelain', '--untracked-files=all'], source), status)
+                    isolated = root / (style + '-isolated')
+                    shutil.copytree(source, isolated)
+                    run(['git', 'apply', '--check', str(candidate)], isolated)
+                    run(['git', 'apply', str(candidate)], isolated)
+                    after = (isolated / 'Makefile').read_bytes()
+                    self.assertIn(declaration, after.splitlines())
+                    recipes = lambda data: [line for line in data.splitlines(keepends=True) if line.startswith(b'\t')]
+                    self.assertEqual(recipes(before), recipes(after))
+                    self.assertEqual(scan(isolated)['findings'], [
+                        {'type': 'REDUNDANT', 'target': 'main.o', 'dependency': 'unused.h'}
+                    ])
+                    self.assertEqual((source / 'Makefile').read_bytes(), before)
+                    self.assertEqual(run(['git', 'status', '--porcelain', '--untracked-files=all'], source), status)
+
 if __name__=='__main__':unittest.main()

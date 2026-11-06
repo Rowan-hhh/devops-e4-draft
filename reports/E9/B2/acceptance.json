@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "stage": "E9",
+  "role": "B2",
+  "status": "PASS_LOCAL_UPSTREAM_MERGED",
+  "upstream_branch": "e9-zyh-b3",
+  "upstream_commit": "0636c8fb950e4048e186b8960a28fc0edfb04070",
+  "contribution": {
+    "file": "labs/e8e10/test_profile.py",
+    "test": "StudentE9B2.test_macro_duplicate_dependencies_are_normalized_before_patch",
+    "expectation": "duplicate macro dependencies are normalized while missing config.h remains a macro-style patch"
+  },
+  "checks": {
+    "duplicate_declarations_deduplicated": true,
+    "macro_patch_style_preserved": true,
+    "source_unchanged_during_candidate_generation": true
+  },
+  "test_result": {
+    "total_tests": 13,
+    "passed": 13,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "github": {
+    "branch": "e9-xzt-b2",
+    "pushed": true,
+    "branch": "e9-xzt-b2",
+    "commit": "be5a41da1a365c94ac88862f868d9d7046243159"
+  }
+}
