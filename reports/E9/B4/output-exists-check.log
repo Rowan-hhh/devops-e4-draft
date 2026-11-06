@@ -1,0 +1,6 @@
+$ python3 -B labs/e8e10/verify_e9_b4.py --out reports/E9/B4
+expected_failure=FileExistsError
+exit_code=1
+acceptance_sha256_before=815d919eddcd34346fbf75881274c23ea3a36fd1402554c430000fdb02ba4908
+acceptance_sha256_after=815d919eddcd34346fbf75881274c23ea3a36fd1402554c430000fdb02ba4908
+existing_output_preserved=true

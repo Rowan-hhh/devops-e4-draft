@@ -1,0 +1,6 @@
+$ git apply --check <candidate> (original)
+exit_code=0
+$ git apply --check <candidate> (isolated)
+exit_code=0
+$ git apply <candidate> (isolated)
+exit_code=0
