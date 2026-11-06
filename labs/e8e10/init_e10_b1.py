@@ -23,7 +23,7 @@ def require(condition, message):
         raise ValueError(message)
 
 
-def initialize(out, *, repository=None, image_id=None):
+def initialize(out, *, repository=None, image_id=None, expected_branch=None):
     """Create a new OUT; preserve its project for B3 report/patch generation.
 
     image_id, when supplied, is caller-provided metadata from image inspection;
@@ -35,7 +35,8 @@ def initialize(out, *, repository=None, image_id=None):
     repository = (Path(repository) if repository is not None
                   else Path(__file__).resolve().parents[2])
     branch = run(['git', 'branch', '--show-current'], repository).strip()
-    require(branch == BRANCH, 'expected branch ' + BRANCH)
+    if expected_branch is not None:
+        require(branch == expected_branch, 'expected branch ' + expected_branch)
     head = run(['git', 'rev-parse', 'HEAD'], repository).strip()
     run(['git', 'merge-base', '--is-ancestor', BASELINE, head], repository)
     source_status = run(['git', 'status', '--porcelain', '--untracked-files=all'], repository)
@@ -102,7 +103,8 @@ def main():
     out = args.out.resolve()
     if out == root / 'work' or not out.is_relative_to(root / 'work'):
         parser.error('--out must be a new subdirectory of repository work/')
-    result = initialize(out, repository=root, image_id=args.image_id)
+    result = initialize(out, repository=root, image_id=args.image_id,
+                        expected_branch=BRANCH)
     print('E10_B1_READY', result['sample']['project_commit'], out)
 
 

@@ -239,7 +239,7 @@ class StudentE10B1(unittest.TestCase):
         from lab import run
         with tempfile.TemporaryDirectory() as directory:
             out = Path(directory) / 'e10'
-            result = initialize(out)
+            result = initialize(out, expected_branch=None)
             project = out / 'project'
             self.assertEqual(result['baseline_commit'], BASELINE)
             self.assertEqual(result['student_id'], '241880360')
@@ -265,7 +265,7 @@ class StudentE10B1(unittest.TestCase):
             marker = out / 'keep.txt'
             marker.write_bytes(b'previous evidence')
             with self.assertRaisesRegex(FileExistsError, 'already exists'):
-                initialize(out)
+                initialize(out, expected_branch=None)
             self.assertEqual(marker.read_bytes(), b'previous evidence')
             self.assertEqual(list(out.iterdir()), [marker])
 
@@ -274,7 +274,7 @@ class StudentE10B1(unittest.TestCase):
         from lab import run
         with tempfile.TemporaryDirectory() as directory:
             out = Path(directory) / 'e10'
-            result = initialize(out)
+            result = initialize(out, expected_branch=None)
             project = out / 'project'
             self.assertEqual(result['build']['output'], '1')
             self.assertTrue(result['build']['passed'])
