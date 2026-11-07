@@ -32,4 +32,4 @@
 
 个人扩展：增加可应用但把 `main.o` 编译配方改为 `false` 的候选，明确验证“Patch 可应用”不等于“候选可接受”。预期并实际得到构建失败、`accepted=false`、`rollback=true`、源字节不变和项目干净。
 
-证据与边界：提交输入、validation、构建和增量日志、重新扫描、逐步脚本及总结；完整 sandbox、内层 `.git` 和构建产物只保留于压缩归档。B2 证明验证逻辑及失败保护语义，B4 仍需独立执行最终 gate 与 BuildChecker 重检。B3 尚未合入 `main` 时，B2 不提前创建混合上游内容的 PR。
+证据与边界：提交输入、validation、构建和增量日志、重新扫描、逐步脚本及总结；完整 sandbox、内层 `.git` 和构建产物只保留于压缩归档。B2 证据证明验证逻辑及失败保护语义；最终 gate 与 BuildChecker 重检属于 B4 的独立职责。
