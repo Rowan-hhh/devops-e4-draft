@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "stage": "E10",
+  "track": "B",
+  "record_type": "personal_complete_run",
+  "student_id": "241880179",
+  "status": "PASS",
+  "source_sha": "eaa0ddec034f43a12964741b62133c701d4c42f4",
+  "environment_image_id": "sha256:94a15175783fe4f37f17f1ae1208edfbdd2524206304e1b1ce56295f27823c40",
+  "out": "work/e10-B-manual.54qAms",
+  "project_initial_commit": "2367673c01a05b23367e23f350c05d6df4a1b8d3",
+  "validation": {
+    "wrong_expected_output": {
+      "accepted": false,
+      "checks": {
+        "patch_applies": true,
+        "build": true,
+        "test": false,
+        "header_change": true,
+        "no_missing": true
+      },
+      "error": null,
+      "source_unchanged": true,
+      "rollback": true
+    },
+    "compile_failure": {
+      "accepted": false,
+      "checks": {
+        "patch_applies": true
+      },
+      "error": "COMMAND_FAILED ['make', 'app']\nfalse\nmake: *** [Makefile:5: main.o] Error 1\n",
+      "source_unchanged": true,
+      "rollback": true
+    },
+    "accepted_candidate": {
+      "accepted": true,
+      "checks": {
+        "patch_applies": true,
+        "build": true,
+        "test": true,
+        "header_change": true,
+        "no_missing": true
+      },
+      "error": null,
+      "source_unchanged": false,
+      "rollback": false
+    },
+    "invalid_patch": {
+      "accepted": false,
+      "checks": {},
+      "error": "COMMAND_FAILED ['git', 'apply', '--check', '/course/work/e10-B-manual.54qAms/broken.patch']\nerror: No valid patches in input (allow with \"--allow-empty\")\n",
+      "source_unchanged": true,
+      "rollback": true
+    }
+  },
+  "final_recheck": {
+    "missing_count": 0,
+    "findings": [
+      {
+        "type": "REDUNDANT",
+        "target": "main.o",
+        "dependency": "unused.h",
+        "evidence": [
+          {
+            "source": "make_database",
+            "artifact": "make-db.txt",
+            "line": 1044,
+            "declaration": "main.o: main.c unused.h config.h"
+          }
+        ],
+        "scope": "Not observed in this recipe job under this build configuration"
+      }
+    ],
+    "gate_rows": 4
+  },
+  "unit_tests": {
+    "exit_code": 0,
+    "total": 19
+  },
+  "passed": true
+}

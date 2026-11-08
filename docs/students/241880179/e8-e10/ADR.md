@@ -33,3 +33,11 @@
 个人扩展：增加可应用但把 `main.o` 编译配方改为 `false` 的候选，明确验证“Patch 可应用”不等于“候选可接受”。预期并实际得到构建失败、`accepted=false`、`rollback=true`、源字节不变和项目干净。
 
 证据与边界：提交输入、validation、构建和增量日志、重新扫描、逐步脚本及总结；完整 sandbox、内层 `.git` 和构建产物只保留于压缩归档。B2 证据证明验证逻辑及失败保护语义；最终 gate 与 BuildChecker 重检属于 B4 的独立职责。
+
+## E9—E10 个人完整复跑：统一版本与隔离证据
+
+选择：从合并后的 `main` 提交 `eaa0dde` 建立独立个人复跑分支，在服务器新建仓库副本，并分别创建 E9、E10 的唯一 OUT。E9 三种原始项目只生成报告和候选并执行 `git apply --check`，落地、构建和运行全部在隔离副本完成。E10 的每种候选使用独立 validation sandbox，只有正确候选五项检查全部通过后写回源 Makefile。
+
+证据策略：提交目录保留输入报告、Patch、plan、validation、构建与运行日志、BuildChecker 动态证据、gate、统一测试和结构化汇总；内层 `.git`、sandbox、目标文件和可执行文件仅保留于服务器及本地完整归档。归档 SHA-256 为 `27c396beaaf35207da720830765f720492858ba501005e195a359ffc07235eed`。
+
+验证：E9 三种风格均保持配方字节和原输入状态，隔离副本构建运行通过且复扫无 MISSING；E10 三类错误候选均拒绝并回滚，正确候选五项检查通过，最终 BuildChecker 无 MISSING；两次统一测试均为 19 tests、OK。
