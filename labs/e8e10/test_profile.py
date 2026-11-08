@@ -127,4 +127,224 @@ class StudentE8B3(unittest.TestCase):
                 }, expected)
             self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
 
+class StudentE9B3(unittest.TestCase):
+    def test_reports_bind_to_each_sample_head(self):
+        from generate_e9_b3 import generate_reports, input_hashes
+        from lab import run
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            samples_root = root / 'samples'
+            samples_root.mkdir()
+            samples = []
+            for style in ('direct', 'macro', 'mixed'):
+                project = samples_root / style
+                fixture(project, style)
+                samples.append({
+                    'style': style,
+                    'project_relative_path': style,
+                    'project_commit': run(['git', 'rev-parse', 'HEAD'], project).strip(),
+                    'input_sha256': input_hashes(project),
+                })
+            handoff = root / 'handoff.json'
+            handoff.write_text(json.dumps({'stage': 'E9', 'samples': samples}))
+
+            output = root / 'reports'
+            result = generate_reports(handoff, output, samples_root=samples_root)
+
+            self.assertTrue(result['passed'])
+            self.assertTrue((output / 'commit-check.json').is_file())
+            for sample in samples:
+                report = json.loads((output / (sample['style'] + '-input.json')).read_text())
+                self.assertEqual(report['commit'], sample['project_commit'])
+
+class StudentE9B2(unittest.TestCase):
+    def test_macro_duplicate_dependencies_are_normalized_before_patch(self):
+        """Duplicate declarations do not change the target graph or patch style."""
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory) / 'macro'
+            fixture(project, 'macro')
+            makefile = project / 'Makefile'
+            makefile.write_text(
+                makefile.read_text().replace(
+                    'DEPS = main.c unused.h',
+                    'DEPS = main.c unused.h unused.h',
+                )
+            )
+            report = scan(project)
+            self.assertEqual(
+                report['declared']['main.o'],
+                ['main.c', 'unused.h'],
+            )
+            diff, plan = patch(project, report)
+            self.assertEqual(
+                plan,
+                [{
+                    'target': 'main.o',
+                    'dependency': 'config.h',
+                    'style': 'macro',
+                }],
+            )
+            self.assertIn('config.h', diff)
+            self.assertIn('DEPS = main.c unused.h unused.h config.h', diff)
+            self.assertNotIn('config.h', makefile.read_text())
+
+class StudentE9B4(unittest.TestCase):
+    def test_three_style_patches_apply_only_to_isolated_copies(self):
+        import shutil
+        from lab import run
+
+        expected = {
+            'direct': b'main.o: main.c unused.h config.h',
+            'macro': b'DEPS = main.c unused.h config.h',
+            'mixed': b'main.o: main.c $(HEADERS) config.h',
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for style, declaration in expected.items():
+                with self.subTest(style=style):
+                    source = root / style
+                    fixture(source, style)
+                    before = (source / 'Makefile').read_bytes()
+                    status = run(['git', 'status', '--porcelain', '--untracked-files=all'], source)
+                    self.assertEqual(status, '')
+                    report = scan(source)
+                    self.assertEqual(report['commit'], run(['git', 'rev-parse', 'HEAD'], source).strip())
+                    diff, plan = patch(source, report)
+                    self.assertEqual(plan, [{'target': 'main.o', 'dependency': 'config.h', 'style': style}])
+                    self.assertEqual((source / 'Makefile').read_bytes(), before)
+                    self.assertEqual(run(['git', 'status', '--porcelain', '--untracked-files=all'], source), status)
+                    candidate = root / (style + '.patch')
+                    candidate.write_text(diff, encoding='utf-8')
+                    run(['git', 'apply', '--check', str(candidate)], source)
+                    self.assertEqual((source / 'Makefile').read_bytes(), before)
+                    self.assertEqual(run(['git', 'status', '--porcelain', '--untracked-files=all'], source), status)
+                    isolated = root / (style + '-isolated')
+                    shutil.copytree(source, isolated)
+                    run(['git', 'apply', '--check', str(candidate)], isolated)
+                    run(['git', 'apply', str(candidate)], isolated)
+                    after = (isolated / 'Makefile').read_bytes()
+                    self.assertIn(declaration, after.splitlines())
+                    recipes = lambda data: [line for line in data.splitlines(keepends=True) if line.startswith(b'\t')]
+                    self.assertEqual(recipes(before), recipes(after))
+                    self.assertEqual(scan(isolated)['findings'], [
+                        {'type': 'REDUNDANT', 'target': 'main.o', 'dependency': 'unused.h'}
+                    ])
+                    self.assertEqual((source / 'Makefile').read_bytes(), before)
+                    self.assertEqual(run(['git', 'status', '--porcelain', '--untracked-files=all'], source), status)
+
+class StudentE10B1(unittest.TestCase):
+    def test_initializes_clean_versioned_direct_project(self):
+        from init_e10_b1 import BASELINE, initialize, input_hashes
+        from lab import run
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory) / 'e10'
+            result = initialize(out, expected_branch=None)
+            project = out / 'project'
+            self.assertEqual(result['baseline_commit'], BASELINE)
+            self.assertEqual(result['student_id'], '241880360')
+            self.assertEqual((result['stage'], result['role'], result['handoff_to']),
+                             ('E10', 'B1', 'B3'))
+            self.assertEqual(result['sample']['project_commit'],
+                             run(['git', 'rev-parse', 'HEAD'], project).strip())
+            self.assertEqual(run(['git', 'rev-list', '--count', 'HEAD'], project).strip(), '1')
+            self.assertEqual(run(['git', 'status', '--porcelain', '--ignored'], project), '')
+            self.assertIn('main.o: main.c unused.h', (project / 'Makefile').read_text().splitlines())
+            self.assertNotIn('config.h', (project / 'Makefile').read_text())
+            self.assertEqual(input_hashes(project), result['sample']['input_sha256'])
+            self.assertTrue((out / '241880360-handoff.json').is_file())
+            self.assertFalse(result['reports_generated'])
+            self.assertFalse(result['patches_generated'])
+            self.assertFalse(list(out.rglob('*.patch')))
+            self.assertFalse((out / 'fixed-md-report.json').exists())
+
+    def test_existing_output_is_rejected_without_changes(self):
+        from init_e10_b1 import initialize
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            marker = out / 'keep.txt'
+            marker.write_bytes(b'previous evidence')
+            with self.assertRaisesRegex(FileExistsError, 'already exists'):
+                initialize(out, expected_branch=None)
+            self.assertEqual(marker.read_bytes(), b'previous evidence')
+            self.assertEqual(list(out.iterdir()), [marker])
+
+    def test_isolated_build_leaves_no_project_artifacts(self):
+        from init_e10_b1 import initialize
+        from lab import run
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory) / 'e10'
+            result = initialize(out, expected_branch=None)
+            project = out / 'project'
+            self.assertEqual(result['build']['output'], '1')
+            self.assertTrue(result['build']['passed'])
+            for name in ('clean', 'app', 'run'):
+                self.assertIn('exit_code=0', (out / 'build' / (name + '.log')).read_text())
+            self.assertIn('\n1\n', (out / 'build/run.log').read_text())
+            self.assertEqual(result['sample']['input_sha256'], result['sample']['input_sha256_after_build'])
+            self.assertFalse(list(out.rglob('*.o')))
+            self.assertFalse(list(out.rglob('app')))
+            self.assertEqual(run(['git', 'status', '--porcelain', '--ignored'], project), '')
+
+class StudentE10B3(unittest.TestCase):
+    def test_collects_report_patch_plan_and_source_snapshot(self):
+        from generate_e10_b3 import generate
+        from lab import run
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            project = root / 'project'
+            fixture(project)
+            expected_head = run(['git', 'rev-parse', 'HEAD'], project).strip()
+            before = (project / 'Makefile').read_bytes()
+            output = root / 'reports'
+
+            result = generate(project, output, expected_head=expected_head)
+
+            self.assertTrue(result['passed'])
+            for name in ('fixed-md-report.json', 'candidate.patch',
+                         'patch-plan.json', 'source-before.Makefile'):
+                self.assertTrue((output / name).is_file())
+            report = json.loads((output / 'fixed-md-report.json').read_text())
+            self.assertEqual(report['commit'], expected_head)
+            self.assertEqual((output / 'source-before.Makefile').read_bytes(), before)
+            self.assertEqual((project / 'Makefile').read_bytes(), before)
+            self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
+
+class StudentE10B2(unittest.TestCase):
+    def test_compilation_failure_candidate_rolls_back_source_bytes(self):
+        """An applicable patch that breaks compilation must never reach the source."""
+        import difflib
+        from lab import run, validate
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            project = root / 'project'
+            fixture(project)
+            before = (project / 'Makefile').read_bytes()
+            original = before.decode()
+            broken = original.replace(
+                '\tgcc $(CFLAGS) -c main.c -o main.o',
+                '\tfalse',
+            )
+            self.assertNotEqual(original, broken)
+            candidate = root / 'compile-failure.patch'
+            candidate.write_text(''.join(difflib.unified_diff(
+                original.splitlines(True),
+                broken.splitlines(True),
+                fromfile='a/Makefile',
+                tofile='b/Makefile',
+            )), encoding='utf-8')
+
+            result = validate(project, candidate, root / 'compile-rejection')
+
+            self.assertFalse(result['accepted'])
+            self.assertTrue(result['rollback'])
+            self.assertTrue(result['source_unchanged'])
+            self.assertTrue(result['checks']['patch_applies'])
+            self.assertNotIn('build', result['checks'])
+            self.assertIn('COMMAND_FAILED', result['error'])
+            self.assertEqual((project / 'Makefile').read_bytes(), before)
+            self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
+
 if __name__=='__main__':unittest.main()

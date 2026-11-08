@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "stage": "E10",
+  "track": "B",
+  "role": "B4",
+  "student_id": "241880610",
+  "branch": "e10-xzt-b4",
+  "base_main": "eaa0ddec034f43a12964741b62133c701d4c42f4",
+  "execution_commit": "eaa0ddec034f43a12964741b62133c701d4c42f4",
+  "cases": [
+    {"case": "wrong-test", "passed": true, "accepted": false, "rollback": true},
+    {"case": "accepted", "passed": true, "accepted": true, "all_checks": true},
+    {"case": "bad-patch", "passed": true, "accepted": false, "rollback": true},
+    {"case": "compile-failure", "passed": true, "accepted": false, "rollback": true}
+  ],
+  "accepted_checks": {
+    "patch_applies": true,
+    "build": true,
+    "test": true,
+    "header_change": true,
+    "no_missing": true
+  },
+  "recheck": {
+    "status": "SUCCEEDED",
+    "missing_count": 0,
+    "evidence": "work/e10-B4-241880610-20261108/recheck-buildchecker"
+  },
+  "source": {
+    "before_makefile_sha256": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2",
+    "after_accept_makefile_sha256": "ab35bda3d5bf1ba02394a04bddcb8ec23a2e3ba67d7be938be3e49fed9b1d5d0",
+    "rejected_cases_preserved_source": true
+  },
+  "unit_tests": {"count": 19, "exit_code": 0, "result": "OK"},
+  "passed": true
+}

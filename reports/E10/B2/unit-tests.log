@@ -1,0 +1,27 @@
+test_include_added_invalidates_cache (test_profile.ProfileTests.test_include_added_invalidates_cache) ... ok
+test_independent_known_edges (test_profile.ProfileTests.test_independent_known_edges) ... ok
+test_old_report_rejected (test_profile.ProfileTests.test_old_report_rejected) ... ok
+test_patch_preserves_redundant_dependency (test_profile.ProfileTests.test_patch_preserves_redundant_dependency) ... ok
+test_unchanged_reuses_both_targets (test_profile.ProfileTests.test_unchanged_reuses_both_targets) ... ok
+test_unsafe_dependency_rejected (test_profile.ProfileTests.test_unsafe_dependency_rejected) ... ok
+test_unsupported_configuration_rejected (test_profile.ProfileTests.test_unsupported_configuration_rejected) ... ok
+test_existing_output_is_rejected_without_changes (test_profile.StudentE10B1.test_existing_output_is_rejected_without_changes) ... ok
+test_initializes_clean_versioned_direct_project (test_profile.StudentE10B1.test_initializes_clean_versioned_direct_project) ... ok
+test_isolated_build_leaves_no_project_artifacts (test_profile.StudentE10B1.test_isolated_build_leaves_no_project_artifacts) ... ok
+test_compilation_failure_candidate_rolls_back_source_bytes (test_profile.StudentE10B2.test_compilation_failure_candidate_rolls_back_source_bytes)
+An applicable patch that breaks compilation must never reach the source. ... ok
+test_collects_report_patch_plan_and_source_snapshot (test_profile.StudentE10B3.test_collects_report_patch_plan_and_source_snapshot) ... ok
+test_patch_keeps_recipe_bytes (test_profile.StudentE8B.test_patch_keeps_recipe_bytes) ... ok
+test_report_identity_changes_even_when_findings_do_not (test_profile.StudentE8B3.test_report_identity_changes_even_when_findings_do_not)
+Equal findings do not make reports from different commits interchangeable. ... ok
+test_existing_evidence_directory_is_not_overwritten (test_profile.StudentE9B1.test_existing_evidence_directory_is_not_overwritten) ... ok
+test_three_pristine_styles_are_separately_versioned (test_profile.StudentE9B1.test_three_pristine_styles_are_separately_versioned) ... ok
+test_macro_duplicate_dependencies_are_normalized_before_patch (test_profile.StudentE9B2.test_macro_duplicate_dependencies_are_normalized_before_patch)
+Duplicate declarations do not change the target graph or patch style. ... ok
+test_reports_bind_to_each_sample_head (test_profile.StudentE9B3.test_reports_bind_to_each_sample_head) ... ok
+test_three_style_patches_apply_only_to_isolated_copies (test_profile.StudentE9B4.test_three_style_patches_apply_only_to_isolated_copies) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.687s
+
+OK
