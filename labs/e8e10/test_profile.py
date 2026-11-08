@@ -347,4 +347,38 @@ class StudentE10B2(unittest.TestCase):
             self.assertEqual((project / 'Makefile').read_bytes(), before)
             self.assertEqual(run(['git', 'status', '--porcelain'], project), '')
 
+class Student241880610(unittest.TestCase):
+    def test_accepted_candidate_persists_all_validation_checks(self):
+        """A successful candidate records every check before source write-back."""
+        from lab import run, validate
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            project = root / 'project'
+            fixture(project)
+            report = scan(project)
+            diff, plan = patch(project, report)
+            candidate = root / 'candidate.patch'
+            candidate.write_text(diff, encoding='utf-8')
+
+            result = validate(project, candidate, root / 'accept')
+
+            self.assertTrue(result['accepted'])
+            self.assertEqual(
+                result['checks'],
+                {
+                    'patch_applies': True,
+                    'build': True,
+                    'test': True,
+                    'header_change': True,
+                    'no_missing': True,
+                },
+            )
+            self.assertFalse(result['source_unchanged'])
+            self.assertFalse(result['rollback'])
+            saved = json.loads((root / 'accept' / 'validation.json').read_text())
+            self.assertEqual(saved, result)
+            self.assertEqual(plan[0]['style'], 'direct')
+            self.assertEqual(run(['git', 'status', '--porcelain'], project), ' M Makefile\n')
+
 if __name__=='__main__':unittest.main()
