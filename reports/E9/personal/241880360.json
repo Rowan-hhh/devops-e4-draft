@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "stage": "E9",
+  "track": "B",
+  "record_type": "personal_complete_run",
+  "student_id": "241880360",
+  "status": "PASS",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "branch": "student/241880360/e8-e10",
+  "source_sha": "593b40a176b0881f3b7ed072a4c6c4302957a07b",
+  "environment_image_id": "sha256:94a15175783fe4f37f17f1ae1208edfbdd2524206304e1b1ce56295f27823c40",
+  "evidence_path": "/root/devops-students/241880360/draft/work/e9-B-manual.rT4Wcd",
+  "styles": {
+    "direct": {
+      "project_commit": "0c77a98d8386fc6234b9aef2e3486195de7c1c1a",
+      "input": {
+        "path": "work/e9-B-manual.rT4Wcd/direct-input.json",
+        "sha256": "77f810ac960d144ce5d8bee438d3ea06c4ba8ef7a8d03282b4e9c1e62e285997"
+      },
+      "patch": {
+        "path": "work/e9-B-manual.rT4Wcd/direct.patch",
+        "sha256": "2b3bbed7e337c71f31a0be7f1a7c8eba2a19e951dc4258917c3ad804632ce0e6"
+      },
+      "plan": {
+        "path": "work/e9-B-manual.rT4Wcd/direct-plan.json",
+        "sha256": "16d90a8247c9ba5e65f40e21950a5f929b997306edf52a74fba023a0cc8866e2",
+        "style": "direct"
+      },
+      "apply_check_passed": true,
+      "source_clean": true
+    },
+    "macro": {
+      "project_commit": "869a3db353fe89eb86c10ce5285300f94929b6a9",
+      "input": {
+        "path": "work/e9-B-manual.rT4Wcd/macro-input.json",
+        "sha256": "71c3997981821a79f141f7d7e011e220ebd798ab69fcd6b074d8580be2a04233"
+      },
+      "patch": {
+        "path": "work/e9-B-manual.rT4Wcd/macro.patch",
+        "sha256": "3b97138153acc84cbce4bf91990727a467ab56d961844e17959740f5bc88524b"
+      },
+      "plan": {
+        "path": "work/e9-B-manual.rT4Wcd/macro-plan.json",
+        "sha256": "a95ed5f504ec11f0ce8f310087db39f72197eac0b6d4e55fcbca26cf9712a222",
+        "style": "macro"
+      },
+      "apply_check_passed": true,
+      "source_clean": true
+    },
+    "mixed": {
+      "project_commit": "2fdf24ec54a0caa6d73881a3876029370fd5cc14",
+      "input": {
+        "path": "work/e9-B-manual.rT4Wcd/mixed-input.json",
+        "sha256": "039b7a29004915ca8644c78747417de25c373aa35124c599c34a35964886f0b0"
+      },
+      "patch": {
+        "path": "work/e9-B-manual.rT4Wcd/mixed.patch",
+        "sha256": "b839327394ae46ddd420d914bf7532159af3a6a63927b7fb6def8bfb4f726826"
+      },
+      "plan": {
+        "path": "work/e9-B-manual.rT4Wcd/mixed-plan.json",
+        "sha256": "639bad70c347500984902affe785117d61d9e9fe67e9ddb55ea0e6f5a635f48b",
+        "style": "mixed"
+      },
+      "apply_check_passed": true,
+      "source_clean": true
+    }
+  },
+  "apply_demo": {
+    "style": "macro",
+    "passed": true,
+    "original_source_unchanged": true
+  },
+  "personal_tests": {
+    "total": 8,
+    "passed": 8,
+    "exit_code": 0,
+    "log": "work/e9-B-manual.rT4Wcd/personal-unit-tests.log",
+    "log_sha256": "587e2860b8501612b524f1b1579da81be63805a03bfb9b37be50a5c73fa33367"
+  },
+  "conclusion": {
+    "path": "work/e9-B-manual.rT4Wcd/结论.txt",
+    "sha256": "9fdfc89ccbc6fb507e42f30b7bdc07efa76e3115c0350df1306e708af510322d"
+  },
+  "group_role_tasks_included": false,
+  "ci": {
+    "workflow": "E8-E10 teaching validation",
+    "job": "e8e10-quality-gate",
+    "run_id": 41668796945,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/41668796945",
+    "event": "push",
+    "tested_head_sha": "715e8b5d02337f252eaf17f6a42f4e6efb392341",
+    "status": "success",
+    "artifact": {
+      "id": 13247666024,
+      "name": "e8e10-evidence-41668796945",
+      "size_in_bytes": 119756,
+      "expired": false,
+      "digest": "sha256:094469670d8bb5e73ac7f5231daff918494ff6fbbce4c964027f27804b6fe7b4"
+    }
+  },
+  "pull_request": {
+    "number": 5,
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/pull/5",
+    "state": "OPEN",
+    "checked_head_sha": "715e8b5d02337f252eaf17f6a42f4e6efb392341",
+    "successful_checks": 3,
+    "mergeable": "MERGEABLE",
+    "merge_state_status": "CLEAN"
+  }
+}

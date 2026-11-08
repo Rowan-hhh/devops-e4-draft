@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "stage": "E9",
+  "track": "B",
+  "record_type": "personal_complete_run",
+  "student_id": "241880179",
+  "status": "PASS",
+  "source_sha": "eaa0ddec034f43a12964741b62133c701d4c42f4",
+  "environment_image_id": "sha256:94a15175783fe4f37f17f1ae1208edfbdd2524206304e1b1ce56295f27823c40",
+  "out": "work/e9-B-manual.SDczm2",
+  "styles": [
+    {
+      "style": "direct",
+      "project_commit": "0d17702ff69465a0d17b4c96032a81b8d838dff5",
+      "plan": [
+        {
+          "target": "main.o",
+          "dependency": "config.h",
+          "style": "direct"
+        }
+      ],
+      "patch_applies": true,
+      "source_clean": true,
+      "source_unchanged": true,
+      "recipe_bytes_preserved": true,
+      "build": true,
+      "run_output": "1",
+      "no_missing": true
+    },
+    {
+      "style": "macro",
+      "project_commit": "4d641b137c5077f29e04e9bb0dc0229be141d9ad",
+      "plan": [
+        {
+          "target": "main.o",
+          "dependency": "config.h",
+          "style": "macro"
+        }
+      ],
+      "patch_applies": true,
+      "source_clean": true,
+      "source_unchanged": true,
+      "recipe_bytes_preserved": true,
+      "build": true,
+      "run_output": "1",
+      "no_missing": true
+    },
+    {
+      "style": "mixed",
+      "project_commit": "ed5adc8f8f7c730dc366f8a163157ca55b1af879",
+      "plan": [
+        {
+          "target": "main.o",
+          "dependency": "config.h",
+          "style": "mixed"
+        }
+      ],
+      "patch_applies": true,
+      "source_clean": true,
+      "source_unchanged": true,
+      "recipe_bytes_preserved": true,
+      "build": true,
+      "run_output": "1",
+      "no_missing": true
+    }
+  ],
+  "unit_tests": {
+    "exit_code": 0,
+    "total": 19
+  },
+  "passed": true
+}
