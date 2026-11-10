@@ -1,0 +1,18 @@
+test_accept_current_report (test_contract.Contracts) ... ok
+test_api_rejects_repo_outside_data (test_contract.Contracts) ... ok
+test_artifact_uses_relative_uri_and_content_hash (test_contract.Contracts) ... ok
+test_changed_artifact_is_rejected (test_contract.Contracts) ... ok
+test_existing_evidence_not_overwritten (test_contract.Contracts) ... ok
+test_reject_failed_upstream (test_contract.Contracts) ... ok
+test_reject_old_commit (test_contract.Contracts) ... ok
+test_reject_schema (test_contract.Contracts) ... ok
+test_reject_wrong_artifact_kind (test_contract.Contracts) ... ok
+test_same_key_same_request_same_job (test_contract.Contracts) ... ok
+test_two_missing_headers_share_one_safe_direct_patch (test_e11_b2.StudentE11B2)
+E11-B must repair both MD findings without changing recipes or input. ... ok
+test_two_missing_headers_patch_macro_and_mixed_styles (test_e11_b3.StudentE11B3) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.116s
+
+OK
