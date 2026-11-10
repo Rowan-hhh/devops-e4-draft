@@ -1,0 +1,111 @@
+{
+  "schema_version": "e11-b3-1",
+  "student_id": "241880360",
+  "stage": "E11",
+  "role": "B3",
+  "status": "SUCCEEDED",
+  "branch": "student/241880360/e11-b3",
+  "baseline_commit": "a091cd9da6e90192e9b411ec7c6503ca3211ab29",
+  "execution_commit": "c061973fb7d33fd25a712a78ef103c5ea0babc01",
+  "run_directory": "work/e11-B3-241880360-20261110-190133",
+  "upstream_b2": {
+    "pr": 19,
+    "report_commit": "6ed7a9b",
+    "merge_commit": "a091cd9da6e90192e9b411ec7c6503ca3211ab29",
+    "target_commit": "4350fcdafaf4e708f51ea95f018211085dcd73d2",
+    "handoff": "reports/E11/B2/241880179-handoff.json"
+  },
+  "contract_verification": {
+    "passed": true,
+    "cases": 5,
+    "results": [
+      {
+        "case": "old_commit",
+        "expected_error": "STALE_REPORT",
+        "actual_error": "STALE_REPORT",
+        "rejected": true,
+        "patch_generated": false,
+        "source_unchanged": true,
+        "output_unchanged": true
+      },
+      {
+        "case": "wrong_schema",
+        "expected_error": "SCHEMA_MISMATCH",
+        "actual_error": "SCHEMA_MISMATCH",
+        "rejected": true,
+        "patch_generated": false,
+        "source_unchanged": true,
+        "output_unchanged": true
+      },
+      {
+        "case": "wrong_kind",
+        "expected_error": "ARTIFACT_TYPE_MISMATCH",
+        "actual_error": "ARTIFACT_TYPE_MISMATCH",
+        "rejected": true,
+        "patch_generated": false,
+        "source_unchanged": true,
+        "output_unchanged": true
+      },
+      {
+        "case": "changed_artifact",
+        "expected_error": "ARTIFACT_HASH_MISMATCH",
+        "actual_error": "ARTIFACT_HASH_MISMATCH",
+        "rejected": true,
+        "patch_generated": false,
+        "source_unchanged": true,
+        "output_unchanged": true
+      },
+      {
+        "case": "failed_upstream",
+        "expected_error": "UPSTREAM_FAILED",
+        "actual_error": "UPSTREAM_FAILED",
+        "rejected": true,
+        "patch_generated": false,
+        "source_unchanged": true,
+        "output_unchanged": true
+      }
+    ]
+  },
+  "style_extension": {
+    "styles": [
+      "macro",
+      "mixed"
+    ],
+    "missing_dependencies": [
+      "config.h",
+      "extra.h"
+    ],
+    "test": "StudentE11B3.test_two_missing_headers_patch_macro_and_mixed_styles",
+    "recipe_bytes_unchanged": true,
+    "source_clean": true,
+    "git_apply_check": true,
+    "isolated_apply": true
+  },
+  "unit_tests": {
+    "tests": 12,
+    "passed": true,
+    "exit_code": 0
+  },
+  "a_group_artifact_required": false,
+  "handoff_to": "B4",
+  "evidence": [
+    "changed_artifact/input.json",
+    "changed_artifact/result.json",
+    "environment.txt",
+    "failed_upstream/input.json",
+    "failed_upstream/result.json",
+    "old_commit/input.json",
+    "old_commit/result.json",
+    "source-after.json",
+    "source-before.json",
+    "student-source-commit.txt",
+    "summary.json",
+    "unit-tests-exit-code.txt",
+    "unit-tests.log",
+    "wrong_kind/input.json",
+    "wrong_kind/result.json",
+    "wrong_schema/input.json",
+    "wrong_schema/result.json"
+  ],
+  "archive_manifest": "archive-manifest.json"
+}

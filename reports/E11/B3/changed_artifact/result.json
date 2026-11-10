@@ -1,0 +1,14 @@
+{
+  "actual_error": "ARTIFACT_HASH_MISMATCH",
+  "actual_sha256": "e67f73b4c5f33c4aa5848c64133c943d7001babc6ba92714ef38d1612ae93e51",
+  "case": "changed_artifact",
+  "expected_error": "ARTIFACT_HASH_MISMATCH",
+  "expected_sha256": "dd2ff55fb3e8e56250e656efb015bf4fdf6791e0933e9d799be0a73786be2f85",
+  "input": "changed_artifact/input.json",
+  "output_after": {},
+  "output_before": {},
+  "output_unchanged": true,
+  "patch_generated": false,
+  "rejected": true,
+  "source_unchanged": true
+}
