@@ -1,7 +1,26 @@
 {
   "workflow": "E11-E12 integration",
   "workflow_file": ".github/workflows/e11e12.yml",
-  "status": "PENDING",
-  "note": "Push this branch to trigger the full Ubuntu/Docker integration run. The run must execute tests, prepare, e11-a, e11-b and e12 before B4 is marked PASS."
+  "run_id": 42846917634,
+  "run_url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/42846917634",
+  "head_sha": "288c4ae05d46d397b5f4c42e4eaa8a1cbc5e6900",
+  "status": "completed",
+  "conclusion": "success",
+  "artifact": {
+    "id": 13779156876,
+    "name": "e11e12-evidence-42846917634",
+    "size_in_bytes": 232264,
+    "digest": "sha256:98be69a13f077464a86303280b66bd435b57570dfa6041c227febdc289162ba9",
+    "expires_at": "2026-11-24T15:42:39Z"
+  },
+  "checks": {
+    "e11_b_result": "SUCCEEDED",
+    "first_draft_failure": "MISSING_MAKE",
+    "second_draft_build_exit_code": 0,
+    "image_run_output": "1\\n",
+    "image_id": "sha256:536e79a667e6fb79a412937951ea81a48aba7a2c8572de133d9d97f561938bc5",
+    "repair": ["config.h", "extra.h"],
+    "final_remaining_finding": "REDUNDANT unused.h"
+  }
 }
 

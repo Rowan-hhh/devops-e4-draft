@@ -6,7 +6,7 @@
   "branch": "e11-xzt-b4",
   "integration_branch": "e11-e12-integration",
   "baseline_commit": "3e96221c3ab3d1c55dffedb6d5ee23f020c3af8e",
-  "status": "PENDING_CI",
+  "status": "PASS",
   "upstream": {
     "b1": {
       "status": "SUCCEEDED",
@@ -37,9 +37,17 @@
   },
   "ci": {
     "workflow": ".github/workflows/e11e12.yml",
-    "status": "PENDING",
-    "run_id": null,
-    "artifact": null
+    "status": "success",
+    "run_id": 42846917634,
+    "head_sha": "288c4ae05d46d397b5f4c42e4eaa8a1cbc5e6900",
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/42846917634",
+    "artifact": {
+      "id": 13779156876,
+      "name": "e11e12-evidence-42846917634",
+      "size_in_bytes": 232264,
+      "digest": "sha256:98be69a13f077464a86303280b66bd435b57570dfa6041c227febdc289162ba9",
+      "expires_at": "2026-11-24T15:42:39Z"
+    }
   },
   "handoff": {
     "next": "组长",

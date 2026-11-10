@@ -34,11 +34,13 @@ python -m unittest discover -s labs/e11e12 -p test_*.py -v
 
 结果：`12 tests`，全部 `OK`，退出码 `0`。
 
-完整镜像构建、E11-B 运行和 CI 由 `.github/workflows/e11e12.yml` 在 Ubuntu 24.04 执行。该工作流会重新构建固定版本的 E11/E12 环境，执行合约测试、生成实验包，并依次运行 `e11-a`、`e11-b`、`e12`；原始输出保存为 GitHub Actions artifact。最终 CI 的运行号、状态、Artifact 和摘要见同目录 `ci-run.json`（若当前文件尚未记录运行号，则以本分支 PR 的最新 E11-E12 Checks 为准）。
+完整镜像构建、E11-B 运行和 CI 已由 `.github/workflows/e11e12.yml` 在 Ubuntu 24.04 执行。运行 `42846917634` 成功，完整执行了合约测试、实验包准备、`e11-a`、`e11-b` 和 `e12`；原始输出已保存为 Artifact `e11e12-evidence-42846917634`。运行号、状态、Artifact 和摘要见同目录 `ci-run.json`。
+
+E11-B 的 CI 证据已归档到 `e11-b/`：结果为 `SUCCEEDED`，第一轮 DRAFT 分类为 `MISSING_MAKE`，第二轮构建退出码为 `0`，镜像运行输出为 `1`；修复计划只增加 `config.h` 和 `extra.h`，动态重检后仅保留 `unused.h` 的 `REDUNDANT` 结论。
 
 ## B4 结论
 
-B1、B2、B3 的交付边界和证据已完成核对；本分支补充了 B4 的集成验收报告和个人报告。待本分支 PR 的 E11-E12 workflow 成功后，B4 验收结论为 `PASS`，由组长审核后合并回 `e11-e12-integration`，再按组内流程决定是否合并到 `main`。
+B1、B2、B3 的交付边界和证据已完成核对；本分支补充了 B4 的集成验收报告、E11-B CI 结果和个人报告。B4 验收结论为 `PASS`，由组长审核后合并回 `e11-e12-integration`，再按组内流程决定是否合并到 `main`。
 
 ## 证据索引
 
