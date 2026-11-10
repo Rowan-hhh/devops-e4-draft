@@ -7,5 +7,6 @@
 
 # 运行证据：按需挑选后用 git add -f 提交
 work/
+data/
 __pycache__/
 .pytest_cache/
