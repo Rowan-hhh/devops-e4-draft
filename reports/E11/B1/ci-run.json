@@ -1,0 +1,27 @@
+{
+  "stage": "E11-B1",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft",
+  "branch": "e11-e12-integration",
+  "head_sha": "ede7c600b8c7183210ba3d93b916b8ccb051fd9b",
+  "workflow_run_id": 42748595650,
+  "workflow_run_url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/42748595650",
+  "job_id": 129606546506,
+  "job_url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/42748595650/job/129606546506",
+  "status": "success",
+  "artifact": {
+    "id": 13731649036,
+    "name": "e11e12-evidence-42748595650",
+    "digest": "sha256:9ac6734ef3c824452b21923a85cb118e950d6c807fcd01cb7840720dd924e594",
+    "expires_at": "2026-11-24T03:20:07Z"
+  },
+  "draft": {
+    "job_id": "job-8df74049ed0c442e9111cfdaef2e6f95",
+    "trace_id": "trace-40eee938c46840638734b6bf8fc065b7",
+    "base_commit": "04942446556c082215d717cbd5fbb0eb94b785ec",
+    "target_commit": "a010bd91248abe3c391f1808604afa270df0156b",
+    "status": "SUCCEEDED",
+    "first_attempt": "MISSING_MAKE",
+    "second_attempt_exit_code": 0,
+    "verified_output": "1"
+  }
+}
