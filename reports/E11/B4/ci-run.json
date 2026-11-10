@@ -1,0 +1,7 @@
+{
+  "workflow": "E11-E12 integration",
+  "workflow_file": ".github/workflows/e11e12.yml",
+  "status": "PENDING",
+  "note": "Push this branch to trigger the full Ubuntu/Docker integration run. The run must execute tests, prepare, e11-a, e11-b and e12 before B4 is marked PASS."
+}
+

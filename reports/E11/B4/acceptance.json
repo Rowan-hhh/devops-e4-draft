@@ -1,0 +1,49 @@
+{
+  "schema_version": "e11-b4-1",
+  "student_id": "241880610",
+  "stage": "E11",
+  "role": "B4",
+  "branch": "e11-xzt-b4",
+  "integration_branch": "e11-e12-integration",
+  "baseline_commit": "3e96221c3ab3d1c55dffedb6d5ee23f020c3af8e",
+  "status": "PENDING_CI",
+  "upstream": {
+    "b1": {
+      "status": "SUCCEEDED",
+      "first_failure": "MISSING_MAKE",
+      "second_build_exit_code": 0,
+      "verified_output": "1",
+      "evidence": "reports/E11/B1/"
+    },
+    "b2": {
+      "status": "SUCCEEDED",
+      "patch_accepted": true,
+      "dynamic_recheck_no_missing": true,
+      "evidence": "reports/E11/B2/"
+    },
+    "b3": {
+      "status": "SUCCEEDED",
+      "contract_cases": 5,
+      "unit_tests": 12,
+      "styles": ["macro", "mixed"],
+      "evidence": "reports/E11/B3/"
+    }
+  },
+  "local_unit_tests": {
+    "command": "python -m unittest discover -s labs/e11e12 -p test_*.py -v",
+    "tests": 12,
+    "passed": true,
+    "exit_code": 0
+  },
+  "ci": {
+    "workflow": ".github/workflows/e11e12.yml",
+    "status": "PENDING",
+    "run_id": null,
+    "artifact": null
+  },
+  "handoff": {
+    "next": "组长",
+    "action": "审核 e11-xzt-b4 的 PR，确认 E11-E12 workflow 成功后合并到 e11-e12-integration"
+  }
+}
+
