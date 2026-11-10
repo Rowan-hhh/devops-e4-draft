@@ -1,6 +1,6 @@
 # E10 B3 AI 使用记录
 
-姓名/学号：周逸涵 / 2418880300。工具：Codex。
+姓名/学号：周逸涵 / 241880300。工具：Codex。
 
 输入依据：E10 B组分工截图、B1 的 `reports/E10/B1/README.md`、`241880360-handoff.json`、`project.bundle` 和仓库已有 `lab.py`。
 
