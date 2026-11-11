@@ -15,7 +15,13 @@ from vendor.draft.autobuild import auto_build, instructions, prepare_candidate
 
 ROOT = Path(__file__).resolve().parents[2]
 IDENTITY = {'name': '241880360', 'email': '241880360@smail.nju.edu.cn'}
-INSTALL = ('RUN apt-get update && apt-get install -y --no-install-recommends '
+INSTALL = ("RUN sed -i "
+           "-e 's|https\\{0,1\\}://deb\\.debian\\.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' "
+           "-e 's|https\\{0,1\\}://security\\.debian\\.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' "
+           "-e 's|https\\{0,1\\}://deb\\.debian\\.org/debian|https://mirrors.tuna.tsinghua.edu.cn/debian|g' "
+           '/etc/apt/sources.list.d/debian.sources && '
+           'apt-get -o Acquire::ForceIPv4=true -o Acquire::Retries=3 update && '
+           'apt-get -o Acquire::ForceIPv4=true -o Acquire::Retries=3 install -y --no-install-recommends '
            'gcc make libc6-dev && rm -rf /var/lib/apt/lists/*')
 FORBIDDEN = {'incremental-check.json', 'candidate.patch', 'repair.json',
              'recheck.json', 'full-check.json'}

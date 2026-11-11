@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import shlex
 import subprocess
 import tempfile
 import unittest
@@ -19,6 +20,80 @@ CANDIDATE = BROKEN.replace('RUN make app', b1.INSTALL + '\nRUN make app')
 
 
 class CandidateContracts(unittest.TestCase):
+    def test_deb822_rewrites_only_reviewed_hosts(self):
+        argv = shlex.split(b1.INSTALL.removeprefix('RUN '))
+        sed = argv[:argv.index('&&')]
+        self.assertEqual(sed[:2], ['sed', '-i'])
+        self.assertEqual(sed[-1], '/etc/apt/sources.list.d/debian.sources')
+        self.assertEqual(sed[2:-1], [
+            '-e', r's|https\{0,1\}://deb\.debian\.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g',
+            '-e', r's|https\{0,1\}://security\.debian\.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g',
+            '-e', r's|https\{0,1\}://deb\.debian\.org/debian|https://mirrors.tuna.tsinghua.edu.cn/debian|g'])
+        hosts = [('deb.debian.org/debian-security', 'debian-security'),
+                 ('security.debian.org/debian-security', 'debian-security'),
+                 ('deb.debian.org/debian', 'debian')]
+        original = ''.join('URIs: ' + scheme + '://' + host + '\n'
+                           for host, _ in hosts for scheme in ('http', 'https'))
+        expected = ''.join('URIs: https://mirrors.tuna.tsinghua.edu.cn/' + path + '\n'
+                           for _, path in hosts for _ in ('http', 'https'))
+        lookalike = 'URIs: https://debXdebianXorg/debian\n'
+        # Exercise only sed on stdin: no apt, Docker, network or file writes.
+        result = subprocess.run(['sed', *sed[2:-1]], input=original + lookalike,
+                                capture_output=True, text=True, check=True)
+        self.assertEqual(result.stdout, expected + lookalike)
+
+    def test_mirrored_candidate_exact(self):
+        candidate = (b1.ROOT / 'reports/E12/B1/candidate.Dockerfile').read_text()
+        broken_from = autobuild.instructions(candidate)[0]
+        broken = BROKEN.replace(FROM, broken_from)
+        b1.check_candidate(broken, candidate)
+        self.assertEqual(autobuild.instructions(candidate),
+                         autobuild.instructions(broken)[:3] + [b1.INSTALL]
+                         + autobuild.instructions(broken)[3:])
+        self.assertEqual(b1.INSTALL.count('Acquire::ForceIPv4=true'), 2)
+        self.assertEqual(b1.INSTALL.count('Acquire::Retries=3'), 2)
+        self.assertIn('/etc/apt/sources.list.d/debian.sources && ', b1.INSTALL)
+
+    def test_old_official_source_candidate_rejected(self):
+        old = ('RUN apt-get update && apt-get install -y --no-install-recommends '
+               'gcc make libc6-dev && rm -rf /var/lib/apt/lists/*')
+        with self.assertRaises(ValueError):
+            b1.check_candidate(BROKEN, CANDIDATE.replace(b1.INSTALL, old))
+
+    def test_other_mirror_and_source_file_rejected(self):
+        for original, replacement in [
+                ('mirrors.tuna.tsinghua.edu.cn', 'other.example.invalid'),
+                ('/etc/apt/sources.list.d/debian.sources', '/etc/apt/sources.list')]:
+            with self.subTest(replacement=replacement), self.assertRaises(ValueError):
+                b1.check_candidate(BROKEN, CANDIDATE.replace(original, replacement))
+
+    def test_each_update_install_network_option_required(self):
+        for option in ('-o Acquire::ForceIPv4=true ', '-o Acquire::Retries=3 '):
+            for occurrence in (0, 1):
+                parts = CANDIDATE.split(option)
+                self.assertEqual(len(parts), 3)
+                changed = (parts[0] + parts[1] + option + parts[2] if occurrence == 0
+                           else parts[0] + option + parts[1] + parts[2])
+                with self.subTest(option=option, occurrence=occurrence), self.assertRaises(ValueError):
+                    b1.check_candidate(BROKEN, changed)
+
+    def test_changed_packages_or_cleanup_rejected(self):
+        for old, new in [('gcc make libc6-dev', 'gcc make'),
+                         ('gcc make libc6-dev', 'gcc make libc6-dev curl'),
+                         ('--no-install-recommends ', ''),
+                         (' && rm -rf /var/lib/apt/lists/*', '')]:
+            with self.subTest(new=new), self.assertRaises(ValueError):
+                b1.check_candidate(BROKEN, CANDIDATE.replace(old, new))
+
+    def test_extra_shell_commands_rejected(self):
+        for command in ('echo 1', 'printf bad > main.c', 'touch app'):
+            additions = ['RUN ' + command + ' && ' + b1.INSTALL.removeprefix('RUN '),
+                         b1.INSTALL + ' && ' + command,
+                         b1.INSTALL + '; ' + command]
+            for addition in additions:
+                with self.subTest(addition=addition), self.assertRaises(ValueError):
+                    b1.check_candidate(BROKEN, CANDIDATE.replace(b1.INSTALL, addition))
+
     def test_same_pinned_from(self):
         self.assertEqual(autobuild.prepare_candidate(BROKEN, CANDIDATE), BROKEN)
 

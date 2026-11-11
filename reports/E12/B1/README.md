@@ -5,9 +5,14 @@
 没有复制 integration-sample，也没有运行 prepare.py 或教学历史生成函数。
 
 本轮只实施 B1 的项目准备和独立入口。本地 C/Make 检查已完成；
-**没有运行 Docker 或正式服务器 DRAFT，没有服务器成功结论。**
+据服务器实际运行反馈，第一次正式尝试已进入 DRAFT，但第二轮在 Debian 官方源
+下载阶段超过 600 秒，结果为 TIMED_OUT，source_unchanged=true；这是网络基础设施失败，
+原失败证据保留，不计为成功。本次仅作候选网络可靠性修正：在唯一安装 RUN 内，
+将 DEB822 源替换为固定的清华 TUNA HTTPS Debian/Debian Security 镜像地址，
+update/install 均强制 IPv4 并重试 3 次，仍只安装 gcc、make、libc6-dev。
+**当前修订候选尚未执行服务器重新验证，没有服务器成功结论。**
 A 组真实报告尚未收到。B2 最终 Patch、B3 API 联调、B4 五阶段验收均未执行。
-本目录没有正式 handoff、run/ 或 archive-manifest；这些等待真实服务器运行。
+本目录没有正式 handoff、run/ 或 archive-manifest；这些等待服务器重新验证后按实际结果归档。
 
 ## 来源与三个真实提交
 
@@ -66,7 +71,7 @@ git -C data/e12-b-real-project/repo config --local user.name 241880360
 git -C data/e12-b-real-project/repo config --local user.email 241880360@smail.nju.edu.cn
 ```
 
-## 后续服务器验证（尚未执行）
+## 后续服务器重新验证（修订候选尚未执行）
 
 将审核后的外层实现及归档传至 Linux Docker 服务器，按上述方式恢复项目，
 外层 Git 本地 user.name 必须为本人学号。确认没有日期覆盖环境变量，不重新创建项目提交。
