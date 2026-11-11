@@ -65,7 +65,7 @@
   "bundle": "reports/E12/B1/project.bundle",
   "bundle_sha256": "0a74f580219b55ab97119cdfa81f730f23fd0d5cbfbf2f986e4791110f3ce608",
   "a_group_report_received": false,
-  "server_draft_executed": false,
+  "server_draft_executed": true,
   "evolution_note": "Controlled course-maintained evolution: P2 uses output_format.h in helper.c while helper.o declaration remains unchanged; no A-group detection result claimed.",
   "local_checks": {
     "scope": "Native local C/Make checks only; not server DRAFT evidence",
@@ -107,5 +107,7 @@
       "exit_code": 0,
       "clean_after": true
     }
-  }
+  },
+  "outer_execution_commit": "8cd9224f32f73594c1c921cd4553cedb3760b55f",
+  "success_evidence": "reports/E12/B1/run/success/result.json"
 }

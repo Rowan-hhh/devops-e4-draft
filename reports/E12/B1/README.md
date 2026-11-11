@@ -1,55 +1,62 @@
-# E12 B1 项目准备：等待服务器 DRAFT
+# E12 B1：维护项目、DRAFT 成功与交接
 
-本目录保存 E12 B 组维护项目的来源、完整历史和手工候选。
-项目从本组 E7 使用的 `fixtures/draft` 派生，不是外部生产项目，
-没有复制 integration-sample，也没有运行 prepare.py 或教学历史生成函数。
+本目录保存从本组 E7 使用的 fixtures/draft 派生的“E12 B 组维护项目”。
+它不是外部生产项目，没有复制 integration-sample，没有用 prepare.py 生成维护历史。
+最终服务器 B1 结果为 SUCCEEDED；交接对象为 A 组及后续 B2。
+A 组真实报告尚未收到，B2 最终 Patch、B3 API 联调、B4 五阶段最终验收均未执行。
+本次归档不运行 Docker，不暂存、提交或推送。
 
-本轮只实施 B1 的项目准备和独立入口。本地 C/Make 检查已完成；
-据服务器实际运行反馈，第一次正式尝试已进入 DRAFT，但第二轮在 Debian 官方源
-下载阶段超过 600 秒，结果为 TIMED_OUT，source_unchanged=true；这是网络基础设施失败，
-原失败证据保留，不计为成功。本次仅作候选网络可靠性修正：在唯一安装 RUN 内，
-将 DEB822 源替换为固定的清华 TUNA HTTPS Debian/Debian Security 镜像地址，
-update/install 均强制 IPv4 并重试 3 次，仍只安装 gcc、make、libc6-dev。
-**当前修订候选尚未执行服务器重新验证，没有服务器成功结论。**
-A 组真实报告尚未收到。B2 最终 Patch、B3 API 联调、B4 五阶段验收均未执行。
-本目录没有正式 handoff、run/ 或 archive-manifest；这些等待服务器重新验证后按实际结果归档。
+## 项目与版本
 
-## 来源与三个真实提交
+来源仓库：https://github.com/Rowan-hhh/devops-e4-draft.git 。
+来源路径 fixtures/draft，最初引入提交为 c7ec20de19d2554f2273d2d76f3739541acedf0c，
+E7 基线为 84152137c120883432fe6b6525ba9ca92a71a332，
+本次派生来源外层提交为 d1dbc4665dcaa690bcf9c322d4930358cd579d2e。
+最终执行代码提交另为 8cd9224f32f73594c1c921cd4553cedb3760b55f，不混同来源提交。
 
-来源仓库为 https://github.com/Rowan-hhh/devops-e4-draft.git 。
-来源外层提交：`d1dbc4665dcaa690bcf9c322d4930358cd579d2e`。
-来源路径：`fixtures/draft`；该 fixture 最初在 E4 引入，E7 与当前来源字节一致。
-完整来源字段、原始文件哈希、提交身份与实际时间见 `project-source.json`。
-
-| 角色 | 完整提交 SHA | 变化 |
+| 角色 | 完整提交 SHA | 实际演进 |
 |---|---|---|
-| P0 | `4eb43414f37440b4f4dcd9dcd0702f955d9b78b2` | 原样导入 fixture 输入，增加 SOURCE.md |
-| P1 / base | `0b62c79a6adb4cd913a814068074575afdbbd18b` | 演进为可配置数值输出程序，helper.c 实际负责输出 |
-| P2 / target | `745ecf2621c8221b97bf0a5435ace50150ef57d4` | 输出格式提取到 output_format.h，实际 include 并使用 |
+| P0 | 4eb43414f37440b4f4dcd9dcd0702f955d9b78b2 | 原样导入 E7 fixture 输入并增加 SOURCE.md |
+| P1 / base | 0b62c79a6adb4cd913a814068074575afdbbd18b | main.c 读取 VALUE，helper.c 实际输出，正确声明两对象依赖 |
+| P2 / target | 745ecf2621c8221b97bf0a5435ace50150ef57d4 | helper.c 实际使用 output_format.h，暂保留 helper.o: helper.c |
 
-三个提交均由 `241880360 <241880360@smail.nju.edu.cn>` 实际创建，未覆盖日期或改写历史。
-P0 用原始 `make` / `./hello` 检查，输出 `hello E3\n`；原 fixture 没有 app 目标。
-P1/P2 用 `make clean`、`make app`、`./app`、`make clean` 检查，stdout 为 `1\n`，
-stderr 为空，退出码为 0，清理后 Git 状态为空。这些是本地原生构建检查，不是服务器证据。
+三个真实提交使用本人身份与实际时间，base 是 target 祖先；无日期覆盖或历史改写。
+P2 是明确记录的课程受控依赖演进，本说明不代表 A 组已检测到某种结果。
+Dockerfile.reference 仅为 P0 原始来源文件，不是 E12 候选，也不进入 DRAFT 构建上下文。
 
-P1 声明完整。P2 暂保留 `helper.o: helper.c`，是明确记录的受控依赖演进；
-后续由 A 组实际检测、B2 修复。本说明不是 A 组检测结论。
-项目保留的 `Dockerfile.reference` 只是 P0 来源文件，不是 E12 候选，也不进入构建上下文。
+## 本地检查与服务器执行
 
-## 文件
+本地 P0 使用原始 make 和 ./hello，输出 hello E3 加一个换行；P1/P2 使用
+make clean、make app、./app、make clean，输出严格为 1 加一个换行，stderr 为空，退出码 0。
+这些本地 C/Make 检查与 mock 测试不冒充服务器 DRAFT 证据。
 
-- `project.bundle`：三个提交及 main/HEAD 的完整 Git 历史。
-- `project-source.json`：来源、实际 SHA、身份、文件哈希、预期行为、bundle SHA-256。
-- `candidate.Dockerfile`：人工准备，只增加经过审核的系统依赖安装 RUN。
-- `candidate-provenance.json`：人工来源和候选哈希；不是新模型回复。
-- `b1-request.json`：可移植相对路径，所有 SHA 都来自实际提交。
+服务器真实失败与修正按顺序保留：
 
-`data/`、`work/` 继续由外层 .gitignore 忽略；不添加 gitlink，不追踪嵌套 .git。
-这些新归档文件目前待人工审核，外层未暂存、未提交、未推送。
+1. 环境镜像构建访问 Docker Hub 的 Docker CLI 元数据超时。
+2. Docker CLI 改为同 digest 的 DaoCloud 镜像地址后成功构建；没有修改固定摘要。
+3. 从 bundle 恢复项目后缺少本地 Git identity，第一次 B1 调用在 DRAFT 前拒绝。
+4. 补齐本地身份，旧候选第二轮因 Debian 官方源下载缓慢超过 600 秒，结果 TIMED_OUT、source_unchanged=true。
+5. 人工修正唯一允许的安装 RUN：固定 TUNA HTTPS Debian/Security 源，update/install 使用 IPv4 和 3 次重试，仅安装 gcc make libc6-dev，并清理 apt 列表。
+6. 新候选最终完成 DRAFT 两轮构建和镜像运行；旧失败目录没有被覆盖或写成成功。
 
-## 在本机、服务器或 A 组机器恢复
+成功原始入口：run/success/result.json、run/success/draft.json。
+第一轮 build_exit_code=1、failure_class=MISSING_MAKE；第二轮 build_exit_code=0；
+镜像禁网运行 exit_code=0、actual_output 为 JSON 字符串 "1\n"、output_matches=true、stderr 为空。
+顶层 source_unchanged=true、a_group_report_received=false。
 
-从包含本实现和归档的外层仓库根目录执行；目的目录必须不存在：
+- DRAFT trace_id：e6-b-1e1d0b56397b406a9d599f5553d03993。
+- 服务环境：course-e11e12:241880360，ID sha256:a9c65eab021262a76f2025a42a9526aa5d793ee4f2224696bbb6419d0daf80e0。
+- 候选镜像：sha256:71af06d98998e249bb1229fe71118fa45b1d56a40cb460b2687f6b5c9f8138f6。
+- 候选文件 SHA-256：c7b2ba5babf97c0c413583d908ab372b224a6351f127124b068f1607aefc44af。
+- success/source-before.json 和 source-after.json 的 SHA-256 均为 eca324d730f9739f3f0433c8b67fe98d8abf90f1825884b26d6c2d4e6964ed7d。
+- 服务器完整测试：46 项、OK、退出码 0，见 run/metadata/unit-tests.log 与 unit-tests-exit-code.txt。
+- 本人提供的最新 CI 结果：E11-E12 run 42975542918 success；E8-E10 run 42975542951 success。本次仅归档该确认信息，未重新查询 CI。
+
+## A 组及 B2 的恢复与核验
+
+所有交接路径相对外层仓库根目录，完整入口为 handoff.json。
+恢复使用已归档 project.bundle，不需要信任或访问未归档的服务器绝对路径。
+目的目录必须不存在；A 组可自行替换恢复目录并保留自己的本地 Git 身份。
 
 ```sh
 python3 -B -c 'import hashlib,json,pathlib; p=pathlib.Path("reports/E12/B1"); s=json.loads((p/"project-source.json").read_text()); assert hashlib.sha256((p/"project.bundle").read_bytes()).hexdigest()==s["bundle_sha256"]'
@@ -60,40 +67,25 @@ git -C data/e12-b-real-project/repo merge-base --is-ancestor 0b62c79a6adb4cd913a
 git -C data/e12-b-real-project/repo checkout --detach 745ecf2621c8221b97bf0a5435ace50150ef57d4
 git -C data/e12-b-real-project/repo rev-parse HEAD
 git -C data/e12-b-real-project/repo status --porcelain=v1 --untracked-files=all
+python3 -B -c 'import hashlib,json,pathlib; s=json.loads(pathlib.Path("reports/E12/B1/project-source.json").read_text()); p=pathlib.Path("data/e12-b-real-project/repo"); assert all(hashlib.sha256((p/n).read_bytes()).hexdigest()==v for n,v in s["project_files"].items())'
 ```
 
-预期：非浅仓库、祖先命令退出 0、HEAD 等于 target、状态为空。
-A 组也可用任何新的恢复目录，使用同一组 SHA 和源码哈希核验；不得重新初始化来替代恢复。
-A 组保留自己的本地 Git 身份。仅本人运行 B1 入口前，设置嵌套项目本地身份：
+预期：非浅仓库、祖先命令退出 0、HEAD 为 target、状态为空、文件哈希一致。
+bundle SHA-256 为 0a74f580219b55ab97119cdfa81f730f23fd0d5cbfbf2f986e4791110f3ce608。
+源码 SHA、来源、完整历史与候选交给 A 组生成真实报告，随后由 B2 消费真实报告。
 
-```sh
-git -C data/e12-b-real-project/repo config --local user.name 241880360
-git -C data/e12-b-real-project/repo config --local user.email 241880360@smail.nju.edu.cn
-```
+## 归档范围和执行边界
 
-## 后续服务器重新验证（修订候选尚未执行）
+run/README.md 解释原始成功、超时、环境、前置拒绝及传输材料。
+archive-manifest.json 覆盖本目录全部最终文件，排除自身，逐项记录相对路径、SHA-256 和字节数。
+原始证据在整理前后逐字节哈希一致；传输排除的 Git 元数据及 tar 校验范围均见 run/README.md。
 
-将审核后的外层实现及归档传至 Linux Docker 服务器，按上述方式恢复项目，
-外层 Git 本地 user.name 必须为本人学号。确认没有日期覆盖环境变量，不重新创建项目提交。
-先运行单元测试，再构建个人服务镜像，最后只运行 B1：
+B1 只校验来源/身份、隔离 target、调用 vendor DRAFT 并核对原项目不变。
+精确候选白名单不允许任意 RUN、源码覆盖或绕过 make。
+没有生成 incremental-check.json、candidate.patch、repair.json、recheck.json、full-check.json。
+已有 CI 教学五阶段结果不等于本项目的 A/B 交换或 B4 最终验收。
 
-```sh
-python3 -B -m unittest discover -s labs/e11e12 -p 'test_*.py' -v
-python3 run_e11e12.py build
-python3 run_e11e12.py e12-b1 --request reports/E12/B1/b1-request.json --out work/e12-B1-241880360-<实际运行标识>
-```
-
-`<实际运行标识>` 必须替换成新的标识，不要直接作为 shell 输入。
-宿主外层根目录绑定到 `/course`；请求里的相对路径统一相对该根解析。
-例如 `data/e12-b-real-project/repo` 映射为 `/course/data/e12-b-real-project/repo`。
-请求没有 `/Users/...` 路径。原始日志中的实际绝对路径不影响恢复。
-
-broken/candidate 使用相同固定 digest FROM、WORKDIR、COPY、RUN make app 和 CMD。
-候选只在 make 前增加 gcc/make/libc6-dev 安装，不改源码或运行输出。
-第一轮必须到达 make 并得到 MISSING_MAKE；第二轮退出 0；镜像以真实 ID 禁网运行，
-stdout 严格为 `1\n`，stderr 为空，退出 0。还必须证明原项目受跟踪文件、HEAD、refs、状态和身份未变。
-基础镜像平台与可拉取性仍须服务器核验；网络或软件源失败不能计作有效首轮失败。
-
-入口仅调用 vendor DRAFT，不调用 pipeline、检测、修复或 API。
-不使用完整 mode=e12 作为 B1 证据。现有 CI 的教学五阶段结果只用于回归，不能替代本项目服务器证据。
-正式执行后才能归档原始日志、镜像 ID、外层执行 SHA、退出码，创建 handoff 与哈希清单。
+project-source.json 当前是执行后的归档状态，server_draft_executed=true；
+执行提交中的前置清单仍由原 Git 历史保留。B1 当前代码要求运行前清单为 false，
+因此本归档清单不作为直接重跑入口；复现时应在独立检出执行提交，使用其原始运行前清单、
+同一 bundle 与全新输出目录，不应修改本归档或重建项目提交。
