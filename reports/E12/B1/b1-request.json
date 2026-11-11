@@ -1,0 +1,11 @@
+{
+  "schema_version": "e12-b1-request-1",
+  "repo": "data/e12-b-real-project/repo",
+  "source": "reports/E12/B1/project-source.json",
+  "candidate": "reports/E12/B1/candidate.Dockerfile",
+  "candidate_provenance": "reports/E12/B1/candidate-provenance.json",
+  "base": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+  "target": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+  "build_timeout": 600,
+  "verify_timeout": 30
+}
