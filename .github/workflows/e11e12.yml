@@ -23,6 +23,13 @@ jobs:
           for mode in e11-a e11-b e12; do
             python3 run_e11e12.py run --request "data/integration-sample/$mode.json" --out "work/ci-$mode"
           done
+      - name: E12 B2 real A/B handoff
+        run: |
+          python3 labs/e11e12/e12_b2.py \
+            --bundle reports/E12/B1/project.bundle \
+            --report reports/E12/B2/incremental-check.json \
+            --candidate reports/E12/B1/candidate.Dockerfile \
+            --out work/ci-e12-b2
       - uses: actions/upload-artifact@v7.0.2
         if: always()
         with:

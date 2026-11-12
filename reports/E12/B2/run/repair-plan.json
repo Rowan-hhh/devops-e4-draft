@@ -1,0 +1,7 @@
+[
+  {
+    "target": "helper.o",
+    "dependency": "output_format.h",
+    "style": "direct"
+  }
+]
