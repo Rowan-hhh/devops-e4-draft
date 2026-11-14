@@ -1,0 +1,63 @@
+{
+  "schema_version": "e8e10-1",
+  "profile": "GCC_LOCAL_HEADERS_EXPLICIT_MAKE",
+  "commit": "fef0a957673a30e34ca753a146e8ae9b887ebdc2",
+  "key": {
+    "directives": {
+      "config.h": [
+        "#define VALUE 2"
+      ],
+      "helper.c": [
+        "#include <stdio.h>",
+        "#include \"output_format.h\""
+      ],
+      "main.c": [
+        "#include \"config.h\""
+      ],
+      "output_format.h": [
+        "#ifndef E12_OUTPUT_FORMAT_H",
+        "#define E12_OUTPUT_FORMAT_H",
+        "#define OUTPUT_FORMAT \"%d\\n\"",
+        "#endif"
+      ]
+    },
+    "recipes": [
+      "\tgcc main.o helper.o -o app",
+      "\tgcc $(CFLAGS) -c main.c -o main.o",
+      "\tgcc $(CFLAGS) -c helper.c -o helper.o",
+      "\t./app",
+      "\trm -f app main.o helper.o hello"
+    ],
+    "flags": "-O0",
+    "compiler": "gcc (Debian 14.2.0-19) 14.2.0"
+  },
+  "actual": {
+    "main.o": [
+      "config.h",
+      "main.c"
+    ],
+    "helper.o": [
+      "helper.c",
+      "output_format.h"
+    ]
+  },
+  "declared": {
+    "main.o": [
+      "config.h",
+      "main.c"
+    ],
+    "helper.o": [
+      "helper.c",
+      "output_format.h"
+    ]
+  },
+  "findings": [],
+  "added": [],
+  "resolved": [],
+  "refreshed": [
+    "main.o",
+    "helper.o"
+  ],
+  "reused": [],
+  "elapsed_s": 0.013460201000000893
+}

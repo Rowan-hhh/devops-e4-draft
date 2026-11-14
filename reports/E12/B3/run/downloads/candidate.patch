@@ -1,0 +1,11 @@
+--- a/Makefile
++++ b/Makefile
+@@ -6,7 +6,7 @@
+ 	gcc main.o helper.o -o app
+ main.o: main.c config.h
+ 	gcc $(CFLAGS) -c main.c -o main.o
+-helper.o: helper.c
++helper.o: helper.c output_format.h
+ 	gcc $(CFLAGS) -c helper.c -o helper.o
+ test: app
+ 	./app

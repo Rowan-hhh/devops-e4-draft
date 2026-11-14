@@ -1,0 +1,14 @@
+{
+  "actual_error": "STALE_REPORT",
+  "actual_sha256": "bd519f7ab5b9169ebe3cda35a0cbca585ef4b42929d11faa2bdc6aa9d23e32ef",
+  "case": "old_commit",
+  "expected_error": "STALE_REPORT",
+  "expected_sha256": "bd519f7ab5b9169ebe3cda35a0cbca585ef4b42929d11faa2bdc6aa9d23e32ef",
+  "input": "old_commit/input.json",
+  "output_after": {},
+  "output_before": {},
+  "output_unchanged": true,
+  "patch_generated": false,
+  "rejected": true,
+  "source_unchanged": true
+}

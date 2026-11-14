@@ -1,0 +1,22 @@
+{
+  "schema_version": "e12-b1-candidate-1",
+  "acquisition": "manual",
+  "model_generated": false,
+  "source": "Manually prepared network reliability correction after the first formal server E12 B1 attempt timed out downloading from official Debian sources. Replace Debian DEB822 URLs with the Tsinghua TUNA HTTPS Debian/Debian Security mirrors, force IPv4 and retry three times for update and install. Keep only gcc/make/libc6-dev, unchanged project/build/runtime instructions and apt list cleanup. The revised candidate was subsequently built and run successfully on the server; the earlier official-source timeout evidence is retained in run/timeout/. No model call was made.",
+  "reference_paths": [
+    "fixtures/draft/Dockerfile.reference",
+    "reports/E5/实验报告.md",
+    "reports/E7/B1/README.md"
+  ],
+  "candidate": "reports/E12/B1/candidate.Dockerfile",
+  "candidate_sha256": "c7b2ba5babf97c0c413583d908ab372b224a6351f127124b068f1607aefc44af",
+  "broken_sha256": "28d7d37275362d3bd48bb25231e2474adf709a3e35e4dacbe775a3f1b297967d",
+  "allowed_addition": "RUN sed -i -e 's|https\\{0,1\\}://deb\\.debian\\.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' -e 's|https\\{0,1\\}://security\\.debian\\.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' -e 's|https\\{0,1\\}://deb\\.debian\\.org/debian|https://mirrors.tuna.tsinghua.edu.cn/debian|g' /etc/apt/sources.list.d/debian.sources && apt-get -o Acquire::ForceIPv4=true -o Acquire::Retries=3 update && apt-get -o Acquire::ForceIPv4=true -o Acquire::Retries=3 install -y --no-install-recommends gcc make libc6-dev && rm -rf /var/lib/apt/lists/*",
+  "server_build_status": "SUCCEEDED",
+  "model_name": null,
+  "model_response": null,
+  "previous_server_attempt_status": "TIMED_OUT",
+  "trace_id": "e6-b-1e1d0b56397b406a9d599f5553d03993",
+  "candidate_image_id": "sha256:71af06d98998e249bb1229fe71118fa45b1d56a40cb460b2687f6b5c9f8138f6",
+  "success_evidence": "reports/E12/B1/run/success/result.json"
+}

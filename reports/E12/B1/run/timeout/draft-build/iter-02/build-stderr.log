@@ -1,0 +1,66 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 326B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 86B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f
+#4 resolve docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 144B done
+#5 DONE 0.0s
+
+#6 [2/5] WORKDIR /work
+#6 CACHED
+
+#7 [3/5] COPY main.c helper.c *.h Makefile ./
+#7 CACHED
+
+#8 [4/5] RUN apt-get update && apt-get install -y --no-install-recommends gcc make libc6-dev && rm -rf /var/lib/apt/lists/*
+#8 0.693 Hit:1 http://deb.debian.org/debian trixie InRelease
+#8 1.559 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#8 2.049 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#8 2.655 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9678 kB]
+#8 469.8 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [1108 B]
+#8 469.9 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [302 kB]
+#8 484.5 Fetched 10.1 MB in 8min 4s (20.8 kB/s)
+#8 484.5 Reading package lists...
+#8 484.9 Reading package lists...
+#8 485.3 Building dependency tree...
+#8 485.4 Reading state information...
+#8 485.6 The following additional packages will be installed:
+#8 485.6   binutils binutils-common binutils-x86-64-linux-gnu cpp cpp-14
+#8 485.6   cpp-14-x86-64-linux-gnu cpp-x86-64-linux-gnu gcc-14 gcc-14-x86-64-linux-gnu
+#8 485.6   gcc-x86-64-linux-gnu libasan8 libatomic1 libbinutils libc-dev-bin libcc1-0
+#8 485.6   libcrypt-dev libctf-nobfd0 libctf0 libgcc-14-dev libgomp1 libgprofng0
+#8 485.6   libhwasan0 libisl23 libitm1 libjansson4 liblsan0 libmpc3 libmpfr6
+#8 485.6   libquadmath0 libsframe1 libtsan2 libubsan1 linux-libc-dev rpcsvc-proto
+#8 485.6 Suggested packages:
+#8 485.6   binutils-doc gprofng-gui binutils-gold cpp-doc gcc-14-locales cpp-14-doc
+#8 485.6   gcc-multilib manpages-dev autoconf automake libtool flex bison gdb gcc-doc
+#8 485.6   gcc-14-multilib gcc-14-doc gdb-x86-64-linux-gnu libc-devtools glibc-doc
+#8 485.6   make-doc
+#8 485.6 Recommended packages:
+#8 485.6   manpages manpages-dev
+#8 485.7 The following NEW packages will be installed:
+#8 485.7   binutils binutils-common binutils-x86-64-linux-gnu cpp cpp-14
+#8 485.7   cpp-14-x86-64-linux-gnu cpp-x86-64-linux-gnu gcc gcc-14
+#8 485.7   gcc-14-x86-64-linux-gnu gcc-x86-64-linux-gnu libasan8 libatomic1 libbinutils
+#8 485.7   libc-dev-bin libc6-dev libcc1-0 libcrypt-dev libctf-nobfd0 libctf0
+#8 485.7   libgcc-14-dev libgomp1 libgprofng0 libhwasan0 libisl23 libitm1 libjansson4
+#8 485.7   liblsan0 libmpc3 libmpfr6 libquadmath0 libsframe1 libtsan2 libubsan1
+#8 485.7   linux-libc-dev make rpcsvc-proto
+#8 487.2 0 upgraded, 37 newly installed, 0 to remove and 6 not upgraded.
+#8 487.2 Need to get 57.7 MB of archives.
+#8 487.2 After this operation, 219 MB of additional disk space will be used.
+#8 487.2 Get:1 http://deb.debian.org/debian trixie/main amd64 libsframe1 amd64 2.44-3 [78.4 kB]
+#8 488.1 Get:2 http://deb.debian.org/debian trixie/main amd64 binutils-common amd64 2.44-3 [2509 kB]

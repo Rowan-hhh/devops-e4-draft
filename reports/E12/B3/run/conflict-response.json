@@ -1,0 +1,9 @@
+{
+  "http_status": 409,
+  "expected_status": 409,
+  "expected_error": "IDEMPOTENCY_CONFLICT",
+  "passed": true,
+  "response": {
+    "error": "IDEMPOTENCY_CONFLICT"
+  }
+}

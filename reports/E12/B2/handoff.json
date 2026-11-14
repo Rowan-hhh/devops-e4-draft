@@ -1,0 +1,46 @@
+{
+  "schema_version": "e12-b2-handoff-1",
+  "student_id": "241880610",
+  "role": "E12-B2",
+  "status": "SUCCEEDED",
+  "branch": "e12-xzt-b2",
+  "integration_base": "186dbf138de7fb7bb1dccb4fafa222e5ba27b830",
+  "target_commit": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+  "upstream": {
+    "kind": "incremental-check",
+    "job_id": "job-701e024edd564902a625716aa9547cf7",
+    "trace_id": "trace-be8e398fc0564ebcb177991840937797",
+    "report": "reports/E12/B2/incremental-check.json",
+    "report_sha256": "66e3bfb2c39d4c8b0913d4b5afb269d284cb1369e05d68b4fd889170e1e38a83",
+    "artifact_sha256": {
+      "incremental-report.json": "493e8f8cc95bd92fcc5a26ddd6db81e8824f40c755ad39fdd4064561d9680145",
+      "target-full/findings.json": "13284d347ce2e274d203c3f99b25ebbbc26a47355f93d77dbe39b9f70147469f"
+    }
+  },
+  "bundle": {
+    "path": "reports/E12/B1/project.bundle",
+    "sha256": "0a74f580219b55ab97119cdfa81f730f23fd0d5cbfbf2f986e4791110f3ce608"
+  },
+  "candidate": {
+    "path": "reports/E12/B1/candidate.Dockerfile",
+    "sha256": "c7b2ba5babf97c0c413583d908ab372b224a6351f127124b068f1607aefc44af"
+  },
+  "repair": {
+    "patch": "reports/E12/B2/run/candidate.patch",
+    "plan": "reports/E12/B2/run/repair-plan.json",
+    "edits": [
+      {"target": "helper.o", "dependency": "output_format.h", "style": "direct"}
+    ]
+  },
+  "validation": {
+    "accepted": true,
+    "patch_applies": true,
+    "build": true,
+    "test": true,
+    "header_change": true,
+    "no_missing": true,
+    "recheck_missing_count": 0
+  },
+  "handoff_to": "B3"
+}
+

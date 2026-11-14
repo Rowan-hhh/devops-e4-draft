@@ -1,0 +1,57 @@
+{
+  "schema_version": "e11-b2-1",
+  "student_id": "241880179",
+  "role": "E11-B2",
+  "status": "SUCCEEDED",
+  "target_commit": "4350fcdafaf4e708f51ea95f018211085dcd73d2",
+  "fixed_report_commit": "4350fcdafaf4e708f51ea95f018211085dcd73d2",
+  "repair_plan": [
+    {
+      "target": "main.o",
+      "dependency": "config.h",
+      "style": "direct"
+    },
+    {
+      "target": "main.o",
+      "dependency": "extra.h",
+      "style": "direct"
+    }
+  ],
+  "validation": {
+    "accepted": true,
+    "checks": {
+      "patch_applies": true,
+      "build": true,
+      "test": true,
+      "header_change": true,
+      "no_missing": true
+    },
+    "error": null,
+    "source_unchanged": false,
+    "rollback": false
+  },
+  "final_missing": [],
+  "final_redundant": [
+    {
+      "type": "REDUNDANT",
+      "target": "main.o",
+      "dependency": "unused.h",
+      "evidence": [
+        {
+          "source": "make_database",
+          "artifact": "make-db.txt",
+          "line": 1052,
+          "declaration": "main.o: main.c unused.h config.h extra.h"
+        }
+      ],
+      "scope": "Not observed in this recipe job under this build configuration"
+    }
+  ],
+  "makefile_before_sha256": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2",
+  "makefile_after_sha256": "0f81bca34c5eba59329155cda11ac564ea0d05abc646badbb8ce831814805db0",
+  "upstream_draft": {
+    "source": "B1 handoff PR #18",
+    "ci_run": "42749304320",
+    "image_id": "sha256:b5a9e75ae45b4f948a584f8a32d2833eeb687fc2965ab904da754d4efee5034a"
+  }
+}
