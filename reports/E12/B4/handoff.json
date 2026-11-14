@@ -1,0 +1,49 @@
+{
+  "schema_version": "e12-b4-handoff-1",
+  "student_id": "241880179",
+  "role": "E12-B4",
+  "status": "SUCCEEDED",
+  "branch": "student/241880179/e12-b4",
+  "integration_input_commit": "092d00e89a0857652326530703640b481da7222f",
+  "merge_order": [
+    {"pr": 23, "merge_commit": "1fccca93b90b220499bb00ee5d76d4ba4200a0ac"},
+    {"pr": 24, "merge_commit": "092d00e89a0857652326530703640b481da7222f"}
+  ],
+  "a_group": {
+    "job_id": "job-701e024edd564902a625716aa9547cf7",
+    "trace_id": "trace-be8e398fc0564ebcb177991840937797",
+    "report_sha256": "66e3bfb2c39d4c8b0913d4b5afb269d284cb1369e05d68b4fd889170e1e38a83",
+    "target": "745ecf2621c8221b97bf0a5435ace50150ef57d4"
+  },
+  "final_run": {
+    "job_id": "job-a8c716a97754454d990c997cc9929d4b",
+    "trace_id": "trace-f535cebe0ae94d57ba375b66d43f5f33",
+    "stages": ["draft", "full-check", "incremental-check", "repair", "recheck"],
+    "artifact_count": 174,
+    "accepted": true,
+    "final_missing_count": 0
+  },
+  "ci": {
+    "e11e12_run_id": 43607400605,
+    "e11e12_conclusion": "success",
+    "regression_run_id": 43607400625,
+    "regression_conclusion": "success",
+    "artifact_name": "e11e12-evidence-43607400605",
+    "artifact_id": 14118731280,
+    "artifact_digest": "sha256:19ea6e475a0d969305eae1b1f69a8ab9ac3adb22c5e1d6d9c9f634c6ff93fdac"
+  },
+  "core_sha256": {
+    "result.json": "a8abd74bfc0fa64bee58e8f528f421cb8ea211c71b137e154d51c7c418f7ee3d",
+    "five-stage-result.json": "392bb4295089962937695efadba7634639b8f1708e5e5b76c50986ad39798a44",
+    "candidate.patch": "a7a3be54d5ba81594acd628725f17aca2b4ce0d1a5aed556d454bb321eb5142a",
+    "repair-plan.json": "ca830d7c2fc9db590984afe8b96f814b7f080d8b0066fc358c619f9bc2d4ac2a",
+    "validation/validation.json": "0aedd844e45d87669ff3c7ad42fcb15414453a14882df2fa6335997367390c37",
+    "final-full/findings.json": "fd4da867be9cc4ea835dd366b904d5f8a12c44427f320ac807efacc914ae28ad"
+  },
+  "contributors": {
+    "B1": {"student_id": "241880360", "status": "SUCCEEDED"},
+    "B2": {"student_id": "241880610", "status": "SUCCEEDED"},
+    "B3": {"student_id": "241880300", "status": "SUCCEEDED"},
+    "B4": {"student_id": "241880179", "status": "SUCCEEDED"}
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "workflow": "E11-E12 integration",
+  "run_id": 43607400605,
+  "head_sha": "5803cf592a51ed6c674a6ff03656aa18d63d97f8",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/43607400605",
+  "artifact": {
+    "name": "e11e12-evidence-43607400605",
+    "id": 14118731280,
+    "size_in_bytes": 405229,
+    "digest": "sha256:19ea6e475a0d969305eae1b1f69a8ab9ac3adb22c5e1d6d9c9f634c6ff93fdac",
+    "expired": false
+  },
+  "regression": {
+    "workflow": "E8-E10 teaching validation",
+    "run_id": 43607400625,
+    "conclusion": "success",
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/43607400625"
+  }
+}

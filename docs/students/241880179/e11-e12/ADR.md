@@ -19,3 +19,19 @@ E11 B 轨由 DRAFT→MDFixer 组成。B1 已在 PR #18 和 CI run `42749304320` 
 ## 结果
 
 候选 Patch 补入 `config.h` 和 `extra.h`，五项检查全部通过，最终无 `MISSING`。服务器下载中断被如实记录，没有被写成成功构建。
+
+## E12 B4：以原始 evidence 完成最终验收
+
+### 状态
+
+已接受并经本人复核。
+
+### 背景与决策
+
+E12 B4 不能只根据 B1–B3 的文字结论宣布完成。最终验收在 #23、#24 按顺序合入后重新运行真实项目，并同时绑定 A 组报告 SHA、B1 bundle、B2 修复结果、B3 API 契约、五阶段 job/trace 和阶段产物哈希。
+
+采用独立 `e12_b4.py` 验收器检查严格阶段顺序、DRAFT 两轮语义、A 报告身份、修复计划、五项验证和最终无 `MISSING`。GitHub Actions 原始 artifact 是最终运行证据，仓库只归档核心 JSON、Patch、日志和哈希，不提交 sandbox、对象文件或 trace 大文件。
+
+### 结果
+
+最终 E11–E12 CI 与 E8–E10 回归均成功；真实项目五阶段全部通过，174 个产物，`accepted=true`，最终 `MISSING=0`。

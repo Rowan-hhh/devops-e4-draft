@@ -1,0 +1,81 @@
+{
+  "schema_version": "e11e12-1",
+  "job_id": "job-a8c716a97754454d990c997cc9929d4b",
+  "trace_id": "trace-f535cebe0ae94d57ba375b66d43f5f33",
+  "kind": "full-check",
+  "commit": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+  "status": "SUCCEEDED",
+  "data": {
+    "status": "SUCCEEDED",
+    "detector": "BUILDCHECKER_TEACHING",
+    "detector_version": "0.2.0-teaching",
+    "trace_id": "e6-7d8c9afdb2e342f9ae7372dead8c65ba",
+    "findings": [],
+    "scope": "Single Make process; one final output per recipe job; successful read-open observations",
+    "build_command": [
+      "make",
+      "app"
+    ],
+    "clean_command": [
+      "make",
+      "clean"
+    ],
+    "input_sha256": {
+      ".dockerignore": "6b34d9611150a490144cd6248c1d1ec64e56d8c5b602d82c3847f51b5c263470",
+      ".gitignore": "96fed2fcd98015e4af50f4441228bbf4b36c024bf03180abe8ab5975ec0a5952",
+      "Dockerfile.broken": "28d7d37275362d3bd48bb25231e2474adf709a3e35e4dacbe775a3f1b297967d",
+      "Dockerfile.reference": "197a36397a5c7c23968aa8ed85b0b777af1dfeafb3a3c73eca36e0e7961a82df",
+      "Makefile": "4fc383c6407e32c4763d5b216b0a09eeb65df63b1e53c4c8ef43072b56e38e34",
+      "README.md": "17e2260e50377098bf9cf4a53a58824af278e994f5b1c44db11b102fab0fadda",
+      "SOURCE.md": "a52bc39a6707230d8ab7f5d86c9385c3a814e142084bf2845ad602924e08ee30",
+      "config.h": "45034c8733f6773ada48ddc532954701fdb54c76455952ed1a412d3a95a72334",
+      "helper.c": "4d1001c53a1bbcb3a083cba4225042e8942c11fda10ba3c95ac921036150828a",
+      "main.c": "44d208921186763a8e431b8d40324e55046b8388da998433fb5df9d334259cde"
+    },
+    "clean_exit_code": 0,
+    "trace_command": [
+      "strace",
+      "-ff",
+      "-s",
+      "4096",
+      "-o",
+      "/course/work/api-jobs/job-a8c716a97754454d990c997cc9929d4b/evidence/baseline-full/trace/t",
+      "-e",
+      "trace=%file,%process",
+      "make",
+      "-p",
+      "app"
+    ],
+    "build_exit_code": 0,
+    "observed_targets": [
+      "app",
+      "helper.o",
+      "main.o"
+    ],
+    "artifacts": {
+      "actual_graph": "actual-graph.json",
+      "declared_graph": "declared-graph.json",
+      "processes": "processes.json",
+      "make_database": "make-db.txt",
+      "trace_directory": "trace"
+    },
+    "elapsed_ms": 278
+  },
+  "artifacts": [
+    {
+      "uri": "artifact://job-a8c716a97754454d990c997cc9929d4b/baseline-full/actual-graph.json",
+      "sha256": "de08bdc45bfcf459f62240cdb440097bf646d092e5b74aa06eb12838fc0fdc5e",
+      "bytes": 1211
+    },
+    {
+      "uri": "artifact://job-a8c716a97754454d990c997cc9929d4b/baseline-full/findings.json",
+      "sha256": "7954caceb9c9cf657359b417328e1bd6a549e05ffd59324e289f7d0035d0d443",
+      "bytes": 1868
+    },
+    {
+      "uri": "artifact://job-a8c716a97754454d990c997cc9929d4b/baseline-cache.json",
+      "sha256": "a29dce394ab4fe0b891f020f228644db92b3b12eb283027094e0ef805c5a705f",
+      "bytes": 1106
+    }
+  ]
+}
