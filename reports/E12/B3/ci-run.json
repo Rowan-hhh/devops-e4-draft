@@ -1,0 +1,26 @@
+{
+  "stage": "E12-B3",
+  "student_id": "241880300",
+  "branch": "e12-zyh-b3",
+  "base_branch": "e11-e12-integration",
+  "head_sha": "b54f959a5e526fc9ef10209bd89a79fb2df601ee",
+  "workflow_run_id": 43572200027,
+  "workflow_run_url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/43572200027",
+  "status": "success",
+  "artifact": {
+    "id": 14104239175,
+    "name": "e11e12-evidence-43572200027",
+    "digest": "sha256:100998525a9e19510fe01b20cdf9c7b0389f7e1899df1cbe80616a82b582c1d4",
+    "expires_at": "2026-11-28T07:42:11Z"
+  },
+  "api": {
+    "job_id": "job-171994714e734e78a5cdc29346d12a92",
+    "trace_id": "trace-41596e50faf94fe59b74a28ef84a5648",
+    "request_sha256": "7023862e7c6578f45c16db3f48e4d809cc26ef6f5294cbcac32e0bde1988aeed",
+    "artifact_count": 174,
+    "idempotent_replay_same_job": true,
+    "conflict_http_status": 409,
+    "conflict_error": "IDEMPOTENCY_CONFLICT",
+    "download_hashes_match": true
+  }
+}

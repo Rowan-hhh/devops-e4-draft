@@ -1,0 +1,12 @@
+{
+  "idempotency_key": "e12-b3-241880300",
+  "input": {
+    "mode": "e12",
+    "repo": "/course/data/e12-b3-real-project/repo",
+    "base": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+    "target": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+    "candidate": "/course/data/e12-b3-real-candidate.Dockerfile",
+    "expected_output": "1",
+    "build_timeout": 600
+  }
+}
