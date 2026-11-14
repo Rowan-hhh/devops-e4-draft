@@ -70,6 +70,16 @@ jobs:
             --base-url http://127.0.0.1:18081 \
             --request data/e12-b3-real-request.json \
             --out work/ci-e12-b3
+      - name: E12 B4 final five-stage acceptance
+        run: |
+          job_id=$(python3 -c 'import json; print(json.load(open("work/ci-e12-b3/handoff.json"))["job_id"])')
+          python3 labs/e11e12/e12_b4.py \
+            --evidence "work/api-jobs/${job_id}/evidence" \
+            --b1 reports/E12/B1/handoff.json \
+            --b2 reports/E12/B2/run/result.json \
+            --b3 work/ci-e12-b3/handoff.json \
+            --a-report reports/E12/B2/incremental-check.json \
+            --out work/ci-e12-b4
       - uses: actions/upload-artifact@v7.0.2
         if: always()
         with:
