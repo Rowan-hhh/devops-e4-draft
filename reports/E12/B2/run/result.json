@@ -1,0 +1,53 @@
+{
+  "schema_version": "e12-b2-1",
+  "status": "SUCCEEDED",
+  "job_id": "job-701e024edd564902a625716aa9547cf7",
+  "trace_id": "trace-be8e398fc0564ebcb177991840937797",
+  "upstream": {
+    "kind": "incremental-check",
+    "commit": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+    "sha256": "66e3bfb2c39d4c8b0913d4b5afb269d284cb1369e05d68b4fd889170e1e38a83",
+    "artifact_uris": [
+      {
+        "uri": "artifact://job-701e024edd564902a625716aa9547cf7/incremental-report.json",
+        "sha256": "493e8f8cc95bd92fcc5a26ddd6db81e8824f40c755ad39fdd4064561d9680145",
+        "bytes": 1525
+      },
+      {
+        "uri": "artifact://job-701e024edd564902a625716aa9547cf7/target-full/findings.json",
+        "sha256": "13284d347ce2e274d203c3f99b25ebbbc26a47355f93d77dbe39b9f70147469f",
+        "bytes": 2436
+      }
+    ]
+  },
+  "target_commit": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+  "candidate_sha256": "c7b2ba5babf97c0c413583d908ab372b224a6351f127124b068f1607aefc44af",
+  "bundle_sha256": "0a74f580219b55ab97119cdfa81f730f23fd0d5cbfbf2f986e4791110f3ce608",
+  "edits": [
+    {
+      "target": "helper.o",
+      "dependency": "output_format.h",
+      "style": "direct"
+    }
+  ],
+  "validation": {
+    "accepted": true,
+    "checks": {
+      "patch_applies": true,
+      "build": true,
+      "test": true,
+      "header_change": true,
+      "no_missing": true
+    },
+    "error": null,
+    "source_unchanged": false,
+    "rollback": false
+  },
+  "recheck": {
+    "status": "LOCAL_SCAN",
+    "missing_count": 0,
+    "findings": []
+  },
+  "source_bundle_unchanged": true,
+  "working_copy_changed": true
+}
