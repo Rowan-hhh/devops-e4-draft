@@ -30,6 +30,46 @@ jobs:
             --report reports/E12/B2/incremental-check.json \
             --candidate reports/E12/B1/candidate.Dockerfile \
             --out work/ci-e12-b2
+      - name: E12 B3 API integration and contracts
+        run: |
+          rm -rf data/e12-b3-real-project work/ci-e12-b3
+          mkdir -p data/e12-b3-real-project
+          git clone reports/E12/B1/project.bundle data/e12-b3-real-project/repo
+          cp reports/E12/B1/candidate.Dockerfile data/e12-b3-real-candidate.Dockerfile
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          source = json.loads(Path('reports/E12/B1/handoff.json').read_text())
+          request = {
+              'mode': 'e12',
+              'repo': '/course/data/e12-b3-real-project/repo',
+              'base': source['base'],
+              'target': source['target'],
+              'candidate': '/course/data/e12-b3-real-candidate.Dockerfile',
+              'expected_output': '1',
+              'build_timeout': 600,
+          }
+          Path('data/e12-b3-real-request.json').write_text(
+              json.dumps(request, ensure_ascii=False, indent=2) + '\n')
+          PY
+          mkdir -p work
+          python3 run_e11e12.py serve --port 18081 > work/e12-b3-api-server.log 2>&1 &
+          api_pid=$!
+          cleanup() { kill "$api_pid" 2>/dev/null || true; wait "$api_pid" 2>/dev/null || true; }
+          trap cleanup EXIT
+          ready=0
+          for attempt in $(seq 1 90); do
+            if curl -fsS http://127.0.0.1:18081/health > work/e12-b3-health.json; then
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+          test "$ready" = 1
+          python3 scripts/e12_b3_api.py \
+            --base-url http://127.0.0.1:18081 \
+            --request data/e12-b3-real-request.json \
+            --out work/ci-e12-b3
       - uses: actions/upload-artifact@v7.0.2
         if: always()
         with:
