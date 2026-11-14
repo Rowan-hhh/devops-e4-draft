@@ -1,11 +1,11 @@
 # E9 B3 三种输入报告与版本核对
 
-负责人：周逸涵，2418880300，B组/B轨，本阶段角色 B3（接口与输入）。
+负责人：周逸涵，241880300，B组/B轨，本阶段角色 B3（接口与输入）。
 
 ## 输入与交接
 
 - 仓库：https://github.com/Rowan-hhh/devops-e4-draft.git
-- 个人分支：`student/2418880300/e8-e10`
+- 个人分支：`student/241880300/e8-e10`
 - B1 交接：`reports/E9/B1/241880179-handoff.json`
 - B1 服务器 OUT：`/root/devops-students/241880179/draft-e9-b1/work/e9-B1-20261105-051015`
 - B1 样例镜像：`course-e8e10:241880179`
