@@ -1,0 +1,44 @@
+name: E13 B1 quality gates
+
+on:
+  push:
+    branches:
+      - student/241880179/e13-b1
+  pull_request:
+    paths:
+      - "labs/e13/**"
+      - "reports/E13/B1/**"
+      - ".github/workflows/e13-b1.yml"
+
+jobs:
+  c1-c2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests
+        run: |
+          python -m unittest discover -s labs/e13 -p 'test_*.py' -v
+          python -m unittest discover -s labs/e13e14/tests -p 'test_*.py' -v
+      - name: Check out fixed A-group delivery
+        run: |
+          git clone https://github.com/ZaneOw0/devops-e7-buildchecker.git work/a-group
+          git -C work/a-group checkout --detach d9e3cccadcfc94c46b1bf9dd54d92dd47c75cce5
+      - name: Run real C1 and isolated C2 gates
+        run: |
+          python labs/e13/e13_b1.py \
+            --bundle reports/E12/B1/project.bundle \
+            --report reports/E13/B1/a-input/incremental-check.json \
+            --candidate reports/E12/B1/candidate.Dockerfile \
+            --a-repo work/a-group \
+            --out work/e13-b1
+      - name: Upload B1 evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: e13-b1-evidence-${{ github.run_id }}
+          path: work/e13-b1
+          if-no-files-found: error
