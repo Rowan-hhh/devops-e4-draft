@@ -14,6 +14,6 @@ C1/C2、54 项公共契约测试、baseline 和 H1 五阶段结果均来自 GitH
 
 baseline 首次因 Debian 官方源下载超时而失败，报告保留该失败及无残留检查；后续只在隔离副本切换镜像源并使用新目录复跑。最终结论依据服务器生成的 job/trace、退出码、Patch、validation、recheck 和 SHA-256。
 
-## 提交前复核
+## 人工复核结果
 
-提交前需由本人核对 `reports/E13/B1/README.md`、`server-run/241880179-handoff.json`、H1 Patch/validation/recheck、C2 两项拒绝结果和本记录，确认文字与原始证据一致。
+本人已核对 `reports/E13/B1/README.md`、`server-run/241880179-handoff.json`、H1 Patch/validation/recheck、C2 两项拒绝结果和本记录，确认文字与原始证据一致。
