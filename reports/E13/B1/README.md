@@ -26,6 +26,15 @@
 
 实现位于 `labs/e13/e13_b1.py`，单元测试位于 `labs/e13/test_e13_b1.py`，CI 位于 `.github/workflows/e13-b1.yml`。CI artifact 会保存 C1/C2 的请求、日志、拒绝结果、Patch、验证和重检证据。
 
-## 教师 jsmn 项目
+## 教师 H1-jsmn 项目
 
-jsmn 兼容性测试必须使用教师提供的项目包并单独归档，不能用公网项目或 A/B 真实项目替代。运行记录将在收到课程 E13 实验包中的 jsmn 源码及其说明后追加到本目录。
+输入使用 2026-11-16 学生发放包内的原始 `e13-upstream-student.zip`，没有使用公网项目代替。教师包仅在课程服务器的隔离工作目录使用，不上传到公开 GitHub 仓库。执行严格遵循教师手册：
+
+1. 校验并解压原始 ZIP；
+2. 从 H1 独立 Git 仓库读取两个完整课程提交；
+3. 生成独立 `request-e12.json`；
+4. 通过本组 `run_e11e12.py run` 执行五阶段流程；
+5. 要求 `draft/full-check/incremental-check/repair/recheck` 五阶段齐全且最终状态为 `SUCCEEDED`；
+6. 保存请求、退出码、原始控制台日志、构建日志、报告、Patch、验证和重检证据，并扫描运行日志中的疑似密钥。
+
+具体运行编号、H1 的 base/target SHA、退出码和脱敏日志扫描结果记录在本目录的 H1 交付摘要中；完整原始证据保留在课程服务器。

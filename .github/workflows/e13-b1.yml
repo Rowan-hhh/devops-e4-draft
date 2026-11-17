@@ -21,7 +21,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Unit tests
-        run: python -m unittest discover -s labs/e13 -p 'test_*.py' -v
+        run: |
+          python -m unittest discover -s labs/e13 -p 'test_*.py' -v
+          python -m unittest discover -s labs/e13e14/tests -p 'test_*.py' -v
       - name: Check out fixed A-group delivery
         run: |
           git clone https://github.com/ZaneOw0/devops-e7-buildchecker.git work/a-group
