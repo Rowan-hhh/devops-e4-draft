@@ -1,0 +1,11 @@
+{
+  "schema_version": "e13-b2-c3-1",
+  "case": "C3-artifact-hash-tamper",
+  "artifact": "tampered-artifact.json",
+  "accepted": false,
+  "code": "ARTIFACT_HASH_MISMATCH",
+  "message": "Artifact content changed during transfer",
+  "repair_started": false,
+  "expected_sha256": "66e3bfb2c39d4c8b0913d4b5afb269d284cb1369e05d68b4fd889170e1e38a83",
+  "actual_sha256": "3bd0b8f88f3ebd0cf360db61b19fae6715e695adebcc6c0d58df9fba62365a8d"
+}

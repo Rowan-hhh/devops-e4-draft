@@ -1,0 +1,6 @@
+# Preserve raw execution bytes without treating console control characters as source whitespace.
+C3-artifact-hash-tamper/tampered-artifact.json binary
+C5-invalid-patch/invalid.patch binary
+H2-inih/**/*.patch binary
+H2-inih/**/*.log binary
+environment/**/*.log binary

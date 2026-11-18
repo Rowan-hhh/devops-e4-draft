@@ -1,0 +1,98 @@
+{
+  "status": "SUCCEEDED",
+  "detector": "BUILDCHECKER_TEACHING",
+  "detector_version": "0.2.0-teaching",
+  "trace_id": "e6-7d41aa75046b49cba8b1c29e91283fd2",
+  "findings": [
+    {
+      "type": "MISSING",
+      "target": "main.o",
+      "dependency": "extra.h",
+      "evidence": [
+        {
+          "source": "system_call",
+          "trace_file": "t.182",
+          "line": 580,
+          "pid": 182,
+          "operation": "openat"
+        },
+        {
+          "source": "system_call",
+          "trace_file": "t.183",
+          "line": 23,
+          "pid": 183,
+          "operation": "openat"
+        }
+      ],
+      "declared_dependencies": [
+        "config.h",
+        "main.c",
+        "unused.h"
+      ]
+    },
+    {
+      "type": "REDUNDANT",
+      "target": "main.o",
+      "dependency": "unused.h",
+      "evidence": [
+        {
+          "source": "make_database",
+          "artifact": "make-db.txt",
+          "line": 1052,
+          "declaration": "main.o: main.c config.h unused.h"
+        }
+      ],
+      "scope": "Not observed in this recipe job under this build configuration"
+    }
+  ],
+  "scope": "Single Make process; one final output per recipe job; successful read-open observations",
+  "build_command": [
+    "make",
+    "app"
+  ],
+  "clean_command": [
+    "make",
+    "clean"
+  ],
+  "input_sha256": {
+    ".gitignore": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+    "Dockerfile.broken": "847ad34b6e36cdc04afd82e4fc52570ddc8363cc02dc6681cf713513e285d516",
+    "LICENSE.upstream": "9ae3b39e83e9158e44b67733baa3bb2d84e80efdcfb14a5820210a42c7abdf7f",
+    "Makefile": "6230673047c6a80a96eeb48322d4a5e6c64194531f69f64e56be73fb915adf9d",
+    "UPSTREAM.md": "15632b15f9d53bccc5d7ac80dac00cfcfc9f6434c482cdf3a5d9802d214dc249",
+    "config.h": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+    "extra.h": "fafd25b6f7390357e1f4a0b8bd251114f51b4c2ca4561610a61e8452b0778cdc",
+    "helper.c": "f6ba5dc69ee2206f3ddc80450a217bedb313757b2baf204b1eb01e3fb6df84e2",
+    "ini.h": "db3995229183d50d42cb675bf048f04525aed857fe3e4e39a54a1d7dd2f0f2e9",
+    "main.c": "80c5ff657b61286f208a8c92e8c47b8a78f5c4217e36b0c37c5628c508f1947a",
+    "unused.h": "e2780d03dc96f11919fe5856b9e3026bd1e1e76ec1a9612f789c4dd204b09b06"
+  },
+  "clean_exit_code": 0,
+  "trace_command": [
+    "strace",
+    "-ff",
+    "-s",
+    "4096",
+    "-o",
+    "/course/work/e13-b2-H2-inih-8782b33f2cd1/target-full/trace/t",
+    "-e",
+    "trace=%file,%process",
+    "make",
+    "-p",
+    "app"
+  ],
+  "build_exit_code": 0,
+  "observed_targets": [
+    "app",
+    "helper.o",
+    "main.o"
+  ],
+  "artifacts": {
+    "actual_graph": "actual-graph.json",
+    "declared_graph": "declared-graph.json",
+    "processes": "processes.json",
+    "make_database": "make-db.txt",
+    "trace_directory": "trace"
+  },
+  "elapsed_ms": 128
+}
