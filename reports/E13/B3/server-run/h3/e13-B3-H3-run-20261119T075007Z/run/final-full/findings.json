@@ -1,0 +1,57 @@
+{
+  "status": "SUCCEEDED",
+  "detector": "BUILDCHECKER_TEACHING",
+  "detector_version": "0.2.0-teaching",
+  "trace_id": "e6-69b36e3570704aa3891ade97ff43c9ea",
+  "findings": [],
+  "scope": "Single Make process; one final output per recipe job; successful read-open observations",
+  "build_command": [
+    "make",
+    "app"
+  ],
+  "clean_command": [
+    "make",
+    "clean"
+  ],
+  "input_sha256": {
+    ".gitignore": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+    "Dockerfile.broken": "5dde1c477099516a4fbc011084a27ff9dacd52338be8e15e1c139cb25fee3988",
+    "LICENSE.upstream": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+    "Makefile": "2a8a23e53c19bffbc8e89c406b233157b2aef38dbdff65920df5ed4e5d934350",
+    "UPSTREAM.md": "775a3bacabd697eff104c95c45833f3dcebc9c5a77daf5fb9a329cc20217dc66",
+    "aes.h": "9f74a4de3bd11621ff6e8fb9b352b060f699e6c1c67f81a22d104aacad61a23b",
+    "config.h": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+    "extra.h": "b9421ebe36431c38dc5bd44e9df56524c82bfc73fad78060513ed0cdd155174c",
+    "helper.c": "004e3236eae18489e780a9fc70104267f9788dec22e01c562fe08da95dbc8f6f",
+    "main.c": "4f8535dc013d26d7d3f90c2b340c9adcf7c179e3afcaf4b64d51a90d96f780c8",
+    "unused.h": "e2780d03dc96f11919fe5856b9e3026bd1e1e76ec1a9612f789c4dd204b09b06"
+  },
+  "clean_exit_code": 0,
+  "trace_command": [
+    "strace",
+    "-ff",
+    "-s",
+    "4096",
+    "-o",
+    "/course/work/e13-B3-H3-run-20261119T075007Z/run/final-full/trace/t",
+    "-e",
+    "trace=%file,%process",
+    "make",
+    "-p",
+    "app"
+  ],
+  "build_exit_code": 0,
+  "observed_targets": [
+    "app",
+    "helper.o",
+    "main.o"
+  ],
+  "artifacts": {
+    "actual_graph": "actual-graph.json",
+    "declared_graph": "declared-graph.json",
+    "processes": "processes.json",
+    "make_database": "make-db.txt",
+    "trace_directory": "trace"
+  },
+  "elapsed_ms": 130
+}

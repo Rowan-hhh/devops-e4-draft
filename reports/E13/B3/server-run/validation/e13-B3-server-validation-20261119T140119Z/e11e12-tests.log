@@ -1,0 +1,197 @@
+test_accept_current_report (test_contract.Contracts) ... ok
+test_api_rejects_repo_outside_data (test_contract.Contracts) ... ok
+test_artifact_uses_relative_uri_and_content_hash (test_contract.Contracts) ... ok
+test_changed_artifact_is_rejected (test_contract.Contracts) ... ok
+test_existing_evidence_not_overwritten (test_contract.Contracts) ... ok
+test_reject_failed_upstream (test_contract.Contracts) ... ok
+test_reject_old_commit (test_contract.Contracts) ... ok
+test_reject_schema (test_contract.Contracts) ... ok
+test_reject_wrong_artifact_kind (test_contract.Contracts) ... ok
+test_same_key_same_request_same_job (test_contract.Contracts) ... ok
+test_two_missing_headers_share_one_safe_direct_patch (test_e11_b2.StudentE11B2)
+E11-B must repair both MD findings without changing recipes or input. ... ok
+test_two_missing_headers_patch_macro_and_mixed_styles (test_e11_b3.StudentE11B3) ... ok
+test_bundle_restore (test_e12_b1.B1Contracts) ... ok
+test_commit_identity (test_e12_b1.B1Contracts) ... ok
+test_dirty_and_wrong_head (test_e12_b1.B1Contracts) ... ok
+test_existing_outputs (test_e12_b1.B1Contracts) ... ok
+test_final_result_write_failure_is_not_success (test_e12_b1.B1Contracts) ... ok
+test_local_identity (test_e12_b1.B1Contracts) ... ok
+test_mkdir_failure_rechecks_and_preserves_exception (test_e12_b1.B1Contracts) ... ok
+test_mock_failures (test_e12_b1.B1Contracts) ... ok
+test_mock_success_and_invariance (test_e12_b1.B1Contracts) ... ok
+test_no_downstream_imports (test_e12_b1.B1Contracts) ... ok
+test_non_ancestor (test_e12_b1.B1Contracts) ... ok
+test_output_inside_source (test_e12_b1.B1Contracts) ... ok
+test_post_state_write_failure_keeps_in_memory_verdict (test_e12_b1.B1Contracts) ... ok
+test_request_write_failure_rechecks_and_preserves_exception (test_e12_b1.B1Contracts) ... ok
+test_required_source_fields (test_e12_b1.B1Contracts) ... ok
+test_setup_failure_does_not_swallow_baseexceptions (test_e12_b1.B1Contracts) ... test_setup_failures_report_each_invariance_change (test_e12_b1.B1Contracts) ... ok
+test_sha_boundaries (test_e12_b1.B1Contracts) ... ok
+test_shallow (test_e12_b1.B1Contracts) ... ok
+test_source_before_write_failure_rechecks_and_preserves_exception (test_e12_b1.B1Contracts) ... ok
+test_source_change_cannot_succeed (test_e12_b1.B1Contracts) ... ok
+test_valid_inputs (test_e12_b1.B1Contracts) ... ok
+test_wrong_provenance (test_e12_b1.B1Contracts) ... ok
+test_candidate_constraints (test_e12_b1.CandidateContracts) ... ok
+test_changed_packages_or_cleanup_rejected (test_e12_b1.CandidateContracts) ... ok
+test_deb822_rewrites_only_reviewed_hosts (test_e12_b1.CandidateContracts) ... ok
+test_different_digest (test_e12_b1.CandidateContracts) ... ok
+test_each_update_install_network_option_required (test_e12_b1.CandidateContracts) ... ok
+test_extra_shell_commands_rejected (test_e12_b1.CandidateContracts) ... ok
+test_mirrored_candidate_exact (test_e12_b1.CandidateContracts) ... ok
+test_old_official_source_candidate_rejected (test_e12_b1.CandidateContracts) ... ok
+test_old_unpinned_compatibility (test_e12_b1.CandidateContracts) ... ok
+test_other_mirror_and_source_file_rejected (test_e12_b1.CandidateContracts) ... ok
+test_same_pinned_from (test_e12_b1.CandidateContracts) ... ok
+test_consumes_real_a_incremental_report (test_e12_b2.E12B2Contract) ... ok
+test_artifact_uri_must_bind_to_current_job_and_stay_relative (test_e12_b3.B3ApiContracts) ... ok
+test_canonical_request_hash_is_stable_for_key_order (test_e12_b3.B3ApiContracts) ... ok
+test_download_artifact_records_manifest_and_header_hashes (test_e12_b3.B3ApiContracts) ... ok
+test_handoff_contract_flags_require_same_job_and_409 (test_e12_b3.B3ApiContracts) ... ok
+test_a_report_fixture_is_the_handed_off_bytes (test_e12_b4.E12B4Contracts) ... ok
+test_expected_five_stage_order_is_strict (test_e12_b4.E12B4Contracts) ... ok
+test_stage_artifact_hash_changes_when_bytes_change (test_e12_b4.E12B4Contracts) ... ok
+
+======================================================================
+ERROR: test_setup_failure_does_not_swallow_baseexceptions (test_e12_b1.B1Contracts) (phase='mkdir', kind=<class 'KeyboardInterrupt'>, changed='head')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 166, in run
+    out.mkdir(parents=True, exist_ok=False)
+  File "<string>", line 3, in mkdir
+  File "/usr/lib/python3.10/unittest/mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "/usr/lib/python3.10/unittest/mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "/usr/lib/python3.10/unittest/mock.py", line 1179, in _execute_mock_call
+    result = effect(*args, **kwargs)
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 336, in mkdir
+    raise failure
+KeyboardInterrupt: test interrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 397, in test_setup_failure_does_not_swallow_baseexceptions
+    self.assert_setup_failure(phase, field, kind('test interrupt'))
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 358, in assert_setup_failure
+    b1.run(self.request, out, self.root)
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 212, in run
+    pending.add_note(str(invariant_error))
+AttributeError: 'KeyboardInterrupt' object has no attribute 'add_note'
+
+======================================================================
+ERROR: test_setup_failure_does_not_swallow_baseexceptions (test_e12_b1.B1Contracts) (phase='mkdir', kind=<class 'SystemExit'>, changed='head')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 166, in run
+    out.mkdir(parents=True, exist_ok=False)
+  File "<string>", line 3, in mkdir
+  File "/usr/lib/python3.10/unittest/mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "/usr/lib/python3.10/unittest/mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "/usr/lib/python3.10/unittest/mock.py", line 1179, in _execute_mock_call
+    result = effect(*args, **kwargs)
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 336, in mkdir
+    raise failure
+SystemExit: test interrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 397, in test_setup_failure_does_not_swallow_baseexceptions
+    self.assert_setup_failure(phase, field, kind('test interrupt'))
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 358, in assert_setup_failure
+    b1.run(self.request, out, self.root)
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 212, in run
+    pending.add_note(str(invariant_error))
+AttributeError: 'SystemExit' object has no attribute 'add_note'
+
+======================================================================
+ERROR: test_setup_failure_does_not_swallow_baseexceptions (test_e12_b1.B1Contracts) (phase='request', kind=<class 'KeyboardInterrupt'>, changed='head')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 168, in run
+    save(out / 'request.json', request)
+  File "/usr/lib/python3.10/unittest/mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "/usr/lib/python3.10/unittest/mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "/usr/lib/python3.10/unittest/mock.py", line 1179, in _execute_mock_call
+    result = effect(*args, **kwargs)
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 341, in write
+    raise failure
+KeyboardInterrupt: test interrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 397, in test_setup_failure_does_not_swallow_baseexceptions
+    self.assert_setup_failure(phase, field, kind('test interrupt'))
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 358, in assert_setup_failure
+    b1.run(self.request, out, self.root)
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 212, in run
+    pending.add_note(str(invariant_error))
+AttributeError: 'KeyboardInterrupt' object has no attribute 'add_note'
+
+======================================================================
+ERROR: test_setup_failure_does_not_swallow_baseexceptions (test_e12_b1.B1Contracts) (phase='request', kind=<class 'SystemExit'>, changed='head')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 397, in test_setup_failure_does_not_swallow_baseexceptions
+    self.assert_setup_failure(phase, field, kind('test interrupt'))
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 358, in assert_setup_failure
+    b1.run(self.request, out, self.root)
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 157, in run
+    require(not out.exists() and not out.is_symlink(), 'Output path already exists')
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 47, in require
+    raise ValueError(message)
+ValueError: Output path already exists
+
+======================================================================
+ERROR: test_setup_failure_does_not_swallow_baseexceptions (test_e12_b1.B1Contracts) (phase='source-before', kind=<class 'KeyboardInterrupt'>, changed='head')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 169, in run
+    save(out / 'source-before.json', before)
+  File "/usr/lib/python3.10/unittest/mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "/usr/lib/python3.10/unittest/mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "/usr/lib/python3.10/unittest/mock.py", line 1179, in _execute_mock_call
+    result = effect(*args, **kwargs)
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 341, in write
+    raise failure
+KeyboardInterrupt: test interrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 397, in test_setup_failure_does_not_swallow_baseexceptions
+    self.assert_setup_failure(phase, field, kind('test interrupt'))
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 358, in assert_setup_failure
+    b1.run(self.request, out, self.root)
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 212, in run
+    pending.add_note(str(invariant_error))
+AttributeError: 'KeyboardInterrupt' object has no attribute 'add_note'
+
+======================================================================
+ERROR: test_setup_failure_does_not_swallow_baseexceptions (test_e12_b1.B1Contracts) (phase='source-before', kind=<class 'SystemExit'>, changed='head')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 397, in test_setup_failure_does_not_swallow_baseexceptions
+    self.assert_setup_failure(phase, field, kind('test interrupt'))
+  File "/root/devops-students/241880360/draft/labs/e11e12/test_e12_b1.py", line 358, in assert_setup_failure
+    b1.run(self.request, out, self.root)
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 157, in run
+    require(not out.exists() and not out.is_symlink(), 'Output path already exists')
+  File "/root/devops-students/241880360/draft/labs/e11e12/b1.py", line 47, in require
+    raise ValueError(message)
+ValueError: Output path already exists
+
+----------------------------------------------------------------------
+Ran 54 tests in 3.303s
+
+FAILED (errors=6)

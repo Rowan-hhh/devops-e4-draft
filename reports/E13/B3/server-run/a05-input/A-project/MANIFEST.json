@@ -1,0 +1,62 @@
+{
+  "project": "A05 quota-scale (E13 A-group maintained project)",
+  "provider": {
+    "group": "A05 / A track (BuildChecker, EChecker)",
+    "maintainer": "241880106",
+    "handoff_owner": "241880106"
+  },
+  "source": {
+    "repo": "https://github.com/ZaneOw0/devops-e7-buildchecker",
+    "path": "fixtures/md-rd",
+    "source_outer_commit": "d9e3ccc",
+    "note": "P0 imports the A-track fixture verbatim; see SOURCE.md inside the bundle"
+  },
+  "commits": {
+    "P0": "a780dc5679ee7e96cb810a078a1b424c16f87ad0",
+    "base": "6b9deff53f8fcf6183204850ac6a9dddb22f1189",
+    "target": "90646db8b8ad932da1a959d152942f987aaffff2",
+    "ancestry": "P0 -> base -> target (linear; git merge-base --is-ancestor base target succeeds)"
+  },
+  "expected": {
+    "stdout": "1\n",
+    "exit_code": 0,
+    "header_change_VALUE_2_stdout": "2\n",
+    "base_findings": [],
+    "target_findings": [
+      {
+        "type": "MISSING",
+        "target": "helper.o",
+        "dependency": "clamp.h"
+      }
+    ],
+    "repair_style": "macro (HELPER_DEPS)"
+  },
+  "scope": "two C sources (main.c, helper.c), config.h, explicit Make rules, CFLAGS=-O0, output 1",
+  "files": {
+    "a05-project.bundle": "full history, branch main",
+    "candidate.Dockerfile": "DRAFT repair candidate (adds RUN apt via TUNA mirror)",
+    "request-e12.json": "normal E12 five-stage request",
+    "request-e11-a.json": "A-side full/incremental request"
+  },
+  "a_side_self_check": {
+    "e11-a": {
+      "out": "work/e13-a05-e11a-01",
+      "status": "SUCCEEDED",
+      "job_id": "job-abd79667fd054a969ae74638e8a91270",
+      "trace_id": "trace-46dd3f6e6afa49fb970b569d61ccfd35"
+    },
+    "e12": {
+      "out": "work/e13-a05-e12-01",
+      "status": "SUCCEEDED",
+      "job_id": "job-851d3c0f73674d1cb2d3729efd3be944",
+      "trace_id": "trace-97dfa57ebdbe431e89d7a697e045270f",
+      "artifacts": 175,
+      "hash_mismatch": 0,
+      "patch_sha256": "0030f288c5f8b50afed0df84334185a2d1276b4bbbdc37f39314ee5c04bef9db",
+      "validation": "accepted, 5/5 checks",
+      "recheck_findings": 0,
+      "runtime_log_scan": "hits=0"
+    },
+    "note": "A-side self-check on A's own server copy; it is not B's cross-test result"
+  }
+}

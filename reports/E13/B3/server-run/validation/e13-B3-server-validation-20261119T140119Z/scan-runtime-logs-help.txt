@@ -1,0 +1,9 @@
+usage: scan_runtime_logs.py [-h] paths [paths ...]
+
+Scan text evidence directories for likely secrets
+
+positional arguments:
+  paths       work directories or text log files
+
+options:
+  -h, --help  show this help message and exit
