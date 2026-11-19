@@ -1,0 +1,45 @@
+name: E13 B3 local contracts
+on:
+  push:
+    branches: [e13-yrh-b3]
+  pull_request:
+    paths:
+      - 'labs/e13/**'
+      - 'labs/e13e14/**'
+      - 'labs/e11e12/**'
+      - 'reports/E13/B3/**'
+      - 'docs/students/241880360/e13-e14/**'
+      - '.github/workflows/e13-b3.yml'
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Syntax and unit contracts
+        run: |
+          python -m py_compile labs/e13/e13_b3.py labs/e13/test_e13_b3.py
+          python -m unittest discover -s labs/e13 -p 'test_*.py' -v
+          python -m unittest discover -s labs/e13e14/tests -p 'test_*.py' -v
+          python -m unittest discover -s labs/e11e12 -p 'test_*.py' -v
+      - name: Check unexecuted evidence contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          root = Path('reports/E13/B3')
+          assert 'NOT_RUN' in (root / 'README.md').read_text(encoding='utf-8')
+          for path in root.rglob('*'):
+              assert path.name != 'server-run', path
+              if not path.is_file():
+                  continue
+              assert path.name not in ('result.json', 'handoff.json'), path
+              content = path.read_text(encoding='utf-8')
+              assert not re.search(r'(?i)\bstatus["\']?\s*:\s*["\']?(?:SUCCEEDED|PASS)\b', content), path
+              assert not re.search(r'(?i)\b(?:job_id|trace_id|image_id)["\']?\s*:\s*["\'][^"\']+["\']', content), path
+              assert not re.search(r'(?i)(?:服务器|docker|ci)\s*(?:已|运行)?\s*(?:成功|通过)', content), path
+          PY
