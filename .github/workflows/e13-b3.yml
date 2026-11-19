@@ -26,20 +26,116 @@ jobs:
           python -m unittest discover -s labs/e13 -p 'test_*.py' -v
           python -m unittest discover -s labs/e13e14/tests -p 'test_*.py' -v
           python -m unittest discover -s labs/e11e12 -p 'test_*.py' -v
-      - name: Check unexecuted evidence contract
+      - name: Check archived evidence contract
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
+          python - <<'PYCODE'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path, PurePosixPath
+
           root = Path('reports/E13/B3')
-          assert 'NOT_RUN' in (root / 'README.md').read_text(encoding='utf-8')
-          for path in root.rglob('*'):
-              assert path.name != 'server-run', path
-              if not path.is_file():
-                  continue
-              assert path.name not in ('result.json', 'handoff.json'), path
-              content = path.read_text(encoding='utf-8')
-              assert not re.search(r'(?i)\bstatus["\']?\s*:\s*["\']?(?:SUCCEEDED|PASS)\b', content), path
-              assert not re.search(r'(?i)\b(?:job_id|trace_id|image_id)["\']?\s*:\s*["\'][^"\']+["\']', content), path
-              assert not re.search(r'(?i)(?:服务器|docker|ci)\s*(?:已|运行)?\s*(?:成功|通过)', content), path
-          PY
+          manifest_name = 'archive-manifest.json'
+
+          def require(condition, message):
+              if not condition:
+                  raise ValueError(message)
+
+          def archive_path(value):
+              require(isinstance(value, str) and value, 'empty or invalid path')
+              path = PurePosixPath(value)
+              require('\\' not in value and not path.is_absolute(), f'unsafe path: {value}')
+              require(path.as_posix() == value and all(part not in ('.', '..') for part in path.parts),
+                      f'non-canonical path: {value}')
+              current = root
+              for part in path.parts:
+                  current = current / part
+                  require(not current.is_symlink(), f'symlink: {current}')
+              require(current.resolve().is_relative_to(root.resolve()), f'path escapes archive: {value}')
+              return current
+
+          def read_json(name):
+              path = archive_path(name)
+              require(path.is_file(), f'missing regular file: {path}')
+              return json.loads(path.read_text(encoding='utf-8'))
+
+          require(root.is_dir() and not root.is_symlink(), 'invalid archive root')
+          actual = set()
+          for directory, dirs, files in os.walk(root, followlinks=False):
+              for name in dirs + files:
+                  path = Path(directory) / name
+                  relative = path.relative_to(root).as_posix()
+                  require(not path.is_symlink(), f'symlink: {relative}')
+                  require(name != '.git', f'nested Git metadata: {relative}')
+                  lower = name.lower()
+                  require(not lower.endswith(('.zip', '.tar', '.tar.gz', '.tgz', '.tar.bz2',
+                                              '.tbz', '.tbz2', '.tar.xz', '.txz', '.tar.zst', '.tzst')),
+                          f'transport archive: {relative}')
+                  if name in files:
+                      require(path.is_file(), f'not a regular file: {relative}')
+                      if relative != manifest_name:
+                          actual.add(relative)
+                  else:
+                      require(path.is_dir(), f'not a directory: {relative}')
+
+          manifest = read_json(manifest_name)
+          entries = manifest['files']
+          require(manifest['algorithm'] == 'sha256', 'incorrect manifest algorithm')
+          require(manifest['file_count'] == len(entries) == 626, 'incorrect manifest count')
+          paths = [entry['path'] for entry in entries]
+          require(paths == sorted(paths) and len(set(paths)) == len(paths), 'manifest ordering or duplicates')
+          require(set(paths) == actual, 'manifest file set differs from archive')
+          for entry in entries:
+              path = archive_path(entry['path'])
+              require(path.is_file(), f'missing regular file: {path}')
+              data = path.read_bytes()
+              require(type(entry['bytes']) is int and entry['bytes'] == len(data), f'wrong size: {path}')
+              require(entry['sha256'] == hashlib.sha256(data).hexdigest(), f'wrong SHA-256: {path}')
+
+          result = read_json('result.json')
+          handoff = read_json('handoff.json')
+          for key, expected in {
+              'status': 'PASS', 'branch': 'e13-yrh-b3',
+              'code_commit': '6876b98c31f9c270a27c2dbc93df9447ae30203e',
+              'baseline': '0ef30a1cba5d50007769dd22308a1f589c84a791',
+              'archive_ci': 'NOT_RUN',
+          }.items():
+              require(result[key] == expected and handoff[key] == expected, f'incorrect {key}')
+
+          c4, c7, h3 = (result[key] for key in ('c4', 'c7', 'h3'))
+          for name, case in (('c4', c4), ('c7', c7), ('h3', h3)):
+              require(case['status'] == case['verify'] == 'PASS', f'{name} status')
+              require(handoff[name] == case, f'{name} handoff differs')
+          require(c4['outer_status'] == 'FAILED' and c4['inner_status'] == 'TIMED_OUT', 'c4 statuses')
+          for key in ('timeout_confirmed', 'source_unchanged', 'build_client_absent',
+                      'verify_container_stopped', 'candidate_not_successful'):
+              require(c4[key] is True, f'c4 {key}')
+          failed, succeeded = c7['failed'], c7['succeeded']
+          require(failed['status'] == 'FAILED' and failed['exit_code'] == 1, 'c7 failed task')
+          require(succeeded['status'] == 'SUCCEEDED' and succeeded['exit_code'] == 0
+                  and succeeded['stages_completed'] == 5 and succeeded['artifacts'] == 175,
+                  'c7 successful task')
+          for key in ('job_id', 'trace_id'):
+              require(all(isinstance(task[key], str) and task[key].strip() for task in (failed, succeeded))
+                      and failed[key] != succeeded[key], f'c7 {key}')
+          require(c7['source_unchanged'] is True and c7['related_processes_or_containers_remaining'] is False,
+                  'c7 source or residual resources')
+          require(h3['exit_code'] == 0 and h3['remaining_findings'] == 0
+                  and h3['source_unchanged'] is True, 'h3 outcome')
+          validation = result['server_validation']
+          for key, count in (('e13', 42), ('e13e14', 5), ('e11e12_official_container', 54)):
+              require(validation[key]['tests'] == count and validation[key]['exit_code'] == 0,
+                      f'{key} regression')
+          require(all(validation['runtime_scan'][key] == 0 for key in ('hits', 'errors', 'exit_code')),
+                  'runtime scan')
+          require(handoff['schema_version'] == 'e13-b3-handoff-1', 'handoff schema')
+          require(handoff['student'] == {'name': '易容卉', 'student_id': '241880360'}, 'student')
+          require(handoff['stage'] == 'E13' and handoff['role'] == 'B3', 'stage or role')
+          require(handoff['evidence_root'] == 'reports/E13/B3/', 'evidence root')
+          require(sorted(handoff['recipients']) == ['A-group', 'E13-B4'], 'recipients')
+          require(handoff['a_receipt'] is None, 'A-group receipt')
+          for case, suffix in ((c4, '-verify/verification.json'), (c7, '-verify/verification.json'),
+                               (h3, '-formal-verify/verification.json')):
+              require(read_json(case['path'] + suffix)['status'] == 'PASS', 'formal verification')
+          print(f'Archived evidence contract PASS: {len(entries)} files')
+          PYCODE
