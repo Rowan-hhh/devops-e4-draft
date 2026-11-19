@@ -1,0 +1,53 @@
+{
+  "case": "C4",
+  "status": "FAILED",
+  "outer_status": "FAILED",
+  "inner_status": "TIMED_OUT",
+  "timeout_confirmed": true,
+  "source_unchanged": true,
+  "build_client_absent": false,
+  "verify_container_stopped": false,
+  "candidate_not_successful": true,
+  "observation_scope": "结论仅覆盖检查时刻的相关 Docker 构建客户端和准确验证容器；不证明或清理 BuildKit 全局缓存；未执行 docker prune；未停止 Docker 服务；未清理无关容器。",
+  "checked_files": {
+    "request.json": {
+      "bytes": 274,
+      "sha256": "7793f553b08999eae2eee064858dacdc8359f13c1afe2690b74acfd12c31bee3"
+    },
+    "console.log": {
+      "bytes": 9345,
+      "sha256": "9d56c1ed33795a529ce522f52916cec4f7265d7bd46f16d207be1afd7e98dfe3"
+    },
+    "exit-code.txt": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "result.json": {
+      "bytes": 9315,
+      "sha256": "c0e2f7b16d238615d295e87407ec47a4dbb670d66493e6b5c55ded3117e4f9d4"
+    },
+    "draft-build/result.json": {
+      "bytes": 1816,
+      "sha256": "f1260ca521074379c1e253366cd6b51b3918d78da11aaf4fe5769297f30b3289"
+    },
+    "source-before.json": {
+      "bytes": 1028,
+      "sha256": "84bccf2e3c73543efd4176df8dfa2a949ad3366070ab03fc1742055a4a1690c2"
+    },
+    "source-after.json": {
+      "bytes": 1028,
+      "sha256": "84bccf2e3c73543efd4176df8dfa2a949ad3366070ab03fc1742055a4a1690c2"
+    },
+    "draft-build/iter-01/build-stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "draft-build/iter-01/build-stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "errors": [
+    "Empty build logs"
+  ]
+}

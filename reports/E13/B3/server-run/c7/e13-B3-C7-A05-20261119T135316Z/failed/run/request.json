@@ -1,0 +1,9 @@
+{
+  "mode": "e12",
+  "repo": "/course/data/a05-project",
+  "base": "0000000000000000000000000000000000000000",
+  "target": "90646db8b8ad932da1a959d152942f987aaffff2",
+  "candidate": "/course/data/a05-candidate.Dockerfile",
+  "expected_output": "1",
+  "build_timeout": 1800
+}

@@ -1,0 +1,7 @@
+[
+  {
+    "target": "helper.o",
+    "dependency": "clamp.h",
+    "style": "macro"
+  }
+]

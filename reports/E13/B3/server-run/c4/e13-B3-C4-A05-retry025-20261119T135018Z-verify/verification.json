@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "outer_status": "FAILED",
+  "inner_status": "TIMED_OUT",
+  "timeout_confirmed": true,
+  "source_unchanged": true,
+  "build_client_absent": true,
+  "verify_container_stopped": true,
+  "candidate_not_successful": true,
+  "observation_scope": "结论仅覆盖检查时刻的相关 Docker 构建客户端和准确验证容器；不证明或清理 BuildKit 全局缓存；未执行 docker prune；未停止 Docker 服务；未清理无关容器。",
+  "checked_files": {
+    "request.json": {
+      "bytes": 275,
+      "sha256": "361d6a47b160b4f20a2719d34c6b79efadb3b28a7346e8320b892f5beb996b92"
+    },
+    "console.log": {
+      "bytes": 9348,
+      "sha256": "a02d3899882738d15cfb21f0a54152a14dcb9233c0bcd432e6cedeebc880222a"
+    },
+    "exit-code.txt": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "result.json": {
+      "bytes": 9318,
+      "sha256": "aac2609beb89700708492b18f9fe6c466ed4e3853be56b9736afc364ccf7c438"
+    },
+    "draft-build/result.json": {
+      "bytes": 1823,
+      "sha256": "33ae745538ec7930f6bfdf72a46c448735308f33782ba234f1fd8798197c4db3"
+    },
+    "source-before.json": {
+      "bytes": 1028,
+      "sha256": "84bccf2e3c73543efd4176df8dfa2a949ad3366070ab03fc1742055a4a1690c2"
+    },
+    "source-after.json": {
+      "bytes": 1028,
+      "sha256": "84bccf2e3c73543efd4176df8dfa2a949ad3366070ab03fc1742055a4a1690c2"
+    },
+    "draft-build/iter-01/build-stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "draft-build/iter-01/build-stderr.log": {
+      "bytes": 835,
+      "sha256": "d7f85ef8e4f103f551683e4d0f390ce4ede34eb6913efd6b59b82c9a64abced8"
+    },
+    "processes-and-containers/process-scan.json": {
+      "bytes": 6658,
+      "sha256": "a6dbf9675eab506df07ceb7038e15dd448527664b02841edd5c17ee6c43474af"
+    },
+    "processes-and-containers/docker-ps.json": {
+      "bytes": 192,
+      "sha256": "7282eeed385b3a88d03674c2ccd4c201663977f653af240d0b125dc14bea3d00"
+    },
+    "processes-and-containers/no-verify-container.txt": {
+      "bytes": 28,
+      "sha256": "44fa32f00efcd9f38415397dafe11338497c68c7ada172b3796310172dadd3a0"
+    }
+  },
+  "errors": []
+}
