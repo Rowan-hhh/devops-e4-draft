@@ -1,0 +1,65 @@
+name: E13 B2 quality gates
+
+on:
+  push:
+    branches:
+      - e13-zyh-b2
+  pull_request:
+    paths:
+      - "labs/e13/**"
+      - "reports/E13/B2/**"
+      - "docs/students/241880300/e13-e14/**"
+      - ".github/workflows/e13-b2.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  b2:
+    name: c3-c5-inih-contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Configure CI identity
+        run: |
+          git config --local user.name 241880300
+          git config --local user.email ci@example.invalid
+      - name: B2 unit tests
+        run: |
+          python -m unittest discover -s labs/e13 -p 'test_e13_b2.py' -v
+          python -m unittest discover -s labs/e13e14/tests -p 'test_*.py' -v
+      - name: Verify committed B2 evidence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('reports/E13/B2')
+          summary = json.loads((root / 'result.json').read_text(encoding='utf-8'))
+          assert summary['status'] == 'SUCCEEDED'
+          assert summary['passed'] is True
+          assert summary['student_id'] == '241880300'
+          assert summary['branch'] == 'e13-zyh-b2'
+          assert summary['cases']['C3']['code'] == 'ARTIFACT_HASH_MISMATCH'
+          assert summary['cases']['C3']['accepted'] is False
+          assert summary['cases']['C5']['accepted'] is False
+          assert summary['cases']['C5']['rollback'] is True
+          assert summary['cases']['C5']['source_unchanged'] is True
+          h2 = summary['cases']['H2-inih']['result']
+          assert h2['status'] == 'SUCCEEDED'
+          assert (root / 'README.md').is_file()
+          assert (root / 'handoff.json').is_file()
+          for required in (
+              root / 'C3-artifact-hash-tamper',
+              root / 'C5-invalid-patch',
+              root / 'H2-inih',
+          ):
+              assert required.is_dir(), required
+          print('E13_B2_EVIDENCE=PASS')
+          PY
