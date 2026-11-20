@@ -1,0 +1,16 @@
+{
+  "case": "C8-idempotency-conflict",
+  "status": "PASS",
+  "same_key_same_request": {
+    "status": 202,
+    "same_job_id": true,
+    "job_id": "job-9ac90b61a53f4f13a8d7f22aab2c3633"
+  },
+  "same_key_changed_target": {
+    "status": 409,
+    "error": "IDEMPOTENCY_CONFLICT",
+    "accepted": false
+  },
+  "source_unchanged": true,
+  "docker_started": false
+}
