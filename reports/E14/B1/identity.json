@@ -1,0 +1,30 @@
+{
+  "schema_version": "e14-b1-identity-1",
+  "role": "E14-B1",
+  "student_id": "241880360",
+  "branch": "e14-yrh-b1",
+  "e13_b3_merge": "84b0e1df446265471e6b0c41386193785f75dc8b",
+  "e13_b4_delivery": "1c7e79196c11f655d23f23e7e11d69f3bb045463",
+  "e13_final_main": "77da560719fe7835c227a289b6bc99295fa5abcc",
+  "integration_repo": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "a_project": {
+    "outer_repo": "https://github.com/ZaneOw0/devops-e7-buildchecker",
+    "outer_commit": "d9e3cccadcfc94c46b1bf9dd54d92dd47c75cce5",
+    "source_commit": "4f39fc3bac39087c666306e3523cfd497fe3dcd9",
+    "base": "6b9deff53f8fcf6183204850ac6a9dddb22f1189",
+    "target": "90646db8b8ad932da1a959d152942f987aaffff2"
+  },
+  "b_project": {
+    "base": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+    "target": "745ecf2621c8221b97bf0a5435ace50150ef57d4"
+  },
+  "existing_candidates": {
+    "a05": {"path": "reports/E13/B3/server-run/a05-input/a05-candidate.Dockerfile", "sha256": "2a6cbf8f64b2a3c13a7189c36ddb0c36ebf2f66c99f86262028ee7ab4df43f08", "from": "python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f"},
+    "b": {"path": "reports/E12/B1/candidate.Dockerfile", "sha256": "c7b2ba5babf97c0c413583d908ab372b224a6351f127124b068f1607aefc44af", "from": "python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f"}
+  },
+  "final_candidate_commit": null,
+  "fixed_sample": {"status": "NOT_RUN"},
+  "single_container_run": {"status": "NOT_RUN"},
+  "four_service_run": {"status": "BLOCKED_ON_B2_HANDOFF"},
+  "formal_result": {"status": "NOT_RUN"}
+}
