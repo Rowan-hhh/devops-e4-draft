@@ -1,0 +1,49 @@
+name: E13 B4 gate aggregation
+
+on:
+  push:
+    branches: [e13-xzt-b4]
+  pull_request:
+    paths:
+      - 'labs/e13/**'
+      - 'labs/e13e14/**'
+      - 'labs/e11e12/**'
+      - 'reports/E13/B1/**'
+      - 'reports/E13/B2/**'
+      - 'reports/E13/B3/**'
+      - 'reports/E13/B4/**'
+      - 'docs/students/241880610/e13-b4/**'
+      - '.github/workflows/e13-b4.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  b4-contracts:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Syntax and B4 contract
+        run: |
+          python -m py_compile labs/e13/e13_b4.py labs/e13/test_e13_b4.py
+          python -m unittest discover -s labs/e13 -p 'test_e13_b4.py' -v
+          python labs/e13/e13_b4.py --out work/e13-b4-generated --evidence reports/E13/B3/server-run
+      - name: Verify B4 recorded results
+        run: |
+          python - <<'PYCODE'
+          import json
+          from pathlib import Path
+          root = Path('reports/E13/B4')
+          for name in ('result.json', 'handoff.json'):
+              data = json.loads((root / name).read_text(encoding='utf-8'))
+              assert data['status'] == 'PASS', name
+          for name in ('c6/c6-result.json', 'c8/c8-result.json'):
+              data = json.loads((root / name).read_text(encoding='utf-8'))
+              assert data['status'] == 'PASS', name
+          print('E13 B4 recorded gate PASS')
+          PYCODE
+      - name: Secret scan
+        run: python scripts/secret_scan.py .

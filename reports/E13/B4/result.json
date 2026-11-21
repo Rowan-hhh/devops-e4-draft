@@ -1,0 +1,38 @@
+{
+  "schema_version": "e13-b4-result-1",
+  "status": "PASS",
+  "branch": "e13-xzt-b4",
+  "baseline": "84b0e1df446265471e6b0c41386193785f75dc8b",
+  "student": "241880610",
+  "a_group_receipt": "ACCEPTED",
+  "cases": {
+    "C1": "PASS",
+    "C2": "PASS",
+    "C3": "PASS",
+    "C4": "PASS",
+    "C5": "PASS",
+    "C6": "PASS",
+    "C7": "PASS",
+    "C8": "PASS"
+  },
+  "teacher_projects": {
+    "H1-jsmn": "PASS",
+    "H2-inih": "PASS",
+    "H3-tiny-AES": "PASS"
+  },
+  "server_validation": {
+    "e13_tests": 42,
+    "e13e14_tests": 5,
+    "official_e11e12_container_tests": 54,
+    "runtime_scan_text_files": 721,
+    "runtime_scan_hits": 0,
+    "runtime_scan_errors": 0
+  },
+  "ci": {
+    "e13_b3_local_contracts": "success",
+    "e11_e12_integration": "success",
+    "e8_e10_teaching_validation": "success",
+    "e13_b4_contract": "pending_push_ci"
+  },
+  "next_stage": "E14"
+}
