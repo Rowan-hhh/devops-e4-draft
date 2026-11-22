@@ -8,12 +8,12 @@ x-common: &common
   environment:
     PYTHONPATH: /course/labs/e8e10:/course/labs/e11e12/vendor:/app
     PYTHONDONTWRITEBYTECODE: "1"
-      # The orchestrator creates detached Git copies on the mounted workspace
-      # as the CI runner user; service containers run as root. Trust only the
-      # explicitly mounted course workspace so Git can inspect those copies.
-      GIT_CONFIG_COUNT: "1"
-      GIT_CONFIG_KEY_0: safe.directory
-      GIT_CONFIG_VALUE_0: /course/*
+    # The orchestrator creates detached Git copies on the mounted workspace
+    # as the CI runner user; service containers run as root. Trust only the
+    # explicitly mounted course workspace so Git can inspect those copies.
+    GIT_CONFIG_COUNT: "1"
+    GIT_CONFIG_KEY_0: safe.directory
+    GIT_CONFIG_VALUE_0: "/course/*"
   volumes:
     - ${E14_ROOT:?set E14_ROOT}:/course
   cpus: 1.0
