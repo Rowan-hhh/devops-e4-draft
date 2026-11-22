@@ -33,6 +33,9 @@ services:
     environment:
       E14_ROLE: buildchecker
       PYTHONDONTWRITEBYTECODE: "1"
+      GIT_CONFIG_COUNT: "1"
+      GIT_CONFIG_KEY_0: safe.directory
+      GIT_CONFIG_VALUE_0: "/course/*"
     command: ["python3", "labs/e13e14/service.py"]
     ports: ["127.0.0.1:18081:8080"]
     cap_add: ["SYS_PTRACE"]
@@ -42,6 +45,9 @@ services:
     environment:
       E14_ROLE: echecker
       PYTHONDONTWRITEBYTECODE: "1"
+      GIT_CONFIG_COUNT: "1"
+      GIT_CONFIG_KEY_0: safe.directory
+      GIT_CONFIG_VALUE_0: "/course/*"
     command: ["python3", "labs/e13e14/service.py"]
     ports: ["127.0.0.1:18082:8080"]
 
@@ -50,6 +56,9 @@ services:
     environment:
       E14_ROLE: draft
       PYTHONDONTWRITEBYTECODE: "1"
+      GIT_CONFIG_COUNT: "1"
+      GIT_CONFIG_KEY_0: safe.directory
+      GIT_CONFIG_VALUE_0: "/course/*"
     command: ["python3", "labs/e13e14/service.py"]
     ports: ["127.0.0.1:18083:8080"]
     volumes:
@@ -61,5 +70,8 @@ services:
     environment:
       E14_ROLE: mdfixer
       PYTHONDONTWRITEBYTECODE: "1"
+      GIT_CONFIG_COUNT: "1"
+      GIT_CONFIG_KEY_0: safe.directory
+      GIT_CONFIG_VALUE_0: "/course/*"
     command: ["python3", "labs/e13e14/service.py"]
     ports: ["127.0.0.1:18084:8080"]
