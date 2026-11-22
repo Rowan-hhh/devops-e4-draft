@@ -93,6 +93,11 @@ def main() -> int:
             "tag": args.image_tag,
             "image_id": image_id,
             "repo_digests": digests,
+            "repo_digest_absent_reason": (
+                "CI builds the teaching image locally and does not push it to a registry; "
+                "the immutable image ID and inspect evidence are authoritative."
+                if not digests else None
+            ),
             "inspect": file_ref(root / "image-inspect.json", root),
             "tag_present": args.image_tag in tags,
             "repo_digest_present": bool(digests),

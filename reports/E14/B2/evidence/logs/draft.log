@@ -1,0 +1,36 @@
+draft-1  | 127.0.0.1 - - [22/Nov/2026 06:41:08] "GET /health HTTP/1.1" 200 -
+draft-1  | {"role": "draft", "job_id": "job-267e2c91780748d18459a27d6c7dd900", "trace_id": "trace-c2e0e89c6bf145ee9bb1dde2e2c8f212", "status": "SUCCEEDED", "elapsed_ms": 9800}
+draft-1  | 172.18.0.1 - - [22/Nov/2026 06:41:19] "POST /v1/run HTTP/1.1" 200 -
+draft-1  | 127.0.0.1 - - [22/Nov/2026 06:41:19] "GET /health HTTP/1.1" 200 -
+draft-1  | ----------------------------------------
+draft-1  | Exception occurred during processing of request from ('127.0.0.1', 44600)
+draft-1  | Traceback (most recent call last):
+draft-1  |   File "/usr/local/lib/python3.13/socketserver.py", line 318, in _handle_request_noblock
+draft-1  |     self.process_request(request, client_address)
+draft-1  |     ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+draft-1  |   File "/usr/local/lib/python3.13/socketserver.py", line 349, in process_request
+draft-1  |     self.finish_request(request, client_address)
+draft-1  |     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+draft-1  |   File "/usr/local/lib/python3.13/socketserver.py", line 362, in finish_request
+draft-1  |     self.RequestHandlerClass(request, client_address, self)
+draft-1  |     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+draft-1  |   File "/usr/local/lib/python3.13/socketserver.py", line 766, in __init__
+draft-1  |     self.handle()
+draft-1  |     ~~~~~~~~~~~^^
+draft-1  |   File "/usr/local/lib/python3.13/http/server.py", line 447, in handle
+draft-1  |     self.handle_one_request()
+draft-1  |     ~~~~~~~~~~~~~~~~~~~~~~~^^
+draft-1  |   File "/usr/local/lib/python3.13/http/server.py", line 435, in handle_one_request
+draft-1  |     method()
+draft-1  |     ~~~~~~^^
+draft-1  |   File "/course/labs/e13e14/service.py", line 117, in do_GET
+draft-1  |     self.reply(200, {'status': 'ok', 'role': ROLE})
+draft-1  |     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+draft-1  |   File "/course/labs/e13e14/service.py", line 113, in reply
+draft-1  |     self.wfile.write(body)
+draft-1  |     ~~~~~~~~~~~~~~~~^^^^^^
+draft-1  |   File "/usr/local/lib/python3.13/socketserver.py", line 845, in write
+draft-1  |     self._sock.sendall(b)
+draft-1  |     ~~~~~~~~~~~~~~~~~~^^^
+draft-1  | BrokenPipeError: [Errno 32] Broken pipe
+draft-1  | ----------------------------------------

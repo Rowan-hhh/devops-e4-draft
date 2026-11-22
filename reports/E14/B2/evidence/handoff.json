@@ -1,0 +1,87 @@
+{
+  "schema_version": "e14-b2-handoff-1",
+  "stage": "E14",
+  "role": "B2",
+  "status": "SUCCEEDED",
+  "candidate_commit": "77da560719fe7835c227a289b6bc99295fa5abcc",
+  "compose": {
+    "path": "compose.yaml",
+    "bytes": 2323,
+    "sha256": "afca8aef910421d28ae573b006dfe4e28cd152ce5d4bfa5b8f24f9e7180b868f"
+  },
+  "rendered_config": {
+    "path": "compose-config.json",
+    "bytes": 7044,
+    "sha256": "ec77441a36f58cb353d0df149c6dae137c2cae48bc4cfef6bd4c96261a702caa"
+  },
+  "image": {
+    "tag": "course-e11e12:241880610",
+    "image_id": "sha256:c2aa501672f77d3827a956071c4321fb698a5ec5bf8d43b6647e16a85021104e",
+    "repo_digests": [],
+    "repo_digest_absent_reason": "CI builds the teaching image locally and does not push it to a registry; the immutable image ID and inspect evidence are authoritative.",
+    "inspect": {
+      "path": "image-inspect.json",
+      "bytes": 4202,
+      "sha256": "fe7ceab6d4f87cb05ab6c866c10b09d06b010355d4e99fb5fcf89e1e267ddfea"
+    },
+    "tag_present": true,
+    "repo_digest_present": false
+  },
+  "health": {
+    "buildchecker": {
+      "name": "buildchecker",
+      "state": "running",
+      "health": "healthy"
+    },
+    "draft": {
+      "name": "draft",
+      "state": "running",
+      "health": "healthy"
+    },
+    "echecker": {
+      "name": "echecker",
+      "state": "running",
+      "health": "healthy"
+    },
+    "mdfixer": {
+      "name": "mdfixer",
+      "state": "running",
+      "health": "healthy"
+    }
+  },
+  "ports": {
+    "buildchecker": "127.0.0.1:18081->8080/tcp",
+    "echecker": "127.0.0.1:18082->8080/tcp",
+    "draft": "127.0.0.1:18083->8080/tcp",
+    "mdfixer": "127.0.0.1:18084->8080/tcp"
+  },
+  "docker_socket": {
+    "draft_only": true,
+    "mounted_services": [
+      "draft"
+    ]
+  },
+  "logs": {
+    "buildchecker": {
+      "path": "logs/buildchecker.log",
+      "bytes": 1077,
+      "sha256": "90e5aeedb907842aa1aa204978a6742ec193a4f74c853cce16c6dee2272238ec"
+    },
+    "echecker": {
+      "path": "logs/echecker.log",
+      "bytes": 502,
+      "sha256": "90e9f73bdaf34a48a46e6bc8d2541b3e722dbd9012223cbaf837b0f60cf15c67"
+    },
+    "draft": {
+      "path": "logs/draft.log",
+      "bytes": 2312,
+      "sha256": "12a3f251ae79c1c3a2a26cc8dd165a60256693b24aba383b5d9f4718ef390299"
+    },
+    "mdfixer": {
+      "path": "logs/mdfixer.log",
+      "bytes": 498,
+      "sha256": "dc60d3b3ce63e7b41d58dced195c932fb3ee31a10b87566ade2913f26b5b2ebb"
+    }
+  },
+  "source": "GitHub Actions four-services job; image and Compose evidence captured after health checks"
+}
