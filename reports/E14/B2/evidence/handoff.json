@@ -103,6 +103,7 @@
   },
   "e2e": {
     "result_path": "e2e-smoke-result.json",
+    "result_bytes": 27204,
     "result_sha256": "7b65f3472b31d787b75600d77996145351241ddbf7261150fb2297d6bc0edaaa",
     "job_id": "job-814f77a335124944a787f1e925f6afa7",
     "trace_id": "trace-5940632b2b17409d9477bbdaa306a0cc",

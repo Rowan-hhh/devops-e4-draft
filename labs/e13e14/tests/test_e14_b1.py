@@ -458,11 +458,48 @@ class Contracts(unittest.TestCase):
             path=package/name; path.write_text(data)
             return {'path':name, **m.file_info(path)}
         logs={r:save_file(r+'.log','log') for r in m.ROLES}
+        stage_names=['draft','full-check','incremental-check','repair','recheck']
+        e2e_result={
+            'job_id':'job-test',
+            'trace_id':'trace-test',
+            'status':'SUCCEEDED',
+            'base_commit':'b'*40,
+            'target_commit':'c'*40,
+            'stages':[{'name':name} for name in stage_names],
+        }
+        e2e_ref=save_file('e2e.json',json.dumps(e2e_result))
+        e2e={
+            'result_path':e2e_ref['path'],
+            'result_bytes':e2e_ref['bytes'],
+            'result_sha256':e2e_ref['sha256'],
+            'job_id':e2e_result['job_id'],
+            'trace_id':e2e_result['trace_id'],
+            'status':'SUCCEEDED',
+            'exit_code':0,
+            'stages':stage_names,
+            'base_commit':e2e_result['base_commit'],
+            'target_commit':e2e_result['target_commit'],
+        }
         image={'tag':'course:test','image_id':'sha256:'+'a'*64,'repo_digest':None,'repo_digest_absent_reason':'local image'}
         services={r:{'image':image['tag'], 'ports':[{'host_ip':'127.0.0.1','published':str(p),'target':8080}], 'volumes':([{'source':'/var/run/docker.sock','target':'/var/run/docker.sock'}] if r=='draft' else [])} for r,p in m.ROLES.items()}
-        h={'candidate_commit':'a'*40,'compose':save_file('compose.yaml','compose'),'rendered_config':save_file('rendered.json',json.dumps({'services':services})),'image':image,'health':dict.fromkeys(m.ROLES,'healthy'),'logs':logs}
+        h={'candidate_commit':'a'*40,'compose':save_file('compose.yaml','compose'),'rendered_config':save_file('rendered.json',json.dumps({'services':services})),'image':image,'health':dict.fromkeys(m.ROLES,'healthy'),'logs':logs,'e2e':e2e}
         path=package/'handoff.json'; dump(path,h)
         self.assertEqual(m.handoff(path,self.root)['status'],'HANDOFF_VERIFIED')
+        for field,value in (
+            ('result_bytes',0),
+            ('result_sha256','0'*64),
+            ('job_id','job-other'),
+        ):
+            y=copy.deepcopy(h); y['e2e'][field]=value; dump(path,y)
+            with self.subTest(e2e_field=field), self.assertRaises(ValueError):
+                m.handoff(path,self.root)
+        e2e_path=package/'e2e.json'
+        original_e2e=e2e_path.read_text()
+        e2e_path.write_text('{"status":"FAILED"}\n')
+        dump(path,h)
+        with self.assertRaises(ValueError):
+            m.handoff(path,self.root)
+        e2e_path.write_text(original_e2e)
         for mutate in (lambda x:x.update(candidate_commit='abcd'), lambda x:x['image'].pop('image_id'), lambda x:x['image'].pop('repo_digest_absent_reason'), lambda x:x['health'].update(draft='unhealthy'), lambda x:x['logs'].pop('draft'), lambda x:x['compose'].update(sha256='0'*64), lambda x:x['image'].update(tag='course')):
             y=copy.deepcopy(h); mutate(y); dump(path,y)
             with self.assertRaises((ValueError,KeyError)): m.handoff(path,self.root)

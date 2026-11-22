@@ -154,10 +154,12 @@ def main() -> int:
         handoff["evidence_artifact"] = {"id": int(args.artifact_id)}
     if args.e2e_result:
         e2e_path = safe_file(args.e2e_result, root)
+        e2e_ref = file_ref(e2e_path, root)
         e2e = read_json(e2e_path)
         handoff["e2e"] = {
-            "result_path": e2e_path.relative_to(root).as_posix(),
-            "result_sha256": sha256(e2e_path),
+            "result_path": e2e_ref["path"],
+            "result_bytes": e2e_ref["bytes"],
+            "result_sha256": e2e_ref["sha256"],
             "job_id": e2e.get("job_id"),
             "trace_id": e2e.get("trace_id"),
             "status": e2e.get("status"),

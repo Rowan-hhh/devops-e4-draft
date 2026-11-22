@@ -447,6 +447,51 @@ def handoff(path, root=ROOT):
         sockets = [x for x in s.get('volumes', []) if x.get('source') == '/var/run/docker.sock' or x.get('target') == '/var/run/docker.sock']
         require((len(sockets) == 1 and sockets[0].get('source') == sockets[0].get('target') == '/var/run/docker.sock') if role == 'draft' else not sockets, 'invalid socket mount')
         package_file(h['logs'][role])
+    e2e = h.get('e2e')
+    require(isinstance(e2e, dict), 'E2E metadata required')
+    e2e_file = package_file({
+        'path': e2e.get('result_path'),
+        'bytes': e2e.get('result_bytes'),
+        'sha256': e2e.get('result_sha256'),
+    })
+    e2e_result = read(e2e_file)
+    expected_stages = [
+        'draft',
+        'full-check',
+        'incremental-check',
+        'repair',
+        'recheck',
+    ]
+    require(
+        isinstance(e2e.get('job_id'), str) and e2e['job_id']
+        and isinstance(e2e.get('trace_id'), str) and e2e['trace_id'],
+        'E2E job or trace missing',
+    )
+    require(
+        e2e.get('status') == 'SUCCEEDED'
+        and e2e.get('exit_code') == 0,
+        'E2E outcome invalid',
+    )
+    require(e2e.get('stages') == expected_stages, 'E2E stages invalid')
+    require(
+        e2e_result.get('job_id') == e2e['job_id']
+        and e2e_result.get('trace_id') == e2e['trace_id'],
+        'E2E identity mismatch',
+    )
+    require(
+        e2e_result.get('status') == e2e['status'],
+        'E2E status mismatch',
+    )
+    require(
+        [x.get('name') for x in e2e_result.get('stages', [])]
+        == expected_stages,
+        'E2E result stages invalid',
+    )
+    require(
+        e2e_result.get('base_commit') == e2e.get('base_commit')
+        and e2e_result.get('target_commit') == e2e.get('target_commit'),
+        'E2E commits mismatch',
+    )
     return {'status': 'HANDOFF_VERIFIED', 'scope': 'B2 交接包内部一致性核验', 'candidate_commit': h['candidate_commit']}
 
 
