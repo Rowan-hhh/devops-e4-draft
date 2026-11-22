@@ -24,7 +24,16 @@ def file_ref(path: Path, root: Path) -> dict:
 
 
 def read_json(path: Path):
-    return json.loads(path.read_text(encoding="utf-8"))
+    text = path.read_text(encoding="utf-8")
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        # `docker compose ps --format json` emits one JSON object per line
+        # on some Compose versions and a JSON array on others.
+        rows = [line for line in text.splitlines() if line.strip()]
+        if not rows:
+            raise
+        return [json.loads(line) for line in rows]
 
 
 def main() -> int:
