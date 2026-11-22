@@ -17,6 +17,7 @@
   "image": {
     "tag": "course-e11e12:241880610",
     "image_id": "sha256:5237c2af3c87ae7076f1801df1cf720bfecd7cdb29cf0041039f515cc4970e97",
+    "repo_digest": null,
     "repo_digests": [],
     "repo_digest_absent_reason": "CI builds the teaching image locally and does not push it to a registry; the immutable image ID and inspect evidence are authoritative.",
     "inspect": {
@@ -28,6 +29,12 @@
     "repo_digest_present": false
   },
   "health": {
+    "buildchecker": "healthy",
+    "draft": "healthy",
+    "echecker": "healthy",
+    "mdfixer": "healthy"
+  },
+  "health_details": {
     "buildchecker": {
       "name": "buildchecker",
       "state": "running",

@@ -9,12 +9,13 @@
 - `evidence/handoff.json`
 - `evidence/compose.yaml` 及 `evidence/compose-config.json`
 - `evidence/image-inspect.json`
+- `evidence/e2e-smoke-result.json`
 - `evidence/health.json`
 - `evidence/mounts-buildchecker.json`、`evidence/mounts-echecker.json`、`evidence/mounts-draft.json`、`evidence/mounts-mdfixer.json`
 - `evidence/logs/` 下四份角色日志
 
 本次刷新交付来源于 GitHub Actions 的真实 Linux/Docker post-merge 四服务作业：
-运行地址为 `https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/44999746034`，四服务作业地址为 `https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/44999746034/job/137138443436`，证据 Artifact ID 为 `14745551416`。四服务健康后执行的固定样例 smoke run 五阶段均成功，`job_id=job-814f77a335124944a787f1e925f6afa7`，`trace_id=trace-5940632b2b17409d9477bbdaa306a0cc`，结果见 `e2e-smoke-result.json`，状态为 `SUCCEEDED`，退出码为 `0`。
+运行地址为 `https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/44999746034`，四服务作业地址为 `https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/44999746034/job/137138443436`，证据 Artifact ID 为 `14745551416`。四服务健康后执行的固定样例 smoke run 五阶段均成功，`job_id=job-814f77a335124944a787f1e925f6afa7`，`trace_id=trace-5940632b2b17409d9477bbdaa306a0cc`，结果原始字节已纳入 `evidence/e2e-smoke-result.json`，`handoff.json` 中的 `e2e.result_path` 相对于 evidence 根目录，状态为 `SUCCEEDED`，退出码为 `0`。
 
 镜像使用显式 tag `course-e11e12:241880610`，image ID 为 `sha256:5237c2af3c87ae7076f1801df1cf720bfecd7cdb29cf0041039f515cc4970e97`。本次 CI 未向镜像仓库推送，因此没有 RepoDigest；原因是 CI 仅在本地构建教学镜像，未执行 registry push，故以不可变 image ID 和 `evidence/image-inspect.json` 为权威身份依据。
 
