@@ -65,7 +65,8 @@ jobs:
           for role in buildchecker echecker draft mdfixer; do
             docker compose -f labs/e13e14/compose.yaml -p e14-ci logs --no-color "$role" > "work/e14-b2/logs/$role.log"
           done
-          python3 scripts/e14_b2_handoff.py --root work/e14-b2 --candidate-commit 77da560719fe7835c227a289b6bc99295fa5abcc --image-tag course-e11e12:241880610
+          cp work/ci-e14/result.json work/e14-b2/e2e-smoke-result.json
+          python3 scripts/e14_b2_handoff.py --root work/e14-b2 --candidate-commit ff92071368bbd40083e3014dd09adc40a5c24dbb --image-tag course-e11e12:241880610 --source-commit "$GITHUB_SHA" --workflow-run-url "https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" --e2e-result work/e14-b2/e2e-smoke-result.json
           python3 labs/e13e14/scan_runtime_logs.py work/ci-e14-services.log
       - name: Stop only this Compose project
         if: always()

@@ -36,11 +36,35 @@ def read_json(path: Path):
         return [json.loads(line) for line in rows]
 
 
+def safe_file(path: Path, root: Path) -> Path:
+    """Return an evidence file only when it is inside root and not a symlink."""
+    root = root.resolve()
+    candidate = path if path.is_absolute() else Path.cwd() / path
+    resolved = candidate.resolve(strict=False)
+    try:
+        resolved.relative_to(root)
+    except ValueError as exc:
+        raise SystemExit(f"evidence file outside root: {path}") from exc
+    current = candidate
+    while current != root:
+        if current.is_symlink():
+            raise SystemExit(f"evidence symlink forbidden: {path}")
+        current = current.parent
+    if not resolved.is_file():
+        raise SystemExit(f"evidence file missing: {path}")
+    return resolved
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--candidate-commit", required=True)
     parser.add_argument("--image-tag", required=True)
+    parser.add_argument("--source-commit")
+    parser.add_argument("--workflow-run-url")
+    parser.add_argument("--four-services-job-url")
+    parser.add_argument("--e2e-result", type=Path)
+    parser.add_argument("--artifact-id")
     args = parser.parse_args()
     root = args.root.resolve()
     image = read_json(root / "image-inspect.json")
@@ -54,19 +78,21 @@ def main() -> int:
     if isinstance(health, dict):
         health = [health]
     health_by_service = {}
+    health_details = {}
     for item in health:
         name = item.get("Service") or item.get("Name", "")
         for service in SERVICES:
             if service in name:
-                health_by_service[service] = {
+                health_details[service] = {
                     "name": name,
                     "state": item.get("State"),
                     "health": item.get("Health"),
                 }
+                health_by_service[service] = item.get("Health")
     if set(health_by_service) != set(SERVICES):
         raise SystemExit(f"missing health records: {sorted(set(SERVICES) - set(health_by_service))}")
-    if any(item.get("health") not in ("healthy", "healthy (healthy)")
-           for item in health_by_service.values()):
+    if any(value not in ("healthy", "healthy (healthy)")
+           for value in health_by_service.values()):
         raise SystemExit(f"not all services healthy: {health_by_service}")
 
     mounts = {}
@@ -92,6 +118,7 @@ def main() -> int:
         "image": {
             "tag": args.image_tag,
             "image_id": image_id,
+            "repo_digest": digests[0] if digests else None,
             "repo_digests": digests,
             "repo_digest_absent_reason": (
                 "CI builds the teaching image locally and does not push it to a registry; "
@@ -103,6 +130,7 @@ def main() -> int:
             "repo_digest_present": bool(digests),
         },
         "health": health_by_service,
+        "health_details": health_details,
         "ports": {
             "buildchecker": "127.0.0.1:18081->8080/tcp",
             "echecker": "127.0.0.1:18082->8080/tcp",
@@ -116,6 +144,30 @@ def main() -> int:
         "logs": logs,
         "source": "GitHub Actions four-services job; image and Compose evidence captured after health checks",
     }
+    if args.source_commit:
+        handoff["image_source_commit"] = args.source_commit
+    if args.workflow_run_url:
+        handoff["workflow_run"] = {"url": args.workflow_run_url}
+    if args.four_services_job_url:
+        handoff["four_services_job"] = {"url": args.four_services_job_url}
+    if args.artifact_id:
+        handoff["evidence_artifact"] = {"id": int(args.artifact_id)}
+    if args.e2e_result:
+        e2e_path = safe_file(args.e2e_result, root)
+        e2e_ref = file_ref(e2e_path, root)
+        e2e = read_json(e2e_path)
+        handoff["e2e"] = {
+            "result_path": e2e_ref["path"],
+            "result_bytes": e2e_ref["bytes"],
+            "result_sha256": e2e_ref["sha256"],
+            "job_id": e2e.get("job_id"),
+            "trace_id": e2e.get("trace_id"),
+            "status": e2e.get("status"),
+            "exit_code": 0 if e2e.get("status") == "SUCCEEDED" else 1,
+            "stages": [stage.get("name") for stage in e2e.get("stages", [])],
+            "base_commit": e2e.get("base_commit"),
+            "target_commit": e2e.get("target_commit"),
+        }
     (root / "handoff.json").write_text(json.dumps(handoff, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(handoff, ensure_ascii=False, indent=2))
     return 0
