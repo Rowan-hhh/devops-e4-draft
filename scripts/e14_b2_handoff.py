@@ -41,6 +41,11 @@ def main() -> int:
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--candidate-commit", required=True)
     parser.add_argument("--image-tag", required=True)
+    parser.add_argument("--source-commit")
+    parser.add_argument("--workflow-run-url")
+    parser.add_argument("--four-services-job-url")
+    parser.add_argument("--e2e-result", type=Path)
+    parser.add_argument("--artifact-id")
     args = parser.parse_args()
     root = args.root.resolve()
     image = read_json(root / "image-inspect.json")
@@ -116,6 +121,27 @@ def main() -> int:
         "logs": logs,
         "source": "GitHub Actions four-services job; image and Compose evidence captured after health checks",
     }
+    if args.source_commit:
+        handoff["image_source_commit"] = args.source_commit
+    if args.workflow_run_url:
+        handoff["workflow_run"] = {"url": args.workflow_run_url}
+    if args.four_services_job_url:
+        handoff["four_services_job"] = {"url": args.four_services_job_url}
+    if args.artifact_id:
+        handoff["evidence_artifact"] = {"id": int(args.artifact_id)}
+    if args.e2e_result:
+        e2e = read_json(args.e2e_result)
+        handoff["e2e"] = {
+            "result_path": args.e2e_result.name,
+            "result_sha256": sha256(args.e2e_result),
+            "job_id": e2e.get("job_id"),
+            "trace_id": e2e.get("trace_id"),
+            "status": e2e.get("status"),
+            "exit_code": 0 if e2e.get("status") == "SUCCEEDED" else 1,
+            "stages": [stage.get("name") for stage in e2e.get("stages", [])],
+            "base_commit": e2e.get("base_commit"),
+            "target_commit": e2e.get("target_commit"),
+        }
     (root / "handoff.json").write_text(json.dumps(handoff, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(handoff, ensure_ascii=False, indent=2))
     return 0

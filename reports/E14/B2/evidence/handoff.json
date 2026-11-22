@@ -3,7 +3,7 @@
   "stage": "E14",
   "role": "B2",
   "status": "SUCCEEDED",
-  "candidate_commit": "77da560719fe7835c227a289b6bc99295fa5abcc",
+  "candidate_commit": "ff92071368bbd40083e3014dd09adc40a5c24dbb",
   "compose": {
     "path": "compose.yaml",
     "bytes": 2323,
@@ -16,13 +16,13 @@
   },
   "image": {
     "tag": "course-e11e12:241880610",
-    "image_id": "sha256:c2aa501672f77d3827a956071c4321fb698a5ec5bf8d43b6647e16a85021104e",
+    "image_id": "sha256:5237c2af3c87ae7076f1801df1cf720bfecd7cdb29cf0041039f515cc4970e97",
     "repo_digests": [],
     "repo_digest_absent_reason": "CI builds the teaching image locally and does not push it to a registry; the immutable image ID and inspect evidence are authoritative.",
     "inspect": {
       "path": "image-inspect.json",
       "bytes": 4202,
-      "sha256": "fe7ceab6d4f87cb05ab6c866c10b09d06b010355d4e99fb5fcf89e1e267ddfea"
+      "sha256": "36b6ef021431586ef4f6f9a3dceecaae11389d4cc9fa896b60613971c3bb2eec"
     },
     "tag_present": true,
     "repo_digest_present": false
@@ -64,24 +64,51 @@
   "logs": {
     "buildchecker": {
       "path": "logs/buildchecker.log",
-      "bytes": 1077,
-      "sha256": "90e5aeedb907842aa1aa204978a6742ec193a4f74c853cce16c6dee2272238ec"
+      "bytes": 1161,
+      "sha256": "fbd64fced189166bb002daf5bb1558741c29922ff021d166c32024f4c68c21f4"
     },
     "echecker": {
       "path": "logs/echecker.log",
-      "bytes": 502,
-      "sha256": "90e9f73bdaf34a48a46e6bc8d2541b3e722dbd9012223cbaf837b0f60cf15c67"
+      "bytes": 582,
+      "sha256": "dd22cbdc2019aeaf403b7f898a5669dd6cf4f0cbacd2ffe6709f6740f5c6d034"
     },
     "draft": {
       "path": "logs/draft.log",
-      "bytes": 2312,
-      "sha256": "12a3f251ae79c1c3a2a26cc8dd165a60256693b24aba383b5d9f4718ef390299"
+      "bytes": 4293,
+      "sha256": "0810a2f1b68ea666a695249e9d8438f79be1cefec8defad67414e87bf16d2782"
     },
     "mdfixer": {
       "path": "logs/mdfixer.log",
-      "bytes": 498,
-      "sha256": "dc60d3b3ce63e7b41d58dced195c932fb3ee31a10b87566ade2913f26b5b2ebb"
+      "bytes": 577,
+      "sha256": "e96439cb409fb3f625b85eef5e72fcc8580f5be564229ed9e9fd1f2a1fc95be3"
     }
   },
-  "source": "GitHub Actions four-services job; image and Compose evidence captured after health checks"
+  "source": "GitHub Actions four-services job; image and Compose evidence captured after health checks",
+  "image_source_commit": "ff92071368bbd40083e3014dd09adc40a5c24dbb",
+  "workflow_run": {
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/44999746034"
+  },
+  "four_services_job": {
+    "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/44999746034/job/137138443436"
+  },
+  "evidence_artifact": {
+    "id": 14745551416
+  },
+  "e2e": {
+    "result_path": "e2e-smoke-result.json",
+    "result_sha256": "7b65f3472b31d787b75600d77996145351241ddbf7261150fb2297d6bc0edaaa",
+    "job_id": "job-814f77a335124944a787f1e925f6afa7",
+    "trace_id": "trace-5940632b2b17409d9477bbdaa306a0cc",
+    "status": "SUCCEEDED",
+    "exit_code": 0,
+    "stages": [
+      "draft",
+      "full-check",
+      "incremental-check",
+      "repair",
+      "recheck"
+    ],
+    "base_commit": "e310c26b87cba165694004f02b98382896133f97",
+    "target_commit": "c8dfaf244a3612ac318a15c96283272888fb95ba"
+  }
 }
