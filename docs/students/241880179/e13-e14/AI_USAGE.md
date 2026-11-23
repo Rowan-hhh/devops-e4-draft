@@ -1,4 +1,4 @@
-# E13 B1 AI 使用记录
+# E13–E14 AI 使用记录
 
 姓名/学号：史美一 / 241880179
 
@@ -17,3 +17,9 @@ baseline 首次因 Debian 官方源下载超时而失败，报告保留该失败
 ## 人工复核结果
 
 本人已核对 `reports/E13/B1/README.md`、`server-run/241880179-handoff.json`、H1 Patch/validation/recheck、C2 两项拒绝结果和本记录，确认文字与原始证据一致。
+
+## E14 B3 补充记录
+
+AI 协助核对 E14 手册与 B1/B2 前置交付，从最新 `main` 建立独立分支，在课程服务器恢复 A/B 项目 bundle，执行四服务五阶段任务，并整理证据和报告初稿。A/B 两轮的 job/trace、阶段 JSON、Patch、validation、recheck、产物哈希与日志扫描都来自服务器实际运行，不是生成的模拟结果。
+
+本轮未把服务器密码、个人令牌或未脱敏环境文件写入仓库。B 项目两次前置路径错误按失败保留，没有改写为成功。实验结论以 `reports/E14/B3/server-run/` 中的原始证据为准。

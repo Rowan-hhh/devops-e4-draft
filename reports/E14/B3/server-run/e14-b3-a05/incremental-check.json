@@ -1,0 +1,19 @@
+{
+  "name": "incremental-check",
+  "commit": "90646db8b8ad932da1a959d152942f987aaffff2",
+  "job_id": "job-383755ea09044810bf772ba007c61188",
+  "trace_id": "trace-85eefd1e95674d5da98b275ba270977f",
+  "status": "SUCCEEDED",
+  "data": {
+    "status": "SUCCEEDED",
+    "report": "/course/work/e14-b3-a05/incremental/incremental-check.json",
+    "sha256": "013bead6eb20d83808e9e1df1cb84605051001ed749dd5697abb5a15792ba778",
+    "findings": [
+      {
+        "type": "MISSING",
+        "target": "helper.o",
+        "dependency": "clamp.h"
+      }
+    ]
+  }
+}
