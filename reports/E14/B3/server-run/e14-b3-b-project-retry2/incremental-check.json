@@ -1,0 +1,19 @@
+{
+  "name": "incremental-check",
+  "commit": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+  "job_id": "job-579414c3149341b18f5c3cd3137f2cb6",
+  "trace_id": "trace-bc3f60d6ec8f4f10b4f0263ac81ddd11",
+  "status": "SUCCEEDED",
+  "data": {
+    "status": "SUCCEEDED",
+    "report": "/course/work/e14-b3-b-project-retry2/incremental/incremental-check.json",
+    "sha256": "5d232b696a169021c803661e38e981c9d04ba7f3c5faf1eb599df6d8c1271877",
+    "findings": [
+      {
+        "type": "MISSING",
+        "target": "helper.o",
+        "dependency": "output_format.h"
+      }
+    ]
+  }
+}

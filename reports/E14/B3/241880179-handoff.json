@@ -1,0 +1,55 @@
+{
+  "schema_version": "e14-b3-handoff-1",
+  "stage": "E14",
+  "role": "B3",
+  "student_id": "241880179",
+  "status": "SUCCEEDED",
+  "branch": "student/241880179/e14-b3",
+  "candidate_commit": "ff92071368bbd40083e3014dd09adc40a5c24dbb",
+  "tool_commit": "b1f665922b189db303a63be53e21cf614682dfee",
+  "image": {"tag": "course-e11e12:241880179", "id": "sha256:b7b3426a362ad9fbbb06d22aa4c82ba19f2b6f1b36bd401ff2e70f90db02f863"},
+  "compose": {"project": "e14-241880179-b3", "all_services_healthy": true, "remaining_containers_after_down": 0},
+  "runs": {
+    "a05": {
+      "group": "A",
+      "base": "6b9deff53f8fcf6183204850ac6a9dddb22f1189",
+      "target": "90646db8b8ad932da1a959d152942f987aaffff2",
+      "job_id": "job-383755ea09044810bf772ba007c61188",
+      "trace_id": "trace-85eefd1e95674d5da98b275ba270977f",
+      "status": "SUCCEEDED",
+      "stages": ["draft", "full-check", "incremental-check", "repair", "recheck"],
+      "artifact_count": 181,
+      "patch_sha256": "0030f288c5f8b50afed0df84334185a2d1276b4bbbdc37f39314ee5c04bef9db",
+      "accepted": true,
+      "remaining_missing": 0,
+      "result_path": "server-run/e14-b3-a05/result.json",
+      "result_sha256": "0513e77e302cfcf2415c28133c5999133228671c3a419e1724ad89d78348440d"
+    },
+    "b_project": {
+      "group": "B",
+      "base": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+      "target": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+      "job_id": "job-579414c3149341b18f5c3cd3137f2cb6",
+      "trace_id": "trace-bc3f60d6ec8f4f10b4f0263ac811ddd11",
+      "status": "SUCCEEDED",
+      "stages": ["draft", "full-check", "incremental-check", "repair", "recheck"],
+      "artifact_count": 180,
+      "patch_sha256": "a7a3be54d5ba81594acd628725f17aca2b4ce0d1a5aed556d454bb321eb5142a",
+      "accepted": true,
+      "remaining_missing": 0,
+      "result_path": "server-run/e14-b3-b-project-retry2/result.json",
+      "result_sha256": "11ff0b4d1882b3ad25b759c60de01767340ed8a4021c0978c12b197994fa1ec3"
+    }
+  },
+  "verification": {
+    "e11e12_tests": 54,
+    "e11e12_tests_passed": true,
+    "stage_identity_ok": true,
+    "artifact_hashes_ok": true,
+    "source_worktrees_clean_after_run": true,
+    "runtime_log_scan": {"text_files": 343, "hits": 0, "errors": 0, "exit_code": 0}
+  },
+  "server_workspace": "/root/devops-students/241880179/e14-b3",
+  "server_archive_sha256": "cfd5888b364638e8a52b9f4761733fd4a35fa5cfc8676c9d3933f76c70c9c0c3",
+  "next_role": "E14-B4"
+}

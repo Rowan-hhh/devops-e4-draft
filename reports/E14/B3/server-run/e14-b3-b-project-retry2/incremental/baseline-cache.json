@@ -1,0 +1,57 @@
+{
+  "schema_version": "e8e10-1",
+  "profile": "GCC_LOCAL_HEADERS_EXPLICIT_MAKE",
+  "commit": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+  "key": {
+    "directives": {
+      "config.h": [
+        "#ifndef E12_CONFIG_H",
+        "#define E12_CONFIG_H",
+        "#define VALUE 1",
+        "#endif"
+      ],
+      "helper.c": [
+        "#include <stdio.h>"
+      ],
+      "main.c": [
+        "#include \"config.h\""
+      ]
+    },
+    "recipes": [
+      "\tgcc main.o helper.o -o app",
+      "\tgcc $(CFLAGS) -c main.c -o main.o",
+      "\tgcc $(CFLAGS) -c helper.c -o helper.o",
+      "\t./app",
+      "\trm -f app main.o helper.o hello"
+    ],
+    "flags": "-O0",
+    "compiler": "gcc (Debian 14.2.0-19) 14.2.0"
+  },
+  "actual": {
+    "main.o": [
+      "config.h",
+      "main.c"
+    ],
+    "helper.o": [
+      "helper.c"
+    ]
+  },
+  "declared": {
+    "main.o": [
+      "config.h",
+      "main.c"
+    ],
+    "helper.o": [
+      "helper.c"
+    ]
+  },
+  "findings": [],
+  "added": [],
+  "resolved": [],
+  "refreshed": [
+    "main.o",
+    "helper.o"
+  ],
+  "reused": [],
+  "elapsed_s": 0.019617075100541115
+}

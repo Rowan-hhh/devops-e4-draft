@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/root/devops-students/241880179/e14-b3/labs/e13e14/orchestrate.py", line 162, in <module>
+    sys.exit(main())
+  File "/root/devops-students/241880179/e14-b3/labs/e13e14/orchestrate.py", line 154, in main
+    result = execute(json.loads(args.request.read_text(encoding='utf-8')), args.out.resolve())
+  File "/root/devops-students/241880179/e14-b3/labs/e13e14/orchestrate.py", line 83, in execute
+    repo = host_path(request['repo'])
+  File "/root/devops-students/241880179/e14-b3/labs/e13e14/orchestrate.py", line 32, in host_path
+    raise ValueError('Expected /course path')
+ValueError: Expected /course path
