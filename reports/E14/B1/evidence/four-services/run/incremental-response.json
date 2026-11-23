@@ -1,0 +1,22 @@
+{
+  "status": "SUCCEEDED",
+  "report": "/course/work/e14-B1-four-service-formal-20261123T050827Z/run/incremental/incremental-check.json",
+  "sha256": "4495c39f50170754ba65291cc823f3c3c120c70b78b6634e0ea9bb69be5500c9",
+  "findings": [
+    {
+      "type": "MISSING",
+      "target": "main.o",
+      "dependency": "config.h"
+    },
+    {
+      "type": "MISSING",
+      "target": "main.o",
+      "dependency": "extra.h"
+    },
+    {
+      "type": "REDUNDANT",
+      "target": "main.o",
+      "dependency": "unused.h"
+    }
+  ]
+}

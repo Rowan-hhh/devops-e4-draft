@@ -1,0 +1,15 @@
+{
+  "status": "FAILED",
+  "run_exception": {
+    "type": "RuntimeError",
+    "message": "single-container command exited 1",
+    "traceback": "Traceback (most recent call last):\n  File \"/root/devops-students/241880360/draft/labs/e13e14/e14_b1.py\", line 530, in single_run\n    raise RuntimeError('single-container command exited ' + str(result.returncode))\nRuntimeError: single-container command exited 1\n"
+  },
+  "sealing_exception": null,
+  "source_after_exception": null,
+  "finish_manifest_exception": null,
+  "failure_record_exception": null,
+  "run_return_code": 1,
+  "primary_failure": "run_exception",
+  "primary_failure_kind": "run"
+}

@@ -1,0 +1,50 @@
+[
+    {
+        "Id": "sha256:7ea2358d7fb7fecf3b006cf51eeb85b9dab01a72dce1e7be58bd34a40c6f4469",
+        "RepoTags": [
+            "e14-b1-fixed-prewarm:20261123T031355Z"
+        ],
+        "RepoDigests": [
+            "e14-b1-fixed-prewarm@sha256:7ea2358d7fb7fecf3b006cf51eeb85b9dab01a72dce1e7be58bd34a40c6f4469"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-11-23T12:56:00.864310067+08:00",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.13.16",
+                "PYTHON_SHA256=f4b1bfb3c79b5bb11b8d228a12504163b4c0dab4d679828d8f5f26b6cb6ab35d"
+            ],
+            "Cmd": [
+                "./app"
+            ],
+            "WorkingDir": "/work",
+            "ArgsEscaped": true
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 155553751,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:15f1c8eb1ab18eae260c7fb6296434cbe1ff0e1e30fd814ae92a80dd54005e62",
+                "sha256:285510654d1d6a26507ed6576cae8fa995ba16469050787032499e9a34cbe9f5",
+                "sha256:acbf34fa608c522642659b109edfd70959b7c26593ea51141f3d339cc1875cfd",
+                "sha256:d175833b7147479e4e08f4f5d9dd2055b5ee746dc2f73520462468538d168bf6",
+                "sha256:9774debd3be2274b5e178884aef9689338956e2f97bbb44bbf1adcb179ea8804",
+                "sha256:b828a4913e4a7496ac27aef4b9b02bcaa09e51bfbf600b6e6403101e07678817",
+                "sha256:c34fc9fecbdbbb585c629840cc9f1f875db95b6542193b6826e27092a36044c4",
+                "sha256:bc13a5e0ef8db6a963e8e5b91c7a2c47d376c9f4ec49417aaa97662b82f3f4db"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-11-23T04:56:10.557264354Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:7ea2358d7fb7fecf3b006cf51eeb85b9dab01a72dce1e7be58bd34a40c6f4469",
+            "size": 856
+        }
+    }
+]

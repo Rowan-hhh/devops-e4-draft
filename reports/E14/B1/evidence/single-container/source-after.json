@@ -1,0 +1,83 @@
+{
+  "schema_version": "e14-b1-source-1",
+  "captured_at_utc": "2026-11-23T05:01:03.898193+00:00",
+  "canonical_repo_path": "/root/devops-students/241880360/draft/data/integration-sample/repo",
+  "head": "eac8fcd24bc182be27f07ee50544fccc9a1e6826",
+  "detached": false,
+  "branch": "main",
+  "status_base64": "",
+  "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "tracked_files": [
+    {
+      "path": ".gitignore",
+      "git_mode": "100644",
+      "git_blob_oid": "16ba0873c86146bfa3969e8b62ae3dc8da02145f",
+      "type": "file",
+      "bytes": 8,
+      "sha256": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe"
+    },
+    {
+      "path": "Dockerfile.broken",
+      "git_mode": "100644",
+      "git_blob_oid": "d79cc9a24dfbd0aaf5d6e04d280a8ff8394aa034",
+      "type": "file",
+      "bytes": 122,
+      "sha256": "493f94f95181dd9f4cfb8f47beeed4bfd86e3395ab354742d1d201c409a3e745"
+    },
+    {
+      "path": "Makefile",
+      "git_mode": "100644",
+      "git_blob_oid": "5ac5eeede98d548fb772bf8c924928f0f71910c4",
+      "type": "file",
+      "bytes": 227,
+      "sha256": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2"
+    },
+    {
+      "path": "config.h",
+      "git_mode": "100644",
+      "git_blob_oid": "cb3589391d6d391165f4147b7eeef85aa7dc01d9",
+      "type": "file",
+      "bytes": 16,
+      "sha256": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696"
+    },
+    {
+      "path": "extra.h",
+      "git_mode": "100644",
+      "git_blob_oid": "07e47e206137c35446e8e57540d76014a4157bbb",
+      "type": "file",
+      "bytes": 16,
+      "sha256": "5e20ae92639ee989af5638bd0308a6a86e71bdb4345f60b962ba9db7265e4f7c"
+    },
+    {
+      "path": "helper.c",
+      "git_mode": "100644",
+      "git_blob_oid": "e5a4813c04cf759c877012fe7cf8fce70082a8d5",
+      "type": "file",
+      "bytes": 28,
+      "sha256": "90a60f959d215b0b91807c6dd2c94acf6684a9fe26629dc1591e9b2ea773d78c"
+    },
+    {
+      "path": "main.c",
+      "git_mode": "100644",
+      "git_blob_oid": "54e00fa6980be9531524b513e975f430eb709f7b",
+      "type": "file",
+      "bytes": 132,
+      "sha256": "1e2e75d84a5a28f44438792dbb33ce888a09fad6597094d998ebaf34fa784312"
+    },
+    {
+      "path": "unused.h",
+      "git_mode": "100644",
+      "git_blob_oid": "96c417989ae666f025e0717992799984823ea519",
+      "type": "file",
+      "bytes": 13,
+      "sha256": "3f7fec0991b34d614462e29b450c76638f07171936a12df337c578c2d1481b37"
+    }
+  ],
+  "request_sha256": "422f4bdd9d9e1eeded9d03584a3219185c429fee484dbdcd90e0e5bcdad77c1c",
+  "candidate_sha256": "c2f7a9f70caf44bbf4852a1c61e262203de9f28cd6fbe3aa2dec5adf6d34c6da",
+  "fixed_report_sha256": "98f33161543830077ca311ddface7f7e2b5d4bb94fc470ed595c8843ba9b305c",
+  "request_repo": "/course/data/integration-sample/repo",
+  "resolved_request_repo": "/root/devops-students/241880360/draft/data/integration-sample/repo",
+  "evidence_dir": "/root/devops-students/241880360/draft/work/e14-B1-single-recovery-20261123T050100Z",
+  "run_dir": "/root/devops-students/241880360/draft/work/e14-B1-single-recovery-20261123T050100Z/run"
+}
