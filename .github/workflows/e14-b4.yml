@@ -1,0 +1,49 @@
+name: E14 B4 release gate
+
+on:
+  push:
+    branches: [e14-zyh-b4]
+    paths:
+      - 'labs/e13e14/**'
+      - 'scripts/verify_e14_b1_archive.py'
+      - 'reports/E14/B1/**'
+      - 'reports/E14/B2/**'
+      - 'reports/E14/B4/**'
+      - 'docs/students/241880300/e14-b4/**'
+      - '.github/workflows/e14-b4.yml'
+  pull_request:
+    paths:
+      - 'labs/e13e14/**'
+      - 'scripts/verify_e14_b1_archive.py'
+      - 'reports/E14/B1/**'
+      - 'reports/E14/B2/**'
+      - 'reports/E14/B4/**'
+      - 'docs/students/241880300/e14-b4/**'
+      - '.github/workflows/e14-b4.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  b4-release-gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and unit contracts
+        run: |
+          python -m py_compile labs/e13e14/e14_b4.py labs/e13e14/tests/test_e14_b4.py
+          python -m unittest discover -s labs/e13e14/tests -p 'test_*.py' -v
+      - name: Verify B1 archive and B2 handoff
+        run: |
+          python scripts/verify_e14_b1_archive.py
+          python labs/e13e14/e14_b1.py verify-service-handoff --handoff reports/E14/B2/evidence/handoff.json
+      - name: Verify B4 evidence and release policy
+        run: python labs/e13e14/e14_b4.py verify --root .
+      - name: Repository secret scan
+        run: python scripts/secret_scan.py .
