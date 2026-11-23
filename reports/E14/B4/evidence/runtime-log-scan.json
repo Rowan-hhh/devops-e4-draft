@@ -1,0 +1,16 @@
+{
+  "schema_version": "e14-b4-runtime-scan-1",
+  "status": "PASS",
+  "exit_code": 0,
+  "text_files": 460,
+  "hits": 0,
+  "errors": 0,
+  "paths": [
+    "reports/E14/B1/evidence",
+    "reports/E14/B2/evidence",
+    "reports/E14/B4/evidence/fault-recovery.json",
+    "reports/E14/B4/evidence/failed-run.json",
+    "reports/E14/B4/evidence/recovered-run.json",
+    "reports/E14/B4/evidence/recovery-attempt-network.json"
+  ]
+}

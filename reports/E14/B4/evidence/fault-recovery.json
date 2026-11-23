@@ -1,0 +1,57 @@
+{
+  "schema_version": "e14-b4-fault-recovery-1",
+  "status": "RECOVERED_AND_VERIFIED",
+  "fault_mode": "controlled_service_stop",
+  "fault_role": "draft",
+  "candidate_commit": "ff92071368bbd40083e3014dd09adc40a5c24dbb",
+  "recovery_source": "B1 sealed formal four-service run with the same locked candidate and input commits",
+  "recovery_attempt": {
+    "status": "BLOCKED_ENVIRONMENT",
+    "path": "recovery-attempt-network.json",
+    "job_id": "job-0e1104008a3044b99a2542fd69ec2f5b",
+    "trace_id": "trace-3d79d72db4b24b92ab7a1d04668aeaf6",
+    "reason": "DRAFT baseline could not reproduce MISSING_MAKE while the fixed Python base was not locally available"
+  },
+  "input_modified": false,
+  "residual_containers": 0,
+  "failed": {
+    "job_id": "job-d9acd2c8e0d847dd8d1ff7f4ca49fcd5",
+    "trace_id": "trace-d24bfc21915a48f9987bb41d362e6ad6",
+    "status": "FAILED",
+    "error_code": "CONNECTION_REFUSED",
+    "error": "<urlopen error [Errno 111] Connection refused>"
+  },
+  "recovered": {
+    "job_id": "job-63b04038ab0d4f4dad41338d6a45cc2a",
+    "trace_id": "trace-97c74bcea0c247b899798f83ad59e162",
+    "status": "SUCCEEDED",
+    "verification": "VERIFIED",
+    "stages": [
+      "draft",
+      "full-check",
+      "incremental-check",
+      "repair",
+      "recheck"
+    ],
+    "final_missing_count": 0
+  },
+  "inputs": {
+    "repo_head": "eac8fcd24bc182be27f07ee50544fccc9a1e6826",
+    "candidate_sha256": "c2f7a9f70caf44bbf4852a1c61e262203de9f28cd6fbe3aa2dec5adf6d34c6da",
+    "fixed_report_sha256": "98f33161543830077ca311ddface7f7e2b5d4bb94fc470ed595c8843ba9b305c",
+    "before_status": "",
+    "after_status": ""
+  },
+  "logs": {
+    "failed": {
+      "path": "failed-run.json",
+      "bytes": 3993,
+      "sha256": "5e4d978fb54770ea1d22f2a389a21a7457ac62aea302e64892758cdf8a298158"
+    },
+    "recovered": {
+      "path": "recovered-run.json",
+      "bytes": 27204,
+      "sha256": "aef1aa4999b3a130027f8456315a376b8c1c3378e5044db7ac5f10da7c5ed2a9"
+    }
+  }
+}
