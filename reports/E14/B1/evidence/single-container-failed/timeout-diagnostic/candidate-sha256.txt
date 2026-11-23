@@ -1,0 +1,2 @@
+c2f7a9f70caf44bbf4852a1c61e262203de9f28cd6fbe3aa2dec5adf6d34c6da  data/integration-sample/candidate.Dockerfile
+c2f7a9f70caf44bbf4852a1c61e262203de9f28cd6fbe3aa2dec5adf6d34c6da  work/e14-B1-single-formal-20261123T025045Z/run/draft-build/iter-02/Dockerfile

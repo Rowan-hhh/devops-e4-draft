@@ -1,0 +1,23 @@
+{
+  "failed": {
+    "job_id": "job-2ba869b10c424fa2a37fa38d949cc60f",
+    "trace_id": "trace-d24056bcaf434aeeba5676ec21c81072",
+    "status": "FAILED",
+    "error": {
+      "code": "DRAFT_FAILED",
+      "message": "Docker client command exceeded 600s"
+    }
+  },
+  "recovered": {
+    "job_id": "job-c2ab330095604b6d952029bf5814d393",
+    "trace_id": "trace-0fb577d273bd4c1e99c9955e0f9ce416",
+    "status": "SUCCEEDED",
+    "stages": [
+      "draft",
+      "full-check",
+      "incremental-check",
+      "repair",
+      "recheck"
+    ]
+  }
+}

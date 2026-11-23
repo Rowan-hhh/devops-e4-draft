@@ -1,0 +1,29 @@
+{
+  "name": "incremental-check",
+  "commit": "eac8fcd24bc182be27f07ee50544fccc9a1e6826",
+  "job_id": "job-63b04038ab0d4f4dad41338d6a45cc2a",
+  "trace_id": "trace-97c74bcea0c247b899798f83ad59e162",
+  "status": "SUCCEEDED",
+  "data": {
+    "status": "SUCCEEDED",
+    "report": "/course/work/e14-B1-four-service-formal-20261123T050827Z/run/incremental/incremental-check.json",
+    "sha256": "4495c39f50170754ba65291cc823f3c3c120c70b78b6634e0ea9bb69be5500c9",
+    "findings": [
+      {
+        "type": "MISSING",
+        "target": "main.o",
+        "dependency": "config.h"
+      },
+      {
+        "type": "MISSING",
+        "target": "main.o",
+        "dependency": "extra.h"
+      },
+      {
+        "type": "REDUNDANT",
+        "target": "main.o",
+        "dependency": "unused.h"
+      }
+    ]
+  }
+}

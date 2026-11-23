@@ -1,58 +1,95 @@
-name: E14 B1 preparation contracts
+name: E14 B1 formal evidence contracts
+
 'on':
   push:
-    branches: [e14-yrh-b1]
+    branches:
+      - main
+      - e14-yrh-b1-formal-evidence
+    paths:
+      - 'run_e11e12.py'
+      - 'labs/e13e14/**'
+      - 'labs/e11e12/**'
+      - 'labs/e8e10/**'
+      - 'scripts/verify_e14_b1_archive.py'
+      - 'reports/E13/B4/**'
+      - 'reports/E14/B1/**'
+      - 'reports/E14/B2/**'
+      - '.github/workflows/e14-b1.yml'
   pull_request:
     paths:
       - 'run_e11e12.py'
       - 'labs/e13e14/**'
       - 'labs/e11e12/**'
       - 'labs/e8e10/**'
+      - 'scripts/verify_e14_b1_archive.py'
       - 'reports/E13/B4/**'
       - 'reports/E14/B1/**'
+      - 'reports/E14/B2/**'
       - '.github/workflows/e14-b1.yml'
+
 permissions:
   contents: read
+
 jobs:
   contracts:
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
+
       - name: Compile
-        run: python3 -m py_compile labs/e13e14/e14_b1.py labs/e13e14/tests/test_e14_b1.py
-      - name: B1 contracts
-        run: python3 -m unittest discover -s labs/e13e14/tests -p 'test_e14_b1.py' -v
-      - name: Existing interface contracts
-        run: python3 -m unittest discover -s labs/e13e14/tests -p 'test_*.py' -v
-      - name: E11 E12 Python unit tests
-        run: python3 -m unittest discover -s labs/e11e12 -p 'test_*.py' -v
-      - name: Check preparation-only metadata
         run: |
+          python3 -m py_compile \
+            labs/e13e14/e14_b1.py \
+            labs/e13e14/tests/test_e14_b1.py \
+            scripts/verify_e14_b1_archive.py
+
+      - name: B1 contracts
+        run: |
+          python3 -m unittest discover \
+            -s labs/e13e14/tests \
+            -p 'test_e14_b1.py' \
+            -v
+
+      - name: Existing interface contracts
+        run: |
+          python3 -m unittest discover \
+            -s labs/e13e14/tests \
+            -p 'test_*.py' \
+            -v
+
+      - name: E11 E12 Python unit tests
+        run: |
+          python3 -m unittest discover \
+            -s labs/e11e12 \
+            -p 'test_*.py' \
+            -v
+
+      - name: Verify formal B1 archive
+        run: |
+          python3 scripts/verify_e14_b1_archive.py \
+            | tee /tmp/e14-b1-archive-verification.json
+
+      - name: Offline verify sealed single-container run
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          PYTHONDONTWRITEBYTECODE=1 \
+          python3 labs/e13e14/e14_b1.py \
+            verify-single-run \
+            --evidence reports/E14/B1/evidence/single-container \
+            > /tmp/e14-b1-single-verification.json
+
           python3 - <<'PY'
           import json
           from pathlib import Path
-          root = Path('reports/E14/B1')
-          assert not any(p.name in {'result.json', 'handoff.json', 'server-run'} for p in root.rglob('*'))
-          data = json.loads((root / 'identity.json').read_text())
-          assert data['final_candidate_commit'] is None
-          for key, state in {'fixed_sample': 'NOT_RUN', 'single_container_run': 'NOT_RUN', 'four_service_run': 'BLOCKED_ON_B2_HANDOFF', 'formal_result': 'NOT_RUN'}.items():
-              assert data[key] == {'status': state}
-          def check(value, sample=False):
-              if isinstance(value, dict):
-                  assert not {str(k).lower() for k in value} & {'job_id', 'trace_id', 'image_id', 'repo_digest', 'repodigest', 'ci_url'}
-                  if 'final_candidate_commit' in value: assert value['final_candidate_commit'] is None
-                  if sample: assert not set(value) & {'base', 'target', 'base_commit', 'target_commit'}
-                  for key, item in value.items(): check(item, sample or key == 'fixed_sample')
-              elif isinstance(value, list):
-                  for item in value: check(item, sample)
-              else: assert value not in ('PASS', 'SUCCEEDED')
-          check(data)
-          for p in root.rglob('*.json'):
-              check(json.loads(p.read_text()))
-          for p in root.rglob('*'):
-              if p.is_file() and p.suffix.lower() in {'.yaml', '.yml'}:
-                  raise AssertionError('unreviewed structured metadata: ' + str(p))
+
+          path = Path('/tmp/e14-b1-single-verification.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          assert data['status'] == 'VERIFIED', data
+          print(json.dumps(data, ensure_ascii=False, indent=2))
           PY

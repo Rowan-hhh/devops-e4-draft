@@ -1,31 +1,91 @@
-# E14 B1：LOCAL_PREPARATION_ONLY
+# E14 B1：正式固定样例验收
 
-E13 基线 `77da560719fe7835c227a289b6bc99295fa5abcc` 已锁定；E14 最终候选尚未确定。固定样例和单容器正式运行均为 NOT_RUN，四服务为 BLOCKED_ON_B2_HANDOFF。本地契约测试不是正式运行。
+## 结论
 
-单容器固定样例、四服务固定样例与 B3 的真实 A/B 项目是三类独立验收。正式四服务验收依赖 B2 部署交接；B4 负责故障恢复及最终发布。
+E14 B1 正式结果为 **PASS**。锁定候选代码提交为
+`ff92071368bbd40083e3014dd09adc40a5c24dbb`；正式工具基线为
+`588957ad6373e45fa166ed5a58c546bea018669d`。两者身份不同：
+前者是 E14 候选代码，后者包含后续交接验证、CI 可移植性和 CLI 修复。
 
-下面仅为未来命令模板，尚未执行。首先在干净、已提交的集成仓库运行 preflight；准备固定样例后检查请求，然后使用全新证据目录执行单容器运行和核验。该运行会调用 Docker，只能在获准的正式服务器执行。
+固定样例、单容器正式运行、B2 部署交接核验和四服务固定样例均已完成。
+证据归档时间：`2026-11-23T05:20:24Z`。
 
-```sh
-python3 labs/e13e14/e14_b1.py preflight
-python3 labs/e13e14/e14_b1.py inspect-request --request data/integration-sample/e12.json
-python3 labs/e13e14/e14_b1.py single-run --request data/integration-sample/e12.json --out work/e14-b1-single-01
-python3 labs/e13e14/e14_b1.py verify-single-run --evidence work/e14-b1-single-01
-python3 labs/e13e14/e14_b1.py verify-service-handoff --handoff work/b2-handoff.json
-```
+## 固定样例
 
-运行包装器对原始输入仓库采集前后快照，结论仅为运行前后边界状态一致，不证明运行期间不存在瞬时修改。隔离副本的修复由 Patch、validation 和 recheck 核验。
+- base：`4d6815a591fe87ea7b511c8b3e9f021d413e4415`
+- target：`eac8fcd24bc182be27f07ee50544fccc9a1e6826`
+- request SHA-256：`422f4bdd9d9e1eeded9d03584a3219185c429fee484dbdcd90e0e5bcdad77c1c`
+- candidate SHA-256：`c2f7a9f70caf44bbf4852a1c61e262203de9f28cd6fbe3aa2dec5adf6d34c6da`
+- fixed report SHA-256：`98f33161543830077ca311ddface7f7e2b5d4bb94fc470ed595c8843ba9b305c`
+- Git bundle 已完成 verify、恢复、祖先关系和 tree/blob 核验。
 
-正式运行时，包装器将每个声明产物复制到 `sealed-run/files/`，并在 `sealed-run/manifest.json` 记录原始声明和封存字节的哈希；`run/` 是可变工作目录。验证器读取封存副本。`execution.json` 和失败时的 `failure.json` 保留运行、封存及采集 after 的错误。
+## 单容器正式运行
 
-B2 交接包放在 `work/`，以 JSON 记录 `candidate_commit`、`compose`、`rendered_config`、`logs`、`image` 和 `health`。前两项及每份日志均为包含包内相对 `path`、`bytes`、`sha256` 的对象；渲染配置是 `docker compose config --format json` 的实际文件。镜像使用显式 tag、image_id 和 repo_digest，或填写 repo_digest_absent_reason。核验只证明交接包内部一致，不能代替实际部署证明。
+- 状态：`VERIFIED`
+- job：`job-c2ab330095604b6d952029bf5814d393`
+- trace：`trace-0fb577d273bd4c1e99c9955e0f9ce416`
+- 阶段：`draft → full-check → incremental-check → repair → recheck`
+- artifact：`156`
+- 运行前后原始输入仓库边界状态一致。
+- `sealed-inputs/` 与 `sealed-run/` 可用于离线复核。
 
-正式证据归档后必须将 workflow 的准备态门禁升级为正式证据门禁，不能永久要求 NOT_RUN。
+首次正式运行因 Debian 网络下载超过 600 秒失败，失败 job、trace、封存控制证据和诊断均保留。
+恢复时仅预热完全相同的候选 Dockerfile 与固定样例 target，没有修改请求、候选字节、
+源历史或期望输出；恢复运行使用独立 job/trace 并通过离线验证。
 
-`sealed-inputs/` 保存执行请求、候选 Dockerfile、固定报告、Git bundle 和输入 manifest。默认 `verify-single-run` 离线恢复 bundle 到系统临时目录，核对提交祖先关系、tree、模式、blob 与边界快照；可选 `--live-source` 额外核对原始仓库。bundle 证明封存的 Git 对象与历史，before/after 记录运行边界，两者均不能证明运行期间没有瞬时修改。manifest 哈希提供内部一致性，须由可信交接或外部发布记录保护其身份，不能单凭可同时更改的文件证明来源。
+## 四服务正式运行
 
-正式归档可提交 `sealed-inputs/`、`sealed-run/` 及必要包装层证据和 manifest，包括 `source.bundle`；不提交 bundle 恢复出的 `.git` 或源码工作树、教师 ZIP、原始 `data/`，也不归档 mutable `run/` 的嵌套 Git 工作副本。若组内最终禁止 bundle，离线证据能力应标为 BLOCKED，等待组内确认替代证明。
+- 状态：`VERIFIED`
+- job：`job-63b04038ab0d4f4dad41338d6a45cc2a`
+- trace：`trace-97c74bcea0c247b899798f83ad59e162`
+- 阶段：`draft → full-check → incremental-check → repair → recheck`
+- artifact：`162`
+- BuildChecker、EChecker、DRAFT、MDFixer 均为 `running/healthy`
+- 端口仅绑定 `127.0.0.1:18081–18084`
+- Docker socket 仅挂载至 DRAFT
+- 四服务结束后本 Compose project 无剩余容器
+- 服务日志与运行证据扫描退出码均为 0
 
-候选文件的连续运行边界：当前 `single-run` 保存并封存候选 Dockerfile 的字节和 SHA-256，但 E11/E12 流水线执行时仍按请求中的原始 `candidate` 路径读取文件。运行前、结果及后续核验能够发现边界哈希不一致，不能证明运行期间没有发生替换后又恢复的瞬时修改；该限制没有被现有技术机制完全消除。
+四服务归档保留 Compose、渲染配置、镜像 inspect、健康状态、挂载、
+服务日志、结果、阶段和输出产物；排除了 mutable run 中的嵌套 Git 工作副本。
+原始完整工作证据由 verification 中的前后 SHA-256 manifest 绑定。
 
-正式运行必须在受控服务器的专属工作目录中执行，运行前确认没有相关并发任务，确保运行期间其他任务不能写入候选输入；候选文件及其父目录须采用只读或严格受控权限，并在运行后立即核对候选字节及 SHA-256。不能满足这些条件时正式结果必须标记 BLOCKED，不能判 PASS。这项限制涉及连续运行期间的不变性证明；`sealed-inputs` 仍用于离线复核实际封存的输入字节。
+## B2 交接
+
+B2 handoff 已由 B1 验证器核验，状态为 `HANDOFF_VERIFIED`，其
+`candidate_commit` 与锁定候选
+`ff92071368bbd40083e3014dd09adc40a5c24dbb` 一致。
+
+## 证据边界
+
+运行包装器对原始输入仓库采集运行前后边界状态；该结论证明两个边界一致，
+不声称能够观察运行期间的每一个瞬时状态。正式服务器运行时没有相关并发任务，
+候选输入由专属、干净工作目录控制，运行后立即重新核对字节哈希。
+
+归档不包含教师 ZIP、原始 `data/` 或嵌套 `.git` 工作副本。
+提交证据的文件大小和 SHA-256 统一记录于 `evidence/manifest.json`。
+
+## CI
+
+工具基线 `588957ad6373e45fa166ed5a58c546bea018669d` 的以下 CI 已通过：
+
+- E13–E14 integration gate：45100922685
+- E11–E12 integration：45100922679
+- E8–E10 teaching validation：45100922673
+- E7 B4 CI：45100922678
+
+正式归档提交的 `archive_ci` 当前为 `NOT_RUN`；必须由本分支 PR CI 和合并后
+main CI 验证后再完成最终交接。
+
+## 交接文件
+
+- `identity.json`
+- `handoff.json`
+- `evidence/manifest.json`
+- `evidence/single-container/`
+- `evidence/single-container-failed/`
+- `evidence/four-services/`
+- `evidence/b2-handoff-verification/`
+- `evidence/recovery.json`
+
+下一接收角色：E14 B4。
