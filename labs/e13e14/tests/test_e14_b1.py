@@ -534,4 +534,71 @@ class Contracts(unittest.TestCase):
         self.assertEqual(m.handoff(package/'missing',self.root)['status'],'BLOCKED_ON_B2_HANDOFF')
 
 
+    def test_main_cli_exit_contract(self):
+        import contextlib
+        import io
+        import sys
+        from unittest import mock
+
+        def invoke(argv):
+            stdout = io.StringIO()
+            stderr = io.StringIO()
+            with (
+                mock.patch.object(sys, 'argv', argv),
+                contextlib.redirect_stdout(stdout),
+                contextlib.redirect_stderr(stderr),
+            ):
+                code = m.main()
+            return code, stdout.getvalue(), stderr.getvalue()
+
+        inspect_result = {
+            'request': {'mode': 'e12'},
+            'request_sha256': 'a' * 64,
+        }
+        with mock.patch.object(
+            m,
+            'inspect_request',
+            return_value=inspect_result,
+        ):
+            code, stdout, stderr = invoke([
+                'e14_b1.py',
+                'inspect-request',
+                '--request',
+                'request.json',
+            ])
+        self.assertEqual(code, 0)
+        self.assertEqual(json.loads(stdout), inspect_result)
+        self.assertEqual(stderr, '')
+
+        blocked = {'status': 'BLOCKED_ON_B2_HANDOFF'}
+        with mock.patch.object(m, 'handoff', return_value=blocked):
+            code, stdout, stderr = invoke([
+                'e14_b1.py',
+                'verify-service-handoff',
+                '--handoff',
+                'work/missing/handoff.json',
+            ])
+        self.assertEqual(code, 2)
+        self.assertEqual(json.loads(stdout), blocked)
+        self.assertEqual(stderr, '')
+
+        with mock.patch.object(
+            m,
+            'inspect_request',
+            side_effect=ValueError('synthetic failure'),
+        ):
+            code, stdout, stderr = invoke([
+                'e14_b1.py',
+                'inspect-request',
+                '--request',
+                'invalid.json',
+            ])
+        self.assertEqual(code, 1)
+        self.assertEqual(stdout, '')
+        self.assertEqual(
+            json.loads(stderr),
+            {'status': 'FAILED', 'error': 'synthetic failure'},
+        )
+
+
 if __name__ == '__main__': unittest.main()
