@@ -46,6 +46,8 @@ jobs:
         run: |
           set -euo pipefail
           docker build --progress=plain \
+            --build-arg BASE_IMAGE=python:3.13-slim@sha256:f82c96458eedc847b233e582eb31336f4954b39cae020b6dcf5b3ed0e5cbcd74 \
+            --build-arg DOCKER_CLI_IMAGE=docker:28.5.1-cli@sha256:9190b0613792e658a7783cf14b2d5ace5941bb68ede7276922ea36ee457d76ad \
             -f services/draft/Dockerfile \
             -t course1020-draft:e7-b4 \
             . 2>&1 | tee "$RUN_DIR/service-build.log"

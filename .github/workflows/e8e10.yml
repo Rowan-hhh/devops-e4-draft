@@ -12,7 +12,16 @@ jobs:
         with:
           fetch-depth: 0
       - name: Build teaching environment
-        run: docker build -f labs/e8e10/environment/services/buildchecker/Dockerfile -t course-e8e10:ci labs/e8e10/environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker build --progress=plain \
+            --build-arg BASE_IMAGE=python:3.13-slim@sha256:f82c96458eedc847b233e582eb31336f4954b39cae020b6dcf5b3ed0e5cbcd74 \
+            --build-arg USE_TUNA_MIRROR=0 \
+            --build-arg PIP_INDEX_URL=https://pypi.org/simple \
+            -f labs/e8e10/environment/services/buildchecker/Dockerfile \
+            -t course-e8e10:ci \
+            labs/e8e10/environment
       - name: Validate both tracks
         shell: bash
         run: |
