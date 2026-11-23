@@ -605,7 +605,7 @@ def main():
         elif args.command == 'single-run': result = single_run(args.request, args.out)
         elif args.command == 'verify-single-run': result = verify_run(args.evidence, live_source=args.live_source)
         else: result = handoff(args.handoff)
-        print(json.dumps(result, ensure_ascii=False, indent=2)); return 2 if result['status'] == 'BLOCKED_ON_B2_HANDOFF' else 0
+        print(json.dumps(result, ensure_ascii=False, indent=2)); return 2 if result.get('status') == 'BLOCKED_ON_B2_HANDOFF' else 0
     except (ValueError, OSError, KeyError, TypeError, subprocess.SubprocessError) as exc:
         print(json.dumps({'status': 'FAILED', 'error': str(exc)}, ensure_ascii=False), file=sys.stderr); return 1
 
