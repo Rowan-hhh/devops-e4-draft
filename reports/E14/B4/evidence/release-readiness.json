@@ -1,0 +1,15 @@
+{
+  "schema_version": "e14-b4-release-readiness-1",
+  "status": "PASS",
+  "candidate_commit": "ff92071368bbd40083e3014dd09adc40a5c24dbb",
+  "gates": {
+    "b1_archive": "PASS",
+    "b2_handoff": "PASS",
+    "fault_recovery": "PASS",
+    "runtime_log_scan": "PASS",
+    "source_clean": "PASS"
+  },
+  "rc_tag": null,
+  "tag_policy": "v0.9-rc creation requires maintainer authorization after PR and main CI",
+  "ci": "pending_push_ci"
+}

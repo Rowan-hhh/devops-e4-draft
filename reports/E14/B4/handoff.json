@@ -1,0 +1,36 @@
+{
+  "schema_version": "e14-b4-handoff-1",
+  "stage": "E14",
+  "role": "B4",
+  "student": {
+    "name": "周逸涵",
+    "student_id": "241880300"
+  },
+  "branch": "e14-zyh-b4",
+  "candidate_commit": "ff92071368bbd40083e3014dd09adc40a5c24dbb",
+  "status": "PASS",
+  "evidence_root": "reports/E14/B4/evidence",
+  "fault_recovery": {
+    "status": "RECOVERED_AND_VERIFIED",
+    "path": "evidence/fault-recovery.json",
+    "fault_job_id": "job-d9acd2c8e0d847dd8d1ff7f4ca49fcd5",
+    "recovery_job_id": "job-63b04038ab0d4f4dad41338d6a45cc2a",
+    "recovery_source": "B1 sealed formal four-service run"
+  },
+  "runtime_log_scan": {
+    "status": "PASS",
+    "path": "evidence/runtime-log-scan.json",
+    "text_files": 460,
+    "hits": 0,
+    "errors": 0,
+    "exit_code": 0
+  },
+  "release": {
+    "status": "PASS",
+    "path": "evidence/release-readiness.json",
+    "rc_tag": null,
+    "tag_policy": "maintainer authorization required"
+  },
+  "ci": "pending_push_ci",
+  "next_role": "E14-release-review"
+}

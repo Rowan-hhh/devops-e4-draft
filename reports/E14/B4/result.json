@@ -1,0 +1,36 @@
+{
+  "schema_version": "e14-b4-result-1",
+  "status": "PASS",
+  "role": "E14-B4",
+  "student_id": "241880300",
+  "branch": "e14-zyh-b4",
+  "candidate_commit": "ff92071368bbd40083e3014dd09adc40a5c24dbb",
+  "cases": {
+    "b1_archive": "PASS",
+    "b2_handoff": "PASS",
+    "controlled_fault": "PASS",
+    "formal_recovery_baseline": "PASS",
+    "runtime_secret_scan": "PASS",
+    "release_policy": "PASS"
+  },
+  "fault": {
+    "job_id": "job-d9acd2c8e0d847dd8d1ff7f4ca49fcd5",
+    "trace_id": "trace-d24bfc21915a48f9987bb41d362e6ad6",
+    "error": "CONNECTION_REFUSED"
+  },
+  "recovery": {
+    "source": "B1 sealed formal four-service run",
+    "job_id": "job-63b04038ab0d4f4dad41338d6a45cc2a",
+    "trace_id": "trace-97c74bcea0c247b899798f83ad59e162",
+    "status": "SUCCEEDED",
+    "final_missing_count": 0
+  },
+  "runtime_log_scan": {
+    "text_files": 460,
+    "hits": 0,
+    "errors": 0,
+    "exit_code": 0
+  },
+  "ci": "pending_push_ci",
+  "rc_tag": null
+}
