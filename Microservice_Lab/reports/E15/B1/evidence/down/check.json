@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "case": "down",
+  "status": "FAILED",
+  "job_id": "job-06cdfb90f12f42159644247ebb7d692f",
+  "trace_id": "trace-3a4fad57da2943fe9a71a02eb0ffd783",
+  "attempts": 3,
+  "duration_ms": 4036
+}
