@@ -1,0 +1,12 @@
+{
+  "status": "SUCCEEDED",
+  "report": "/course/work/e14-b3-b-project-retry2/incremental/incremental-check.json",
+  "sha256": "5d232b696a169021c803661e38e981c9d04ba7f3c5faf1eb599df6d8c1271877",
+  "findings": [
+    {
+      "type": "MISSING",
+      "target": "helper.o",
+      "dependency": "output_format.h"
+    }
+  ]
+}

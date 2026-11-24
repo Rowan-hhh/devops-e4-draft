@@ -1,0 +1,42 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 790B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 59B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f
+#4 resolve docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 163B done
+#5 DONE 0.0s
+
+#6 [3/5] RUN sed -i -e 's|https\{0,1\}://deb\.debian\.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' -e 's|https\{0,1\}://security\.debian\.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' -e 's|https\{0,1\}://deb\.debian\.org/debian|https://mirrors.tuna.tsinghua.edu.cn/debian|g' /etc/apt/sources.list.d/debian.sources && apt-get -o Acquire::ForceIPv4=true -o Acquire::Retries=3 update && apt-get -o Acquire::ForceIPv4=true -o Acquire::Retries=3 install -y --no-install-recommends gcc make libc6-dev && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [4/5] COPY main.c helper.c *.h Makefile ./
+#7 CACHED
+
+#8 [2/5] WORKDIR /work
+#8 CACHED
+
+#9 [5/5] RUN make app
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:658eba58d06459fab994fea17c5e151688ea2887fe1eb883417f711d309e8dd9 done
+#10 exporting config sha256:3722054432869e1daa5c2eaa11ad7099f6c75858b83365b9dbeaa2b78fd3060e done
+#10 exporting attestation manifest sha256:31bdc357870b64fcb9b7645de68d027b6c624f1193396a0f643bc8e9ddb3a920 0.0s done
+#10 exporting manifest list sha256:1608ae820121d2038242b98b22786c9533d3d4dd89a97c0277f2073c458540aa done
+#10 naming to docker.io/library/e6-draft-replay:b239b4ef0ab741f18de77a2d05587a50-2 done
+#10 unpacking to docker.io/library/e6-draft-replay:b239b4ef0ab741f18de77a2d05587a50-2 done
+#10 DONE 0.1s

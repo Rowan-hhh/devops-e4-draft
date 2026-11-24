@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/root/devops-students/241880179/e14-b3/labs/e13e14/orchestrate.py", line 162, in <module>
+    sys.exit(main())
+  File "/root/devops-students/241880179/e14-b3/labs/e13e14/orchestrate.py", line 154, in main
+    result = execute(json.loads(args.request.read_text(encoding='utf-8')), args.out.resolve())
+  File "/root/devops-students/241880179/e14-b3/labs/e13e14/orchestrate.py", line 86, in execute
+    raise ValueError('Input project and candidate must be in data/')
+ValueError: Input project and candidate must be in data/

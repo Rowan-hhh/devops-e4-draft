@@ -1,0 +1,9 @@
+--- a/Makefile
++++ b/Makefile
+@@ -1,5 +1,5 @@
+ CFLAGS = -O0
+-HELPER_DEPS = helper.c scale.h
++HELPER_DEPS = helper.c scale.h clamp.h
+ 
+ .PHONY: all clean test
+ all: app
