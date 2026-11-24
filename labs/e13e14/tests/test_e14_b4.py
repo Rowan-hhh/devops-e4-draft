@@ -1,9 +1,22 @@
+import hashlib
+import tempfile
 import unittest
+from pathlib import Path
 
 try:
-    from e14_b4 import validate_fault_record, validate_release_record, validate_scan_record
+    from e14_b4 import (
+        file_ref_matches,
+        validate_fault_record,
+        validate_release_record,
+        validate_scan_record,
+    )
 except ModuleNotFoundError:
-    from labs.e13e14.e14_b4 import validate_fault_record, validate_release_record, validate_scan_record
+    from labs.e13e14.e14_b4 import (
+        file_ref_matches,
+        validate_fault_record,
+        validate_release_record,
+        validate_scan_record,
+    )
 
 
 def fault_record():
@@ -29,6 +42,18 @@ def fault_record():
 
 
 class E14B4Contracts(unittest.TestCase):
+    def test_file_reference_accepts_windows_crlf_for_lf_record(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "run.json"
+            expected = b'{"status":"FAILED"}\n'
+            path.write_bytes(expected.replace(b"\n", b"\r\n"))
+            reference = {
+                "path": "run.json",
+                "bytes": len(expected),
+                "sha256": hashlib.sha256(expected).hexdigest(),
+            }
+            self.assertTrue(file_ref_matches(path, reference))
+
     def test_fault_requires_new_job_and_trace(self):
         record = fault_record()
         self.assertEqual(validate_fault_record(record)["status"], "RECOVERED_AND_VERIFIED")

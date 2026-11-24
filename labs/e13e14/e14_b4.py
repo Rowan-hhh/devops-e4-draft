@@ -42,6 +42,17 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def file_ref_matches(path: Path, reference: dict) -> bool:
+    """Match a text evidence reference across LF and Windows CRLF checkouts."""
+    raw = path.read_bytes()
+    candidates = (raw, raw.replace(b"\r\n", b"\n"))
+    return any(
+        len(data) == reference.get("bytes")
+        and hashlib.sha256(data).hexdigest() == reference.get("sha256")
+        for data in candidates
+    )
+
+
 def read_json(path: Path) -> dict:
     require(path.is_file() and not path.is_symlink(), f"missing JSON: {path}")
     value = json.loads(path.read_text(encoding="utf-8"))
@@ -216,8 +227,7 @@ def verify(root: Path) -> dict:
 
     for name, ref in fault["logs"].items():
         path = evidence / ref["path"]
-        require(path.is_file() and path.stat().st_size == ref["bytes"], f"{name} log size mismatch")
-        require(sha256(path) == ref["sha256"], f"{name} log hash mismatch")
+        require(path.is_file() and file_ref_matches(path, ref), f"{name} log reference mismatch")
 
     result = {
         "status": "E14_B4_VERIFIED",
