@@ -1,0 +1,89 @@
+{
+  "schema_version": "e11e12-1",
+  "job_id": "job-8df74049ed0c442e9111cfdaef2e6f95",
+  "trace_id": "trace-40eee938c46840638734b6bf8fc065b7",
+  "kind": "draft",
+  "commit": "a010bd91248abe3c391f1808604afa270df0156b",
+  "status": "SUCCEEDED",
+  "data": {
+    "status": "SUCCEEDED",
+    "detector": "DRAFT_TEACHING_REPLAY",
+    "trace_id": "e6-b-60c18876cd154b68b8c3b2008db28cd9",
+    "candidate_source": "Manual model response replay; no model/API call in this command",
+    "candidate_sha256": "c2f7a9f70caf44bbf4852a1c61e262203de9f28cd6fbe3aa2dec5adf6d34c6da",
+    "attempts": [
+      {
+        "iteration": 1,
+        "tag": "e6-draft-replay:60c18876cd154b68b8c3b2008db28cd9-1",
+        "command": [
+          "docker",
+          "build",
+          "--progress=plain",
+          "-f",
+          "/course/work/ci-e11-b/draft-build/iter-01/Dockerfile",
+          "-t",
+          "e6-draft-replay:60c18876cd154b68b8c3b2008db28cd9-1",
+          "/course/work/ci-e11-b/draft-build/project"
+        ],
+        "build_exit_code": 1,
+        "failure_class": "MISSING_MAKE"
+      },
+      {
+        "iteration": 2,
+        "tag": "e6-draft-replay:60c18876cd154b68b8c3b2008db28cd9-2",
+        "command": [
+          "docker",
+          "build",
+          "--progress=plain",
+          "-f",
+          "/course/work/ci-e11-b/draft-build/iter-02/Dockerfile",
+          "-t",
+          "e6-draft-replay:60c18876cd154b68b8c3b2008db28cd9-2",
+          "/course/work/ci-e11-b/draft-build/project"
+        ],
+        "build_exit_code": 0,
+        "image_id": "sha256:82648d3c1b37330b646e4fa3b77740cd3922e0f0a07b9ab065109c61df167736"
+      }
+    ],
+    "input_sha256": {
+      ".gitignore": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+      "Dockerfile.broken": "493f94f95181dd9f4cfb8f47beeed4bfd86e3395ab354742d1d201c409a3e745",
+      "Makefile": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2",
+      "config.h": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+      "extra.h": "5e20ae92639ee989af5638bd0308a6a86e71bdb4345f60b962ba9db7265e4f7c",
+      "helper.c": "90a60f959d215b0b91807c6dd2c94acf6684a9fe26629dc1591e9b2ea773d78c",
+      "main.c": "1e2e75d84a5a28f44438792dbb33ce888a09fad6597094d998ebaf34fa784312",
+      "unused.h": "3f7fec0991b34d614462e29b450c76638f07171936a12df337c578c2d1481b37"
+    },
+    "verification": {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--cpus",
+        "1",
+        "--memory",
+        "128m",
+        "--pids-limit",
+        "64",
+        "--cidfile",
+        "/course/work/ci-e11-b/draft-build/verify-container-id.txt",
+        "sha256:82648d3c1b37330b646e4fa3b77740cd3922e0f0a07b9ab065109c61df167736"
+      ],
+      "exit_code": 0,
+      "expected_output": "1",
+      "actual_output": "1\n",
+      "output_matches": true
+    },
+    "elapsed_ms": 12298
+  },
+  "artifacts": [
+    {
+      "uri": "artifact://job-8df74049ed0c442e9111cfdaef2e6f95/draft-build/result.json",
+      "sha256": "69aa09ae632c4b8292a8bf9b5a78f9abd70a20c7fc5d92edb7105f9cd2c17257",
+      "bytes": 2519
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+*.json text eol=lf
+*.log text eol=lf
+*.txt text eol=lf
+*.patch text eol=lf
+*.py text eol=lf
+*.Makefile text eol=lf

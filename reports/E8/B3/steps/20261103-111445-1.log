@@ -1,0 +1,6 @@
+REPORT_COMMIT aae7c9d74345872ef98f14558aaf4550f3d25d5a
+FINDINGS [{'type': 'MISSING', 'target': 'main.o', 'dependency': 'config.h'}, {'type': 'REDUNDANT', 'target': 'main.o', 'dependency': 'unused.h'}]
+COMMIT_MATCH aae7c9d74345872ef98f14558aaf4550f3d25d5a
+SOURCE_BYTES_UNCHANGED
+B3_REPORT_PASS True
+STEP_EXIT_CODE=0

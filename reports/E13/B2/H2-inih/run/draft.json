@@ -1,0 +1,92 @@
+{
+  "schema_version": "e11e12-1",
+  "job_id": "job-1ed771c2018040a08f97c338d1310559",
+  "trace_id": "trace-a85266b25b754e5ebb539b471790d803",
+  "kind": "draft",
+  "commit": "3aadb81763c79651e4dfa99b725ba921ee2b8a39",
+  "status": "SUCCEEDED",
+  "data": {
+    "status": "SUCCEEDED",
+    "detector": "DRAFT_TEACHING_REPLAY",
+    "trace_id": "e6-b-65dc0f85e9d2499d9ea95be9b432968a",
+    "candidate_source": "Manual model response replay; no model/API call in this command",
+    "candidate_sha256": "7bf4b0b9861137354132a2a7676b567ec2de1f0ee71161034a27e8a7b06f4e90",
+    "attempts": [
+      {
+        "iteration": 1,
+        "tag": "e6-draft-replay:65dc0f85e9d2499d9ea95be9b432968a-1",
+        "command": [
+          "docker",
+          "build",
+          "--progress=plain",
+          "-f",
+          "/course/work/e13-b2-H2-inih-8782b33f2cd1/draft-build/iter-01/Dockerfile",
+          "-t",
+          "e6-draft-replay:65dc0f85e9d2499d9ea95be9b432968a-1",
+          "/course/work/e13-b2-H2-inih-8782b33f2cd1/draft-build/project"
+        ],
+        "build_exit_code": 1,
+        "failure_class": "MISSING_MAKE"
+      },
+      {
+        "iteration": 2,
+        "tag": "e6-draft-replay:65dc0f85e9d2499d9ea95be9b432968a-2",
+        "command": [
+          "docker",
+          "build",
+          "--progress=plain",
+          "-f",
+          "/course/work/e13-b2-H2-inih-8782b33f2cd1/draft-build/iter-02/Dockerfile",
+          "-t",
+          "e6-draft-replay:65dc0f85e9d2499d9ea95be9b432968a-2",
+          "/course/work/e13-b2-H2-inih-8782b33f2cd1/draft-build/project"
+        ],
+        "build_exit_code": 0,
+        "image_id": "sha256:2fd56840d9553a1a47a99ae0ef331633ffd13f2eb81c96efb12130d167250631"
+      }
+    ],
+    "input_sha256": {
+      ".gitignore": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+      "Dockerfile.broken": "847ad34b6e36cdc04afd82e4fc52570ddc8363cc02dc6681cf713513e285d516",
+      "LICENSE.upstream": "9ae3b39e83e9158e44b67733baa3bb2d84e80efdcfb14a5820210a42c7abdf7f",
+      "Makefile": "6230673047c6a80a96eeb48322d4a5e6c64194531f69f64e56be73fb915adf9d",
+      "UPSTREAM.md": "15632b15f9d53bccc5d7ac80dac00cfcfc9f6434c482cdf3a5d9802d214dc249",
+      "config.h": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+      "extra.h": "fafd25b6f7390357e1f4a0b8bd251114f51b4c2ca4561610a61e8452b0778cdc",
+      "helper.c": "f6ba5dc69ee2206f3ddc80450a217bedb313757b2baf204b1eb01e3fb6df84e2",
+      "ini.h": "db3995229183d50d42cb675bf048f04525aed857fe3e4e39a54a1d7dd2f0f2e9",
+      "main.c": "80c5ff657b61286f208a8c92e8c47b8a78f5c4217e36b0c37c5628c508f1947a",
+      "unused.h": "e2780d03dc96f11919fe5856b9e3026bd1e1e76ec1a9612f789c4dd204b09b06"
+    },
+    "verification": {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--cpus",
+        "1",
+        "--memory",
+        "128m",
+        "--pids-limit",
+        "64",
+        "--cidfile",
+        "/course/work/e13-b2-H2-inih-8782b33f2cd1/draft-build/verify-container-id.txt",
+        "sha256:2fd56840d9553a1a47a99ae0ef331633ffd13f2eb81c96efb12130d167250631"
+      ],
+      "exit_code": 0,
+      "expected_output": "1",
+      "actual_output": "1\n",
+      "output_matches": true
+    },
+    "elapsed_ms": 119769
+  },
+  "artifacts": [
+    {
+      "uri": "artifact://job-1ed771c2018040a08f97c338d1310559/draft-build/result.json",
+      "sha256": "6e4fade6af694495a44683f70a59c79f0861fdb8736cd60d02aafa1c20053d43",
+      "bytes": 2875
+    }
+  ]
+}

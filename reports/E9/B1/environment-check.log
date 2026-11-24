@@ -1,0 +1,22 @@
+2026-11-05T05:10:15+08:00
+Linux x86_64
+45c83b180645283ee61665852596db75d49ff414
+sha256:94a15175783fe4f37f17f1ae1208edfbdd2524206304e1b1ce56295f27823c40
+gcc (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+GNU Make 4.4.1
+Built for x86_64-pc-linux-gnu
+Copyright (C) 1988-2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+git version 2.47.3
+strace -- version 6.13
+Copyright (c) 1991-2025 The strace developers <https://strace.io>.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Optional features enabled: stack-trace=libunwind stack-demangle m32-mpers mx32-mpers

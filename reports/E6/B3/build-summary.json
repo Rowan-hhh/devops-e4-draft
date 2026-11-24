@@ -1,0 +1,14 @@
+{
+  "candidate_sha256": "510dc459a9a3830aabdf35b32c15b0c22a3c3299982950e40378d4a3227b9788",
+  "successful_image_id": "sha256:410e69896d1aa14db9fc9a27ba45c6c9971413594bdd6fb6da89882038fc09e3",
+  "successful_build_exit_code": 0,
+  "successful_build_trace_id": "e6-b3-manual-network-adapted-20261026",
+  "server_evidence": "/root/E4-draft/work/e6-b3-20261026/evidence/b3-validation",
+  "network_adaptation": "The Debian apt source was switched to mirrors.aliyun.com for the server build; the candidate Dockerfile in reports/E6/B2 was unchanged.",
+  "automatic_b1_attempts": {
+    "first_run_iter_01": "MISSING_MAKE, exit 1",
+    "first_run_iter_02": "BUILD_TIMEOUT, exit 124",
+    "rerun_iter_01": "MISSING_MAKE, exit 1",
+    "rerun_iter_02": "BUILD_TIMEOUT, exit 124"
+  }
+}

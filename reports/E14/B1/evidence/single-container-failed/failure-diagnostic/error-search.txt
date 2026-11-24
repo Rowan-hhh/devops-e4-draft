@@ -1,0 +1,37 @@
+work/e14-B1-single-formal-20261123T025045Z/run/result.json:5:  "status": "FAILED",
+work/e14-B1-single-formal-20261123T025045Z/run/result.json:9:  "error": {
+work/e14-B1-single-formal-20261123T025045Z/run/result.json:10:    "code": "DRAFT_FAILED",
+work/e14-B1-single-formal-20261123T025045Z/run/request.json:9:  "build_timeout": 600
+work/e14-B1-single-formal-20261123T025045Z/run/draft-build/result.json:21:      "build_exit_code": 1,
+work/e14-B1-single-formal-20261123T025045Z/run/draft-build/result.json:49:  "error": "Docker client command exceeded 600s",
+work/e14-B1-single-formal-20261123T025045Z/run/draft-build/iter-01/build-stderr.log:43:ERROR: failed to build: failed to solve: process "/bin/sh -c make app" did not complete successfully: exit code: 127
+work/e14-B1-single-formal-20261123T025045Z/failure.json:2:  "status": "FAILED",
+work/e14-B1-single-formal-20261123T025045Z/failure.json:3:  "run_exception": {
+work/e14-B1-single-formal-20261123T025045Z/failure.json:5:    "message": "single-container command exited 1",
+work/e14-B1-single-formal-20261123T025045Z/failure.json:6:    "traceback": "Traceback (most recent call last):\n  File \"/root/devops-students/241880360/draft/labs/e13e14/e14_b1.py\", line 530, in single_run\n    raise RuntimeError('single-container command exited ' + str(result.returncode))\nRuntimeError: single-container command exited 1\n"
+work/e14-B1-single-formal-20261123T025045Z/failure.json:8:  "sealing_exception": null,
+work/e14-B1-single-formal-20261123T025045Z/failure.json:9:  "source_after_exception": null,
+work/e14-B1-single-formal-20261123T025045Z/failure.json:10:  "finish_manifest_exception": null,
+work/e14-B1-single-formal-20261123T025045Z/failure.json:11:  "failure_record_exception": null,
+work/e14-B1-single-formal-20261123T025045Z/failure.json:13:  "primary_failure": "run_exception",
+work/e14-B1-single-formal-20261123T025045Z/request.json:9:  "build_timeout": 600
+work/e14-B1-single-formal-20261123T025045Z/execution.json:2:  "run_exception": {
+work/e14-B1-single-formal-20261123T025045Z/execution.json:4:    "message": "single-container command exited 1",
+work/e14-B1-single-formal-20261123T025045Z/execution.json:5:    "traceback": "Traceback (most recent call last):\n  File \"/root/devops-students/241880360/draft/labs/e13e14/e14_b1.py\", line 530, in single_run\n    raise RuntimeError('single-container command exited ' + str(result.returncode))\nRuntimeError: single-container command exited 1\n"
+work/e14-B1-single-formal-20261123T025045Z/execution.json:7:  "sealing_exception": null,
+work/e14-B1-single-formal-20261123T025045Z/execution.json:8:  "source_after_exception": null,
+work/e14-B1-single-formal-20261123T025045Z/execution.json:9:  "finish_manifest_exception": null,
+work/e14-B1-single-formal-20261123T025045Z/execution.json:10:  "failure_record_exception": null,
+work/e14-B1-single-formal-20261123T025045Z/execution.json:12:  "primary_failure": "run_exception",
+work/e14-B1-single-formal-20261123T025045Z/execution.json:14:  "status": "FAILED"
+work/e14-B1-single-formal-20261123T025045Z/console.log:6:  "status": "FAILED",
+work/e14-B1-single-formal-20261123T025045Z/console.log:10:  "error": {
+work/e14-B1-single-formal-20261123T025045Z/console.log:11:    "code": "DRAFT_FAILED",
+work/e14-B1-single-formal-20261123T025045Z/sealed-run/result.json:5:  "status": "FAILED",
+work/e14-B1-single-formal-20261123T025045Z/sealed-run/result.json:9:  "error": {
+work/e14-B1-single-formal-20261123T025045Z/sealed-run/result.json:10:    "code": "DRAFT_FAILED",
+work/e14-B1-single-formal-20261123T025045Z/sealed-run/files/request.json:9:  "build_timeout": 600
+work/e14-B1-single-formal-20261123T025045Z/sealed-run/files/draft-build/result.json:21:      "build_exit_code": 1,
+work/e14-B1-single-formal-20261123T025045Z/sealed-run/files/draft-build/result.json:49:  "error": "Docker client command exceeded 600s",
+work/e14-B1-single-formal-20261123T025045Z/sealed-run/files/draft-build/iter-01/build-stderr.log:43:ERROR: failed to build: failed to solve: process "/bin/sh -c make app" did not complete successfully: exit code: 127
+work/e14-B1-single-formal-20261123T025045Z/sealed-inputs/request.json:9:  "build_timeout": 600

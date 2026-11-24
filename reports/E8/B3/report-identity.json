@@ -1,0 +1,17 @@
+{
+  "stage": "E8",
+  "role": "B3",
+  "student_id": "241880179",
+  "input_source_sha": "593b40a176b0881f3b7ed072a4c6c4302957a07b",
+  "report_commit": "aae7c9d74345872ef98f14558aaf4550f3d25d5a",
+  "project_head": "aae7c9d74345872ef98f14558aaf4550f3d25d5a",
+  "checks": {
+    "report_commit_matches_project_head": true,
+    "matches_b1_sample_commit": true,
+    "exact_findings": true,
+    "json_roundtrip": true,
+    "source_bytes_unchanged": true,
+    "project_worktree_clean": true
+  },
+  "passed": true
+}

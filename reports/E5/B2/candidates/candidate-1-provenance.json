@@ -1,0 +1,18 @@
+{
+  "candidate_id": 1,
+  "iteration": "iter-01",
+  "strategy": "error-driven",
+  "provider_display_name": "OpenAI Codex",
+  "model_version": "GPT-5 agent; exact deployment not exposed",
+  "acquired_at": "2026-10-22T22:32:51+08:00",
+  "acquisition": "Generated in this Codex task from the complete B1 error-driven prompt referenced in prompt-manifest.json",
+  "source": "Codex conversation on 2026-10-22",
+  "prompt_path": "/root/241880179/draft/work/e5-b1-final-20261022/iter-01/prompt-error-driven.txt",
+  "raw_response_path": "reports/E5/B2/candidates/model-response-candidate-1.txt",
+  "candidate_path": "reports/E5/B2/candidates/candidate-1.Dockerfile",
+  "candidate_sha256": "ede21b0fab394071641526e2fccefc41565efb00de6fb54d9d5b906aebeb535d",
+  "manual_changes": [],
+  "status": "RECEIVED_NOT_BUILT",
+  "build_result": null,
+  "program_verification_result": null
+}

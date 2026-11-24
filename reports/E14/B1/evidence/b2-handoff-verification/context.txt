@@ -1,0 +1,7 @@
+checked_at_utc=2026-11-23T02:48:40Z
+branch=e14-yrh-b1-formal-evidence
+tool_commit=588957ad6373e45fa166ed5a58c546bea018669d
+locked_candidate=ff92071368bbd40083e3014dd09adc40a5c24dbb
+request=data/integration-sample/e12.json
+concurrent_writer=none
+formal_run_started=no

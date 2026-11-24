@@ -1,0 +1,8 @@
+{
+  "bundle": "/mnt/e/学习资料/大三学习/devops/e12-xzt-b2-work/snapshot/Rowan-hhh-devops-e4-draft-186dbf1/reports/E12/B1/project.bundle",
+  "report": "/mnt/e/学习资料/大三学习/devops/e12-xzt-b2-work/snapshot/Rowan-hhh-devops-e4-draft-186dbf1/reports/E12/B2/incremental-check.json",
+  "candidate": "/mnt/e/学习资料/大三学习/devops/e12-xzt-b2-work/snapshot/Rowan-hhh-devops-e4-draft-186dbf1/reports/E12/B1/candidate.Dockerfile",
+  "expected_target": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+  "report_sha256": "66e3bfb2c39d4c8b0913d4b5afb269d284cb1369e05d68b4fd889170e1e38a83",
+  "bundle_sha256": "0a74f580219b55ab97119cdfa81f730f23fd0d5cbfbf2f986e4791110f3ce608"
+}

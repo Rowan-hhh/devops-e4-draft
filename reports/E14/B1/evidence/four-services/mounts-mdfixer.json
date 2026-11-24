@@ -1,0 +1,275 @@
+[
+    {
+        "Id": "2f9aedaa2583739a0e7b15f6cbd120d69522bd0ee0c4364f7effd69620875e5a",
+        "Created": "2026-11-23T05:08:27.513521778Z",
+        "Path": "python3",
+        "Args": [
+            "labs/e13e14/service.py"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 352184,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-11-23T05:08:27.611937499Z",
+            "FinishedAt": "0001-01-01T00:00:00Z",
+            "Health": {
+                "Status": "healthy",
+                "FailingStreak": 0,
+                "Log": [
+                    {
+                        "Start": "2026-11-23T13:08:32.898131556+08:00",
+                        "End": "2026-11-23T13:08:33.375757391+08:00",
+                        "ExitCode": 0,
+                        "Output": ""
+                    }
+                ]
+            }
+        },
+        "Image": "sha256:a9c65eab021262a76f2025a42a9526aa5d793ee4f2224696bbb6419d0daf80e0",
+        "ResolvConfPath": "/var/lib/docker/containers/2f9aedaa2583739a0e7b15f6cbd120d69522bd0ee0c4364f7effd69620875e5a/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/2f9aedaa2583739a0e7b15f6cbd120d69522bd0ee0c4364f7effd69620875e5a/hostname",
+        "HostsPath": "/var/lib/docker/containers/2f9aedaa2583739a0e7b15f6cbd120d69522bd0ee0c4364f7effd69620875e5a/hosts",
+        "LogPath": "/var/lib/docker/containers/2f9aedaa2583739a0e7b15f6cbd120d69522bd0ee0c4364f7effd69620875e5a/2f9aedaa2583739a0e7b15f6cbd120d69522bd0ee0c4364f7effd69620875e5a-json.log",
+        "Name": "/e14b1formal20261123t050827z-mdfixer-1",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/root/devops-students/241880360/draft:/course:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "e14b1formal20261123t050827z_default",
+            "PortBindings": {
+                "8080/tcp": [
+                    {
+                        "HostIp": "127.0.0.1",
+                        "HostPort": "18084"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "unless-stopped",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": [],
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": [
+                "no-new-privileges:true"
+            ],
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 805306368,
+            "NanoCpus": 1000000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 1610612736,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": 128,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/root/devops-students/241880360/draft",
+                "Destination": "/course",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "2f9aedaa2583",
+            "Domainname": "",
+            "User": "0:0",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "ExposedPorts": {
+                "8080/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "E14_ROLE=mdfixer",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "GIT_CONFIG_COUNT=1",
+                "GIT_CONFIG_KEY_0=safe.directory",
+                "GIT_CONFIG_VALUE_0=/course/*",
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.13.14",
+                "PYTHON_SHA256=639e43243c620a308f968213df9e00f2f8f62332f7adbaa7a7eeb9783057c690",
+                "LC_ALL=C.UTF-8",
+                "TZ=UTC",
+                "PYTHONUNBUFFERED=1"
+            ],
+            "Cmd": [
+                "python3",
+                "labs/e13e14/service.py"
+            ],
+            "Healthcheck": {
+                "Test": [
+                    "CMD",
+                    "python3",
+                    "-c",
+                    "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=2)"
+                ],
+                "Interval": 5000000000,
+                "Timeout": 3000000000,
+                "Retries": 6
+            },
+            "Image": "course-e11e12:241880360",
+            "Volumes": null,
+            "WorkingDir": "/course",
+            "Entrypoint": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "ca1777d411d48c6594d021a1c5f0ff5a1da5f5f74906927d71afa075f923cce6",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "",
+                "com.docker.compose.image": "sha256:a9c65eab021262a76f2025a42a9526aa5d793ee4f2224696bbb6419d0daf80e0",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "e14b1formal20261123t050827z",
+                "com.docker.compose.project.config_files": "/root/devops-students/241880360/draft/labs/e13e14/compose.yaml",
+                "com.docker.compose.project.working_dir": "/root/devops-students/241880360/draft/labs/e13e14",
+                "com.docker.compose.service": "mdfixer",
+                "com.docker.compose.version": "2.40.3"
+            }
+        },
+        "NetworkSettings": {
+            "SandboxID": "77a53622655051fdc062d39e6f317932a7df5dd26ed19abd52f1cda268c54425",
+            "SandboxKey": "/var/run/docker/netns/77a536226550",
+            "Ports": {
+                "8080/tcp": [
+                    {
+                        "HostIp": "127.0.0.1",
+                        "HostPort": "18084"
+                    }
+                ]
+            },
+            "Networks": {
+                "e14b1formal20261123t050827z_default": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "e14b1formal20261123t050827z-mdfixer-1",
+                        "mdfixer"
+                    ],
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "e7c03b88d2578001109860579415a8e63117b6edcdf5288e8712ef19d152383c",
+                    "EndpointID": "6bbaea7ebe9d329247524f3bfb4e90f7230c17483551fcf45c333f5ae70d676a",
+                    "Gateway": "172.23.0.1",
+                    "IPAddress": "172.23.0.3",
+                    "MacAddress": "2e:87:8f:ca:7b:bb",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "e14b1formal20261123t050827z-mdfixer-1",
+                        "mdfixer",
+                        "2f9aedaa2583"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:1964c2a3a8b7c395256325c8d262c80190caeb02856dba00c80e85c6033f5bbe",
+            "size": 2769,
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]

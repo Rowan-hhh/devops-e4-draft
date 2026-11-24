@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "stage": "E10",
+  "track": "B",
+  "role": "B2",
+  "student_id": "241880179",
+  "status": "PASS",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "branch": "student/241880179/e10-b2",
+  "execution_commit": "8e4cba9156b82e207b1eef21cd19b7bc89eedef8",
+  "upstream_b3_commit": "dec8476f9f01b1162a226acc46ebcad6d6097a73",
+  "project_commit": "93ea08243be717cfe00502120ddebf2d090bdff7",
+  "server_repository": "/root/devops-students/241880179/draft-e10-b2-run2",
+  "evidence_directory": "/root/devops-students/241880179/draft-e10-b2-run2/work/e10-B2-241880179-20261106-075539",
+  "image_id": "sha256:94a15175783fe4f37f17f1ae1208edfbdd2524206304e1b1ce56295f27823c40",
+  "input": {
+    "report": "fixed-md-report.json",
+    "candidate": "candidate.patch",
+    "plan": "patch-plan.json",
+    "source_before": "source-before.Makefile",
+    "source_before_sha256": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2"
+  },
+  "validation": {
+    "wrong_test_rejected": true,
+    "candidate_accepted": true,
+    "bad_patch_rejected": true,
+    "compile_failure_rejected": true,
+    "accepted_checks": {
+      "patch_applies": true,
+      "build": true,
+      "test": true,
+      "header_change": true,
+      "no_missing": true
+    },
+    "bad_patch_preserved_accepted_source": true
+  },
+  "personal_test": "StudentE10B2.test_compilation_failure_candidate_rolls_back_source_bytes",
+  "unit_tests": {
+    "count": 19,
+    "result": "OK",
+    "exit_code": 0,
+    "log": "unit-tests.log"
+  },
+  "archive_sha256": "931a61b47058b6e67ce35f21c5272fbc9d4de88162bf2fa1a169e0d792622733",
+  "handoff_to": "E10 B4",
+  "next_action": "After B3 is merged, sync main and let B4 independently run final accept/reject gate and BuildChecker recheck."
+}

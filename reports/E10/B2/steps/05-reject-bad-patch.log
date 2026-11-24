@@ -1,0 +1,8 @@
+EXPECTED_BAD_PATCH_REJECTION {
+  "accepted": false,
+  "checks": {},
+  "error": "COMMAND_FAILED ['git', 'apply', '--check', '/course/work/e10-B2-241880179-20261106-075539/broken.patch']\nerror: No valid patches in input (allow with \"--allow-empty\")\n",
+  "source_unchanged": true,
+  "rollback": true
+}
+STEP_EXIT_CODE=0

@@ -1,0 +1,53 @@
+IMAGE=course-e11e12:241880360
+test_accept_current_report (test_contract.Contracts.test_accept_current_report) ... ok
+test_api_rejects_repo_outside_data (test_contract.Contracts.test_api_rejects_repo_outside_data) ... ok
+test_artifact_uses_relative_uri_and_content_hash (test_contract.Contracts.test_artifact_uses_relative_uri_and_content_hash) ... ok
+test_changed_artifact_is_rejected (test_contract.Contracts.test_changed_artifact_is_rejected) ... ok
+test_existing_evidence_not_overwritten (test_contract.Contracts.test_existing_evidence_not_overwritten) ... ok
+test_reject_failed_upstream (test_contract.Contracts.test_reject_failed_upstream) ... ok
+test_reject_old_commit (test_contract.Contracts.test_reject_old_commit) ... ok
+test_reject_schema (test_contract.Contracts.test_reject_schema) ... ok
+test_reject_wrong_artifact_kind (test_contract.Contracts.test_reject_wrong_artifact_kind) ... ok
+test_same_key_same_request_same_job (test_contract.Contracts.test_same_key_same_request_same_job) ... ok
+test_two_missing_headers_share_one_safe_direct_patch (test_e11_b2.StudentE11B2.test_two_missing_headers_share_one_safe_direct_patch)
+E11-B must repair both MD findings without changing recipes or input. ... ok
+test_two_missing_headers_patch_macro_and_mixed_styles (test_e11_b3.StudentE11B3.test_two_missing_headers_patch_macro_and_mixed_styles) ... ok
+test_bundle_restore (test_e12_b1.B1Contracts.test_bundle_restore) ... ok
+test_commit_identity (test_e12_b1.B1Contracts.test_commit_identity) ... ok
+test_dirty_and_wrong_head (test_e12_b1.B1Contracts.test_dirty_and_wrong_head) ... ok
+test_existing_outputs (test_e12_b1.B1Contracts.test_existing_outputs) ... ok
+test_final_result_write_failure_is_not_success (test_e12_b1.B1Contracts.test_final_result_write_failure_is_not_success) ... ok
+test_local_identity (test_e12_b1.B1Contracts.test_local_identity) ... ok
+test_mkdir_failure_rechecks_and_preserves_exception (test_e12_b1.B1Contracts.test_mkdir_failure_rechecks_and_preserves_exception) ... ok
+test_mock_failures (test_e12_b1.B1Contracts.test_mock_failures) ... ok
+test_mock_success_and_invariance (test_e12_b1.B1Contracts.test_mock_success_and_invariance) ... ok
+test_no_downstream_imports (test_e12_b1.B1Contracts.test_no_downstream_imports) ... ok
+test_non_ancestor (test_e12_b1.B1Contracts.test_non_ancestor) ... ok
+test_output_inside_source (test_e12_b1.B1Contracts.test_output_inside_source) ... ok
+test_post_state_write_failure_keeps_in_memory_verdict (test_e12_b1.B1Contracts.test_post_state_write_failure_keeps_in_memory_verdict) ... ok
+test_request_write_failure_rechecks_and_preserves_exception (test_e12_b1.B1Contracts.test_request_write_failure_rechecks_and_preserves_exception) ... ok
+test_required_source_fields (test_e12_b1.B1Contracts.test_required_source_fields) ... ok
+test_setup_failure_does_not_swallow_baseexceptions (test_e12_b1.B1Contracts.test_setup_failure_does_not_swallow_baseexceptions) ... ok
+test_setup_failures_report_each_invariance_change (test_e12_b1.B1Contracts.test_setup_failures_report_each_invariance_change) ... ok
+test_sha_boundaries (test_e12_b1.B1Contracts.test_sha_boundaries) ... ok
+test_shallow (test_e12_b1.B1Contracts.test_shallow) ... ok
+test_source_before_write_failure_rechecks_and_preserves_exception (test_e12_b1.B1Contracts.test_source_before_write_failure_rechecks_and_preserves_exception) ... ok
+test_source_change_cannot_succeed (test_e12_b1.B1Contracts.test_source_change_cannot_succeed) ... ok
+test_valid_inputs (test_e12_b1.B1Contracts.test_valid_inputs) ... ok
+test_wrong_provenance (test_e12_b1.B1Contracts.test_wrong_provenance) ... ok
+test_candidate_constraints (test_e12_b1.CandidateContracts.test_candidate_constraints) ... ok
+test_changed_packages_or_cleanup_rejected (test_e12_b1.CandidateContracts.test_changed_packages_or_cleanup_rejected) ... ok
+test_deb822_rewrites_only_reviewed_hosts (test_e12_b1.CandidateContracts.test_deb822_rewrites_only_reviewed_hosts) ... ok
+test_different_digest (test_e12_b1.CandidateContracts.test_different_digest) ... ok
+test_each_update_install_network_option_required (test_e12_b1.CandidateContracts.test_each_update_install_network_option_required) ... ok
+test_extra_shell_commands_rejected (test_e12_b1.CandidateContracts.test_extra_shell_commands_rejected) ... ok
+test_mirrored_candidate_exact (test_e12_b1.CandidateContracts.test_mirrored_candidate_exact) ... ok
+test_old_official_source_candidate_rejected (test_e12_b1.CandidateContracts.test_old_official_source_candidate_rejected) ... ok
+test_old_unpinned_compatibility (test_e12_b1.CandidateContracts.test_old_unpinned_compatibility) ... ok
+test_other_mirror_and_source_file_rejected (test_e12_b1.CandidateContracts.test_other_mirror_and_source_file_rejected) ... ok
+test_same_pinned_from (test_e12_b1.CandidateContracts.test_same_pinned_from) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 3.413s
+
+OK

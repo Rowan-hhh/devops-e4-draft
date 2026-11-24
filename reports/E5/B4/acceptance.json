@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "stage": "E5",
+  "role": "B4 汇总与验收",
+  "status": "PASS",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "final_branch": "e5-b4-final",
+  "baseline_main": "d8d8c888ee72216a12551fc92c77c202f3d73ce4",
+  "inputs": {
+    "b1_source_commit": "14cb9fef65746e8437d06752cb098171e10be9c5",
+    "b2_candidates_commit": "5a1f6923d8edabf64371260f4797e607736f8cf0",
+    "b3_selection_commit": "59f56b4",
+    "b1_evidence": "/root/241880179/draft/work/e5-b1-final-20261022",
+    "b3_evidence": "/root/241880360/e5-b3-20261024T075232Z/evidence"
+  },
+  "initial_failure": {
+    "required_text": "make: not found",
+    "docker_build_exit_code": 1,
+    "evidence": "b1_evidence/iter-01/build-retry.log"
+  },
+  "prompts": {
+    "error_driven": "b1_evidence/iter-01/prompt-error-driven.txt",
+    "context_driven": "b1_evidence/iter-01/prompt-context-driven.txt",
+    "manifest": "reports/E5/B2/prompt-manifest.json"
+  },
+  "candidates": {
+    "count": 3,
+    "directory": "reports/E5/B2/candidates",
+    "selected": "candidate-2",
+    "selected_path": "reports/E5/B2/candidates/candidate-2.Dockerfile",
+    "selected_sha256": "027d8aabcd8d192cac5353831afe51c7d600fabf28528936ea9c9f715d3fb95c"
+  },
+  "validation": {
+    "status": "PASS",
+    "build_exit_code": 0,
+    "image_tag": "e5-b3-candidate-2:241880360",
+    "image_id": "sha256:9c28c8c7e22a15185e1ebec50759467079333db9d9cfff5572509a018216048a",
+    "run_exit_code": 0,
+    "stdout": "hello E3\n",
+    "stderr_empty": true,
+    "evidence": "b3_evidence"
+  },
+  "handoff": {
+    "next_stage": "E6",
+    "recommendation": "以 candidate-2 为选定候选，自动化构建、运行和结果记录；保留 B1 失败证据作为回归输入。"
+  }
+}

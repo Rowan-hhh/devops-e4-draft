@@ -1,0 +1,5 @@
+case,passed
+test-rejection,True
+compile-rejection,True
+accepted,True
+patch-rejection,True

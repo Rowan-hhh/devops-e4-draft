@@ -1,0 +1,13 @@
+
+==================================== ERRORS ====================================
+_________________ ERROR collecting labs/e8e10/test_profile.py __________________
+ImportError while importing test module '/course/labs/e8e10/test_profile.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+labs/e8e10/test_profile.py:3: in <module>
+    from lab import fixture,scan,patch,commit
+E   ModuleNotFoundError: No module named 'lab'
+=========================== short test summary info ============================
+ERROR labs/e8e10/test_profile.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 8.45s

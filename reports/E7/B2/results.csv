@@ -1,0 +1,6 @@
+case,passed,exit_code,workflow_status,trace_id,error
+unit-tests,True,0,,,
+success,True,0,SUCCEEDED,e6-b-3ae250160afc4a0bbf836c695a65eff7,
+build-failed,True,1,FAILED,e6-b-85878c4e481842768bac71a41eeec186,
+wrong-output,True,1,FAILED,e6-b-b071140a26064f0b9811e28dd945b150,
+invalid-candidate,True,1,FAILED,e6-b-d3e707fa480c4f08aa3e0b3eb5e99057,

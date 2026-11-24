@@ -1,0 +1,145 @@
+{
+  "schema_version": "e12-b1-handoff-1",
+  "student_id": "241880360",
+  "role": "E12-B1",
+  "status": "SUCCEEDED",
+  "outer_execution_commit": "8cd9224f32f73594c1c921cd4553cedb3760b55f",
+  "outer_branch": "student/241880360/e12-b1",
+  "project_name": "E12 B 组维护项目",
+  "project_type": "e12-b-group-maintained",
+  "source": {
+    "description": "E12 B 组维护项目，从本组 E7 使用的 fixtures/draft 派生；不是外部生产项目。",
+    "outer_repository_uri": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+    "derived_from_stage": "E7",
+    "derived_from_path": "fixtures/draft",
+    "source_outer_commit": "d1dbc4665dcaa690bcf9c322d4930358cd579d2e",
+    "source_e7_commit": "84152137c120883432fe6b6525ba9ca92a71a332",
+    "source_fixture_introduced_commit": "c7ec20de19d2554f2273d2d76f3739541acedf0c"
+  },
+  "commits": {
+    "P0": "4eb43414f37440b4f4dcd9dcd0702f955d9b78b2",
+    "P1": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+    "P2": "745ecf2621c8221b97bf0a5435ace50150ef57d4"
+  },
+  "base": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+  "target": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+  "base_is_ancestor": true,
+  "bundle": {
+    "path": "reports/E12/B1/project.bundle",
+    "sha256": "0a74f580219b55ab97119cdfa81f730f23fd0d5cbfbf2f986e4791110f3ce608"
+  },
+  "candidate": {
+    "path": "reports/E12/B1/candidate.Dockerfile",
+    "sha256": "c7b2ba5babf97c0c413583d908ab372b224a6351f127124b068f1607aefc44af",
+    "provenance": "reports/E12/B1/candidate-provenance.json"
+  },
+  "service_image": {
+    "tag": "course-e11e12:241880360",
+    "id": "sha256:a9c65eab021262a76f2025a42a9526aa5d793ee4f2224696bbb6419d0daf80e0",
+    "evidence": "reports/E12/B1/run/metadata/service-image-inspect.json"
+  },
+  "candidate_image_id": "sha256:71af06d98998e249bb1229fe71118fa45b1d56a40cb460b2687f6b5c9f8138f6",
+  "trace_id": "e6-b-1e1d0b56397b406a9d599f5553d03993",
+  "draft": {
+    "status": "SUCCEEDED",
+    "attempts": [
+      {
+        "iteration": 1,
+        "build_exit_code": 1,
+        "failure_class": "MISSING_MAKE"
+      },
+      {
+        "iteration": 2,
+        "build_exit_code": 0
+      }
+    ],
+    "verification": {
+      "exit_code": 0,
+      "actual_output": "1\n",
+      "expected_stdout": "1\n",
+      "stderr": "",
+      "output_matches": true,
+      "network": "none"
+    },
+    "result": "reports/E12/B1/run/success/result.json",
+    "raw_draft": "reports/E12/B1/run/success/draft.json"
+  },
+  "source_unchanged": true,
+  "source_state_sha256": "eca324d730f9739f3f0433c8b67fe98d8abf90f1825884b26d6c2d4e6964ed7d",
+  "source_before": "reports/E12/B1/run/success/source-before.json",
+  "source_after": "reports/E12/B1/run/success/source-after.json",
+  "unit_tests": {
+    "count": 46,
+    "passed": true,
+    "exit_code": 0,
+    "log": "reports/E12/B1/run/metadata/unit-tests.log",
+    "exit_code_file": "reports/E12/B1/run/metadata/unit-tests-exit-code.txt"
+  },
+  "ci": [
+    {
+      "workflow": "E11-E12",
+      "run_id": 42975542918,
+      "status": "success",
+      "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/42975542918"
+    },
+    {
+      "workflow": "E8-E10",
+      "run_id": 42975542951,
+      "status": "success",
+      "url": "https://github.com/Rowan-hhh/devops-e4-draft/actions/runs/42975542951"
+    }
+  ],
+  "ci_verification_basis": "Student supplied latest CI run IDs and success results; not independently re-queried during this archive task.",
+  "failure_and_correction_chain": [
+    {
+      "step": 1,
+      "event": "Service environment image build timed out fetching Docker CLI metadata from Docker Hub.",
+      "evidence": "reports/E12/B1/run/related-logs/image-build-direct-failed.log"
+    },
+    {
+      "step": 2,
+      "event": "Service environment image built using the DaoCloud Docker CLI image URL with the same digest.",
+      "docker_cli_digest": "sha256:9190b0613792e658a7783cf14b2d5ace5941bb68ede7276922ea36ee457d76ad",
+      "evidence": "reports/E12/B1/run/related-logs/image-build-mirror-success.log"
+    },
+    {
+      "step": 3,
+      "event": "First B1 invocation rejected before DRAFT because the restored project lacked local Git identity; local identity was then configured.",
+      "evidence": "reports/E12/B1/run/related-logs/precondition-failure-console.log"
+    },
+    {
+      "step": 4,
+      "event": "Old candidate second build timed out during official Debian source downloads at build_timeout=600; infrastructure failure, not a successful candidate.",
+      "status": "TIMED_OUT",
+      "source_unchanged": true,
+      "evidence": "reports/E12/B1/run/timeout/result.json",
+      "draft_evidence": "reports/E12/B1/run/timeout/draft.json"
+    },
+    {
+      "step": 5,
+      "event": "Manually corrected the sole allowed install RUN to fixed TUNA HTTPS Debian/Security URLs, IPv4 and three retries; package list and program instructions unchanged.",
+      "evidence": "reports/E12/B1/candidate-provenance.json"
+    },
+    {
+      "step": 6,
+      "event": "Revised candidate completed both DRAFT attempts and offline image verification successfully.",
+      "status": "SUCCEEDED",
+      "evidence": "reports/E12/B1/run/success/result.json"
+    }
+  ],
+  "handoff_to": [
+    "A组",
+    "后续 B2"
+  ],
+  "a_group_report_received": false,
+  "scope": {
+    "incremental_check_generated": false,
+    "final_patch_generated": false,
+    "repair_executed": false,
+    "recheck_executed": false,
+    "ab_api_integration_executed": false,
+    "final_five_stage_acceptance_executed": false
+  },
+  "archive_manifest": "reports/E12/B1/archive-manifest.json",
+  "evidence_note": "Repository-relative evidence paths are authoritative for this handoff. Server work directory identifiers in raw logs are preserved as provenance, not required for recovery."
+}

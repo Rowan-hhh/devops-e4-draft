@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "student_id": "241880360",
+  "stage": "E10",
+  "role": "B1",
+  "branch": "e10-yrh-b1",
+  "baseline_commit": "7a7ff8de16930742201ad59f07b22e96380fcb15",
+  "execution_commit": "cea139b3f60ffa04cd318009292d53d890029b40",
+  "source_state": {
+    "porcelain": "",
+    "clean": true
+  },
+  "out": "/course/work/e10-B1-20261106-110353",
+  "environment": {
+    "system": "Linux",
+    "architecture": "x86_64",
+    "python": "3.13.14",
+    "git": "git version 2.47.3",
+    "gcc": "gcc (Debian 14.2.0-19) 14.2.0",
+    "make": "GNU Make 4.4.1",
+    "image_id": "sha256:94a15175783fe4f37f17f1ae1208edfbdd2524206304e1b1ce56295f27823c40",
+    "image_id_source": "caller-provided"
+  },
+  "sample": {
+    "style": "direct",
+    "project_relative_path": "project",
+    "project_commit": "93ea08243be717cfe00502120ddebf2d090bdff7",
+    "input_sha256": {
+      ".gitignore": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+      "Makefile": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2",
+      "config.h": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+      "extra.h": "5e20ae92639ee989af5638bd0308a6a86e71bdb4345f60b962ba9db7265e4f7c",
+      "helper.c": "90a60f959d215b0b91807c6dd2c94acf6684a9fe26629dc1591e9b2ea773d78c",
+      "main.c": "0da2f94ca7b27cfeae51e4842a4a39f527929b28a82f40b3796d308cc72c1379",
+      "unused.h": "3f7fec0991b34d614462e29b450c76638f07171936a12df337c578c2d1481b37"
+    },
+    "input_sha256_after_build": {
+      ".gitignore": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+      "Makefile": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2",
+      "config.h": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+      "extra.h": "5e20ae92639ee989af5638bd0308a6a86e71bdb4345f60b962ba9db7265e4f7c",
+      "helper.c": "90a60f959d215b0b91807c6dd2c94acf6684a9fe26629dc1591e9b2ea773d78c",
+      "main.c": "0da2f94ca7b27cfeae51e4842a4a39f527929b28a82f40b3796d308cc72c1379",
+      "unused.h": "3f7fec0991b34d614462e29b450c76638f07171936a12df337c578c2d1481b37"
+    },
+    "worktree_clean": true,
+    "build_artifacts_absent": true
+  },
+  "build": {
+    "isolated": true,
+    "passed": true,
+    "output": "1",
+    "logs": [
+      "build/clean.log",
+      "build/app.log",
+      "build/run.log"
+    ]
+  },
+  "handoff_to": "B3",
+  "reports_generated": false,
+  "patches_generated": false
+}

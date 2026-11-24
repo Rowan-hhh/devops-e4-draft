@@ -1,0 +1,10 @@
+{
+  "base_commit": "593b40a176b0881f3b7ed072a4c6c4302957a07b",
+  "format": "test_profile.py normalized to LF; no semantic change",
+  "file_sha256": {
+    "labs/e8e10/lab.py": "753e50483e40a6aa066d939d32bad3c5bec8acd1d09731f12abe9868fa962ecf",
+    "labs/e8e10/test_profile.py": "634ba67bf3b66a87f0d5144f16c76e297600e7bb4cee7c022a5502afbc26bb3a",
+    "run_lab.py": "e222ae531e46d1ec41d4b0186a3910f545fd1356c3a63a0cc2a95efa4e9e03bf",
+    "work/e8-B-manual.t0bJlj/unit-tests-final.log": "c4fea4c893f327365fbf101fa55d0e823525f69854bc9c66d2ae3926b5dbd823"
+  }
+}

@@ -1,0 +1,19 @@
+CREATED /course/work/e8-B-personal-241880179-20261105-064601/project
+PROJECT_HEAD 070a8913e408e73b442c939b769927b7d7f6a162
+CFLAGS = -O0
+app: main.o helper.o
+	gcc main.o helper.o -o app
+main.o: main.c unused.h
+	gcc $(CFLAGS) -c main.c -o main.o
+helper.o: helper.c
+	gcc $(CFLAGS) -c helper.c -o helper.o
+.PHONY: clean
+clean:
+	rm -f main.o helper.o app
+
+#include <stdio.h>
+#include "config.h"
+int helper(void);
+int main(void){printf("%d\n",VALUE+helper());return 0;}
+
+STEP_EXIT_CODE=0

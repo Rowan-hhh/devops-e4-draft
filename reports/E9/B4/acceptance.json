@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "student_id": "241880360",
+  "stage": "E9",
+  "role": "B4",
+  "branch": "e9-yrh-b4",
+  "baseline_commit": "127b945bb91f4d56f176955d726b8004c87620a6",
+  "execution_commit": "6752443e560c9a7e5e482fb9adda882c8b6a40d0",
+  "upstream": {
+    "B3": "0636c8fb950e4048e186b8960a28fc0edfb04070",
+    "B2_final": "127b945bb91f4d56f176955d726b8004c87620a6"
+  },
+  "source_mode": "independent-local-fixtures-with-B1-hash-check",
+  "rows": [
+    {
+      "style": "direct",
+      "report_commit": "ca510c9ab7220b2f043d29a3cd891e1a88fa5bd6",
+      "report_matches_local_head": true,
+      "plan_style_correct": true,
+      "patch_check_passed": true,
+      "applied_only_to_isolated_copy": true,
+      "source_unchanged_and_clean": true,
+      "recipe_bytes_preserved": true,
+      "no_missing": true,
+      "redundant_unused_preserved": true,
+      "build_exit_code": 0,
+      "run_exit_code": 0,
+      "run_output": "1"
+    },
+    {
+      "style": "macro",
+      "report_commit": "0180ecaadb2cb736d59d24249147d3022527eb50",
+      "report_matches_local_head": true,
+      "plan_style_correct": true,
+      "patch_check_passed": true,
+      "applied_only_to_isolated_copy": true,
+      "source_unchanged_and_clean": true,
+      "recipe_bytes_preserved": true,
+      "no_missing": true,
+      "redundant_unused_preserved": true,
+      "build_exit_code": 0,
+      "run_exit_code": 0,
+      "run_output": "1"
+    },
+    {
+      "style": "mixed",
+      "report_commit": "7117675b125f016cbd12436908954c42b45436d1",
+      "report_matches_local_head": true,
+      "plan_style_correct": true,
+      "patch_check_passed": true,
+      "applied_only_to_isolated_copy": true,
+      "source_unchanged_and_clean": true,
+      "recipe_bytes_preserved": true,
+      "no_missing": true,
+      "redundant_unused_preserved": true,
+      "build_exit_code": 0,
+      "run_exit_code": 0,
+      "run_output": "1"
+    }
+  ],
+  "unit_tests": {
+    "exit_code": 0,
+    "log": "unit-tests.log"
+  },
+  "passed": true
+}

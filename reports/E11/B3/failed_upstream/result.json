@@ -1,0 +1,14 @@
+{
+  "actual_error": "UPSTREAM_FAILED",
+  "actual_sha256": "f72f831f65cc4ca03cc1891266f0c4c8c13ab15e6095fe9caac7ca6bc366042f",
+  "case": "failed_upstream",
+  "expected_error": "UPSTREAM_FAILED",
+  "expected_sha256": "f72f831f65cc4ca03cc1891266f0c4c8c13ab15e6095fe9caac7ca6bc366042f",
+  "input": "failed_upstream/input.json",
+  "output_after": {},
+  "output_before": {},
+  "output_unchanged": true,
+  "patch_generated": false,
+  "rejected": true,
+  "source_unchanged": true
+}

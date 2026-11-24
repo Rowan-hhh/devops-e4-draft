@@ -1,0 +1,55 @@
+{
+  "schema_version": "e12-b4-1",
+  "student_id": "241880179",
+  "role": "E12-B4",
+  "status": "SUCCEEDED",
+  "job_id": "job-a8c716a97754454d990c997cc9929d4b",
+  "trace_id": "trace-f535cebe0ae94d57ba375b66d43f5f33",
+  "base_commit": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+  "target_commit": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+  "stages": [
+    "draft",
+    "full-check",
+    "incremental-check",
+    "repair",
+    "recheck"
+  ],
+  "artifact_count": 174,
+  "a_group_report": {
+    "job_id": "job-701e024edd564902a625716aa9547cf7",
+    "trace_id": "trace-be8e398fc0564ebcb177991840937797",
+    "sha256": "66e3bfb2c39d4c8b0913d4b5afb269d284cb1369e05d68b4fd889170e1e38a83"
+  },
+  "validation": {
+    "accepted": true,
+    "checks": {
+      "patch_applies": true,
+      "build": true,
+      "test": true,
+      "header_change": true,
+      "no_missing": true
+    },
+    "error": null,
+    "source_unchanged": false,
+    "rollback": false
+  },
+  "final_missing_count": 0,
+  "contributors": {
+    "B1": {
+      "student_id": "241880360",
+      "status": "SUCCEEDED"
+    },
+    "B2": {
+      "student_id": "241880610",
+      "status": "SUCCEEDED"
+    },
+    "B3": {
+      "student_id": "241880300",
+      "status": "SUCCEEDED"
+    },
+    "B4": {
+      "student_id": "241880179",
+      "status": "SUCCEEDED"
+    }
+  }
+}

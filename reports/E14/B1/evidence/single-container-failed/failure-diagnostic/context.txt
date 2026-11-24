@@ -1,0 +1,6 @@
+diagnosed_at_utc=2026-11-23T03:05:22Z
+branch=e14-yrh-b1-formal-evidence
+tool_commit=588957ad6373e45fa166ed5a58c546bea018669d
+evidence_dir=work/e14-B1-single-formal-20261123T025045Z
+launch_dir=work/e14-B1-single-launch-20261123T025045Z
+wrapper_exit=1

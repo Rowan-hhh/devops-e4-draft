@@ -1,0 +1,59 @@
+{
+  "schema_version": "e12-b3-handoff-1",
+  "student_id": "241880300",
+  "role": "E12-B3",
+  "status": "SUCCEEDED",
+  "branch": "e12-zyh-b3",
+  "base_url": "http://127.0.0.1:18081",
+  "ssh_forwarding": "ssh -N -L 18081:127.0.0.1:8080 <account>@<api-server>",
+  "request_sha256": "7023862e7c6578f45c16db3f48e4d809cc26ef6f5294cbcac32e0bde1988aeed",
+  "job_id": "job-171994714e734e78a5cdc29346d12a92",
+  "trace_id": "trace-41596e50faf94fe59b74a28ef84a5648",
+  "final_status": "SUCCEEDED",
+  "artifact_count": 174,
+  "downloads": [
+    {
+      "path": "candidate.patch",
+      "uri": "artifact://job-171994714e734e78a5cdc29346d12a92/candidate.patch",
+      "bytes": 251,
+      "manifest_sha256": "a7a3be54d5ba81594acd628725f17aca2b4ce0d1a5aed556d454bb321eb5142a",
+      "header_sha256": "a7a3be54d5ba81594acd628725f17aca2b4ce0d1a5aed556d454bb321eb5142a",
+      "download_sha256": "a7a3be54d5ba81594acd628725f17aca2b4ce0d1a5aed556d454bb321eb5142a",
+      "matches": true
+    },
+    {
+      "path": "repair-plan.json",
+      "uri": "artifact://job-171994714e734e78a5cdc29346d12a92/repair-plan.json",
+      "bytes": 97,
+      "manifest_sha256": "ca830d7c2fc9db590984afe8b96f814b7f080d8b0066fc358c619f9bc2d4ac2a",
+      "header_sha256": "ca830d7c2fc9db590984afe8b96f814b7f080d8b0066fc358c619f9bc2d4ac2a",
+      "download_sha256": "ca830d7c2fc9db590984afe8b96f814b7f080d8b0066fc358c619f9bc2d4ac2a",
+      "matches": true
+    },
+    {
+      "path": "validation/validation.json",
+      "uri": "artifact://job-171994714e734e78a5cdc29346d12a92/validation/validation.json",
+      "bytes": 223,
+      "manifest_sha256": "0aedd844e45d87669ff3c7ad42fcb15414453a14882df2fa6335997367390c37",
+      "header_sha256": "0aedd844e45d87669ff3c7ad42fcb15414453a14882df2fa6335997367390c37",
+      "download_sha256": "0aedd844e45d87669ff3c7ad42fcb15414453a14882df2fa6335997367390c37",
+      "matches": true
+    },
+    {
+      "path": "recheck.json",
+      "uri": "artifact://job-171994714e734e78a5cdc29346d12a92/recheck.json",
+      "bytes": 1104,
+      "manifest_sha256": "ccb9c3ef135501cd72bd4a1ce594555f20702e2744038d1442f1697398c73d86",
+      "header_sha256": "ccb9c3ef135501cd72bd4a1ce594555f20702e2744038d1442f1697398c73d86",
+      "download_sha256": "ccb9c3ef135501cd72bd4a1ce594555f20702e2744038d1442f1697398c73d86",
+      "matches": true
+    }
+  ],
+  "contracts": {
+    "submit": true,
+    "poll": true,
+    "artifact_hashes": true,
+    "idempotent_replay_same_job": true,
+    "conflict_409": true
+  }
+}

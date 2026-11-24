@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "stage": "E7",
+  "role": "B1 normal candidate and build failure",
+  "student_id": "241880179",
+  "status": "PASS",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "branch": "e7-b1",
+  "base_commit": "fc518a538b0d6811d6e19b6eea428d96eeba6e0e",
+  "tested_code_commit": "5c82d9067c651b2b3256350098d17af16d41782b",
+  "candidate": {
+    "path": "reports/E6/B2/candidate.Dockerfile",
+    "sha256": "510dc459a9a3830aabdf35b32c15b0c22a3c3299982950e40378d4a3227b9788",
+    "modified": false
+  },
+  "service": {
+    "evidence": "/root/E4-draft/work/e7-b1-service-20261026",
+    "exit_code": 0,
+    "tests": "14 passed",
+    "image": "course1020-draft:e7-b1",
+    "image_id": "sha256:6906971e0479d7573627eab17e1187d10588b8456e4497f16867e765de9709d7"
+  },
+  "gate": {
+    "evidence": "/root/E4-draft/work/e7-b1-20261026/gate",
+    "exit_code": 0,
+    "passed": true,
+    "selected_cases": [
+      "success",
+      "build-failed"
+    ]
+  },
+  "success": {
+    "trace_id": "e6-b-620bdd19b6614f57a8983d26c41c278e",
+    "workflow_exit_code": 0,
+    "workflow_status": "SUCCEEDED",
+    "attempts": [
+      {
+        "iteration": "iter-01",
+        "build_exit_code": 1,
+        "failure_class": "MISSING_MAKE"
+      },
+      {
+        "iteration": "iter-02",
+        "build_exit_code": 0,
+        "failure_class": "SUCCEEDED"
+      }
+    ],
+    "image_id": "sha256:5a3e4045d5c07613f6d4c66bbd059eb032311eaaa5cfd65f44aaa8d8c4ddca81",
+    "run_network": "none",
+    "run_exit_code": 0,
+    "stdout": "hello E3\n",
+    "stderr": "",
+    "output_matches": true
+  },
+  "build_failed": {
+    "trace_id": "e6-b-befa9d46160c409b839b6a8af8319e7d",
+    "workflow_exit_code": 1,
+    "workflow_status": "FAILED",
+    "fault_injection": "RUN exit 23 before RUN make",
+    "attempts": [
+      {
+        "iteration": "iter-01",
+        "build_exit_code": 1,
+        "failure_class": "MISSING_MAKE"
+      },
+      {
+        "iteration": "iter-02",
+        "build_exit_code": 1,
+        "failure_class": "BUILD_FAILED"
+      }
+    ],
+    "image_id_present": false,
+    "verification_present": false,
+    "verify_artifacts_present": false
+  },
+  "security": {
+    "command": "python3 scripts/secret_scan.py . --history --image course1020-draft:e7-b1",
+    "exit_code": 0,
+    "result": "no findings",
+    "running_containers_after_gate": 0
+  },
+  "evidence_archive": {
+    "server_path": "/root/e7-b1-241880179-evidence.tar.gz",
+    "local_path": "tmp/e7-b1-241880179-evidence.tar.gz",
+    "sha256": "50de5730d41ea717c5f5a05fbe1184d7c9df8acd094b82f9f1143a594883a368"
+  },
+  "handoff": {
+    "required_now": false,
+    "next_required": "B3 sends one intermediate gate status to group A"
+  }
+}

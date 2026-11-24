@@ -1,0 +1,434 @@
+{
+  "case": "H3",
+  "schema_version": "e13-h3-plan-1",
+  "status": "NOT_RUN",
+  "teacher_project": true,
+  "project_name": "H3-tiny-aes",
+  "zip_path": "/root/devops-students/241880360/draft/work/e13-b3-input/e13-upstream-student.zip",
+  "zip_sha256": "d9818c5f34d6ff5b6016222dabd7f56daca09ceaa5f525be214e146e3d485435",
+  "members": {
+    "e13-upstream-student/H3-tiny-aes/repo/.git/COMMIT_EDITMSG": {
+      "size": 24,
+      "crc": 3889496810,
+      "sha256": "96f494e2ac789a8114d5cb91f03f740c4617b04040fd8144d7afd53c9c52770f",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/HEAD": {
+      "size": 21,
+      "crc": 1466196917,
+      "sha256": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/config": {
+      "size": 156,
+      "crc": 4215982396,
+      "sha256": "b08ffbff3808ab31e2eb5dd83519d920f3e8a4662d306b558d0e7a2e56d67378",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/description": {
+      "size": 73,
+      "crc": 520588087,
+      "sha256": "85ab6c163d43a17ea9cf7788308bca1466f1b0a8d1cc92e26e9bf63da4062aee",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/applypatch-msg.sample": {
+      "size": 478,
+      "crc": 167268229,
+      "sha256": "0223497a0b8b033aa58a3a521b8629869386cf7ab0e2f101963d328aa62193f7",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/commit-msg.sample": {
+      "size": 896,
+      "crc": 281737449,
+      "sha256": "1f74d5e9292979b573ebd59741d46cb93ff391acdd083d340b94370753d92437",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/fsmonitor-watchman.sample": {
+      "size": 4655,
+      "crc": 1670953296,
+      "sha256": "f3c0228d8e827f1c5260ac59fdd92c3d425c46e54711ef713c5a54ae0a4db2b4",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/post-update.sample": {
+      "size": 189,
+      "crc": 3237416090,
+      "sha256": "81765af2daef323061dcbc5e61fc16481cb74b3bac9ad8a174b186523586f6c5",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/pre-applypatch.sample": {
+      "size": 424,
+      "crc": 38584527,
+      "sha256": "e15c5b469ea3e0a695bea6f2c82bcf8e62821074939ddd85b77e0007ff165475",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/pre-commit.sample": {
+      "size": 1643,
+      "crc": 204649455,
+      "sha256": "f9af7d95eb1231ecf2eba9770fedfa8d4797a12b02d7240e98d568201251244a",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/pre-merge-commit.sample": {
+      "size": 416,
+      "crc": 1592999748,
+      "sha256": "d3825a70337940ebbd0a5c072984e13245920cdf8898bd225c8d27a6dfc9cb53",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/pre-push.sample": {
+      "size": 1374,
+      "crc": 4178185999,
+      "sha256": "ecce9c7e04d3f5dd9d8ada81753dd1d549a9634b26770042b58dda00217d086a",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/pre-rebase.sample": {
+      "size": 4898,
+      "crc": 1364782212,
+      "sha256": "4febce867790052338076f4e66cc47efb14879d18097d1d61c8261859eaaa7b3",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/pre-receive.sample": {
+      "size": 544,
+      "crc": 2532885650,
+      "sha256": "a4c3d2b9c7bb3fd8d1441c31bd4ee71a595d66b44fcf49ddb310252320169989",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/prepare-commit-msg.sample": {
+      "size": 1492,
+      "crc": 808850413,
+      "sha256": "e9ddcaa4189fddd25ed97fc8c789eca7b6ca16390b2392ae3276f0c8e1aa4619",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/push-to-checkout.sample": {
+      "size": 2783,
+      "crc": 4027057875,
+      "sha256": "a53d0741798b287c6dd7afa64aee473f305e65d3f49463bb9d7408ec3b12bf5f",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/hooks/update.sample": {
+      "size": 3650,
+      "crc": 117240025,
+      "sha256": "8d5f2fa83e103cf08b57eaa67521df9194f45cbdbcb37da52ad586097a14d106",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/index": {
+      "size": 890,
+      "crc": 729268304,
+      "sha256": "e9804bbe81e7991d89bd1df59be6647376da160ffdcb759a922d74cabd565c05",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/info/exclude": {
+      "size": 240,
+      "crc": 567098743,
+      "sha256": "6671fe83b7a07c8932ee89164d1f2793b2318058eb8b98dc5c06ee0a5a3b0ec1",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/logs/HEAD": {
+      "size": 379,
+      "crc": 2754720721,
+      "sha256": "65deb6b6ec70c1e6ce548d4332b383072c433f15cd87a0df6bf3aed411a4f3d6",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/logs/refs/heads/main": {
+      "size": 379,
+      "crc": 2754720721,
+      "sha256": "65deb6b6ec70c1e6ce548d4332b383072c433f15cd87a0df6bf3aed411a4f3d6",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/16/ba0873c86146bfa3969e8b62ae3dc8da02145f": {
+      "size": 23,
+      "crc": 3220900896,
+      "sha256": "f97a456beede6e563c41d6a66e8d16f63983a1d65f78218c9db4e3088eb7626b",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/1f/f96a82540780bc171305f3caa3850f81be5bdb": {
+      "size": 45,
+      "crc": 1838462873,
+      "sha256": "6af0bfcdf114b905d2f094e8e7fe15706cae2ca79163e63b424156943624b394",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/2b/f8b5f3c25f0dcafdf63e29385fe5379764693c": {
+      "size": 143,
+      "crc": 2204672534,
+      "sha256": "78428f41098eea1fe867908bc5f9443072b28255e3d2a775c258c1621dd85322",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/4b/9c2085029a20943265d1dc23244422ff123891": {
+      "size": 156,
+      "crc": 209883215,
+      "sha256": "c04184d6fd31246d285724e707bb048ebe87b60766ea5385095fd68a2392aa1c",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/56/40bb69a01e64559207e9f74d15a9ae71a4d0f3": {
+      "size": 176,
+      "crc": 4272021523,
+      "sha256": "a4a2637718a9c1e32eaf916c27dc6010b48d40e6a370aab65b5ed012366b33ac",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/5d/5c613b4e9434c305cd87dcef79b88d6db4c8f6": {
+      "size": 6670,
+      "crc": 3614990071,
+      "sha256": "406e5a93a57efd629fbed8ff920f3a55ebf7c2ae4d19ecaa7d4ab6ee8986e0f5",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/5f/7a3bfb19f55df0ab99a22f021505fc29d933dc": {
+      "size": 6644,
+      "crc": 1000980117,
+      "sha256": "1bec2b4aab259d84d6b8665c5a8a3409206f90e020f8165f88a895f27c6b7d05",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/66/f74864006204fe507b5fb082febac08f66c047": {
+      "size": 385,
+      "crc": 3071894812,
+      "sha256": "f6e156e174ec2a4f0b8b79c20b4d9774b8f013c1ed549b57a9b34521a1807914",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/68/a49daad8ff7e35068f2b7a97d643aab440eaec": {
+      "size": 723,
+      "crc": 503081674,
+      "sha256": "ab2cef955bbaf217eb3ef08456787ab996de86034d7eb54dd0fda8a9a7b0cd5a",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/85/ed316ab9b12eccdca191c7e9f459dfc6d17b3e": {
+      "size": 53,
+      "crc": 3818527656,
+      "sha256": "aa024deb5b2c46a6632d00a3433d8e83ca334056b3bdd00b03d61f617a004b83",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/b2/9b6683549632676ec11c06eb86efd02964db57": {
+      "size": 1040,
+      "crc": 1778709643,
+      "sha256": "b960f1af5327a5942469b2e0855b2ec96d4aab003e686d1c94310d619a8e22c3",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/b4/82abbdb48d5ccf2ff0b61f8826e6ac55a92562": {
+      "size": 321,
+      "crc": 616208766,
+      "sha256": "ee8ea2a8f3d2dd3f32d7dc0056ee19f6b47499522d214bc31c341041723e1ff9",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/cb/3589391d6d391165f4147b7eeef85aa7dc01d9": {
+      "size": 32,
+      "crc": 184045966,
+      "sha256": "48799709b5989b4491c8cb1eb317a8b12c3ce1c65532b545e941f78d585fc982",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/dc/8099306d7023b7337328d718149973e7b17978": {
+      "size": 160,
+      "crc": 1753173760,
+      "sha256": "50a0c99bb4c196a0df9f664676e0ea031ad89674b836bd865b7dfd56b91bdfc9",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/e5/8fe89e4a9f7dbcb8a5e2fce90c65612eac2123": {
+      "size": 385,
+      "crc": 4004181929,
+      "sha256": "6a4e8935dd63f6c03c4cca46a9c420ba4a5452f5d790a9591414574014baaa1e",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/objects/ff/b3c863a1afb12da85516b8d908d85134090c49": {
+      "size": 115,
+      "crc": 706572987,
+      "sha256": "bb0b6273fc91bcc11ff6dbc8e5926b27e03dbf38b6cba0442e2eefa98c351673",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.git/refs/heads/main": {
+      "size": 41,
+      "crc": 1970302593,
+      "sha256": "53b1444e2c41cdd36b39e19f3c56cb0b17f58aa5b31eaba24eb5acde3190385e",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/.gitignore": {
+      "size": 8,
+      "crc": 965029574,
+      "sha256": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/Dockerfile.broken": {
+      "size": 160,
+      "crc": 1512117167,
+      "sha256": "5dde1c477099516a4fbc011084a27ff9dacd52338be8e15e1c139cb25fee3988",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/LICENSE.upstream": {
+      "size": 1211,
+      "crc": 2563699934,
+      "sha256": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/Makefile": {
+      "size": 233,
+      "crc": 3260971133,
+      "sha256": "d7c92dd9b740d59ac27213b8b6baab44563112fa722f4f667500211a74ac1fc8",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/UPSTREAM.md": {
+      "size": 431,
+      "crc": 2550795647,
+      "sha256": "775a3bacabd697eff104c95c45833f3dcebc9c5a77daf5fb9a329cc20217dc66",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/aes.h": {
+      "size": 2790,
+      "crc": 3261404077,
+      "sha256": "9f74a4de3bd11621ff6e8fb9b352b060f699e6c1c67f81a22d104aacad61a23b",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/config.h": {
+      "size": 16,
+      "crc": 4115917006,
+      "sha256": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/extra.h": {
+      "size": 29,
+      "crc": 4239898892,
+      "sha256": "b9421ebe36431c38dc5bd44e9df56524c82bfc73fad78060513ed0cdd155174c",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/helper.c": {
+      "size": 19573,
+      "crc": 2695370795,
+      "sha256": "004e3236eae18489e780a9fc70104267f9788dec22e01c562fe08da95dbc8f6f",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/main.c": {
+      "size": 120,
+      "crc": 3234066515,
+      "sha256": "4f8535dc013d26d7d3f90c2b340c9adcf7c179e3afcaf4b64d51a90d96f780c8",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/repo/unused.h": {
+      "size": 37,
+      "crc": 3798000799,
+      "sha256": "e2780d03dc96f11919fe5856b9e3026bd1e1e76ec1a9612f789c4dd204b09b06",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/candidate.Dockerfile": {
+      "size": 556,
+      "crc": 360012935,
+      "sha256": "08305c26b934d66ed96bd0ea149a597fcbe0be23d363511ab75037c51476eee9",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/.github/workflows/c-cpp.yml": {
+      "size": 453,
+      "crc": 84869781,
+      "sha256": "8972caeff1c32f84fc10ecdffa0a5b2c67fe95178c7f0b96531eb898eadc3b05",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/.gitignore": {
+      "size": 44,
+      "crc": 3761040715,
+      "sha256": "2a497b04c453f0091050cf48e786974031d5d92f148044755cda3b226104cda3",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/CMakeLists.txt": {
+      "size": 366,
+      "crc": 616164132,
+      "sha256": "40d1451b46ca9b2417a81e364071809096cc8d6ab940f00536b1b32ae9499019",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/Makefile": {
+      "size": 1211,
+      "crc": 1824005599,
+      "sha256": "d405b233f086e8dfaf34357c0759701996cd460308cfe845f90b4eb09319bb84",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/README.md": {
+      "size": 4798,
+      "crc": 2681495719,
+      "sha256": "0d9bac7a0d8a4095415a51a4ab17102969a242bc48fbe7547dd1817a5086e1a8",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/aes.c": {
+      "size": 19017,
+      "crc": 3952512409,
+      "sha256": "f7f78b44654efd3542b6886923dd05194286807ebcfeb078ea05d21fe901ee9e",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/aes.h": {
+      "size": 2790,
+      "crc": 3261404077,
+      "sha256": "9f74a4de3bd11621ff6e8fb9b352b060f699e6c1c67f81a22d104aacad61a23b",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/aes.hpp": {
+      "size": 184,
+      "crc": 4121431559,
+      "sha256": "d59bcf29c91a796aa735c4ca204e0140f98fac7b68006a78d900c14c344e0883",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/conanfile.py": {
+      "size": 2050,
+      "crc": 1700184753,
+      "sha256": "1bbd36e93044aecd654ffbb8caea4920b4e2e4cb0e5358ff0eb95332345182dc",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/library.json": {
+      "size": 447,
+      "crc": 3756587869,
+      "sha256": "333620895878a8f5332a4d2be17b5f8d77590d4bcd5a0a4f92b7b3309734aa7a",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/library.properties": {
+      "size": 557,
+      "crc": 346224732,
+      "sha256": "78bd119ef5ecef5fac145da8c6faa0561c8decb363d963523b442ffff8ec2636",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/test.c": {
+      "size": 15539,
+      "crc": 1035161159,
+      "sha256": "fcb86bc2d46d26c106bca62281be8b0e161daf979bb80b6c35a2bcf3b7b74dec",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/test.cpp": {
+      "size": 37,
+      "crc": 3755918319,
+      "sha256": "1cca1660b5a044ccd4cfae34283b0f4e9039ea37bae846807c626fb4678e4230",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/test_package/CMakeLists.txt": {
+      "size": 313,
+      "crc": 2570669156,
+      "sha256": "5280ca005fd6dc88b8f0696f811d992477f985e790c0aa0979a4de73a6f04874",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/test_package/conanfile.py": {
+      "size": 413,
+      "crc": 1068243364,
+      "sha256": "4d7b0e0609cc1244aabf8e42e224449ab3b616320714bcf663eb59531d5d4a58",
+      "type": "file"
+    },
+    "e13-upstream-student/H3-tiny-aes/upstream-original/unlicense.txt": {
+      "size": 1211,
+      "crc": 2563699934,
+      "sha256": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+      "type": "file"
+    }
+  },
+  "identity": {
+    "head": "5640bb69a01e64559207e9f74d15a9ae71a4d0f3",
+    "base": "dc8099306d7023b7337328d718149973e7b17978",
+    "target": "5640bb69a01e64559207e9f74d15a9ae71a4d0f3",
+    "tree": "e58fe89e4a9f7dbcb8a5e2fce90c65612eac2123",
+    "history": "5640bb69a01e64559207e9f74d15a9ae71a4d0f3 dc8099306d7023b7337328d718149973e7b17978 e58fe89e4a9f7dbcb8a5e2fce90c65612eac2123 C1 new local header use\ndc8099306d7023b7337328d718149973e7b17978  66f74864006204fe507b5fb082febac08f66c047 C0 pinned upstream library with course harness",
+    "files": {
+      ".gitignore": "d7bfd39146ded6c9700eb81300e82345464db46cda1e775b8a114a811311bafe",
+      "Dockerfile.broken": "5dde1c477099516a4fbc011084a27ff9dacd52338be8e15e1c139cb25fee3988",
+      "LICENSE.upstream": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+      "Makefile": "d7c92dd9b740d59ac27213b8b6baab44563112fa722f4f667500211a74ac1fc8",
+      "UPSTREAM.md": "775a3bacabd697eff104c95c45833f3dcebc9c5a77daf5fb9a329cc20217dc66",
+      "aes.h": "9f74a4de3bd11621ff6e8fb9b352b060f699e6c1c67f81a22d104aacad61a23b",
+      "config.h": "ac32a92f4af359517c993d6e8583ea2d9b053c2ad171b4c602bc242894bd9696",
+      "extra.h": "b9421ebe36431c38dc5bd44e9df56524c82bfc73fad78060513ed0cdd155174c",
+      "helper.c": "004e3236eae18489e780a9fc70104267f9788dec22e01c562fe08da95dbc8f6f",
+      "main.c": "4f8535dc013d26d7d3f90c2b340c9adcf7c179e3afcaf4b64d51a90d96f780c8",
+      "unused.h": "e2780d03dc96f11919fe5856b9e3026bd1e1e76ec1a9612f789c4dd204b09b06"
+    },
+    "upstream_sha256": "775a3bacabd697eff104c95c45833f3dcebc9c5a77daf5fb9a329cc20217dc66",
+    "license_sha256": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+    "license_bytes": 1211,
+    "candidate_sha256": "08305c26b934d66ed96bd0ea149a597fcbe0be23d363511ab75037c51476eee9",
+    "candidate_bytes": 556
+  },
+  "request_sha256": "ab07fc726bf152e08934bad1f5f46f0aa2c7b9f8a1e44e9fa1e5646726ba0e77",
+  "request_bytes": 485
+}

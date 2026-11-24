@@ -1,0 +1,4 @@
+session=e14-b1-four-20261123T050827Z
+compose_project=e14b1formal20261123t050827z
+evidence_dir=work/e14-B1-four-service-formal-20261123T050827Z
+runner=work/e14-B1-four-service-launch-20261123T050827Z/run.sh

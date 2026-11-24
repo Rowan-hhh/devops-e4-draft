@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "stage": "E10",
+  "track": "B",
+  "role": "B4",
+  "student_id": "241880610",
+  "status": "PASS",
+  "branch": "e10-xzt-b4",
+  "base_main": "eaa0ddec034f43a12964741b62133c701d4c42f4",
+  "evidence_directory": "work/e10-B4-241880610-20261108",
+  "runner": "labs/e8e10/verify_e10_b4.py",
+  "cases": {
+    "wrong_test_rejected": true,
+    "candidate_accepted": true,
+    "bad_patch_rejected": true,
+    "compile_failure_rejected": true
+  },
+  "accepted_checks": {
+    "patch_applies": true,
+    "build": true,
+    "test": true,
+    "header_change": true,
+    "no_missing": true
+  },
+  "buildchecker_recheck": {
+    "status": "SUCCEEDED",
+    "missing_count": 0
+  },
+  "unit_tests": {"count": 19, "exit_code": 0},
+  "next_action": "组长审核 e10-xzt-b4 PR，合并后将 E10 B 轨最终结果纳入 main。"
+}

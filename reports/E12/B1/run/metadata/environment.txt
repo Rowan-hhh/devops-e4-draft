@@ -1,0 +1,9 @@
+recorded_at_utc=2026-11-11T07:05:27Z
+hostname=iZbp106a3t3mzz3nfabuagZ
+outer_commit=8cd9224f32f73594c1c921cd4553cedb3760b55f
+outer_branch=student/241880360/e12-b1
+project_commit=745ecf2621c8221b97bf0a5435ace50150ef57d4
+service_image=sha256:a9c65eab021262a76f2025a42a9526aa5d793ee4f2224696bbb6419d0daf80e0
+candidate_image=sha256:71af06d98998e249bb1229fe71118fa45b1d56a40cb460b2687f6b5c9f8138f6
+successful_run=work/e12-B1-241880360-20261111T070145Z
+previous_timeout_run=work/e12-B1-241880360-20261111T062651Z

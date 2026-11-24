@@ -1,0 +1,48 @@
+E8_PERSONAL_FULL_RUN_PASS
+{
+  "student_id": "241880179",
+  "stage": "E8",
+  "track": "B",
+  "scope": "personal-full-run",
+  "student_source_commit": "ee4a54807c6e3efb06689f09d17dec07530c0086",
+  "project_head": "070a8913e408e73b442c939b769927b7d7f6a162",
+  "findings": [
+    {
+      "type": "MISSING",
+      "target": "main.o",
+      "dependency": "config.h"
+    },
+    {
+      "type": "REDUNDANT",
+      "target": "main.o",
+      "dependency": "unused.h"
+    }
+  ],
+  "patch_plan": [
+    {
+      "target": "main.o",
+      "dependency": "config.h",
+      "style": "direct"
+    }
+  ],
+  "apply_check_passed": true,
+  "stale_report_error": "STALE_REPORT",
+  "apply_demo": {
+    "patch_applied_in_copy": true,
+    "build_passed": true,
+    "program_output": "1",
+    "missing_edges_after_patch": [],
+    "redundant_edge_preserved": true,
+    "recipe_bytes_preserved": true,
+    "original_project_clean": true,
+    "original_input_hashes_unchanged": true,
+    "demo_git_diff": "diff --git a/Makefile b/Makefile\nindex 5ac5eee..4d15356 100644\n--- a/Makefile\n+++ b/Makefile\n@@ -1,7 +1,7 @@\n CFLAGS = -O0\n app: main.o helper.o\n \tgcc main.o helper.o -o app\n-main.o: main.c unused.h\n+main.o: main.c unused.h config.h\n \tgcc $(CFLAGS) -c main.c -o main.o\n helper.o: helper.c\n \tgcc $(CFLAGS) -c helper.c -o helper.o\n"
+  },
+  "unit_tests": {
+    "count": 11,
+    "exit_code": 0,
+    "result": "OK"
+  },
+  "original_project_clean": true
+}
+STEP_EXIT_CODE=0

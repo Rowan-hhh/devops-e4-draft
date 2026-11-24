@@ -1,0 +1,76 @@
+{
+  "cases": 5,
+  "passed": true,
+  "results": [
+    {
+      "actual_error": "STALE_REPORT",
+      "actual_sha256": "bd519f7ab5b9169ebe3cda35a0cbca585ef4b42929d11faa2bdc6aa9d23e32ef",
+      "case": "old_commit",
+      "expected_error": "STALE_REPORT",
+      "expected_sha256": "bd519f7ab5b9169ebe3cda35a0cbca585ef4b42929d11faa2bdc6aa9d23e32ef",
+      "input": "old_commit/input.json",
+      "output_after": {},
+      "output_before": {},
+      "output_unchanged": true,
+      "patch_generated": false,
+      "rejected": true,
+      "source_unchanged": true
+    },
+    {
+      "actual_error": "SCHEMA_MISMATCH",
+      "actual_sha256": "44b17e70e974a5fc49f1017206761d3a6378fdbaae9543b2d295fb5c07f0fad3",
+      "case": "wrong_schema",
+      "expected_error": "SCHEMA_MISMATCH",
+      "expected_sha256": "44b17e70e974a5fc49f1017206761d3a6378fdbaae9543b2d295fb5c07f0fad3",
+      "input": "wrong_schema/input.json",
+      "output_after": {},
+      "output_before": {},
+      "output_unchanged": true,
+      "patch_generated": false,
+      "rejected": true,
+      "source_unchanged": true
+    },
+    {
+      "actual_error": "ARTIFACT_TYPE_MISMATCH",
+      "actual_sha256": "0bec6aa2d0ced660b35b1d64769a71675de5c2f8c8291d5c1916929af813b94a",
+      "case": "wrong_kind",
+      "expected_error": "ARTIFACT_TYPE_MISMATCH",
+      "expected_sha256": "0bec6aa2d0ced660b35b1d64769a71675de5c2f8c8291d5c1916929af813b94a",
+      "input": "wrong_kind/input.json",
+      "output_after": {},
+      "output_before": {},
+      "output_unchanged": true,
+      "patch_generated": false,
+      "rejected": true,
+      "source_unchanged": true
+    },
+    {
+      "actual_error": "ARTIFACT_HASH_MISMATCH",
+      "actual_sha256": "e67f73b4c5f33c4aa5848c64133c943d7001babc6ba92714ef38d1612ae93e51",
+      "case": "changed_artifact",
+      "expected_error": "ARTIFACT_HASH_MISMATCH",
+      "expected_sha256": "dd2ff55fb3e8e56250e656efb015bf4fdf6791e0933e9d799be0a73786be2f85",
+      "input": "changed_artifact/input.json",
+      "output_after": {},
+      "output_before": {},
+      "output_unchanged": true,
+      "patch_generated": false,
+      "rejected": true,
+      "source_unchanged": true
+    },
+    {
+      "actual_error": "UPSTREAM_FAILED",
+      "actual_sha256": "f72f831f65cc4ca03cc1891266f0c4c8c13ab15e6095fe9caac7ca6bc366042f",
+      "case": "failed_upstream",
+      "expected_error": "UPSTREAM_FAILED",
+      "expected_sha256": "f72f831f65cc4ca03cc1891266f0c4c8c13ab15e6095fe9caac7ca6bc366042f",
+      "input": "failed_upstream/input.json",
+      "output_after": {},
+      "output_before": {},
+      "output_unchanged": true,
+      "patch_generated": false,
+      "rejected": true,
+      "source_unchanged": true
+    }
+  ]
+}

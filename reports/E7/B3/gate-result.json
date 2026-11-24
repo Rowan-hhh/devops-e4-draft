@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "stage": "E7",
+  "role": "B3",
+  "passed": true,
+  "image": "course1020-draft:e7-b3",
+  "candidate_sha256": "510dc459a9a3830aabdf35b32c15b0c22a3c3299982950e40378d4a3227b9788",
+  "selected_cases": ["success", "build-failed", "wrong-output", "invalid-candidate", "timeout"],
+  "cases": [
+    {"case": "unit-tests", "passed": true, "exit_code": 0},
+    {"case": "success", "passed": true, "exit_code": 0, "workflow_status": "SUCCEEDED", "trace_id": "e6-b-9dd13102756f4253991728effdf33fb9"},
+    {"case": "build-failed", "passed": true, "exit_code": 1, "workflow_status": "FAILED", "trace_id": "e6-b-d21aff1603ed408e951920d155259b39"},
+    {"case": "wrong-output", "passed": true, "exit_code": 1, "workflow_status": "FAILED", "trace_id": "e6-b-8ff6314ad25d4250a264325dc324e8bd"},
+    {"case": "invalid-candidate", "passed": true, "exit_code": 1, "workflow_status": "FAILED", "trace_id": "e6-b-e9e8425c059a4c6ca0d241919e6c1992"},
+    {"case": "timeout", "passed": true, "exit_code": 1, "workflow_status": "FAILED", "trace_id": "e6-b-247b8550bdb249538108a78153c644a1"}
+  ],
+  "build_timeout_seconds": 1200
+}

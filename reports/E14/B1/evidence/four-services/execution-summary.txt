@@ -1,0 +1,6 @@
+finished_at_utc=2026-11-23T05:08:47Z
+compose_up_exit=0
+orchestrate_exit=0
+scan_evidence_exit=0
+scan_services_exit=0
+compose_down_exit=0

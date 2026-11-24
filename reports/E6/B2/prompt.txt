@@ -1,0 +1,24 @@
+You are repairing a Dockerfile for a minimal C project.
+
+Observed failure:
+- Docker build reaches RUN make.
+- The shell reports: /bin/sh: 1: make: not found.
+- The failure is caused by a missing build tool in the image.
+
+Return only one complete Dockerfile. Do not include Markdown fences or explanation.
+
+Constraints:
+1. FROM must be exactly:
+   python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f
+2. Use WORKDIR /work.
+3. Install the packages needed to compile the C project.
+4. Use --no-install-recommends and remove /var/lib/apt/lists/*.
+5. Copy main.c and Makefile with:
+   COPY main.c Makefile ./
+6. Build with:
+   RUN make
+7. Run with:
+   CMD ["./hello"]
+8. Do not copy a prebuilt binary.
+9. Do not bypass make.
+10. Do not change the source code or Makefile.

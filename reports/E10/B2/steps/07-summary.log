@@ -1,0 +1,37 @@
+E10_B2_VALIDATION_PASS
+{
+  "schema_version": 1,
+  "stage": "E10",
+  "track": "B",
+  "role": "B2",
+  "student_id": "241880179",
+  "status": "PASS",
+  "student_source_commit": "8e4cba9156b82e207b1eef21cd19b7bc89eedef8",
+  "upstream_b3_commit": "dec8476f9f01b1162a226acc46ebcad6d6097a73",
+  "project_head": "93ea08243be717cfe00502120ddebf2d090bdff7",
+  "source_before_sha256": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2",
+  "source_after_accept_sha256": "ab35bda3d5bf1ba02394a04bddcb8ec23a2e3ba67d7be938be3e49fed9b1d5d0",
+  "validation": {
+    "wrong_test_rejected": true,
+    "candidate_accepted": true,
+    "bad_patch_rejected": true,
+    "compile_failure_rejected": true
+  },
+  "accepted_checks": {
+    "patch_applies": true,
+    "build": true,
+    "test": true,
+    "header_change": true,
+    "no_missing": true
+  },
+  "bad_patch_preserved_accepted_source": true,
+  "project_status": "M Makefile",
+  "unit_tests": {
+    "count": 19,
+    "exit_code": 0,
+    "result": "OK"
+  },
+  "handoff_to": "E10 B4",
+  "scope_note": "B2 validates the reusable validate() flow; B4 independently owns final gate and delivery."
+}
+STEP_EXIT_CODE=0

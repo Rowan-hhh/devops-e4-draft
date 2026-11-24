@@ -1,0 +1,24 @@
+
+==================================== ERRORS ====================================
+___________ ERROR collecting services/draft/tests/test_autobuild.py ____________
+ImportError while importing test module '/course/services/draft/tests/test_autobuild.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+services/draft/tests/test_autobuild.py:5: in <module>
+    from draft import autobuild
+E   ImportError: cannot import name 'autobuild' from 'draft' (unknown location)
+______________ ERROR collecting services/draft/tests/test_cli.py _______________
+import file mismatch:
+imported module 'test_cli' has this __file__ attribute:
+  /course/labs/e8e10/environment/services/buildchecker/tests/test_cli.py
+which is not the same as the test file we want to collect:
+  /course/services/draft/tests/test_cli.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+=========================== short test summary info ============================
+ERROR services/draft/tests/test_autobuild.py
+ERROR services/draft/tests/test_cli.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 errors in 9.25s

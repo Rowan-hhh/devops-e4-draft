@@ -1,0 +1,13 @@
+{
+  "checked_at": 1795096219.690361,
+  "command": [
+    "docker",
+    "ps",
+    "--no-trunc",
+    "--format",
+    "{{.ID}} {{.Status}}"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ""
+}

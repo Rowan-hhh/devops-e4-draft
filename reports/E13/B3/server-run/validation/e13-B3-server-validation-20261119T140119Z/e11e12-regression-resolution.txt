@@ -1,0 +1,5 @@
+host_direct_exit=1
+host_direct_reason=Python 3.10 lacks BaseException.add_note used by the tested failure path
+authoritative_entry=python3 run_e11e12.py test
+authoritative_exit=0
+original_failure_log_preserved=e11e12-tests.log

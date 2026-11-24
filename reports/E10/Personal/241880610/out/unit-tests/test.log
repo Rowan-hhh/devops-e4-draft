@@ -1,0 +1,59 @@
+
+==================================== ERRORS ====================================
+_ ERROR collecting labs/e8e10/environment/services/buildchecker/tests/test_cli.py _
+ImportError while importing test module '/course/labs/e8e10/environment/services/buildchecker/tests/test_cli.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+labs/e8e10/environment/services/buildchecker/tests/test_cli.py:2: in <module>
+    from buildchecker import __version__
+E   ModuleNotFoundError: No module named 'buildchecker'
+_ ERROR collecting labs/e8e10/environment/services/buildchecker/tests/test_fullcheck.py _
+ImportError while importing test module '/course/labs/e8e10/environment/services/buildchecker/tests/test_fullcheck.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+labs/e8e10/environment/services/buildchecker/tests/test_fullcheck.py:5: in <module>
+    from buildchecker.fullcheck import Unsupported, analyze, declaration_graph, execution_graph
+E   ModuleNotFoundError: No module named 'buildchecker'
+___________ ERROR collecting services/draft/tests/test_autobuild.py ____________
+ImportError while importing test module '/course/services/draft/tests/test_autobuild.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+services/draft/tests/test_autobuild.py:5: in <module>
+    from draft import autobuild
+E   ModuleNotFoundError: No module named 'draft'
+______________ ERROR collecting services/draft/tests/test_cli.py _______________
+ImportError while importing test module '/course/services/draft/tests/test_cli.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+services/draft/tests/test_cli.py:2: in <module>
+    from draft import __version__
+E   ModuleNotFoundError: No module named 'draft'
+=============================== warnings summary ===============================
+../usr/local/lib/python3.13/site-packages/_pytest/cacheprovider.py:475
+  /usr/local/lib/python3.13/site-packages/_pytest/cacheprovider.py:475: PytestCacheWarning: could not create cache path /course/.pytest_cache/v/cache/nodeids: [Errno 30] Read-only file system: '/course/pytest-cache-files-046gdkby'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../usr/local/lib/python3.13/site-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.13/site-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /course/.pytest_cache/v/cache/lastfailed: [Errno 30] Read-only file system: '/course/pytest-cache-files-zulixzvy'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR labs/e8e10/environment/services/buildchecker/tests/test_cli.py
+ERROR labs/e8e10/environment/services/buildchecker/tests/test_fullcheck.py
+ERROR services/draft/tests/test_autobuild.py
+ERROR services/draft/tests/test_cli.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 4 errors during collection !!!!!!!!!!!!!!!!!!!!
+2 warnings, 4 errors in 7.07s

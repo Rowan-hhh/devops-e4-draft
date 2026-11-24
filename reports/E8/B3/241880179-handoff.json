@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "stage": "E8",
+  "role": "B3",
+  "student_id": "241880179",
+  "status": "PASS",
+  "repository": "https://github.com/Rowan-hhh/devops-e4-draft.git",
+  "branch": "student/241880179/e8-e10",
+  "input_source_sha": "593b40a176b0881f3b7ed072a4c6c4302957a07b",
+  "input_handoff": "reports/E8/B1/241880360-handoff.json",
+  "source_state": "reports/E8/B3/source-state.json",
+  "final_test_source_state": "reports/E8/B3/test-source-state.json",
+  "environment": {
+    "image_tag": "course-e8e10:241880179",
+    "reused_from_image_tag": "course-e8e10:241880360",
+    "image_id": "sha256:94a15175783fe4f37f17f1ae1208edfbdd2524206304e1b1ce56295f27823c40"
+  },
+  "sample": {
+    "b1_original_project": "/root/devops-students/241880360/draft/work/e8-B-manual.cGTRVM/project",
+    "project": "/root/devops-students/241880179/draft/work/e8-B-manual.t0bJlj/project",
+    "project_commit": "aae7c9d74345872ef98f14558aaf4550f3d25d5a",
+    "worktree_clean": true,
+    "tracked_input_hashes_unchanged": true
+  },
+  "report": {
+    "server_path": "/root/devops-students/241880179/draft/work/e8-B-manual.t0bJlj/fixed-md-report.json",
+    "repository_copy": "reports/E8/B3/fixed-md-report.json",
+    "sha256": "fc52f02e24752b147b4cc4b483d4c28787335525c4d0997a815bb256d0b7f567",
+    "commit": "aae7c9d74345872ef98f14558aaf4550f3d25d5a",
+    "producer": "lab.scan / GCC_LOCAL_HEADERS_EXPLICIT_MAKE",
+    "commit_matches_project_head": true,
+    "findings": [
+      {"type": "MISSING", "target": "main.o", "dependency": "config.h"},
+      {"type": "REDUNDANT", "target": "main.o", "dependency": "unused.h"}
+    ]
+  },
+  "identity_checks": {
+    "path": "reports/E8/B3/report-identity.json",
+    "sha256": "37469de3be2ef864c6ff6befe91a4f120f418126389f455eedb994894a48242b",
+    "passed": true
+  },
+  "independent_test": {
+    "name": "StudentE8B3.test_report_identity_changes_even_when_findings_do_not",
+    "total_tests": 9,
+    "exit_code": 0,
+    "log": "reports/E8/B3/unit-tests-final.log",
+    "log_sha256": "c4fea4c893f327365fbf101fa55d0e823525f69854bc9c66d2ae3926b5dbd823"
+  },
+  "evidence_directory": "/root/devops-students/241880179/draft/work/e8-B-manual.t0bJlj",
+  "handoff_to": ["E8 B2"],
+  "next_action": "Recheck the report commit and project HEAD, then generate candidate.patch and patch-plan.json from this project/report pair.",
+  "candidate_patch_generated": false,
+  "candidate_patch_applied": false,
+  "ci": {"status": "PENDING_GITHUB_VERIFICATION"},
+  "pull_request": null
+}

@@ -1,0 +1,11 @@
+{
+  "run_exception": null,
+  "sealing_exception": null,
+  "source_after_exception": null,
+  "finish_manifest_exception": null,
+  "failure_record_exception": null,
+  "run_return_code": 0,
+  "primary_failure": null,
+  "primary_failure_kind": null,
+  "status": "RUN_COMPLETED"
+}

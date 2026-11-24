@@ -1,0 +1,13 @@
+{
+  "project_head": "93ea08243be717cfe00502120ddebf2d090bdff7",
+  "report_commit": "93ea08243be717cfe00502120ddebf2d090bdff7",
+  "source_before_sha256": "9206301c23ce4cb93c3fc1434037e475cf69f53e132dc541f6028d05e30258b2",
+  "checks": {
+    "report_commit_matches_project_head": true,
+    "findings_match_expected": true,
+    "plan_matches_expected": true,
+    "source_snapshot_matches_project": true,
+    "project_clean_before_validation": true,
+    "candidate_apply_check": true
+  }
+}

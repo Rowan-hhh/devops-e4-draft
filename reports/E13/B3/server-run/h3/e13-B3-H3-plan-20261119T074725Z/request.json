@@ -1,0 +1,12 @@
+{
+  "mode": "e12",
+  "repo": "/course/work/e13-B3-H3-plan-20261119T074725Z/input/e13-upstream-student/H3-tiny-aes/repo",
+  "candidate": "/course/work/e13-B3-H3-plan-20261119T074725Z/input/e13-upstream-student/H3-tiny-aes/candidate.Dockerfile",
+  "base": "dc8099306d7023b7337328d718149973e7b17978",
+  "target": "5640bb69a01e64559207e9f74d15a9ae71a4d0f3",
+  "expected_output": "1",
+  "expected_stdout": "1\n",
+  "expected_stderr": "",
+  "expected_exit_code": 0,
+  "build_timeout": 600
+}

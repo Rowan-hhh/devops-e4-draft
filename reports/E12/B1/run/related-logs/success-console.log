@@ -1,0 +1,9 @@
+IMAGE=course-e11e12:241880360
+{
+  "schema_version": "e12-b1-1",
+  "status": "SUCCEEDED",
+  "base": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+  "target": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+  "a_group_report_received": false,
+  "source_unchanged": true
+}

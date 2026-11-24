@@ -1,0 +1,14 @@
+{
+  "actual_error": "ARTIFACT_TYPE_MISMATCH",
+  "actual_sha256": "0bec6aa2d0ced660b35b1d64769a71675de5c2f8c8291d5c1916929af813b94a",
+  "case": "wrong_kind",
+  "expected_error": "ARTIFACT_TYPE_MISMATCH",
+  "expected_sha256": "0bec6aa2d0ced660b35b1d64769a71675de5c2f8c8291d5c1916929af813b94a",
+  "input": "wrong_kind/input.json",
+  "output_after": {},
+  "output_before": {},
+  "output_unchanged": true,
+  "patch_generated": false,
+  "rejected": true,
+  "source_unchanged": true
+}

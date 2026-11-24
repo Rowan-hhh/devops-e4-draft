@@ -1,0 +1,82 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 345B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f
+#4 resolve docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 163B done
+#5 DONE 0.0s
+
+#6 [2/5] WORKDIR /work
+#6 CACHED
+
+#7 [3/5] COPY main.c helper.c config.h extra.h unused.h Makefile ./
+#7 CACHED
+
+#8 [4/5] RUN apt-get update && apt-get install -y --no-install-recommends build-essential && rm -rf /var/lib/apt/lists/*
+#8 0.677 Get:1 http://deb.debian.org/debian trixie InRelease [140 kB]
+#8 2.428 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#8 3.132 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#8 4.131 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9679 kB]
+#8 396.9 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [1108 B]
+#8 397.4 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [309 kB]
+#8 413.7 Fetched 10.2 MB in 6min 54s (24.7 kB/s)
+#8 413.7 Reading package lists...
+#8 414.2 Reading package lists...
+#8 414.6 Building dependency tree...
+#8 414.7 Reading state information...
+#8 414.9 The following additional packages will be installed:
+#8 414.9   binutils binutils-common binutils-x86-64-linux-gnu bzip2 cpp cpp-14
+#8 414.9   cpp-14-x86-64-linux-gnu cpp-x86-64-linux-gnu dpkg-dev g++ g++-14
+#8 414.9   g++-14-x86-64-linux-gnu g++-x86-64-linux-gnu gcc gcc-14
+#8 414.9   gcc-14-x86-64-linux-gnu gcc-x86-64-linux-gnu libasan8 libatomic1 libbinutils
+#8 414.9   libc-bin libc-dev-bin libc6 libc6-dev libcc1-0 libcrypt-dev libctf-nobfd0
+#8 414.9   libctf0 libdpkg-perl libgcc-14-dev libgdbm-compat4t64 libgomp1 libgprofng0
+#8 414.9   libhwasan0 libisl23 libitm1 libjansson4 liblsan0 liblzma5 libmpc3 libmpfr6
+#8 414.9   libperl5.40 libquadmath0 libsframe1 libstdc++-14-dev libtsan2 libubsan1
+#8 414.9   linux-libc-dev make patch perl perl-modules-5.40 rpcsvc-proto xz-utils
+#8 414.9 Suggested packages:
+#8 414.9   binutils-doc gprofng-gui binutils-gold bzip2-doc cpp-doc gcc-14-locales
+#8 414.9   cpp-14-doc debian-keyring debian-tag2upload-keyring g++-multilib
+#8 414.9   g++-14-multilib gcc-14-doc gcc-multilib manpages-dev autoconf automake
+#8 414.9   libtool flex bison gdb gcc-doc gcc-14-multilib gdb-x86-64-linux-gnu
+#8 414.9   libc-devtools glibc-doc sq | sqop | rsop | gosop | pgpainless-cli | gpg-sq
+#8 414.9   | gnupg sensible-utils git bzr libstdc++-14-doc make-doc ed diffutils-doc
+#8 414.9   perl-doc libterm-readline-gnu-perl | libterm-readline-perl-perl
+#8 414.9   libtap-harness-archive-perl
+#8 414.9 Recommended packages:
+#8 414.9   fakeroot sq | sqop | rsop | gosop | pgpainless-cli | gpg-sq | gnupg
+#8 414.9   libalgorithm-merge-perl manpages manpages-dev libfile-fcntllock-perl
+#8 414.9   liblocale-gettext-perl
+#8 415.0 The following NEW packages will be installed:
+#8 415.0   binutils binutils-common binutils-x86-64-linux-gnu build-essential bzip2 cpp
+#8 415.0   cpp-14 cpp-14-x86-64-linux-gnu cpp-x86-64-linux-gnu dpkg-dev g++ g++-14
+#8 415.0   g++-14-x86-64-linux-gnu g++-x86-64-linux-gnu gcc gcc-14
+#8 415.0   gcc-14-x86-64-linux-gnu gcc-x86-64-linux-gnu libasan8 libatomic1 libbinutils
+#8 415.0   libc-dev-bin libc6-dev libcc1-0 libcrypt-dev libctf-nobfd0 libctf0
+#8 415.0   libdpkg-perl libgcc-14-dev libgdbm-compat4t64 libgomp1 libgprofng0
+#8 415.0   libhwasan0 libisl23 libitm1 libjansson4 liblsan0 libmpc3 libmpfr6
+#8 415.0   libperl5.40 libquadmath0 libsframe1 libstdc++-14-dev libtsan2 libubsan1
+#8 415.0   linux-libc-dev make patch perl perl-modules-5.40 rpcsvc-proto xz-utils
+#8 415.0 The following packages will be upgraded:
+#8 415.0   libc-bin libc6 liblzma5
+#8 415.7 3 upgraded, 52 newly installed, 0 to remove and 9 not upgraded.
+#8 415.7 Need to get 86.5 MB of archives.
+#8 415.7 After this operation, 336 MB of additional disk space will be used.
+#8 415.7 Get:1 http://deb.debian.org/debian trixie/main amd64 libc6 amd64 2.41-12+deb13u5 [2850 kB]
+#8 478.5 Get:2 http://deb.debian.org/debian trixie/main amd64 libc-bin amd64 2.41-12+deb13u5 [639 kB]
+#8 517.1 Get:3 http://deb.debian.org/debian trixie/main amd64 liblzma5 amd64 5.8.1-1+deb13u2 [310 kB]
+#8 531.9 Get:4 http://deb.debian.org/debian trixie/main amd64 bzip2 amd64 1.0.8-6 [40.5 kB]
+#8 533.2 Get:5 http://deb.debian.org/debian trixie/main amd64 perl-modules-5.40 all 5.40.1-6+deb13u1 [3014 kB]

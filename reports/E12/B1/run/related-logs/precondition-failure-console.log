@@ -1,0 +1,2 @@
+IMAGE=course-e11e12:241880360
+Command '['git', '-C', '/course/data/e12-b-real-project/repo', 'config', '--local', '--get', 'user.name']' returned non-zero exit status 1.

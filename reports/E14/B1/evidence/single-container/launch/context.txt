@@ -1,0 +1,13 @@
+started_at_utc=2026-11-23T05:01:00Z
+branch=e14-yrh-b1-formal-evidence
+tool_commit=588957ad6373e45fa166ed5a58c546bea018669d
+locked_candidate=ff92071368bbd40083e3014dd09adc40a5c24dbb
+request=data/integration-sample/e12.json
+request_sha256=422f4bdd9d9e1eeded9d03584a3219185c429fee484dbdcd90e0e5bcdad77c1c
+candidate_sha256=c2f7a9f70caf44bbf4852a1c61e262203de9f28cd6fbe3aa2dec5adf6d34c6da
+recovery_of=work/e14-B1-single-formal-20261123T025045Z
+failed_diagnostic=work/e14-B1-single-failure-diagnostic-20261123T030522Z
+prewarm_dir=work/e14-B1-candidate-prewarm-20261123T031355Z
+prewarm_tag=e14-b1-fixed-prewarm:20261123T031355Z
+evidence_dir=work/e14-B1-single-recovery-20261123T050100Z
+tmux_session=e14-b1-recovery-20261123T050100Z

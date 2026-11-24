@@ -1,0 +1,5 @@
+FROM m.daocloud.io/docker.io/library/python:3.13-slim
+WORKDIR /work
+COPY Makefile aes.h config.h extra.h helper.c main.c unused.h ./
+RUN make app
+CMD ["./app"]

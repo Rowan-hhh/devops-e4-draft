@@ -1,0 +1,12 @@
+E9 B2 test result
+
+Command:
+python -m unittest discover -s labs/e8e10 -p test_profile.py -v
+
+Result:
+Ran 13 tests
+OK
+exit code: 0
+
+The upstream E9 B1/B3 tests remain present. B2 adds:
+StudentE9B2.test_macro_duplicate_dependencies_are_normalized_before_patch
