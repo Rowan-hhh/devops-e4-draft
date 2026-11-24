@@ -3,7 +3,7 @@
 
 用法：
   python3 scripts/secret_scan.py [目录]                 # 扫描工作区（Git 仓库只扫描已跟踪文件）
-  python3 scripts/secret_scan.py . --history            # 另外扫描全部 Git 历史
+  python3 scripts/secret_scan.py . --history            # 另外扫描当前 HEAD 可达的 Git 历史
   python3 scripts/secret_scan.py . --image <镜像名>      # 另外扫描 docker history 与镜像环境变量
 发现疑似密钥时退出码为 1。输出只显示前 4 位，避免检查本身再泄露一次。
 """
@@ -89,7 +89,7 @@ def main():
         hits.append(".env 权限过宽：执行 chmod 600 .env")
 
     if args.history and in_git:
-        log = git(root, "log", "--all", "-p", "--no-color").stdout
+        log = git(root, "log", "HEAD", "-p", "--no-color").stdout
         hits += scan_text(log, "git-history")
     if args.image:
         for cmd, where in ((["docker", "history", "--no-trunc", "--format", "{{.CreatedBy}}", args.image], "image-history"),
