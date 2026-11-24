@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "case": "normal",
+  "status": "SUCCEEDED",
+  "job_id": "job-18422aaf5a294d698665816fa4ef8d80",
+  "trace_id": "trace-0fe4af3fdf164823a4cffe0baa7a25dd",
+  "attempts": 1,
+  "duration_ms": 15
+}
