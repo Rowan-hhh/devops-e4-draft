@@ -1,4 +1,0 @@
-*.json text eol=lf
-*.md text eol=lf
-*.patch text eol=lf
-*.Makefile text eol=lf

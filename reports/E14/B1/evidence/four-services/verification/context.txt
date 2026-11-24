@@ -1,8 +1,0 @@
-verified_at_utc=2026-11-23T05:12:07Z
-branch=e14-yrh-b1-formal-evidence
-tool_commit=588957ad6373e45fa166ed5a58c546bea018669d
-locked_candidate=ff92071368bbd40083e3014dd09adc40a5c24dbb
-evidence_dir=work/e14-B1-four-service-formal-20261123T050827Z
-launch_dir=work/e14-B1-four-service-launch-20261123T050827Z
-image=course-e11e12:241880360
-expected_image_id=sha256:a9c65eab021262a76f2025a42a9526aa5d793ee4f2224696bbb6419d0daf80e0

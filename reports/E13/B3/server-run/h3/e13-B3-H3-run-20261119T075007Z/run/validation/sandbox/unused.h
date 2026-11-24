@@ -1,1 +1,0 @@
-/* Declared only in the INI case. */

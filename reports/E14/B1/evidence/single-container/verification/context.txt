@@ -1,7 +1,0 @@
-verified_at_utc=2026-11-23T05:02:14Z
-branch=e14-yrh-b1-formal-evidence
-tool_commit=588957ad6373e45fa166ed5a58c546bea018669d
-locked_candidate=ff92071368bbd40083e3014dd09adc40a5c24dbb
-evidence_dir=work/e14-B1-single-recovery-20261123T050100Z
-recovery_of=work/e14-B1-single-formal-20261123T025045Z
-run_exit=0

@@ -1,6 +1,0 @@
-.git
-*.o
-app
-hello
-*.log
-Dockerfile.reference

@@ -1,9 +1,0 @@
-{
-  "accepted": false,
-  "checks": {
-    "patch_applies": true
-  },
-  "error": "COMMAND_FAILED ['make', 'app']\nfalse\nmake: *** [Makefile:5: main.o] Error 1\n",
-  "source_unchanged": true,
-  "rollback": true
-}

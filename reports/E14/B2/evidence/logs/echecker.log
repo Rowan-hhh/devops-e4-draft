@@ -1,6 +1,0 @@
-echecker-1  | 127.0.0.1 - - [22/Nov/2026 07:47:31] "GET /health HTTP/1.1" 200 -
-echecker-1  | 127.0.0.1 - - [22/Nov/2026 07:47:37] "GET /health HTTP/1.1" 200 -
-echecker-1  | 127.0.0.1 - - [22/Nov/2026 07:47:42] "GET /health HTTP/1.1" 200 -
-echecker-1  | {"role": "echecker", "job_id": "job-814f77a335124944a787f1e925f6afa7", "trace_id": "trace-5940632b2b17409d9477bbdaa306a0cc", "status": "SUCCEEDED", "elapsed_ms": 55}
-echecker-1  | 172.18.0.1 - - [22/Nov/2026 07:47:47] "POST /v1/run HTTP/1.1" 200 -
-echecker-1  | 127.0.0.1 - - [22/Nov/2026 07:47:47] "GET /health HTTP/1.1" 200 -

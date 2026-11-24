@@ -1,7 +1,0 @@
-[
-  {
-    "target": "main.o",
-    "dependency": "config.h",
-    "style": "mixed"
-  }
-]

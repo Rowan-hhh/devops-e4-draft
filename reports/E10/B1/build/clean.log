@@ -1,3 +1,0 @@
-$ make clean
-rm -f main.o helper.o app
-exit_code=0

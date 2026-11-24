@@ -1,3 +1,0 @@
-gcc -O0 -c main.c -o main.o
-gcc -O0 -c helper.c -o helper.o
-gcc main.o helper.o -o app

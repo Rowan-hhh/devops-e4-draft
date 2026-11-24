@@ -1,3 +1,0 @@
-mdfixer-1  | 127.0.0.1 - - [23/Nov/2026 05:08:33] "GET /health HTTP/1.1" 200 -
-mdfixer-1  | {"role": "mdfixer", "job_id": "job-63b04038ab0d4f4dad41338d6a45cc2a", "trace_id": "trace-97c74bcea0c247b899798f83ad59e162", "status": "SUCCEEDED", "elapsed_ms": 1181}
-mdfixer-1  | 172.23.0.1 - - [23/Nov/2026 05:08:36] "POST /v1/run HTTP/1.1" 200 -

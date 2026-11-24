@@ -1,8 +1,0 @@
-started_at_utc=2026-11-23T05:08:27Z
-branch=e14-yrh-b1-formal-evidence
-tool_commit=588957ad6373e45fa166ed5a58c546bea018669d
-locked_candidate=ff92071368bbd40083e3014dd09adc40a5c24dbb
-compose_project=e14b1formal20261123t050827z
-image=course-e11e12:241880360
-expected_image_id=sha256:a9c65eab021262a76f2025a42a9526aa5d793ee4f2224696bbb6419d0daf80e0
-request=data/integration-sample/e12.json
