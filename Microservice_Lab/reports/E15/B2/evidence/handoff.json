@@ -1,0 +1,44 @@
+{
+  "schema_version": "e15-b2-handoff-1",
+  "stage": "E15",
+  "role": "B2",
+  "handoff_to": "B3",
+  "source_branch": "e15-yrh-b2-real-project",
+  "source_import_commit": "f31d32733bee4f23aeae3a41cf8c9e995dfe4ba9",
+  "b1_handoff_sha256": "3535c69e78255f0f76ba975d001784c38185647d69e7bc4c06520b7349db5bbd",
+  "real_project": {
+    "status": "SUCCEEDED",
+    "job_id": "job-0efa607b21d945d3b76c7fe63aed71fe",
+    "trace_id": "trace-bb3eda8a38dc453097d2781526d1ca1b",
+    "base_commit": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+    "target_commit": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+    "stages": [
+      "draft",
+      "full-check",
+      "incremental-check",
+      "repair",
+      "recheck"
+    ],
+    "client_result": "real-project/client/result.json",
+    "result_sha256": "309f06f4a7d425563050017794922071c913a9ff8b0a232f05924032536fa535",
+    "request_sha256": "78c701a39f1d46ae15af22acbd56c6d6d02922fb146b09e3252fda88b5ebebf2",
+    "candidate_sha256": "c7b2ba5babf97c0c413583d908ab372b224a6351f127124b068f1607aefc44af",
+    "initial_environment_failure": "real-project/initial-environment-failure-state.json"
+  },
+  "sample_monitoring": {
+    "status": "SUCCEEDED",
+    "job_id": "job-1fb88159b49145a2a23ad3d1035dfa32",
+    "trace_id": "trace-b24b5b1528c14f6d855d30379b9ba0de",
+    "attempts": 1,
+    "prometheus_targets": [
+      "lab-api",
+      "lab-worker"
+    ],
+    "grafana_dashboard_uid": "microservice-lab",
+    "screenshots": {
+      "targets_up": "screenshots/1.png",
+      "succeeded_count_1": "screenshots/2.png"
+    }
+  },
+  "scope_boundary": "Prometheus/Grafana metrics and screenshots belong to the Microservice_Lab sample. The successful real E12 project ran through its separate API; it is not claimed to be instrumented by the sample dashboard."
+}
