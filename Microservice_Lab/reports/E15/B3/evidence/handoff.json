@@ -1,0 +1,44 @@
+{
+  "schema_version": "e15-b3-handoff-1",
+  "stage": "E15",
+  "role": "B3",
+  "student_id": "241880179",
+  "student_name": "史美一",
+  "handoff_to": "B4",
+  "source_branch": "e15-yrh-b2-real-project",
+  "source_commit": "3eb5d2a886d5b82b8e00a82aca0193a001c98786",
+  "compose_project": "e15b3smy20261126",
+  "scope": "Microservice_Lab sample failure and recovery; not the real E12 monitoring path",
+  "worker_observation": {
+    "prometheus_sequence": [1, 0, 1],
+    "stopped_at": "2026-11-26T15:34:38+08:00",
+    "recovered_at": "2026-11-26T15:34:46+08:00"
+  },
+  "failure": {
+    "job_id": "job-3063e546ab6549619dbed4e5958be77e",
+    "trace_id": "trace-2f76c0e7a8b842d6a5e91cc0fe049263",
+    "status": "FAILED",
+    "error_code": "DOWNSTREAM_UNAVAILABLE",
+    "attempts": 3,
+    "duration_ms": 1011,
+    "has_success_artifact": false,
+    "evidence_dir": "down-20261126T073442Z-771dee"
+  },
+  "recovery": {
+    "job_id": "job-b5ee89f4b33b401c896ce2ee0b2ab22c",
+    "trace_id": "trace-f42636ec1a29499ebf624e379dbd2bfb",
+    "status": "SUCCEEDED",
+    "error_code": null,
+    "attempts": 1,
+    "duration_ms": 3,
+    "artifact_sha256": "f977fd00c840276f44eef7027a10ebef5ddeca60d4ba5bdd191ecdb89e148dc2",
+    "evidence_dir": "recovered-20261126T073446Z-dd4195"
+  },
+  "log_checks": {
+    "failure_worker_call_count": 3,
+    "failure_job_finished_count": 1,
+    "recovery_correlated_in_api_and_worker": true
+  },
+  "repository_unchanged": true,
+  "server_archive_sha256": "c6a2ae9ecfe599bdc3f8bc1d306a951e849405b85e9f65ce362355fa69fbd8ab"
+}
