@@ -1,0 +1,8 @@
+{
+  "schema_version": "e11e12-1",
+  "job_id": "job-b859630a9e89447a9ff692f715fe3208",
+  "status": "SUCCEEDED",
+  "idempotency_key": "46ff4159c0d3415fbf319328593e5bb5",
+  "request_hash": "35c805b0d5acee7b47fb763bb387f7395dfce7e8e3fda1e137b69455ee0e900a",
+  "trace_id": "trace-de52b2f8c6214a95bafc9aabf8ccba2b"
+}

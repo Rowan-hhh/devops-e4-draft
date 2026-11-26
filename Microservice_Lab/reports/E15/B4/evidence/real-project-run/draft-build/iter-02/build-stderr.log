@@ -1,0 +1,43 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 790B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 86B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f
+#4 resolve docker.io/library/python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 144B done
+#5 DONE 0.0s
+
+#6 [2/5] WORKDIR /work
+#6 CACHED
+
+#7 [3/5] COPY main.c helper.c *.h Makefile ./
+#7 CACHED
+
+#8 [4/5] RUN sed -i -e 's|https\{0,1\}://deb\.debian\.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' -e 's|https\{0,1\}://security\.debian\.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' -e 's|https\{0,1\}://deb\.debian\.org/debian|https://mirrors.tuna.tsinghua.edu.cn/debian|g' /etc/apt/sources.list.d/debian.sources && apt-get -o Acquire::ForceIPv4=true -o Acquire::Retries=3 update && apt-get -o Acquire::ForceIPv4=true -o Acquire::Retries=3 install -y --no-install-recommends gcc make libc6-dev && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [5/5] RUN make app
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:f403d051446f165148866b756e5b4d9014082f00d1762c59a4e55eb903c36cc0 done
+#10 exporting config sha256:ce8acb9ef0a7481e8cece292c0aab5465860605d95462d23aa9f4660da041213 done
+#10 exporting attestation manifest sha256:59a499fc11247e5c0da15cad1a7743581c64f3b69709d3ac3269bc74dd5aa628
+#10 exporting attestation manifest sha256:59a499fc11247e5c0da15cad1a7743581c64f3b69709d3ac3269bc74dd5aa628 0.0s done
+#10 exporting manifest list sha256:b6b3f4300dc42f3eaf5017e4d0ec0bb765067710614f70cf9d846fde341ec122 0.0s done
+#10 naming to docker.io/library/e6-draft-replay:50efad8d406643bb8fd2fab3d80caadf-2 done
+#10 unpacking to docker.io/library/e6-draft-replay:50efad8d406643bb8fd2fab3d80caadf-2 done
+#10 DONE 0.1s

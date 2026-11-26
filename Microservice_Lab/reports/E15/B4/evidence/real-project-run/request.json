@@ -1,0 +1,12 @@
+{
+  "input": {
+    "mode": "e12",
+    "repo": "/home/yihan_zhou/e15-zyh-b4-run-20261126-01/repo/data/e15-b4-real-project/repo",
+    "base": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+    "target": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+    "candidate": "/home/yihan_zhou/e15-zyh-b4-run-20261126-01/repo/data/e15-b4-real-project/candidate.Dockerfile",
+    "expected_output": "1",
+    "build_timeout": 600
+  },
+  "idempotency_key": "46ff4159c0d3415fbf319328593e5bb5"
+}
