@@ -1,0 +1,19 @@
+{
+    "status": "success",
+    "data": {
+        "resultType": "vector",
+        "result": [
+            {
+                "metric": {
+                    "__name__": "up",
+                    "instance": "worker:8080",
+                    "job": "lab-worker"
+                },
+                "value": [
+                    1795678486.619,
+                    "1"
+                ]
+            }
+        ]
+    }
+}

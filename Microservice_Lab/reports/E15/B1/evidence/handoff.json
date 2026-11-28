@@ -1,0 +1,54 @@
+{
+  "schema_version": "e15-b1-handoff-1",
+  "stage": "E15",
+  "role": "B1",
+  "status": "PASS_WITH_ARCHIVED_RUN",
+  "evidence_time_utc": "2026-11-19T06:37:00Z/2026-11-19T06:40:00Z",
+  "compose": {
+    "path": "compose.yaml",
+    "bytes": 1581,
+    "sha256": "dc5930e651bedb015d66bc49ffe1cc3bb86b29404a4a3b578c7d00907cf39f29"
+  },
+  "services": ["api", "worker", "prometheus", "grafana"],
+  "dependency": {
+    "api_to_worker": "http://worker:8080/check",
+    "health": "api and worker healthcheck returned 200",
+    "monitoring": "Prometheus job lab-worker and Grafana dashboard provisioned"
+  },
+  "runs": {
+    "normal": {
+      "path": "normal",
+      "job_id": "job-18422aaf5a294d698665816fa4ef8d80",
+      "trace_id": "trace-0fe4af3fdf164823a4cffe0baa7a25dd",
+      "status": "SUCCEEDED",
+      "error_code": null,
+      "attempts": 1
+    },
+    "downstream_stopped": {
+      "path": "down",
+      "job_id": "job-06cdfb90f12f42159644247ebb7d692f",
+      "trace_id": "trace-3a4fad57da2943fe9a71a02eb0ffd783",
+      "status": "FAILED",
+      "error_code": "DOWNSTREAM_UNAVAILABLE",
+      "attempts": 3
+    },
+    "recovered": {
+      "path": "recovered",
+      "job_id": "job-887bd102cae14981968821de52b17e50",
+      "trace_id": "trace-ac0427fbb10a4d95ad2614cc79c9fa4c",
+      "status": "SUCCEEDED",
+      "error_code": null,
+      "attempts": 1
+    },
+    "timeout_supplement": {
+      "path": "timeout",
+      "job_id": "job-451f615089714cdcbbb0a70ecb978aea",
+      "trace_id": "trace-7e7ed873a33d49c8a1ae49bfcae7261c",
+      "status": "TIMED_OUT",
+      "error_code": "DOWNSTREAM_TIMEOUT",
+      "attempts": 3
+    }
+  },
+  "handoff_to": "B2",
+  "secrets": "The local .env and Grafana password are excluded from this evidence package."
+}

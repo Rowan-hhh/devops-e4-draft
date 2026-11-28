@@ -1,0 +1,82 @@
+{
+  "schema_version": "e15-b4-handoff-1",
+  "stage": "E15",
+  "role": "B4",
+  "student_id": "241880300",
+  "student_name": "周逸涵",
+  "status": "PASS_WITH_ARCHIVED_B1_RUN",
+  "source_branch": "e15-yrh-b2-real-project",
+  "source_commit": "d6a8a3a4cff85767135ab3f418e04bb2e345b969",
+  "target_branch": "main",
+  "upstream": {
+    "b3_branch": "e15-smy-b3-failure-recovery",
+    "b3_commit": "72d033f1c7b6748b4f308a86e772f5f103b64dc0",
+    "b3_merge_commit": "d6a8a3a4cff85767135ab3f418e04bb2e345b969",
+    "b3_pr": "https://github.com/Rowan-hhh/devops-e4-draft/pull/43"
+  },
+  "acceptance": {
+    "b1_sample": {
+      "status": "PASS_WITH_ARCHIVED_RUN",
+      "report": "../B1/README.md",
+      "evidence": "../B1/evidence/",
+      "fresh_rerun_claimed": false
+    },
+    "b2_real_project": {
+      "status": "SUCCEEDED",
+      "job_id": "job-0efa607b21d945d3b76c7fe63aed71fe",
+      "trace_id": "trace-bb3eda8a38dc453097d2781526d1ca1b",
+      "base_commit": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+      "target_commit": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+      "sample_metrics_scope": "Microservice_Lab sample only; not the real E12 project"
+    },
+    "b3_sample_failure_recovery": {
+      "failure_job_id": "job-3063e546ab6549619dbed4e5958be77e",
+      "failure_status": "FAILED",
+      "failure_error_code": "DOWNSTREAM_UNAVAILABLE",
+      "failure_attempts": 3,
+      "recovery_job_id": "job-b5ee89f4b33b401c896ce2ee0b2ab22c",
+      "recovery_status": "SUCCEEDED",
+      "recovery_attempts": 1,
+      "prometheus_worker_up_sequence": [1, 0, 1],
+      "scope": "Microservice_Lab sample only"
+    },
+    "b4_real_project_rerun": {
+      "status": "SUCCEEDED",
+      "job_id": "job-b859630a9e89447a9ff692f715fe3208",
+      "trace_id": "trace-de52b2f8c6214a95bafc9aabf8ccba2b",
+      "base_commit": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+      "target_commit": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+      "stages": ["draft", "full-check", "incremental-check", "repair", "recheck"],
+      "server_artifact_count": 174,
+      "all_five_stage_sha256_match_local_copy": true,
+      "candidate_sha256": "c7b2ba5babf97c0c413583d908ab372b224a6351f127124b068f1607aefc44af",
+      "patch_sha256": "a7a3be54d5ba81594acd628725f17aca2b4ce0d1a5aed556d454bb321eb5142a",
+      "repair_plan_sha256": "ca830d7c2fc9db590984afe8b96f814b7f080d8b0066fc358c619f9bc2d4ac2a",
+      "validation": {
+        "accepted": true,
+        "patch_applies": true,
+        "build": true,
+        "test": true,
+        "header_change": true,
+        "no_missing": true,
+        "findings_after": [],
+        "source_unchanged": false,
+        "rollback": false,
+        "rollback_test_performed": false
+      },
+      "result_sha256": "96c2767d7f83a69a5a541e1184836a9d256de3a1e4358032502600516ff6c9aa",
+      "check_sha256": "d28d6ae28d75453734a1643ce911c800220eef18c63283e81be34c8da8875e62",
+      "evidence_dir": "evidence/real-project-run/"
+    }
+  },
+  "initial_environment_failure": {
+    "job_id": "job-860723b112c546a1aad6d46df26907a4",
+    "status": "FAILED",
+    "error_code": "WORKER_FAILED",
+    "error": "No module named 'buildchecker'",
+    "preserved_evidence": "evidence/initial-module-path-failure/",
+    "superseded_by_new_job": true
+  },
+  "boundary": "Prometheus/Grafana failure and recovery data belongs to the Microservice_Lab sample. The B4 five-stage real E12 task is a separate run and is not claimed to be measured by the sample dashboard.",
+  "report": "README.md"
+}

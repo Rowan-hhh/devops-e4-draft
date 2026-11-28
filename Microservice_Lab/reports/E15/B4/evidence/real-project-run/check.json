@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "job_id": "job-b859630a9e89447a9ff692f715fe3208",
+  "trace_id": "trace-de52b2f8c6214a95bafc9aabf8ccba2b",
+  "missing_before": [
+    [
+      "helper.o",
+      "output_format.h"
+    ]
+  ],
+  "findings_after": []
+}

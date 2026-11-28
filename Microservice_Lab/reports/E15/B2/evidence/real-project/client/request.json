@@ -1,0 +1,12 @@
+{
+  "input": {
+    "mode": "e12",
+    "repo": "/root/devops-students/241880360/e15-b2-run/data/e12-b-real-project/repo",
+    "base": "0b62c79a6adb4cd913a814068074575afdbbd18b",
+    "target": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+    "candidate": "/root/devops-students/241880360/e15-b2-run/data/e15-b2-real-candidate.Dockerfile",
+    "expected_output": "1",
+    "build_timeout": 600
+  },
+  "idempotency_key": "4239d563df214b45aa4aa227a983db42"
+}

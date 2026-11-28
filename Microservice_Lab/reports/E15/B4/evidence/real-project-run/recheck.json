@@ -1,0 +1,37 @@
+{
+  "schema_version": "e11e12-1",
+  "job_id": "job-b859630a9e89447a9ff692f715fe3208",
+  "trace_id": "trace-de52b2f8c6214a95bafc9aabf8ccba2b",
+  "kind": "recheck",
+  "commit": "745ecf2621c8221b97bf0a5435ace50150ef57d4",
+  "status": "SUCCEEDED",
+  "data": {
+    "validation": {
+      "accepted": true,
+      "checks": {
+        "patch_applies": true,
+        "build": true,
+        "test": true,
+        "header_change": true,
+        "no_missing": true
+      },
+      "error": null,
+      "source_unchanged": false,
+      "rollback": false
+    },
+    "findings": [],
+    "patched_makefile_sha256": "c8768894cb8c56c9b1f2c1089ce6457a0b7d8514d0e09191ec134245d7c45706"
+  },
+  "artifacts": [
+    {
+      "uri": "artifact://job-b859630a9e89447a9ff692f715fe3208/validation/validation.json",
+      "sha256": "0aedd844e45d87669ff3c7ad42fcb15414453a14882df2fa6335997367390c37",
+      "bytes": 223
+    },
+    {
+      "uri": "artifact://job-b859630a9e89447a9ff692f715fe3208/final-full/findings.json",
+      "sha256": "ab7bbb5ec4107c4a305898c1ccfcf785cf0e2e6e6799378b78443a66d88bbf51",
+      "bytes": 1996
+    }
+  ]
+}

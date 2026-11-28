@@ -1,0 +1,5 @@
+NAME                            IMAGE                    COMMAND                  SERVICE      CREATED              STATUS                        PORTS
+e15b3smy20261126-api-1          python:3.13-slim         "python -u service.p…"   api          About a minute ago   Up 58 seconds (healthy)       127.0.0.1:18081->8080/tcp
+e15b3smy20261126-grafana-1      grafana/grafana:13.3.0   "/run.sh"                grafana      About a minute ago   Up About a minute             127.0.0.1:13001->3000/tcp
+e15b3smy20261126-prometheus-1   prom/prometheus:v3.5.1   "/bin/prometheus --c…"   prometheus   About a minute ago   Up About a minute             127.0.0.1:19091->9090/tcp
+e15b3smy20261126-worker-1       python:3.13-slim         "python -u service.p…"   worker       About a minute ago   Up About a minute (healthy)
